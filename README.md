@@ -51,7 +51,10 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
 ### Deployment
 - [ ] Deploy to Netlify (config in `netlify.toml`)
 - [ ] Set up custom domain
-- [ ] Create team Netlify account (currently using personal)
+- [ ] Create team Netlify account
+  - Create "Barbary Coast" GitHub org and transfer repo
+  - Create Netlify team linked to org
+  - This gives Harrison (and others) their own credentials
 
 ### ULAX Integration
 - [ ] Fetch current season schedule programmatically
