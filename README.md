@@ -48,9 +48,27 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
 
 ## TODO
 
-- [ ] Deploy to Netlify
-- [ ] Add ULAX integration for automatic schedule updates
+### Deployment
+- [ ] Deploy to Netlify (config in `netlify.toml`)
 - [ ] Set up custom domain
+- [ ] Create team Netlify account (currently using personal)
+
+### ULAX Integration
+- [ ] Fetch current season schedule programmatically
+- [ ] Add historical season data page
+
+### Harrison Onboarding
+- [ ] Give repo access
+- [ ] Give Netlify access
+- [ ] Walk through Claude Code workflow
+
+### Future Features
+- [ ] Team store
+- [ ] Photo gallery
+- [ ] Player profiles
+
+### Content/Styling
+- Defer to Harrison
 
 ## Tech Stack
 
