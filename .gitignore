@@ -24,7 +24,6 @@ pnpm-debug.log*
 
 # ide
 .idea/
-.vscode/
 
 # bun
 bun.lock
