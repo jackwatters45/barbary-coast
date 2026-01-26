@@ -8,28 +8,28 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/80">
-  <div class="mx-auto w-full max-w-5xl px-4 py-4">
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border">
+  <div class="mx-auto w-full max-w-5xl px-4 py-3">
     <div class="relative flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 text-lg font-medium text-foreground">
+      <a href="/" class="flex items-center gap-3 text-foreground">
         <img
           src="/logo.jpg"
           alt=""
-          class="w-9 h-9 rounded-full object-cover"
+          class="w-8 h-8 object-cover"
           aria-hidden="true"
         />
-        <span class="hidden sm:block">Barbary Coast</span>
+        <span class="text-sm font-semibold">Barbary Coast</span>
       </a>
 
-      <nav class="flex items-center gap-6 text-sm" aria-label="Main navigation">
+      <nav class="flex items-center gap-1 font-mono text-xs" aria-label="Main navigation">
         {navLinks.map(({ href, label }) => (
           <a
             href={href}
             class:list={[
-              "transition-colors",
+              "px-3 py-1.5 transition-colors",
               currentPath === href
-                ? "text-foreground"
-                : "text-muted hover:text-foreground hover:underline",
+                ? "text-foreground bg-foreground/5"
+                : "text-muted hover:text-foreground",
             ]}
             aria-current={currentPath === href ? "page" : undefined}
           >
@@ -41,4 +41,4 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
-<div class="h-[72px]" aria-hidden="true"></div>
+<div class="h-[57px]" aria-hidden="true"></div>

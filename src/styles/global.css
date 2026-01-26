@@ -1,25 +1,27 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
 @theme {
-  /* Fonts - clean system stack */
-  --font-serif: "Georgia", "Times New Roman", serif;
-  --font-ui: -apple-system, "Helvetica Neue", "Helvetica", sans-serif;
+  /* Fonts */
+  --font-sans: "Geist Variable", -apple-system, "Helvetica Neue", sans-serif;
+  --font-mono: "Geist Mono Variable", "SF Mono", "Monaco", monospace;
 
-  /* Monochrome base */
-  --color-background: #f8f8f8;
-  --color-foreground: #171717;
-  --color-muted: #6f6f6f;
-  --color-subtle: #8f8f8f;
-  --color-text: #3a3a3a;
-  --color-border: #e8e8e8;
-  --color-border-strong: #d0d0d0;
+  /* Terminal-inspired palette */
+  --color-background: #fafafa;
+  --color-foreground: #1a1a1a;
+  --color-muted: #666666;
+  --color-subtle: #999999;
+  --color-text: #333333;
+  --color-border: #e0e0e0;
+  --color-border-strong: #c0c0c0;
 
   /* Team accent colors */
-  --color-powder: #7ab8d9;
-  --color-powder-light: #9dcae5;
-  --color-powder-dark: #5a9bc4;
-  --color-gold: #d4a84b;
-  --color-gold-light: #e0be6f;
+  --color-powder: #5a9bc4;
+  --color-powder-light: #7ab8d9;
+  --color-powder-dark: #3d7a9e;
+  --color-gold: #c4962e;
+  --color-gold-light: #d4a84b;
 }
 
 @layer base {
@@ -52,7 +54,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-ui);
+    font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
@@ -60,12 +62,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Serif headings - italic like laxdb */
+  /* Headings */
   h1,
   h2 {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-weight: 600;
     letter-spacing: -0.02em;
   }
 
@@ -73,5 +74,22 @@
   :focus-visible {
     outline: 2px solid var(--color-powder);
     outline-offset: 2px;
+  }
+
+  /* Terminal-style selection */
+  ::selection {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+}
+
+@layer components {
+  /* Terminal-style label */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 }
