@@ -1,18 +1,9 @@
 @import "tailwindcss";
 
-/* Fonts - borrowed from laxdb */
-@font-face {
-  font-family: "Newsreader";
-  src: url("/fonts/Newsreader.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal italic;
-  font-display: swap;
-}
-
 @theme {
-  /* Fonts */
-  --font-serif: "Newsreader", "Georgia", serif;
-  --font-ui: "Helvetica Neue", "Helvetica", -apple-system, sans-serif;
+  /* Fonts - clean system stack */
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --font-ui: -apple-system, "Helvetica Neue", "Helvetica", sans-serif;
 
   /* Monochrome base */
   --color-background: #f8f8f8;
