@@ -45,6 +45,13 @@ const events = [
   {
     date: "2025-03-08",
     time: "1:00 PM",
+    type: "scrimmage" as const,
+    opponent: "Stanford MCLA",
+    location: "Maloney Field, Stanford",
+  },
+  {
+    date: "2025-03-08",
+    time: "1:00 PM",
     type: "game" as const,
     opponent: "South Bay Storm",
     location: "Crocker Amazon Playground",
@@ -62,80 +69,84 @@ const events = [
     opponent: "Sacramento Capitals",
     location: "Kezar Stadium",
   },
+  {
+    date: "2025-03-22",
+    time: "12:00 PM",
+    type: "scrimmage" as const,
+    opponent: "Cal MCLA",
+    location: "Witter Rugby Field, Berkeley",
+  },
+  {
+    date: "2025-10-31",
+    time: "TBD",
+    type: "tournament" as const,
+    name: "Hawaii Halloween Tournament",
+    location: "Honolulu, HI",
+  },
 ];
 ---
 
 <Layout title="Schedule" description="View upcoming games and practices for Barbary Coast Lacrosse.">
   <!-- Page Header -->
-  <section class="pt-16 pb-12">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h1 class="text-4xl sm:text-5xl text-foreground mb-4">Schedule</h1>
-      <p class="text-muted text-lg max-w-xl mx-auto">
-        Upcoming games, practices, and events for the 2025 season
-      </p>
+  <section class="pt-12 pb-8">
+    <div class="max-w-5xl mx-auto px-4">
+      <span class="label text-muted">2025 Season</span>
+      <h1 class="text-3xl sm:text-4xl text-foreground mt-2">Schedule</h1>
     </div>
   </section>
 
   <!-- Legend -->
-  <section class="pb-8">
+  <section class="pb-6">
     <div class="max-w-4xl mx-auto px-4">
-      <div class="flex flex-wrap gap-4 justify-center text-sm">
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-medium uppercase tracking-wide text-gold">Game</span>
-          <span class="text-muted">League matches</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-medium uppercase tracking-wide text-powder-dark">Practice</span>
-          <span class="text-muted">Team training</span>
-        </div>
+      <div class="flex flex-wrap gap-4 text-sm">
+        <span class="label text-gold">[game]</span>
+        <span class="label text-powder-dark">[practice]</span>
+        <span class="label text-subtle">[scrimmage]</span>
+        <span class="label text-gold">[tournament]</span>
       </div>
     </div>
   </section>
 
   <!-- Schedule List -->
-  <section class="pb-16 border-t border-border pt-8">
+  <section class="pb-12 border-t border-border pt-6">
     <div class="max-w-4xl mx-auto px-4">
       <ScheduleList events={events} />
 
-      <p class="text-subtle text-sm text-center mt-8">
-        Schedule subject to change. Follow us on social media for updates.
+      <p class="text-subtle text-sm text-center mt-6 font-mono">
+        // schedule subject to change
       </p>
     </div>
   </section>
 
   <!-- Practice Info -->
-  <section class="py-16 border-t border-border">
+  <section class="py-12 border-t border-border">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl text-foreground mb-8 text-center">Practice Info</h2>
+      <h2 class="text-xl sm:text-2xl text-foreground mb-6">Practice Info</h2>
 
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="bg-white rounded-lg border border-border p-6">
-          <h3 class="font-medium text-foreground mb-3">When</h3>
-          <ul class="space-y-2 text-text text-sm">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="bg-white border border-border p-5">
+          <span class="label text-muted">When</span>
+          <ul class="mt-2 space-y-1 text-text text-sm">
             <li>Tuesdays, 7:00 PM – 9:00 PM</li>
             <li>Thursdays, 7:00 PM – 9:00 PM</li>
           </ul>
         </div>
 
-        <div class="bg-white rounded-lg border border-border p-6">
-          <h3 class="font-medium text-foreground mb-3">Where</h3>
-          <p class="text-text">Beach Chalet Fields</p>
+        <div class="bg-white border border-border p-5">
+          <span class="label text-muted">Where</span>
+          <p class="text-text mt-2">Beach Chalet Fields</p>
           <p class="text-muted text-sm mt-1">
-            1000 Great Highway<br />
-            San Francisco, CA 94121
+            1000 Great Highway, SF 94121
           </p>
         </div>
       </div>
 
       <div class="mt-8 text-center">
-        <p class="text-muted mb-6">
-          New players welcome! Bring cleats, a stick, and water. We have extra gear available.
-        </p>
         <a
           href="/contact"
-          class="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground text-sm font-medium rounded-md transition-colors hover:bg-border/50"
+          class="inline-flex items-center justify-center px-5 py-2.5 border border-border text-foreground font-mono text-xs font-medium tracking-wide transition-colors hover:bg-foreground/5"
         >
-          Questions? Contact Us
+          Questions? →
         </a>
       </div>
     </div>

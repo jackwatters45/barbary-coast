@@ -2,8 +2,9 @@
 interface Event {
   date: string;
   time: string;
-  type: "game" | "practice";
+  type: "game" | "practice" | "scrimmage" | "tournament";
   opponent?: string;
+  name?: string;
   location: string;
 }
 
@@ -14,17 +15,24 @@ interface Props {
 
 const { events, limit } = Astro.props;
 const displayEvents = limit ? events.slice(0, limit) : events;
+
+const typeColors: Record<Event["type"], string> = {
+  game: "text-gold",
+  practice: "text-powder-dark",
+  scrimmage: "text-subtle",
+  tournament: "text-gold",
+};
 ---
 
-<div class="space-y-3">
+<div class="space-y-2">
   {displayEvents.map((event) => (
-    <article class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border hover:border-border-strong transition-colors">
+    <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
       <!-- Date -->
-      <div class="flex-shrink-0 text-center w-14">
-        <div class="text-2xl font-medium text-foreground">
-          {new Date(event.date).getDate()}
+      <div class="flex-shrink-0 text-center w-12">
+        <div class="text-xl font-semibold text-foreground font-mono">
+          {new Date(event.date).getDate().toString().padStart(2, '0')}
         </div>
-        <div class="text-xs text-muted uppercase tracking-wide">
+        <div class="label text-muted">
           {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
         </div>
       </div>
@@ -34,20 +42,17 @@ const displayEvents = limit ? events.slice(0, limit) : events;
 
       <!-- Details -->
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-0.5">
-          <span
-            class:list={[
-              "text-xs font-medium uppercase tracking-wide",
-              event.type === "game" ? "text-gold" : "text-powder-dark",
-            ]}
-          >
-            {event.type}
+        <div class="flex items-center gap-2 mb-1">
+          <span class:list={["label", typeColors[event.type]]}>
+            [{event.type}]
           </span>
-          <span class="text-muted text-sm">{event.time}</span>
+          <span class="text-muted text-sm font-mono">{event.time}</span>
         </div>
 
-        {event.opponent ? (
-          <h3 class="font-medium text-foreground truncate">vs. {event.opponent}</h3>
+        {event.name ? (
+          <h3 class="font-medium text-foreground truncate">{event.name}</h3>
+        ) : event.opponent ? (
+          <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
         ) : (
           <h3 class="font-medium text-foreground">Team Practice</h3>
         )}
