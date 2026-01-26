@@ -2,8 +2,9 @@
 interface Event {
   date: string;
   time: string;
-  type: "game" | "practice";
+  type: "game" | "practice" | "scrimmage" | "tournament";
   opponent?: string;
+  name?: string;
   location: string;
 }
 
@@ -14,6 +15,13 @@ interface Props {
 
 const { events, limit } = Astro.props;
 const displayEvents = limit ? events.slice(0, limit) : events;
+
+const typeColors: Record<Event["type"], string> = {
+  game: "text-gold",
+  practice: "text-powder-dark",
+  scrimmage: "text-subtle",
+  tournament: "text-gold",
+};
 ---
 
 <div class="space-y-2">
@@ -35,18 +43,15 @@ const displayEvents = limit ? events.slice(0, limit) : events;
       <!-- Details -->
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1">
-          <span
-            class:list={[
-              "label",
-              event.type === "game" ? "text-gold" : "text-powder-dark",
-            ]}
-          >
+          <span class:list={["label", typeColors[event.type]]}>
             [{event.type}]
           </span>
           <span class="text-muted text-sm font-mono">{event.time}</span>
         </div>
 
-        {event.opponent ? (
+        {event.name ? (
+          <h3 class="font-medium text-foreground truncate">{event.name}</h3>
+        ) : event.opponent ? (
           <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
         ) : (
           <h3 class="font-medium text-foreground">Team Practice</h3>
