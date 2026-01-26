@@ -31,17 +31,26 @@ You can edit this site using [Claude Code](https://claude.ai/claude-code) withou
 
 **Common tasks:**
 
-- **Update schedule:** "Add a game on March 22nd at 2pm against Marin Lacrosse at Kezar Stadium"
-- **Edit text:** "Change the tagline on the homepage to 'Bay Area's Best Lacrosse Club'"
+- **Add a game:** "Add a game on March 22nd at 2pm against Marin Lacrosse at Kezar Stadium"
+- **Add a scrimmage:** "Add a scrimmage against Stanford MCLA on April 5th at noon"
+- **Add a tournament:** "Add a tournament called 'Vegas Shootout' on June 15th in Las Vegas"
+- **Update practice info:** "Change practice time to 6:30 PM on Tuesdays"
+- **Edit text:** "Change the tagline on the homepage"
 - **Update contact info:** "Change the email address to newcontact@barbarycoastlax.com"
 
-After making changes, ask Claude to "commit and push" to update the live site.
+After making changes, ask Claude to "commit and push" to update the site.
 
 ### Schedule Data
 
-Games are currently stored in `src/pages/schedule.astro` and `src/pages/index.astro`.
+Events are stored in `src/pages/schedule.astro` (full schedule) and `src/pages/index.astro` (homepage preview).
 
-TODO: Add ULAX integration for automatic schedule updates.
+Event types: `game`, `practice`, `scrimmage`, `tournament`
+
+## TODO
+
+- [ ] Deploy to Netlify
+- [ ] Add ULAX integration for automatic schedule updates
+- [ ] Set up custom domain
 
 ## Tech Stack
 
