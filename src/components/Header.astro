@@ -1,0 +1,44 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/schedule", label: "Schedule" },
+  { href: "/contact", label: "Contact" },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/80">
+  <div class="mx-auto w-full max-w-5xl px-4 py-4">
+    <div class="relative flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-lg font-medium text-foreground">
+        <img
+          src="/logo.jpg"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover"
+          aria-hidden="true"
+        />
+        <span class="hidden sm:block">Barbary Coast</span>
+      </a>
+
+      <nav class="flex items-center gap-6 text-sm" aria-label="Main navigation">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "transition-colors",
+              currentPath === href
+                ? "text-foreground"
+                : "text-muted hover:text-foreground hover:underline",
+            ]}
+            aria-current={currentPath === href ? "page" : undefined}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="h-[72px]" aria-hidden="true"></div>

@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Schedule from "../components/Schedule.astro";
+
+const upcomingEvents = [
+  {
+    date: "2025-02-15",
+    time: "10:00 AM",
+    type: "game" as const,
+    opponent: "Peninsula Lacrosse",
+    location: "Crocker Amazon Playground",
+  },
+  {
+    date: "2025-02-18",
+    time: "7:00 PM",
+    type: "practice" as const,
+    location: "Beach Chalet Fields",
+  },
+  {
+    date: "2025-02-22",
+    time: "2:00 PM",
+    type: "game" as const,
+    opponent: "East Bay Riptide",
+    location: "Kezar Stadium",
+  },
+];
+---
+
+<Layout title="Home">
+  <Hero />
+
+  <!-- Upcoming Events Section -->
+  <section class="py-16 border-t border-border">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="flex items-baseline justify-between mb-8">
+        <h2 class="text-2xl sm:text-3xl text-foreground">Upcoming Events</h2>
+        <a href="/schedule" class="text-sm text-muted hover:text-foreground hover:underline">
+          View all →
+        </a>
+      </div>
+
+      <Schedule events={upcomingEvents} limit={3} />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 border-t border-border">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl sm:text-4xl text-foreground mb-4">Ready to play?</h2>
+      <p class="text-muted text-lg mb-8 max-w-xl mx-auto">
+        Whether you're a seasoned player or picking up a stick for the first time,
+        Barbary Coast welcomes all skill levels.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background text-sm font-medium rounded-md shadow-sm transition-opacity hover:opacity-90"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,28 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border mt-20">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img
+          src="/logo.jpg"
+          alt=""
+          class="w-8 h-8 rounded-full object-cover"
+          aria-hidden="true"
+        />
+        <span class="text-sm text-muted">
+          &copy; {currentYear} Barbary Coast Lacrosse
+        </span>
+      </div>
+
+      <nav class="flex items-center gap-6 text-sm" aria-label="Footer navigation">
+        <a href="/" class="text-muted hover:text-foreground hover:underline">Home</a>
+        <a href="/about" class="text-muted hover:text-foreground hover:underline">About</a>
+        <a href="/schedule" class="text-muted hover:text-foreground hover:underline">Schedule</a>
+        <a href="/contact" class="text-muted hover:text-foreground hover:underline">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>

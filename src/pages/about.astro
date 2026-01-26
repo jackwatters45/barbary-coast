@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About" description="Learn about Barbary Coast Lacrosse, San Francisco's premier men's lacrosse club.">
+  <!-- Page Header -->
+  <section class="pt-16 pb-12">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h1 class="text-4xl sm:text-5xl text-foreground mb-4">About Us</h1>
+      <p class="text-muted text-lg max-w-xl mx-auto">
+        The story behind San Francisco's premier lacrosse club
+      </p>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-12 items-start">
+        <div class="md:col-span-3">
+          <h2 class="text-2xl sm:text-3xl text-foreground mb-6">Our Heritage</h2>
+          <div class="space-y-4 text-text">
+            <p>
+              Named after San Francisco's legendary Barbary Coast—the waterfront district
+              that defined the city's rugged, adventurous spirit during the Gold Rush era—our
+              club embodies that same fearless energy on the lacrosse field.
+            </p>
+            <p>
+              Founded by a group of passionate players who wanted to bring high-level
+              men's lacrosse to the Bay Area, Barbary Coast Lacrosse has grown into
+              one of the region's most competitive and welcoming clubs.
+            </p>
+            <p>
+              Like the original Barbary Coast drew fortune seekers from around the world,
+              our club brings together players from all backgrounds—united by a love of
+              the game and the city we call home.
+            </p>
+          </div>
+        </div>
+
+        <div class="md:col-span-2">
+          <img
+            src="/logo.jpg"
+            alt="Barbary Coast Lacrosse team logo"
+            class="w-full max-w-xs mx-auto rounded-xl shadow-lg ring-1 ring-border"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl text-foreground mb-10 text-center">Our Mission</h2>
+
+      <div class="grid sm:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-3xl mb-3 text-gold">⚡</div>
+          <h3 class="font-medium text-foreground mb-2">Compete</h3>
+          <p class="text-muted text-sm">
+            Pursue excellence on the field through hard work, strategy, and teamwork
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-3xl mb-3 text-powder">🤝</div>
+          <h3 class="font-medium text-foreground mb-2">Connect</h3>
+          <p class="text-muted text-sm">
+            Build lasting friendships and a strong community of lacrosse players
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-3xl mb-3 text-gold">✨</div>
+          <h3 class="font-medium text-foreground mb-2">Conquer</h3>
+          <p class="text-muted text-sm">
+            Overcome challenges and achieve goals both on and off the field
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section class="py-16 border-t border-border">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl sm:text-3xl text-foreground mb-4">Become a Pirate</h2>
+      <p class="text-muted mb-8 max-w-xl mx-auto">
+        We welcome players of all skill levels. Whether you played in college or are just getting started,
+        there's a place for you on the Barbary Coast.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background text-sm font-medium rounded-md shadow-sm transition-opacity hover:opacity-90"
+      >
+        Join the Crew
+      </a>
+    </div>
+  </section>
+</Layout>

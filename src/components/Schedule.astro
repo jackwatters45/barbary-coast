@@ -1,0 +1,59 @@
+---
+interface Event {
+  date: string;
+  time: string;
+  type: "game" | "practice";
+  opponent?: string;
+  location: string;
+}
+
+interface Props {
+  events: Event[];
+  limit?: number;
+}
+
+const { events, limit } = Astro.props;
+const displayEvents = limit ? events.slice(0, limit) : events;
+---
+
+<div class="space-y-3">
+  {displayEvents.map((event) => (
+    <article class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border hover:border-border-strong transition-colors">
+      <!-- Date -->
+      <div class="flex-shrink-0 text-center w-14">
+        <div class="text-2xl font-medium text-foreground">
+          {new Date(event.date).getDate()}
+        </div>
+        <div class="text-xs text-muted uppercase tracking-wide">
+          {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+
+      <!-- Details -->
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-0.5">
+          <span
+            class:list={[
+              "text-xs font-medium uppercase tracking-wide",
+              event.type === "game" ? "text-gold" : "text-powder-dark",
+            ]}
+          >
+            {event.type}
+          </span>
+          <span class="text-muted text-sm">{event.time}</span>
+        </div>
+
+        {event.opponent ? (
+          <h3 class="font-medium text-foreground truncate">vs. {event.opponent}</h3>
+        ) : (
+          <h3 class="font-medium text-foreground">Team Practice</h3>
+        )}
+
+        <p class="text-sm text-muted truncate">{event.location}</p>
+      </div>
+    </article>
+  ))}
+</div>

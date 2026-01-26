@@ -1,0 +1,53 @@
+---
+interface Props {
+  showCTA?: boolean;
+}
+
+const { showCTA = true } = Astro.props;
+---
+
+<section class="relative pt-20 pb-32" aria-label="Hero">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex flex-col items-center text-center">
+      <!-- Logo -->
+      <div class="mb-10">
+        <img
+          src="/logo.jpg"
+          alt="Barbary Coast Lacrosse logo"
+          class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover shadow-lg ring-1 ring-border"
+        />
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl text-foreground leading-tight">
+        Barbary Coast Lacrosse
+      </h1>
+
+      <!-- Tagline -->
+      <p class="mt-6 max-w-lg text-lg sm:text-xl text-muted text-balance">
+        San Francisco's premier men's lacrosse club.
+        Compete. Connect. Conquer.
+      </p>
+
+      {showCTA && (
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 bg-foreground text-background text-sm font-medium rounded-md shadow-sm transition-opacity hover:opacity-90"
+          >
+            Join the Team
+          </a>
+          <a
+            href="/schedule"
+            class="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground text-sm font-medium rounded-md transition-colors hover:bg-border/50"
+          >
+            View Schedule
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Subtle accent line -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-powder to-transparent" aria-hidden="true"></div>
+</section>

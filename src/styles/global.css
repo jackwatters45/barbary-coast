@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Fonts - borrowed from laxdb */
+@font-face {
+  font-family: "Newsreader";
+  src: url("/fonts/Newsreader.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal italic;
+  font-display: swap;
+}
+
+@theme {
+  /* Fonts */
+  --font-serif: "Newsreader", "Georgia", serif;
+  --font-ui: "Helvetica Neue", "Helvetica", -apple-system, sans-serif;
+
+  /* Monochrome base */
+  --color-background: #f8f8f8;
+  --color-foreground: #171717;
+  --color-muted: #6f6f6f;
+  --color-subtle: #8f8f8f;
+  --color-text: #3a3a3a;
+  --color-border: #e8e8e8;
+  --color-border-strong: #d0d0d0;
+
+  /* Team accent colors */
+  --color-powder: #7ab8d9;
+  --color-powder-light: #9dcae5;
+  --color-powder-dark: #5a9bc4;
+  --color-gold: #d4a84b;
+  --color-gold-light: #e0be6f;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Serif headings - italic like laxdb */
+  h1,
+  h2 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--color-powder);
+    outline-offset: 2px;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-foreground);
+    color: var(--color-background);
+    padding: 8px 16px;
+    z-index: 100;
+    font-weight: 500;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+}
