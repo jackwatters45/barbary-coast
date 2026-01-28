@@ -1,0 +1,25 @@
+src/scripts/sync-ulax.ts
+  61f3db961da8dbd4 2,117-133,135-138
+src/lib/ulax.ts
+  61f3db961da8dbd4 259,264-266,270-271
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "408009492021a99cb91eb2306cb0c20ea3b2389b",
+  "prompts": {
+    "61f3db961da8dbd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aecfa2e8-742e-447b-9c49-a31a5ffe8d87",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 34,
+      "total_deletions": 16,
+      "accepted_lines": 30,
+      "overriden_lines": 0
+    }
+  }
+}
