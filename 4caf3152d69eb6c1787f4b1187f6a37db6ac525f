@@ -1,0 +1,37 @@
+src/scripts/sync-ulax.ts
+  5217f7930586ed36 1-54
+src/lib/ulax.ts
+  5217f7930586ed36 1-193
+src/pages/history.astro
+  5217f7930586ed36 1-115
+plans/feat-ulax-schedule-sync.md
+  5217f7930586ed36 1-187
+src/pages/schedule.astro
+  5217f7930586ed36 4-5,7-14,25,29-33,37-43,51-53,62-63,66,71-75
+src/components/Schedule.astro
+  5217f7930586ed36 11-24,26-27,29,32-38,40,48-52,54-81,85-139,142,152,155
+src/components/Standings.astro
+  5217f7930586ed36 1-77
+package.json
+  5217f7930586ed36 13-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "4caf3152d69eb6c1787f4b1187f6a37db6ac525f",
+  "prompts": {
+    "5217f7930586ed36": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "08a7002f-9c50-4cac-bf3c-fc08cccaed68",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 930,
+      "total_deletions": 233,
+      "accepted_lines": 785,
+      "overriden_lines": 0
+    }
+  }
+}
