@@ -58,7 +58,108 @@ export interface UlaxData {
 	season: string;
 }
 
-export type Season = "winter" | "spring" | "summer";
+export const SeasonSchema = Schema.Literal("winter", "spring", "summer");
+export type Season = typeof SeasonSchema.Type;
+
+// Player stats from stats page
+export const UlaxPlayerStats = Schema.Struct({
+	name: Schema.String,
+	number: Schema.String,
+	team: Schema.String,
+	gp: Schema.Number,
+	goals: Schema.Number,
+	assists: Schema.Number,
+	points: Schema.Number,
+});
+export type UlaxPlayerStats = typeof UlaxPlayerStats.Type;
+
+// Goalie stats from stats page
+export const UlaxGoalieStats = Schema.Struct({
+	name: Schema.String,
+	number: Schema.String,
+	team: Schema.String,
+	wins: Schema.Number,
+	losses: Schema.Number,
+	goalsAgainst: Schema.Number,
+	saves: Schema.Number,
+	savePercentage: Schema.Number,
+});
+export type UlaxGoalieStats = typeof UlaxGoalieStats.Type;
+
+// Roster player from rosters page
+export const UlaxRosterPlayer = Schema.Struct({
+	name: Schema.String,
+	number: Schema.String,
+	position: Schema.String,
+	height: Schema.String,
+	weight: Schema.String,
+	age: Schema.String,
+	homeTown: Schema.String,
+	team: Schema.String,
+	isCaptain: Schema.Boolean,
+	isAssistantCaptain: Schema.Boolean,
+});
+export type UlaxRosterPlayer = typeof UlaxRosterPlayer.Type;
+
+// Championship from archives
+export const UlaxChampionship = Schema.Struct({
+	year: Schema.Number,
+	season: SeasonSchema,
+	division: Schema.String,
+	champion: Schema.String,
+});
+export type UlaxChampionship = typeof UlaxChampionship.Type;
+
+// Barbary Coast summary stats
+export const BarbaryCoastSeasonSummary = Schema.Struct({
+	season: Schema.String,
+	wins: Schema.Number,
+	losses: Schema.Number,
+	ties: Schema.Number,
+	goalsFor: Schema.Number,
+	goalsAgainst: Schema.Number,
+	result: Schema.String,
+	isChampion: Schema.Boolean,
+});
+export type BarbaryCoastSeasonSummary = typeof BarbaryCoastSeasonSummary.Type;
+
+export const BarbaryCoastAllTime = Schema.Struct({
+	wins: Schema.Number,
+	losses: Schema.Number,
+	ties: Schema.Number,
+	titles: Schema.Number,
+	goalsFor: Schema.Number,
+	goalsAgainst: Schema.Number,
+});
+export type BarbaryCoastAllTime = typeof BarbaryCoastAllTime.Type;
+
+// Composite types use interfaces since they reference other complex types
+export interface UlaxSeasonData {
+	schedule: UlaxGame[];
+	standings: UlaxStanding[];
+	playerStats: UlaxPlayerStats[];
+	goalieStats: UlaxGoalieStats[];
+	roster: UlaxRosterPlayer[];
+}
+
+export interface UlaxSeasonDataSerialized extends Omit<UlaxSeasonData, "schedule"> {
+	schedule: UlaxGameSerialized[];
+}
+
+export interface UlaxAllData {
+	currentSeason: string;
+	seasons: Record<string, UlaxSeasonData>;
+	championships: UlaxChampionship[];
+	barbaryCoast: {
+		allTime: BarbaryCoastAllTime;
+		seasons: BarbaryCoastSeasonSummary[];
+	};
+	fetchedAt: string;
+}
+
+export interface UlaxAllDataSerialized extends Omit<UlaxAllData, "seasons"> {
+	seasons: Record<string, UlaxSeasonDataSerialized>;
+}
 
 // ============================================================================
 // Helpers
@@ -111,13 +212,17 @@ function transformGame(raw: UlaxGameRaw): UlaxGame {
 
 const SCHEDULE_API =
 	"https://ulax.org/assets/getData/getDataSeasons.php?type=schedule&league=sanfran&season=";
-const STANDINGS_URL = "https://ulax.org/sanfrancisco/men/";
+const BASE_URL = "https://ulax.org/sanfrancisco/men/";
 
 export class UlaxService extends Context.Tag("UlaxService")<
 	UlaxService,
 	{
 		readonly fetchSchedule: (season: Season) => Effect.Effect<UlaxGame[], Error>;
 		readonly fetchStandings: (season: Season) => Effect.Effect<UlaxStanding[], Error>;
+		readonly fetchStats: (season: Season) => Effect.Effect<{ players: UlaxPlayerStats[]; goalies: UlaxGoalieStats[] }, Error>;
+		readonly fetchRoster: (season: Season) => Effect.Effect<UlaxRosterPlayer[], Error>;
+		readonly fetchArchives: () => Effect.Effect<UlaxChampionship[], Error>;
+		readonly fetchSeason: (season: Season) => Effect.Effect<UlaxSeasonData, Error>;
 		readonly fetchAll: (season: Season) => Effect.Effect<UlaxData, Error>;
 	}
 >() {}
@@ -152,7 +257,7 @@ const makeFetchSchedule =
 const makeFetchStandings =
 	(client: HttpClient.HttpClient) => (season: Season) =>
 		Effect.gen(function* () {
-			const url = `${STANDINGS_URL}${season}/standings`;
+			const url = `${BASE_URL}${season}/standings`;
 
 			const response = yield* client.execute(HttpClientRequest.get(url));
 			const html = yield* response.text;
@@ -195,12 +300,240 @@ const makeFetchStandings =
 			return standings;
 		});
 
+const makeFetchStats =
+	(client: HttpClient.HttpClient) => (season: Season) =>
+		Effect.gen(function* () {
+			const url = `${BASE_URL}${season}/stats`;
+
+			const response = yield* client.execute(HttpClientRequest.get(url));
+			const html = yield* response.text;
+
+			const $ = cheerio.load(html);
+			const players: UlaxPlayerStats[] = [];
+			const goalies: UlaxGoalieStats[] = [];
+
+			// Find all stats tables
+			$("table").each((_, table) => {
+				const headers = $(table)
+					.find("th")
+					.map((_, th) => $(th).text().trim())
+					.get();
+
+				// Player stats table: Name, #, GP, G, A, PTS
+				if (headers.includes("GP") && headers.includes("G") && headers.includes("A") && headers.includes("PTS") && !headers.includes("W")) {
+					// Find closest preceding team logo to determine team
+					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
+					const src = prevImg.attr("src") || "";
+					const match = src.match(/\/([^/]+)_x50\.png/);
+					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+
+					$(table)
+						.find("tbody tr")
+						.each((_, row) => {
+							const cells = $(row).find("td");
+							if (cells.length >= 6) {
+								const name = $(cells[0]).text().trim();
+								if (name) {
+									players.push({
+										name,
+										number: $(cells[1]).text().trim(),
+										team,
+										gp: Number.parseInt($(cells[2]).text().trim()) || 0,
+										goals: Number.parseInt($(cells[3]).text().trim()) || 0,
+										assists: Number.parseInt($(cells[4]).text().trim()) || 0,
+										points: Number.parseInt($(cells[5]).text().trim()) || 0,
+									});
+								}
+							}
+						});
+				}
+
+				// Goalie stats table: Name, #, W, L, GA, SV, SV%
+				if (headers.includes("W") && headers.includes("L") && headers.includes("GA") && headers.includes("SV")) {
+					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
+					const src = prevImg.attr("src") || "";
+					const match = src.match(/\/([^/]+)_x50\.png/);
+					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+
+					$(table)
+						.find("tbody tr")
+						.each((_, row) => {
+							const cells = $(row).find("td");
+							if (cells.length >= 7) {
+								const name = $(cells[0]).text().trim();
+								if (name) {
+									goalies.push({
+										name,
+										number: $(cells[1]).text().trim(),
+										team,
+										wins: Number.parseInt($(cells[2]).text().trim()) || 0,
+										losses: Number.parseInt($(cells[3]).text().trim()) || 0,
+										goalsAgainst: Number.parseInt($(cells[4]).text().trim()) || 0,
+										saves: Number.parseInt($(cells[5]).text().trim()) || 0,
+										savePercentage: Number.parseFloat($(cells[6]).text().trim()) || 0,
+									});
+								}
+							}
+						});
+				}
+			});
+
+			return { players, goalies };
+		});
+
+const makeFetchRoster =
+	(client: HttpClient.HttpClient) => (season: Season) =>
+		Effect.gen(function* () {
+			const url = `${BASE_URL}${season}/rosters`;
+
+			const response = yield* client.execute(HttpClientRequest.get(url));
+			const html = yield* response.text;
+
+			const $ = cheerio.load(html);
+			const roster: UlaxRosterPlayer[] = [];
+
+			// Find roster tables - they have Name, #, Position, Height, Weight, Age, Home Town
+			$("table").each((_, table) => {
+				const headers = $(table)
+					.find("th")
+					.map((_, th) => $(th).text().trim())
+					.get();
+
+				if (headers.includes("Position") && headers.includes("Height")) {
+					// Find team name from preceding elements
+					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
+					const src = prevImg.attr("src") || "";
+					const match = src.match(/\/([^/]+)_x50\.png/);
+					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+
+					$(table)
+						.find("tbody tr")
+						.each((_, row) => {
+							const cells = $(row).find("td");
+							if (cells.length >= 7) {
+								const nameCell = $(cells[0]).text().trim();
+								const isCaptain = nameCell.includes("(C)") || $(cells[0]).find(".captain").length > 0;
+								const isAssistantCaptain = nameCell.includes("(A)") || $(cells[0]).find(".assistant").length > 0;
+								const name = nameCell.replace(/\s*\([CA]\)\s*/g, "").trim();
+
+								if (name) {
+									roster.push({
+										name,
+										number: $(cells[1]).text().trim(),
+										position: $(cells[2]).text().trim(),
+										height: $(cells[3]).text().trim(),
+										weight: $(cells[4]).text().trim(),
+										age: $(cells[5]).text().trim(),
+										homeTown: $(cells[6]).text().trim(),
+										team,
+										isCaptain,
+										isAssistantCaptain,
+									});
+								}
+							}
+						});
+				}
+			});
+
+			return roster;
+		});
+
+const makeFetchArchives = (client: HttpClient.HttpClient) => () =>
+	Effect.gen(function* () {
+		const url = `${BASE_URL}winter/archives`;
+
+		const response = yield* client.execute(HttpClientRequest.get(url));
+		const html = yield* response.text;
+
+		const $ = cheerio.load(html);
+		const championships: UlaxChampionship[] = [];
+
+		// Archives page lists champions by season type (Winter, Spring, Summer)
+		// Each section has year: champion pairs
+		const seasons: Season[] = ["winter", "spring", "summer"];
+
+		for (const season of seasons) {
+			// Look for season headers and their champion lists
+			$("h3, h4, strong").each((_, header) => {
+				const text = $(header).text().toLowerCase();
+				if (text.includes(season)) {
+					// Find the list of champions following this header
+					$(header)
+						.nextAll()
+						.each((_, el) => {
+							const line = $(el).text().trim();
+							// Match patterns like "2025: Barbary Coast" or "2025 - Barbary Coast"
+							const match = line.match(/(\d{4})[:\s-]+(.+)/);
+							if (match) {
+								championships.push({
+									year: Number.parseInt(match[1]),
+									season,
+									division: "Men's Field",
+									champion: match[2].trim(),
+								});
+							}
+						});
+				}
+			});
+		}
+
+		// Fallback: parse any year: team patterns on the page
+		if (championships.length === 0) {
+			const pageText = $("body").text();
+			for (const season of seasons) {
+				const sectionMatch = pageText.match(new RegExp(`${season}[:\\s]*([\\s\\S]*?)(?=winter|spring|summer|$)`, "i"));
+				if (sectionMatch) {
+					const yearMatches = sectionMatch[1].matchAll(/(\d{4})[:\s-]+([^,\n]+)/g);
+					for (const match of yearMatches) {
+						championships.push({
+							year: Number.parseInt(match[1]),
+							season,
+							division: "Men's Field",
+							champion: match[2].trim(),
+						});
+					}
+				}
+			}
+		}
+
+		return championships;
+	});
+
+const makeFetchSeason =
+	(
+		fetchSchedule: (s: Season) => Effect.Effect<UlaxGame[], Error>,
+		fetchStandings: (s: Season) => Effect.Effect<UlaxStanding[], Error>,
+		fetchStats: (s: Season) => Effect.Effect<{ players: UlaxPlayerStats[]; goalies: UlaxGoalieStats[] }, Error>,
+		fetchRoster: (s: Season) => Effect.Effect<UlaxRosterPlayer[], Error>,
+	) =>
+	(season: Season) =>
+		Effect.gen(function* () {
+			const [schedule, standings, stats, roster] = yield* Effect.all([
+				fetchSchedule(season),
+				fetchStandings(season),
+				fetchStats(season),
+				fetchRoster(season),
+			]);
+
+			return {
+				schedule,
+				standings,
+				playerStats: stats.players,
+				goalieStats: stats.goalies,
+				roster,
+			} satisfies UlaxSeasonData;
+		});
+
 export const UlaxServiceLive = Layer.effect(
 	UlaxService,
 	Effect.gen(function* () {
 		const client = yield* HttpClient.HttpClient;
 		const fetchSchedule = makeFetchSchedule(client);
 		const fetchStandings = makeFetchStandings(client);
+		const fetchStats = makeFetchStats(client);
+		const fetchRoster = makeFetchRoster(client);
+		const fetchArchives = makeFetchArchives(client);
+		const fetchSeason = makeFetchSeason(fetchSchedule, fetchStandings, fetchStats, fetchRoster);
 
 		const fetchAll = (season: Season) =>
 			Effect.gen(function* () {
@@ -217,7 +550,7 @@ export const UlaxServiceLive = Layer.effect(
 				} satisfies UlaxData;
 			});
 
-		return { fetchSchedule, fetchStandings, fetchAll };
+		return { fetchSchedule, fetchStandings, fetchStats, fetchRoster, fetchArchives, fetchSeason, fetchAll };
 	}),
 );
 
@@ -241,4 +574,28 @@ export const fetchAll = (season: Season) =>
 	Effect.gen(function* () {
 		const service = yield* UlaxService;
 		return yield* service.fetchAll(season);
+	});
+
+export const fetchStats = (season: Season) =>
+	Effect.gen(function* () {
+		const service = yield* UlaxService;
+		return yield* service.fetchStats(season);
+	});
+
+export const fetchRoster = (season: Season) =>
+	Effect.gen(function* () {
+		const service = yield* UlaxService;
+		return yield* service.fetchRoster(season);
+	});
+
+export const fetchArchives = () =>
+	Effect.gen(function* () {
+		const service = yield* UlaxService;
+		return yield* service.fetchArchives();
+	});
+
+export const fetchSeason = (season: Season) =>
+	Effect.gen(function* () {
+		const service = yield* UlaxService;
+		return yield* service.fetchSeason(season);
 	});
