@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ScheduleList from "../components/Schedule.astro";
 import Standings from "../components/Standings.astro";
 import ulaxData from "../data/ulax.json";
+import { manualEvents } from "../data/events";
 import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
@@ -13,41 +14,6 @@ const seasonData = data.seasons[season];
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 const standings = (seasonData?.standings ?? []) as UlaxStanding[];
 const fetchedAt = new Date(data.fetchedAt);
-
-// Additional non-ULAX events (practices, scrimmages, tournaments)
-const otherEvents = [
-  {
-    date: "2026-01-29",
-    time: "8:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2026-02-05",
-    time: "8:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2026-02-12",
-    time: "8:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2026-02-19",
-    time: "8:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2026-10-31",
-    time: "TBD",
-    type: "tournament" as const,
-    name: "Hawaii Halloween Tournament",
-    location: "Honolulu, HI",
-  },
-];
 ---
 
 <Layout title="Schedule" description="View upcoming games, standings, and results for Barbary Coast Lacrosse.">
@@ -77,7 +43,7 @@ const otherEvents = [
   <!-- Schedule List -->
   <section class="pb-12">
     <div class="max-w-4xl mx-auto px-4">
-      <ScheduleList ulaxGames={ulaxGames} events={otherEvents} barbaryCoastOnly={true} />
+      <ScheduleList ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} />
 
       <p class="text-subtle text-sm text-center mt-6 font-mono">
         // last updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}

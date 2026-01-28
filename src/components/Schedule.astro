@@ -20,14 +20,25 @@ interface Props {
   ulaxGames?: UlaxGameSerialized[];
   limit?: number;
   barbaryCoastOnly?: boolean;
+  upcomingOnly?: boolean;
 }
 
-const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false } = Astro.props;
+const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false, upcomingOnly = false } = Astro.props;
 
 // Filter ULAX games if needed (always include playoffs/championship even if TBD)
-const filteredUlaxGames = barbaryCoastOnly
+let filteredUlaxGames = barbaryCoastOnly
   ? ulaxGames.filter(g => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship")
   : ulaxGames;
+
+// Filter out games that have already been played (have scores)
+if (upcomingOnly) {
+  filteredUlaxGames = filteredUlaxGames.filter(g => g.homeScore === null && g.awayScore === null);
+}
+
+// Filter manual events to only future dates if upcomingOnly
+const filteredEvents = upcomingOnly
+  ? events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
+  : events;
 
 // Combine and sort all items by date
 type ScheduleItem =
@@ -36,7 +47,7 @@ type ScheduleItem =
 
 const allItems: ScheduleItem[] = [
   ...filteredUlaxGames.map(g => ({ kind: "ulax" as const, data: g })),
-  ...events.map(e => ({ kind: "event" as const, data: e })),
+  ...filteredEvents.map(e => ({ kind: "event" as const, data: e })),
 ].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
 
 const displayItems = limit ? allItems.slice(0, limit) : allItems;
