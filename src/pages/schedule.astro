@@ -38,18 +38,8 @@ const otherEvents = [
     </div>
   </section>
 
-  <!-- Standings -->
-  <section class="pb-8">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl sm:text-2xl text-foreground mb-4">Standings</h2>
-      <div class="bg-white border border-border p-4 sm:p-6">
-        <Standings standings={standings} />
-      </div>
-    </div>
-  </section>
-
   <!-- Legend -->
-  <section class="pb-6">
+  <section class="pb-4">
     <div class="max-w-4xl mx-auto px-4">
       <div class="flex flex-wrap gap-4 text-sm">
         <span class="label text-gold">[league]</span>
@@ -61,14 +51,23 @@ const otherEvents = [
   </section>
 
   <!-- Schedule List -->
-  <section class="pb-12 border-t border-border pt-6">
+  <section class="pb-12">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl sm:text-2xl text-foreground mb-4">Games</h2>
       <ScheduleList ulaxGames={ulaxGames} events={otherEvents} barbaryCoastOnly={true} />
 
       <p class="text-subtle text-sm text-center mt-6 font-mono">
         // last updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
       </p>
+    </div>
+  </section>
+
+  <!-- Standings -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl sm:text-2xl text-foreground mb-4">Standings</h2>
+      <div class="bg-white border border-border p-4 sm:p-6">
+        <Standings standings={standings} />
+      </div>
     </div>
   </section>
 
