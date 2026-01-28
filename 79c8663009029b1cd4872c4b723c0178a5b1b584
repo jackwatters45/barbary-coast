@@ -1,0 +1,39 @@
+src/pages/schedule.astro
+  4b116bc72af671ee 16,19-29,31,33-35,38-42,44-48,50-51
+src/components/Hero.astro
+  4b116bc72af671ee 9-12,14-19,22-23,27-32,34-35,42-59
+src/components/Header.astro
+  4b116bc72af671ee 4-5,11-15,19-21,24,27-28,33,35-36,48-49
+src/pages/index.astro
+  4b116bc72af671ee 14-53,55-67,69-90,94-145,148-197,200-217,219-260
+src/styles/global.css
+  4b116bc72af671ee 2-3,6-7,10-17,19-25,50,57-62,64-67,70-73,83,85-88,91,93-173,175-330
+src/components/Schedule.astro
+  4b116bc72af671ee 61,65,69,80,88,91-96,99-103,105-115,117-119,126-127,129-134,137-150
+src/layouts/Layout.astro
+  4b116bc72af671ee 8,15,18,28,47-82
+src/components/Standings.astro
+  4b116bc72af671ee 19-29,38-39,41-43,45-46,48-54,56-57
+src/pages/history.astro
+  4b116bc72af671ee 30-32,34-38,40-62,64-67,69,71-74,83,85-86,88-92,94-95,99-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "79c8663009029b1cd4872c4b723c0178a5b1b584",
+  "prompts": {
+    "4b116bc72af671ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c4e8a98-13b6-41b1-a098-13f35d77c61f",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 3419,
+      "total_deletions": 3064,
+      "accepted_lines": 828,
+      "overriden_lines": 1
+    }
+  }
+}
