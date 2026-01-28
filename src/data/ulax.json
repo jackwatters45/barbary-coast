@@ -1,0 +1,126 @@
+{
+  "schedule": [
+    {
+      "id": 132,
+      "date": "2026-01-10T13:00:00.000Z",
+      "time": "5:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Bar Down Boys",
+      "awayScore": 4,
+      "homeTeam": "Barbary Coast",
+      "homeScore": 8,
+      "gameType": "regular",
+      "isBarbaryCoast": true,
+      "barbaryCoastIsHome": true
+    },
+    {
+      "id": 133,
+      "date": "2026-01-10T13:00:00.000Z",
+      "time": "6:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Bar Down Boys",
+      "awayScore": 8,
+      "homeTeam": "Palo Alto Ducks",
+      "homeScore": 10,
+      "gameType": "regular",
+      "isBarbaryCoast": false,
+      "barbaryCoastIsHome": null
+    },
+    {
+      "id": 134,
+      "date": "2026-01-10T13:00:00.000Z",
+      "time": "7:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Palo Alto Ducks",
+      "awayScore": 11,
+      "homeTeam": "San Francisco Lacrosse Club",
+      "homeScore": 2,
+      "gameType": "regular",
+      "isBarbaryCoast": false,
+      "barbaryCoastIsHome": null
+    },
+    {
+      "id": 135,
+      "date": "2026-01-17T13:00:00.000Z",
+      "time": "5:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Bar Down Boys",
+      "awayScore": 4,
+      "homeTeam": "San Francisco Lacrosse Club",
+      "homeScore": 3,
+      "gameType": "regular",
+      "isBarbaryCoast": false,
+      "barbaryCoastIsHome": null
+    },
+    {
+      "id": 136,
+      "date": "2026-01-17T13:00:00.000Z",
+      "time": "6:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Barbary Coast",
+      "awayScore": 5,
+      "homeTeam": "San Francisco Lacrosse Club",
+      "homeScore": 3,
+      "gameType": "regular",
+      "isBarbaryCoast": true,
+      "barbaryCoastIsHome": false
+    },
+    {
+      "id": 137,
+      "date": "2026-01-17T13:00:00.000Z",
+      "time": "7:00 pm",
+      "field": "Beach Chalet Fields Pitch #4",
+      "awayTeam": "Barbary Coast",
+      "awayScore": 8,
+      "homeTeam": "Palo Alto Ducks",
+      "homeScore": 7,
+      "gameType": "regular",
+      "isBarbaryCoast": true,
+      "barbaryCoastIsHome": false
+    }
+  ],
+  "standings": [
+    {
+      "team": "Barbary Coast",
+      "gp": 3,
+      "w": 3,
+      "l": 0,
+      "t": 0,
+      "pts": 6,
+      "gf": 21,
+      "ga": 14
+    },
+    {
+      "team": "Palo Alto Ducks",
+      "gp": 3,
+      "w": 2,
+      "l": 1,
+      "t": 0,
+      "pts": 4,
+      "gf": 28,
+      "ga": 18
+    },
+    {
+      "team": "Bar Down Boys",
+      "gp": 3,
+      "w": 1,
+      "l": 2,
+      "t": 0,
+      "pts": 2,
+      "gf": 16,
+      "ga": 21
+    },
+    {
+      "team": "San Francisco Lacrosse Club",
+      "gp": 3,
+      "w": 0,
+      "l": 3,
+      "t": 0,
+      "pts": 0,
+      "gf": 8,
+      "ga": 20
+    }
+  ],
+  "fetchedAt": "2026-01-28T05:42:35.547Z",
+  "season": "winter"
+}

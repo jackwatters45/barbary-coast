@@ -8,13 +8,36 @@ interface Event {
   location: string;
 }
 
-interface Props {
-  events: Event[];
-  limit?: number;
+interface UlaxGame {
+  id: number;
+  date: string;
+  time: string;
+  field: string;
+  awayTeam: string;
+  awayScore: number | null;
+  homeTeam: string;
+  homeScore: number | null;
+  gameType: "regular" | "playoff" | "championship";
+  isBarbaryCoast: boolean;
+  barbaryCoastIsHome: boolean | null;
 }
 
-const { events, limit } = Astro.props;
+interface Props {
+  events?: Event[];
+  ulaxGames?: UlaxGame[];
+  limit?: number;
+  barbaryCoastOnly?: boolean;
+}
+
+const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false } = Astro.props;
+
+// Filter ULAX games if needed
+const filteredUlaxGames = barbaryCoastOnly
+  ? ulaxGames.filter(g => g.isBarbaryCoast)
+  : ulaxGames;
+
 const displayEvents = limit ? events.slice(0, limit) : events;
+const displayUlaxGames = limit ? filteredUlaxGames.slice(0, limit) : filteredUlaxGames;
 
 const typeColors: Record<Event["type"], string> = {
   game: "text-gold",
@@ -22,12 +45,101 @@ const typeColors: Record<Event["type"], string> = {
   scrimmage: "text-subtle",
   tournament: "text-gold",
 };
+
+const gameTypeColors: Record<UlaxGame["gameType"], string> = {
+  regular: "text-gold",
+  playoff: "text-gold",
+  championship: "text-gold",
+};
+
+function getOpponent(game: UlaxGame): string {
+  if (game.barbaryCoastIsHome) {
+    return game.awayTeam;
+  }
+  return game.homeTeam;
+}
+
+function getBarbaryCoastScore(game: UlaxGame): number | null {
+  if (game.barbaryCoastIsHome) {
+    return game.homeScore;
+  }
+  return game.awayScore;
+}
+
+function getOpponentScore(game: UlaxGame): number | null {
+  if (game.barbaryCoastIsHome) {
+    return game.awayScore;
+  }
+  return game.homeScore;
+}
+
+function isWin(game: UlaxGame): boolean | null {
+  const bcScore = getBarbaryCoastScore(game);
+  const oppScore = getOpponentScore(game);
+  if (bcScore === null || oppScore === null) return null;
+  return bcScore > oppScore;
+}
 ---
 
 <div class="space-y-2">
+  {/* ULAX Games */}
+  {displayUlaxGames.map((game) => {
+    const bcScore = getBarbaryCoastScore(game);
+    const oppScore = getOpponentScore(game);
+    const hasScore = bcScore !== null && oppScore !== null;
+    const won = isWin(game);
+
+    return (
+      <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
+        {/* Date */}
+        <div class="flex-shrink-0 text-center w-12">
+          <div class="text-xl font-semibold text-foreground font-mono">
+            {new Date(game.date).getDate().toString().padStart(2, '0')}
+          </div>
+          <div class="label text-muted">
+            {new Date(game.date).toLocaleDateString("en-US", { month: "short" })}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+
+        {/* Details */}
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <span class:list={["label", gameTypeColors[game.gameType]]}>
+              [{game.gameType === "regular" ? "league" : game.gameType}]
+            </span>
+            <span class="text-muted text-sm font-mono">{game.time}</span>
+            {game.barbaryCoastIsHome === false && (
+              <span class="label text-subtle">@ away</span>
+            )}
+          </div>
+
+          <div class="flex items-center gap-2">
+            <h3 class="font-medium text-foreground truncate">
+              vs {getOpponent(game)}
+            </h3>
+            {hasScore && (
+              <span class:list={[
+                "font-mono font-bold text-sm px-2 py-0.5 rounded",
+                won ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+              ]}>
+                {won ? "W" : "L"} {bcScore}-{oppScore}
+              </span>
+            )}
+          </div>
+
+          <p class="text-sm text-muted truncate">{game.field}</p>
+        </div>
+      </article>
+    );
+  })}
+
+  {/* Regular Events */}
   {displayEvents.map((event) => (
     <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
-      <!-- Date -->
+      {/* Date */}
       <div class="flex-shrink-0 text-center w-12">
         <div class="text-xl font-semibold text-foreground font-mono">
           {new Date(event.date).getDate().toString().padStart(2, '0')}
@@ -37,10 +149,10 @@ const typeColors: Record<Event["type"], string> = {
         </div>
       </div>
 
-      <!-- Divider -->
+      {/* Divider */}
       <div class="w-px h-10 bg-border" aria-hidden="true"></div>
 
-      <!-- Details -->
+      {/* Details */}
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1">
           <span class:list={["label", typeColors[event.type]]}>
