@@ -3,13 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import ScheduleList from "../components/Schedule.astro";
 import Standings from "../components/Standings.astro";
 import ulaxData from "../data/ulax.json";
-import type { UlaxGameSerialized, UlaxStanding } from "../lib/ulax";
+import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
+
+const data = ulaxData as UlaxAllDataSerialized;
+const season = data.currentSeason;
+const seasonData = data.seasons[season];
 
 // ULAX games from synced data (cast to restore union literal types lost in JSON)
-const ulaxGames = ulaxData.schedule as UlaxGameSerialized[];
-const standings = ulaxData.standings as UlaxStanding[];
-const season = ulaxData.season;
-const fetchedAt = new Date(ulaxData.fetchedAt);
+const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
+const standings = (seasonData?.standings ?? []) as UlaxStanding[];
+const fetchedAt = new Date(data.fetchedAt);
 
 // Additional non-ULAX events (practices, scrimmages, tournaments)
 const otherEvents = [
