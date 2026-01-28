@@ -6,47 +6,54 @@ interface Props {
 const { showCTA = true } = Astro.props;
 ---
 
-<section class="relative pt-16 pb-24" aria-label="Hero">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="flex flex-col items-center text-center">
-      <!-- Logo -->
-      <div class="mb-8">
-        <img
-          src="/logo.jpg"
-          alt="Barbary Coast Lacrosse logo"
-          class="w-28 h-28 sm:w-36 sm:h-36 object-cover border border-border"
-        />
-      </div>
+<section class="relative min-h-[80vh] flex items-center overflow-hidden" aria-label="Hero">
+  <!-- Animated orbs -->
+  <div class="orb w-96 h-96 bg-powder/30 -top-20 -left-20" style="animation-delay: 0s;" aria-hidden="true"></div>
+  <div class="orb w-80 h-80 bg-gold/30 top-1/2 right-0" style="animation-delay: -3s;" aria-hidden="true"></div>
 
-      <!-- Label -->
-      <span class="label text-muted mb-4">San Francisco Lacrosse</span>
-
-      <!-- Headline -->
-      <h1 class="text-2xl sm:text-4xl lg:text-5xl text-foreground leading-tight tracking-tight">
-        Barbary Coast Lacrosse Club
+  <div class="relative w-full py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Main headline -->
+      <h1 class="text-foreground max-w-4xl">
+        Barbary Coast
+        <span class="text-muted">Lacrosse</span>
       </h1>
 
-      <!-- Tagline -->
-      <p class="mt-4 max-w-md text-base sm:text-lg text-muted">
-        Premier men's lacrosse club. Compete. Connect. Conquer.
+      <p class="mt-8 text-xl text-muted max-w-lg">
+        San Francisco men's lacrosse. Practice Wednesdays, compete Sundays.
       </p>
 
       {showCTA && (
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a
-            href="/contact"
-            class="inline-flex items-center justify-center px-5 py-2.5 bg-foreground text-background font-mono text-xs font-medium tracking-wide transition-opacity hover:opacity-80"
-          >
-            Get in Touch →
+        <div class="flex flex-wrap gap-4 mt-10">
+          <a href="/schedule" class="btn btn-primary">
+            View schedule
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
-          <a
-            href="/schedule"
-            class="inline-flex items-center justify-center px-5 py-2.5 border border-border text-foreground font-mono text-xs font-medium tracking-wide transition-colors hover:bg-foreground/5"
-          >
-            View Schedule
+          <a href="/contact" class="btn btn-secondary">
+            Join the team
           </a>
         </div>
       )}
     </div>
   </div>
 </section>
+
+<!-- Marquee strip -->
+<div class="marquee border-y border-border py-4 bg-surface">
+  <div class="marquee-content">
+    {[...Array(2)].map(() => (
+      <div class="flex items-center gap-12 px-6">
+        <span class="mono text-muted whitespace-nowrap">ULAX SF League</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-powder"></span>
+        <span class="mono text-muted whitespace-nowrap">Beach Chalet Fields</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="mono text-muted whitespace-nowrap">Est. 2024</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-powder"></span>
+        <span class="mono text-muted whitespace-nowrap">San Francisco, CA</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+      </div>
+    ))}
+  </div>
+</div>

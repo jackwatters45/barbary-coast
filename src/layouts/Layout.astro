@@ -1,20 +1,21 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.astro";
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  showSectionNav?: boolean;
 }
 
 const {
   title,
   description = "San Francisco's premier men's lacrosse club",
   image = "/logo.jpg",
+  showSectionNav = false,
 } = Astro.props;
 
-const fullTitle = `${title} | Barbary Coast Lacrosse`;
+const fullTitle = title === "Home" ? "Barbary Coast Lacrosse" : `${title} | Barbary Coast Lacrosse`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -24,6 +25,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#fafafa" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={canonicalURL} />
     <title>{fullTitle}</title>
@@ -42,9 +44,42 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={new URL(image, Astro.site)} />
   </head>
   <body class="min-h-screen">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-foreground focus:text-background focus:rounded">Skip to main content</a>
-    <Header />
-    <main id="main">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-powder focus:text-white focus:rounded">Skip to main content</a>
+
+    {showSectionNav && (
+      <!-- Timeline Navigation - Left Side -->
+      <nav id="section-nav" class="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden lg:block" aria-label="Section navigation">
+        <div class="timeline-nav">
+          <!-- Home Section -->
+          <div class="timeline-section">
+            <div class="timeline-section-header">Home</div>
+            <a href="#hero" class="timeline-item active" data-section="hero">Barbary Coast</a>
+          </div>
+
+          <!-- Schedule Section -->
+          <div class="timeline-section">
+            <div class="timeline-section-header">Schedule</div>
+            <a href="#schedule" class="timeline-item" data-section="schedule">Upcoming</a>
+          </div>
+
+          <!-- Club Section -->
+          <div class="timeline-section">
+            <div class="timeline-section-header">Club</div>
+            <a href="#practice" class="timeline-item" data-section="practice">Practice</a>
+            <a href="#contact" class="timeline-item" data-section="contact">Contact</a>
+          </div>
+
+          <!-- Links Section -->
+          <div class="timeline-section">
+            <div class="timeline-section-header">More</div>
+            <a href="/schedule" class="timeline-item">Full Schedule</a>
+            <a href="/history" class="timeline-item">History</a>
+          </div>
+        </div>
+      </nav>
+    )}
+
+    <main id="main" class:list={[showSectionNav && "snap-container"]}>
       <slot />
     </main>
   </body>
