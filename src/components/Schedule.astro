@@ -8,6 +8,11 @@ interface Event {
   opponent?: string;
   name?: string;
   location: string;
+  locationUrl?: string;
+}
+
+function getMapsUrl(location: string): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
 }
 
 interface Props {
@@ -129,7 +134,7 @@ function isWin(game: UlaxGameSerialized): boolean | null {
               )}
             </div>
 
-            <p class="text-sm text-muted truncate">{game.field}</p>
+            <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-sm text-muted truncate hover:text-foreground hover:underline">{game.field}</a>
           </div>
         </article>
       );
@@ -164,7 +169,7 @@ function isWin(game: UlaxGameSerialized): boolean | null {
               <h3 class="font-medium text-foreground">Team Practice</h3>
             )}
 
-            <p class="text-sm text-muted truncate">{event.location}</p>
+            <a href={event.locationUrl ?? getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted truncate hover:text-foreground hover:underline">{event.location}</a>
           </div>
         </article>
       );
