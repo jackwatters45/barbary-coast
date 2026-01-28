@@ -19,9 +19,9 @@ interface Props {
 
 const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false } = Astro.props;
 
-// Filter ULAX games if needed
+// Filter ULAX games if needed (always include playoffs/championship even if TBD)
 const filteredUlaxGames = barbaryCoastOnly
-  ? ulaxGames.filter(g => g.isBarbaryCoast)
+  ? ulaxGames.filter(g => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship")
   : ulaxGames;
 
 const displayEvents = limit ? events.slice(0, limit) : events;
@@ -39,6 +39,10 @@ const gameTypeColors: Record<UlaxGameSerialized["gameType"], string> = {
   playoff: "text-gold",
   championship: "text-gold",
 };
+
+function isTBD(game: UlaxGameSerialized): boolean {
+  return game.awayTeam === "TBD" || game.homeTeam === "TBD";
+}
 
 function getOpponent(game: UlaxGameSerialized): string {
   if (game.barbaryCoastIsHome) {
@@ -106,7 +110,10 @@ function isWin(game: UlaxGameSerialized): boolean | null {
 
           <div class="flex items-center gap-2">
             <h3 class="font-medium text-foreground truncate">
-              vs {getOpponent(game)}
+              {isTBD(game)
+                ? (game.gameType === "championship" ? "Championship Game" : "Playoff Game")
+                : `vs ${getOpponent(game)}`
+              }
             </h3>
             {hasScore && (
               <span class:list={[
