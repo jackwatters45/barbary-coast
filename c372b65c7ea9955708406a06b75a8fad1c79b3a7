@@ -1,0 +1,29 @@
+src/lib/ulax.ts
+  61f3db961da8dbd4 3,180,182-216,326-328,363-366,371,373,391,396,415,433-436,442,467
+src/scripts/sync-ulax.ts
+  61f3db961da8dbd4 10
+src/components/Standings.astro
+  61f3db961da8dbd4 2,5
+.github/workflows/sync-ulax.yml
+  61f3db961da8dbd4 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "c372b65c7ea9955708406a06b75a8fad1c79b3a7",
+  "prompts": {
+    "61f3db961da8dbd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aecfa2e8-742e-447b-9c49-a31a5ffe8d87",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 133,
+      "total_deletions": 129,
+      "accepted_lines": 60,
+      "overriden_lines": 0
+    }
+  }
+}
