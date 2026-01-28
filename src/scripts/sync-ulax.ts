@@ -3,7 +3,7 @@ import { Console, Effect, Layer } from "effect";
 import { BunContext, BunRuntime } from "@effect/platform-bun";
 import { FileSystem, Path } from "@effect/platform";
 import { FetchHttpClient } from "@effect/platform";
-import { fetchAll, type Season, type UlaxData } from "../lib/ulax";
+import { fetchAll, UlaxServiceLive, type Season, type UlaxData } from "../lib/ulax";
 
 const writeData = (data: UlaxData) =>
 	Effect.gen(function* () {
@@ -51,6 +51,7 @@ const program = Effect.gen(function* () {
 	yield* printSummary(data);
 });
 
-const MainLayer = Layer.mergeAll(BunContext.layer, FetchHttpClient.layer);
+const UlaxLive = UlaxServiceLive.pipe(Layer.provide(FetchHttpClient.layer));
+const MainLayer = Layer.mergeAll(BunContext.layer, UlaxLive);
 
 BunRuntime.runMain(program.pipe(Effect.provide(MainLayer)));

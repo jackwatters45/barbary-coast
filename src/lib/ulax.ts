@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientRequest } from "@effect/platform";
 import * as cheerio from "cheerio";
-import { Effect, Schema } from "effect";
+import { Context, Effect, Layer, Schema } from "effect";
 
 // ============================================================================
 // Types
@@ -106,93 +106,139 @@ function transformGame(raw: UlaxGameRaw): UlaxGame {
 }
 
 // ============================================================================
-// API Functions
+// Service Definition
 // ============================================================================
 
 const SCHEDULE_API =
 	"https://ulax.org/assets/getData/getDataSeasons.php?type=schedule&league=sanfran&season=";
 const STANDINGS_URL = "https://ulax.org/sanfrancisco/men/";
 
-export const fetchSchedule = (season: Season) =>
+export class UlaxService extends Context.Tag("UlaxService")<
+	UlaxService,
+	{
+		readonly fetchSchedule: (season: Season) => Effect.Effect<UlaxGame[], Error>;
+		readonly fetchStandings: (season: Season) => Effect.Effect<UlaxStanding[], Error>;
+		readonly fetchAll: (season: Season) => Effect.Effect<UlaxData, Error>;
+	}
+>() {}
+
+// ============================================================================
+// Live Implementation
+// ============================================================================
+
+const makeFetchSchedule =
+	(client: HttpClient.HttpClient) => (season: Season) =>
+		Effect.gen(function* () {
+			const url = `${SCHEDULE_API}${season}`;
+
+			const response = yield* client.execute(HttpClientRequest.get(url));
+			const json = yield* response.json;
+
+			if (!Array.isArray(json)) {
+				return yield* Effect.fail(new Error("Expected array response"));
+			}
+
+			const games: UlaxGame[] = [];
+			for (const item of json) {
+				const parsed = Schema.decodeUnknownEither(UlaxGameRaw)(item);
+				if (parsed._tag === "Right") {
+					games.push(transformGame(parsed.right));
+				}
+			}
+
+			return games;
+		});
+
+const makeFetchStandings =
+	(client: HttpClient.HttpClient) => (season: Season) =>
+		Effect.gen(function* () {
+			const url = `${STANDINGS_URL}${season}/standings`;
+
+			const response = yield* client.execute(HttpClientRequest.get(url));
+			const html = yield* response.text;
+
+			const $ = cheerio.load(html);
+			const standings: UlaxStanding[] = [];
+
+			// Find the standings table - look for table with GP, W, L columns
+			$("table").each((_, table) => {
+				const headers = $(table)
+					.find("th")
+					.map((_, th) => $(th).text().trim())
+					.get();
+
+				// Check if this is the standings table
+				if (headers.includes("GP") && headers.includes("W") && headers.includes("L")) {
+					$(table)
+						.find("tbody tr")
+						.each((_, row) => {
+							const cells = $(row).find("td");
+							if (cells.length >= 8) {
+								const team = $(cells[0]).text().trim();
+								if (team) {
+									standings.push({
+										team,
+										gp: Number.parseInt($(cells[1]).text().trim()) || 0,
+										w: Number.parseInt($(cells[2]).text().trim()) || 0,
+										l: Number.parseInt($(cells[3]).text().trim()) || 0,
+										t: Number.parseInt($(cells[4]).text().trim()) || 0,
+										pts: Number.parseInt($(cells[5]).text().trim()) || 0,
+										gf: Number.parseInt($(cells[6]).text().trim()) || 0,
+										ga: Number.parseInt($(cells[7]).text().trim()) || 0,
+									});
+								}
+							}
+						});
+				}
+			});
+
+			return standings;
+		});
+
+export const UlaxServiceLive = Layer.effect(
+	UlaxService,
 	Effect.gen(function* () {
 		const client = yield* HttpClient.HttpClient;
-		const url = `${SCHEDULE_API}${season}`;
+		const fetchSchedule = makeFetchSchedule(client);
+		const fetchStandings = makeFetchStandings(client);
 
-		const response = yield* client.execute(HttpClientRequest.get(url));
-		const json = yield* response.json;
+		const fetchAll = (season: Season) =>
+			Effect.gen(function* () {
+				const [schedule, standings] = yield* Effect.all([
+					fetchSchedule(season),
+					fetchStandings(season),
+				]);
 
-		if (!Array.isArray(json)) {
-			return yield* Effect.fail(new Error("Expected array response"));
-		}
+				return {
+					schedule,
+					standings,
+					fetchedAt: new Date().toISOString(),
+					season,
+				} satisfies UlaxData;
+			});
 
-		const games: UlaxGame[] = [];
-		for (const item of json) {
-			const parsed = Schema.decodeUnknownEither(UlaxGameRaw)(item);
-			if (parsed._tag === "Right") {
-				games.push(transformGame(parsed.right));
-			}
-		}
+		return { fetchSchedule, fetchStandings, fetchAll };
+	}),
+);
 
-		return games;
+// ============================================================================
+// Accessor Functions (convenience wrappers)
+// ============================================================================
+
+export const fetchSchedule = (season: Season) =>
+	Effect.gen(function* () {
+		const service = yield* UlaxService;
+		return yield* service.fetchSchedule(season);
 	});
 
 export const fetchStandings = (season: Season) =>
 	Effect.gen(function* () {
-		const client = yield* HttpClient.HttpClient;
-		const url = `${STANDINGS_URL}${season}/standings`;
-
-		const response = yield* client.execute(HttpClientRequest.get(url));
-		const html = yield* response.text;
-
-		const $ = cheerio.load(html);
-		const standings: UlaxStanding[] = [];
-
-		// Find the standings table - look for table with GP, W, L columns
-		$("table").each((_, table) => {
-			const headers = $(table)
-				.find("th")
-				.map((_, th) => $(th).text().trim())
-				.get();
-
-			// Check if this is the standings table
-			if (headers.includes("GP") && headers.includes("W") && headers.includes("L")) {
-				$(table)
-					.find("tbody tr")
-					.each((_, row) => {
-						const cells = $(row).find("td");
-						if (cells.length >= 8) {
-							const team = $(cells[0]).text().trim();
-							if (team) {
-								standings.push({
-									team,
-									gp: Number.parseInt($(cells[1]).text().trim()) || 0,
-									w: Number.parseInt($(cells[2]).text().trim()) || 0,
-									l: Number.parseInt($(cells[3]).text().trim()) || 0,
-									t: Number.parseInt($(cells[4]).text().trim()) || 0,
-									pts: Number.parseInt($(cells[5]).text().trim()) || 0,
-									gf: Number.parseInt($(cells[6]).text().trim()) || 0,
-									ga: Number.parseInt($(cells[7]).text().trim()) || 0,
-								});
-							}
-						}
-					});
-			}
-		});
-
-		return standings;
+		const service = yield* UlaxService;
+		return yield* service.fetchStandings(season);
 	});
 
 export const fetchAll = (season: Season) =>
 	Effect.gen(function* () {
-		const [schedule, standings] = yield* Effect.all([
-			fetchSchedule(season),
-			fetchStandings(season),
-		]);
-
-		return {
-			schedule,
-			standings,
-			fetchedAt: new Date().toISOString(),
-			season,
-		} satisfies UlaxData;
+		const service = yield* UlaxService;
+		return yield* service.fetchAll(season);
 	});
