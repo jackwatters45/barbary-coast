@@ -1,4 +1,6 @@
 ---
+import type { UlaxGameSerialized } from "../lib/ulax";
+
 interface Event {
   date: string;
   time: string;
@@ -8,23 +10,9 @@ interface Event {
   location: string;
 }
 
-interface UlaxGame {
-  id: number;
-  date: string;
-  time: string;
-  field: string;
-  awayTeam: string;
-  awayScore: number | null;
-  homeTeam: string;
-  homeScore: number | null;
-  gameType: "regular" | "playoff" | "championship";
-  isBarbaryCoast: boolean;
-  barbaryCoastIsHome: boolean | null;
-}
-
 interface Props {
   events?: Event[];
-  ulaxGames?: UlaxGame[];
+  ulaxGames?: UlaxGameSerialized[];
   limit?: number;
   barbaryCoastOnly?: boolean;
 }
@@ -46,34 +34,34 @@ const typeColors: Record<Event["type"], string> = {
   tournament: "text-gold",
 };
 
-const gameTypeColors: Record<UlaxGame["gameType"], string> = {
+const gameTypeColors: Record<UlaxGameSerialized["gameType"], string> = {
   regular: "text-gold",
   playoff: "text-gold",
   championship: "text-gold",
 };
 
-function getOpponent(game: UlaxGame): string {
+function getOpponent(game: UlaxGameSerialized): string {
   if (game.barbaryCoastIsHome) {
     return game.awayTeam;
   }
   return game.homeTeam;
 }
 
-function getBarbaryCoastScore(game: UlaxGame): number | null {
+function getBarbaryCoastScore(game: UlaxGameSerialized): number | null {
   if (game.barbaryCoastIsHome) {
     return game.homeScore;
   }
   return game.awayScore;
 }
 
-function getOpponentScore(game: UlaxGame): number | null {
+function getOpponentScore(game: UlaxGameSerialized): number | null {
   if (game.barbaryCoastIsHome) {
     return game.awayScore;
   }
   return game.homeScore;
 }
 
-function isWin(game: UlaxGame): boolean | null {
+function isWin(game: UlaxGameSerialized): boolean | null {
   const bcScore = getBarbaryCoastScore(game);
   const oppScore = getOpponentScore(game);
   if (bcScore === null || oppScore === null) return null;

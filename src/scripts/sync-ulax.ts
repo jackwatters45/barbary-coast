@@ -10,7 +10,9 @@ const writeData = (data: UlaxData) =>
 		const fs = yield* FileSystem.FileSystem;
 		const path = yield* Path.Path;
 
-		const dataDir = path.join(import.meta.dir, "..", "data");
+		// Use import.meta.url for cross-runtime compatibility
+		const __dirname = new URL(".", import.meta.url).pathname;
+		const dataDir = path.join(__dirname, "..", "data");
 		const filePath = path.join(dataDir, "ulax.json");
 
 		yield* fs.makeDirectory(dataDir, { recursive: true });

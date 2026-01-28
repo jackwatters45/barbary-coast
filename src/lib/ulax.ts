@@ -35,6 +35,11 @@ export interface UlaxGame {
 	barbaryCoastIsHome: boolean | null;
 }
 
+// Serialized version for JSON import (Date becomes string)
+export interface UlaxGameSerialized extends Omit<UlaxGame, "date"> {
+	date: string;
+}
+
 export interface UlaxStanding {
 	team: string;
 	gp: number;
