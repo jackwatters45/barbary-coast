@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { Console, Effect, Layer } from "effect";
+import { Console, Effect, Layer, Option } from "effect";
 import { BunContext, BunRuntime } from "@effect/platform-bun";
 import { FileSystem, Path } from "@effect/platform";
 import { FetchHttpClient } from "@effect/platform";
@@ -114,18 +114,28 @@ const printSummary = (data: UlaxAllData) =>
 const fetchAllSeasons = Effect.gen(function* () {
 	yield* Console.log("Fetching all seasons...");
 
-	const seasons: Record<string, UlaxSeasonData> = {};
+	const results = yield* Effect.all(
+		SEASONS.map((season) =>
+			Effect.gen(function* () {
+				yield* Console.log(`  Fetching ${season}...`);
+				const result = yield* Effect.option(fetchSeason(season));
+				if (Option.isSome(result)) {
+					const data = result.value;
+					if (data.schedule.length > 0 || data.standings.length > 0) {
+						return [season, data] as const;
+					}
+				}
+				yield* Console.log(`    (no data for ${season})`);
+				return null;
+			})
+		),
+		{ concurrency: 3 }
+	);
 
-	for (const season of SEASONS) {
-		yield* Console.log(`  Fetching ${season}...`);
-		try {
-			const data = yield* fetchSeason(season);
-			// Only include if we got some data
-			if (data.schedule.length > 0 || data.standings.length > 0) {
-				seasons[season] = data;
-			}
-		} catch {
-			yield* Console.log(`    (no data for ${season})`);
+	const seasons: Record<string, UlaxSeasonData> = {};
+	for (const result of results) {
+		if (result) {
+			seasons[result[0]] = result[1];
 		}
 	}
 

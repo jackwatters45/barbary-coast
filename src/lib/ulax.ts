@@ -256,11 +256,19 @@ const makeFetchSchedule =
 			}
 
 			const games: UlaxGame[] = [];
+			let errorCount = 0;
 			for (const item of json) {
 				const parsed = Schema.decodeUnknownEither(UlaxGameRaw)(item);
 				if (parsed._tag === "Right") {
 					games.push(transformGame(parsed.right));
+				} else {
+					errorCount++;
+					yield* Effect.logWarning(`Failed to parse game: ${JSON.stringify(item)}`);
 				}
+			}
+
+			if (errorCount > 0) {
+				yield* Effect.logWarning(`Schedule parsing: ${errorCount} of ${json.length} games failed validation`);
 			}
 
 			return games;
