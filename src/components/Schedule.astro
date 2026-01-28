@@ -36,8 +36,8 @@ const typeColors: Record<Event["type"], string> = {
 
 const gameTypeColors: Record<UlaxGameSerialized["gameType"], string> = {
   regular: "text-gold",
-  playoff: "text-gold",
-  championship: "text-gold",
+  playoff: "text-powder-dark",
+  championship: "text-green-600",
 };
 
 function isTBD(game: UlaxGameSerialized): boolean {
@@ -103,15 +103,12 @@ function isWin(game: UlaxGameSerialized): boolean | null {
               [{game.gameType === "regular" ? "league" : game.gameType}]
             </span>
             <span class="text-muted text-sm font-mono">{game.time}</span>
-            {game.barbaryCoastIsHome === false && (
-              <span class="label text-subtle">@ away</span>
-            )}
           </div>
 
           <div class="flex items-center gap-2">
             <h3 class="font-medium text-foreground truncate">
               {isTBD(game)
-                ? (game.gameType === "championship" ? "Championship Game" : "Playoff Game")
+                ? game.typeName
                 : `vs ${getOpponent(game)}`
               }
             </h3>

@@ -13,6 +13,7 @@
           "homeTeam": "Barbary Coast",
           "homeScore": 8,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": true
         },
@@ -26,6 +27,7 @@
           "homeTeam": "Palo Alto Ducks",
           "homeScore": 10,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -39,6 +41,7 @@
           "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": 2,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -52,6 +55,7 @@
           "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": 3,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -65,6 +69,7 @@
           "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": 3,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": false
         },
@@ -78,6 +83,7 @@
           "homeTeam": "Palo Alto Ducks",
           "homeScore": 7,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": false
         },
@@ -91,6 +97,7 @@
           "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -104,6 +111,7 @@
           "homeTeam": "Barbary Coast",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": true
         },
@@ -117,6 +125,7 @@
           "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": false
         },
@@ -130,6 +139,7 @@
           "homeTeam": "Bar Down Boys",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -143,6 +153,7 @@
           "homeTeam": "Palo Alto Ducks",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": false
         },
@@ -156,6 +167,7 @@
           "homeTeam": "Bar Down Boys",
           "homeScore": null,
           "gameType": "regular",
+          "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -169,6 +181,7 @@
           "homeTeam": "TBD",
           "homeScore": null,
           "gameType": "championship",
+          "typeName": "Semi-Finals",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -182,6 +195,7 @@
           "homeTeam": "TBD",
           "homeScore": null,
           "gameType": "championship",
+          "typeName": "Semi-Finals",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
@@ -195,6 +209,7 @@
           "homeTeam": "TBD",
           "homeScore": null,
           "gameType": "playoff",
+          "typeName": "Championship",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         }
@@ -2322,5 +2337,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-01-28T09:52:43.718Z"
+  "fetchedAt": "2026-01-28T09:57:22.193Z"
 }

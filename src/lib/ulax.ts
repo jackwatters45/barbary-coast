@@ -41,6 +41,7 @@ export interface UlaxGame {
 	homeTeam: string;
 	homeScore: number | null;
 	gameType: "regular" | "playoff" | "championship";
+	typeName: string;
 	isBarbaryCoast: boolean;
 	barbaryCoastIsHome: boolean | null;
 }
@@ -211,6 +212,7 @@ function transformGame(raw: UlaxGameRaw): UlaxGame {
 		homeTeam: raw.hometeam.trim(),
 		homeScore: raw.homescore,
 		gameType: parseGameType(raw.gametype),
+		typeName: raw.typename,
 		isBarbaryCoast,
 		barbaryCoastIsHome,
 	};
