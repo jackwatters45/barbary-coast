@@ -53,27 +53,45 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <!-- Home Section -->
           <div class="timeline-section">
             <div class="timeline-section-header">Home</div>
-            <a href="#hero" class="timeline-item active" data-section="hero">Barbary Coast</a>
+            <a href="#hero" class="timeline-item active" data-section="hero" data-hotkey="h">
+              Barbary Coast
+              <span class="hotkey-hint">H</span>
+            </a>
           </div>
 
           <!-- Schedule Section -->
           <div class="timeline-section">
             <div class="timeline-section-header">Schedule</div>
-            <a href="#schedule" class="timeline-item" data-section="schedule">Upcoming</a>
+            <a href="#schedule" class="timeline-item" data-section="schedule" data-hotkey="s">
+              Upcoming
+              <span class="hotkey-hint">S</span>
+            </a>
           </div>
 
           <!-- Club Section -->
           <div class="timeline-section">
             <div class="timeline-section-header">Club</div>
-            <a href="#practice" class="timeline-item" data-section="practice">Practice</a>
-            <a href="#contact" class="timeline-item" data-section="contact">Contact</a>
+            <a href="#practice" class="timeline-item" data-section="practice" data-hotkey="p">
+              Practice
+              <span class="hotkey-hint">P</span>
+            </a>
+            <a href="#contact" class="timeline-item" data-section="contact" data-hotkey="c">
+              Contact
+              <span class="hotkey-hint">C</span>
+            </a>
           </div>
 
           <!-- Links Section -->
           <div class="timeline-section">
             <div class="timeline-section-header">More</div>
-            <a href="/schedule" class="timeline-item">Full Schedule</a>
-            <a href="/history" class="timeline-item">History</a>
+            <a href="/schedule" class="timeline-item" data-hotkey="f">
+              Full Schedule
+              <span class="hotkey-hint">F</span>
+            </a>
+            <a href="/history" class="timeline-item" data-hotkey="y">
+              History
+              <span class="hotkey-hint">Y</span>
+            </a>
           </div>
         </div>
       </nav>
