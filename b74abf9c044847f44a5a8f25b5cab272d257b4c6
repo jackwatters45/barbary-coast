@@ -1,0 +1,27 @@
+src/lib/date.ts
+  61f3db961da8dbd4 1-11
+src/lib/ulax.ts
+  61f3db961da8dbd4 37,50-51,216-223
+src/components/Schedule.astro
+  61f3db961da8dbd4 3,114,117,159,162
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "b74abf9c044847f44a5a8f25b5cab272d257b4c6",
+  "prompts": {
+    "61f3db961da8dbd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aecfa2e8-742e-447b-9c49-a31a5ffe8d87",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 34,
+      "total_deletions": 19,
+      "accepted_lines": 27,
+      "overriden_lines": 0
+    }
+  }
+}
