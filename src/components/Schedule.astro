@@ -1,5 +1,6 @@
 ---
 import type { UlaxGameSerialized } from "../lib/ulax";
+import { parseLocalDate } from "../lib/date";
 
 interface Event {
   date: string;
@@ -110,10 +111,10 @@ function isWin(game: UlaxGameSerialized): boolean | null {
         <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
           <div class="flex-shrink-0 text-center w-12">
             <div class="text-xl font-semibold text-foreground font-mono">
-              {new Date(game.date).getDate().toString().padStart(2, '0')}
+              {parseLocalDate(game.date).getDate().toString().padStart(2, '0')}
             </div>
             <div class="label text-muted">
-              {new Date(game.date).toLocaleDateString("en-US", { month: "short" })}
+              {parseLocalDate(game.date).toLocaleDateString("en-US", { month: "short" })}
             </div>
           </div>
 
@@ -155,10 +156,10 @@ function isWin(game: UlaxGameSerialized): boolean | null {
         <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
           <div class="flex-shrink-0 text-center w-12">
             <div class="text-xl font-semibold text-foreground font-mono">
-              {new Date(event.date).getDate().toString().padStart(2, '0')}
+              {parseLocalDate(event.date).getDate().toString().padStart(2, '0')}
             </div>
             <div class="label text-muted">
-              {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
+              {parseLocalDate(event.date).toLocaleDateString("en-US", { month: "short" })}
             </div>
           </div>
 

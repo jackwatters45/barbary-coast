@@ -5,7 +5,7 @@
       "schedule": [
         {
           "id": 132,
-          "date": "2026-01-10T13:00:00.000Z",
+          "date": "2026-01-11",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Bar Down Boys",
@@ -19,7 +19,7 @@
         },
         {
           "id": 133,
-          "date": "2026-01-10T13:00:00.000Z",
+          "date": "2026-01-11",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Bar Down Boys",
@@ -33,7 +33,7 @@
         },
         {
           "id": 134,
-          "date": "2026-01-10T13:00:00.000Z",
+          "date": "2026-01-11",
           "time": "7:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Palo Alto Ducks",
@@ -47,7 +47,7 @@
         },
         {
           "id": 135,
-          "date": "2026-01-17T13:00:00.000Z",
+          "date": "2026-01-18",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Bar Down Boys",
@@ -61,7 +61,7 @@
         },
         {
           "id": 136,
-          "date": "2026-01-17T13:00:00.000Z",
+          "date": "2026-01-18",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Barbary Coast",
@@ -75,7 +75,7 @@
         },
         {
           "id": 137,
-          "date": "2026-01-17T13:00:00.000Z",
+          "date": "2026-01-18",
           "time": "7:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Barbary Coast",
@@ -89,7 +89,7 @@
         },
         {
           "id": 138,
-          "date": "2026-01-24T13:00:00.000Z",
+          "date": "2026-01-25",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Palo Alto Ducks",
@@ -103,7 +103,7 @@
         },
         {
           "id": 139,
-          "date": "2026-01-24T13:00:00.000Z",
+          "date": "2026-01-25",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Bar Down Boys",
@@ -117,7 +117,7 @@
         },
         {
           "id": 140,
-          "date": "2026-01-31T13:00:00.000Z",
+          "date": "2026-02-01",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Barbary Coast",
@@ -131,7 +131,7 @@
         },
         {
           "id": 141,
-          "date": "2026-01-31T13:00:00.000Z",
+          "date": "2026-02-01",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Palo Alto Ducks",
@@ -145,7 +145,7 @@
         },
         {
           "id": 142,
-          "date": "2026-02-14T13:00:00.000Z",
+          "date": "2026-02-15",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Barbary Coast",
@@ -159,7 +159,7 @@
         },
         {
           "id": 143,
-          "date": "2026-02-14T13:00:00.000Z",
+          "date": "2026-02-15",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "San Francisco Lacrosse Club",
@@ -173,7 +173,7 @@
         },
         {
           "id": 144,
-          "date": "2026-02-21T13:00:00.000Z",
+          "date": "2026-02-22",
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "TBD",
@@ -187,7 +187,7 @@
         },
         {
           "id": 145,
-          "date": "2026-02-21T13:00:00.000Z",
+          "date": "2026-02-22",
           "time": "6:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "TBD",
@@ -201,7 +201,7 @@
         },
         {
           "id": 146,
-          "date": "2026-02-21T13:00:00.000Z",
+          "date": "2026-02-22",
           "time": "7:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "TBD",
@@ -2337,5 +2337,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-01-28T09:57:22.193Z"
+  "fetchedAt": "2026-01-28T10:51:18.170Z"
 }

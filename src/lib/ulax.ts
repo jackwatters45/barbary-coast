@@ -34,7 +34,7 @@ export type UlaxGameRaw = typeof UlaxGameRaw.Type;
 
 export interface UlaxGame {
 	id: number;
-	date: Date;
+	date: string; // YYYY-MM-DD format
 	time: string;
 	field: string;
 	awayTeam: string;
@@ -47,10 +47,8 @@ export interface UlaxGame {
 	barbaryCoastIsHome: boolean | null;
 }
 
-// Serialized version for JSON import (Date becomes string)
-export interface UlaxGameSerialized extends Omit<UlaxGame, "date"> {
-	date: string;
-}
+// Alias for backwards compatibility
+export type UlaxGameSerialized = UlaxGame;
 
 export interface UlaxStanding {
 	team: string;
@@ -215,9 +213,14 @@ function extractTeamFromImage(
 	return match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
 }
 
-function parseGameDate(dateStr: string): Date {
-	// Format: "January 11, 2026"
-	return new Date(dateStr);
+function parseGameDate(dateStr: string): string {
+	// Format: "January 11, 2026" -> "2026-01-11"
+	// Return as YYYY-MM-DD string to avoid timezone issues in JSON serialization
+	const parsed = new Date(dateStr);
+	const year = parsed.getFullYear();
+	const month = String(parsed.getMonth() + 1).padStart(2, "0");
+	const day = String(parsed.getDate()).padStart(2, "0");
+	return `${year}-${month}-${day}`;
 }
 
 function parseGameType(type: number): "regular" | "playoff" | "championship" {
