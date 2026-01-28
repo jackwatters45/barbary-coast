@@ -3,14 +3,83 @@ import { Console, Effect, Layer } from "effect";
 import { BunContext, BunRuntime } from "@effect/platform-bun";
 import { FileSystem, Path } from "@effect/platform";
 import { FetchHttpClient } from "@effect/platform";
-import { fetchAll, UlaxServiceLive, type Season, type UlaxData } from "../lib/ulax";
+import {
+	fetchSeason,
+	fetchArchives,
+	UlaxServiceLive,
+	type Season,
+	type UlaxAllData,
+	type UlaxSeasonData,
+	type BarbaryCoastSeasonSummary,
+	type BarbaryCoastAllTime,
+	type UlaxChampionship,
+} from "../lib/ulax";
 
-const writeData = (data: UlaxData) =>
+const SEASONS: Season[] = ["winter", "spring", "summer"];
+const BARBARY_COAST = "Barbary Coast";
+
+// Determine current season based on month
+function getCurrentSeason(): Season {
+	const month = new Date().getMonth();
+	if (month >= 0 && month <= 2) return "winter"; // Jan-Mar
+	if (month >= 3 && month <= 5) return "spring"; // Apr-Jun
+	return "summer"; // Jul-Dec (summer runs through fall)
+}
+
+// Compute Barbary Coast stats from season data
+function computeBarbaryCoastSummary(
+	seasonKey: string,
+	data: UlaxSeasonData,
+	championships: UlaxChampionship[],
+): BarbaryCoastSeasonSummary | null {
+	const bc = data.standings.find((s) => s.team.includes(BARBARY_COAST));
+	if (!bc) return null;
+
+	const isChampion = championships.some(
+		(c) => c.champion.includes(BARBARY_COAST) && seasonKey.includes(c.season),
+	);
+
+	let result = "Regular Season";
+	if (isChampion) {
+		result = "Champions";
+	} else if (bc.w > bc.l) {
+		result = "Playoffs"; // Assume winning record = playoffs
+	}
+
+	return {
+		season: seasonKey,
+		wins: bc.w,
+		losses: bc.l,
+		ties: bc.t,
+		goalsFor: bc.gf,
+		goalsAgainst: bc.ga,
+		result,
+		isChampion,
+	};
+}
+
+// Aggregate all-time stats
+function computeAllTimeStats(
+	seasons: BarbaryCoastSeasonSummary[],
+): BarbaryCoastAllTime {
+	return seasons.reduce(
+		(acc, s) => ({
+			wins: acc.wins + s.wins,
+			losses: acc.losses + s.losses,
+			ties: acc.ties + s.ties,
+			titles: acc.titles + (s.isChampion ? 1 : 0),
+			goalsFor: acc.goalsFor + s.goalsFor,
+			goalsAgainst: acc.goalsAgainst + s.goalsAgainst,
+		}),
+		{ wins: 0, losses: 0, ties: 0, titles: 0, goalsFor: 0, goalsAgainst: 0 },
+	);
+}
+
+const writeData = (data: UlaxAllData) =>
 	Effect.gen(function* () {
 		const fs = yield* FileSystem.FileSystem;
 		const path = yield* Path.Path;
 
-		// Use import.meta.url for cross-runtime compatibility
 		const __dirname = new URL(".", import.meta.url).pathname;
 		const dataDir = path.join(__dirname, "..", "data");
 		const filePath = path.join(dataDir, "ulax.json");
@@ -18,37 +87,96 @@ const writeData = (data: UlaxData) =>
 		yield* fs.makeDirectory(dataDir, { recursive: true });
 		yield* fs.writeFileString(filePath, JSON.stringify(data, null, 2));
 
-		yield* Console.log(
-			`✓ Wrote ${data.schedule.length} games and ${data.standings.length} standings to ${filePath}`,
+		const seasonCount = Object.keys(data.seasons).length;
+		const gameCount = Object.values(data.seasons).reduce(
+			(acc, s) => acc + s.schedule.length,
+			0,
 		);
+
+		yield* Console.log(`✓ Wrote ${seasonCount} seasons, ${gameCount} games to ${filePath}`);
 	});
 
-const printSummary = (data: UlaxData) =>
+const printSummary = (data: UlaxAllData) =>
 	Effect.gen(function* () {
-		const barbaryGames = data.schedule.filter((g) => g.isBarbaryCoast);
-		const bc = data.standings.find((s) => s.team.includes("Barbary Coast"));
+		yield* Console.log("\nSummary:");
+		yield* Console.log(`  Seasons: ${Object.keys(data.seasons).length}`);
+		yield* Console.log(`  Championships: ${data.championships.length}`);
+		yield* Console.log(`  Current season: ${data.currentSeason}`);
 
-		yield* Console.log(`\nSummary:`);
-		yield* Console.log(`  Total games: ${data.schedule.length}`);
-		yield* Console.log(`  Barbary Coast games: ${barbaryGames.length}`);
-		yield* Console.log(`  Teams in standings: ${data.standings.length}`);
+		const bc = data.barbaryCoast;
+		yield* Console.log(
+			`\nBarbary Coast All-Time: ${bc.allTime.wins}-${bc.allTime.losses}-${bc.allTime.ties}`,
+		);
+		yield* Console.log(`  Titles: ${bc.allTime.titles}`);
+		yield* Console.log(`  Goals: ${bc.allTime.goalsFor} for, ${bc.allTime.goalsAgainst} against`);
+	});
 
-		if (bc) {
-			yield* Console.log(
-				`\nBarbary Coast: ${bc.w}-${bc.l}-${bc.t} (${bc.pts} pts)`,
-			);
+const fetchAllSeasons = Effect.gen(function* () {
+	yield* Console.log("Fetching all seasons...");
+
+	const seasons: Record<string, UlaxSeasonData> = {};
+
+	for (const season of SEASONS) {
+		yield* Console.log(`  Fetching ${season}...`);
+		try {
+			const data = yield* fetchSeason(season);
+			// Only include if we got some data
+			if (data.schedule.length > 0 || data.standings.length > 0) {
+				seasons[season] = data;
+			}
+		} catch {
+			yield* Console.log(`    (no data for ${season})`);
 		}
+	}
+
+	return seasons;
+});
+
+const fetchCurrentSeasonOnly = (season: Season) =>
+	Effect.gen(function* () {
+		yield* Console.log(`Fetching ${season} season only...`);
+		const data = yield* fetchSeason(season);
+		return { [season]: data };
 	});
 
 const program = Effect.gen(function* () {
-	const season: Season = (process.argv[2] as Season) || "winter";
+	const args = process.argv.slice(2);
+	const currentOnly = args.includes("--current-only");
+	const currentSeason = getCurrentSeason();
 
-	yield* Console.log(`Syncing ULAX data for ${season} season...`);
+	yield* Console.log(`Syncing ULAX data...`);
+	yield* Console.log(`  Current season: ${currentSeason}`);
 
-	const data = yield* fetchAll(season);
+	// Fetch championships first
+	yield* Console.log("Fetching archives...");
+	const championships = yield* fetchArchives();
+	yield* Console.log(`  Found ${championships.length} championships`);
 
-	yield* writeData(data);
-	yield* printSummary(data);
+	// Fetch season data
+	const seasons = currentOnly
+		? yield* fetchCurrentSeasonOnly(currentSeason)
+		: yield* fetchAllSeasons;
+
+	// Compute Barbary Coast stats
+	const bcSeasons: BarbaryCoastSeasonSummary[] = [];
+	for (const [key, data] of Object.entries(seasons)) {
+		const summary = computeBarbaryCoastSummary(key, data, championships);
+		if (summary) bcSeasons.push(summary);
+	}
+
+	const allData: UlaxAllData = {
+		currentSeason,
+		seasons,
+		championships,
+		barbaryCoast: {
+			allTime: computeAllTimeStats(bcSeasons),
+			seasons: bcSeasons,
+		},
+		fetchedAt: new Date().toISOString(),
+	};
+
+	yield* writeData(allData);
+	yield* printSummary(allData);
 });
 
 const UlaxLive = UlaxServiceLive.pipe(Layer.provide(FetchHttpClient.layer));
