@@ -1,4 +1,6 @@
 ---
+import type { UlaxGameSerialized } from "../lib/ulax";
+
 interface Event {
   date: string;
   time: string;
@@ -6,59 +8,182 @@ interface Event {
   opponent?: string;
   name?: string;
   location: string;
+  locationUrl?: string;
+}
+
+function getMapsUrl(location: string): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
 }
 
 interface Props {
-  events: Event[];
+  events?: Event[];
+  ulaxGames?: UlaxGameSerialized[];
   limit?: number;
+  barbaryCoastOnly?: boolean;
+  upcomingOnly?: boolean;
 }
 
-const { events, limit } = Astro.props;
-const displayEvents = limit ? events.slice(0, limit) : events;
+const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false, upcomingOnly = false } = Astro.props;
 
-const typeColors: Record<Event["type"], string> = {
+// Filter ULAX games if needed (always include playoffs/championship even if TBD)
+let filteredUlaxGames = barbaryCoastOnly
+  ? ulaxGames.filter(g => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship")
+  : ulaxGames;
+
+// Filter out games that have already been played (have scores)
+if (upcomingOnly) {
+  filteredUlaxGames = filteredUlaxGames.filter(g => g.homeScore === null && g.awayScore === null);
+}
+
+// Filter manual events to only future dates if upcomingOnly
+const filteredEvents = upcomingOnly
+  ? events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
+  : events;
+
+// Combine and sort all items by date
+type ScheduleItem =
+  | { kind: "ulax"; data: UlaxGameSerialized }
+  | { kind: "event"; data: Event };
+
+const allItems: ScheduleItem[] = [
+  ...filteredUlaxGames.map(g => ({ kind: "ulax" as const, data: g })),
+  ...filteredEvents.map(e => ({ kind: "event" as const, data: e })),
+].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const displayItems = limit ? allItems.slice(0, limit) : allItems;
+
+// Category colors (league, practice, scrimmage, tournament)
+const categoryColors: Record<Event["type"], string> = {
   game: "text-gold",
   practice: "text-powder-dark",
   scrimmage: "text-subtle",
   tournament: "text-gold",
 };
+
+function isPlayoffs(game: UlaxGameSerialized): boolean {
+  return game.gameType === "playoff" || game.gameType === "championship";
+}
+
+function isTBD(game: UlaxGameSerialized): boolean {
+  return game.awayTeam === "TBD" || game.homeTeam === "TBD";
+}
+
+function getOpponent(game: UlaxGameSerialized): string {
+  if (game.barbaryCoastIsHome) {
+    return game.awayTeam;
+  }
+  return game.homeTeam;
+}
+
+function getBarbaryCoastScore(game: UlaxGameSerialized): number | null {
+  if (game.barbaryCoastIsHome) {
+    return game.homeScore;
+  }
+  return game.awayScore;
+}
+
+function getOpponentScore(game: UlaxGameSerialized): number | null {
+  if (game.barbaryCoastIsHome) {
+    return game.awayScore;
+  }
+  return game.homeScore;
+}
+
+function isWin(game: UlaxGameSerialized): boolean | null {
+  const bcScore = getBarbaryCoastScore(game);
+  const oppScore = getOpponentScore(game);
+  if (bcScore === null || oppScore === null) return null;
+  return bcScore > oppScore;
+}
 ---
 
 <div class="space-y-2">
-  {displayEvents.map((event) => (
-    <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
-      <!-- Date -->
-      <div class="flex-shrink-0 text-center w-12">
-        <div class="text-xl font-semibold text-foreground font-mono">
-          {new Date(event.date).getDate().toString().padStart(2, '0')}
-        </div>
-        <div class="label text-muted">
-          {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
-        </div>
-      </div>
+  {displayItems.map((item) => {
+    if (item.kind === "ulax") {
+      const game = item.data;
+      const bcScore = getBarbaryCoastScore(game);
+      const oppScore = getOpponentScore(game);
+      const hasScore = bcScore !== null && oppScore !== null;
+      const won = isWin(game);
 
-      <!-- Divider -->
-      <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+      return (
+        <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
+          <div class="flex-shrink-0 text-center w-12">
+            <div class="text-xl font-semibold text-foreground font-mono">
+              {new Date(game.date).getDate().toString().padStart(2, '0')}
+            </div>
+            <div class="label text-muted">
+              {new Date(game.date).toLocaleDateString("en-US", { month: "short" })}
+            </div>
+          </div>
 
-      <!-- Details -->
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1">
-          <span class:list={["label", typeColors[event.type]]}>
-            [{event.type}]
-          </span>
-          <span class="text-muted text-sm font-mono">{event.time}</span>
-        </div>
+          <div class="w-px h-10 bg-border" aria-hidden="true"></div>
 
-        {event.name ? (
-          <h3 class="font-medium text-foreground truncate">{event.name}</h3>
-        ) : event.opponent ? (
-          <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
-        ) : (
-          <h3 class="font-medium text-foreground">Team Practice</h3>
-        )}
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="label text-gold">[league]</span>
+              {isPlayoffs(game) && (
+                <span class="label text-green-600">[playoffs]</span>
+              )}
+              <span class="text-muted text-sm font-mono">{game.time}</span>
+            </div>
 
-        <p class="text-sm text-muted truncate">{event.location}</p>
-      </div>
-    </article>
-  ))}
+            <div class="flex items-center gap-2">
+              <h3 class="font-medium text-foreground truncate">
+                {isTBD(game)
+                  ? game.typeName
+                  : `vs ${getOpponent(game)}`
+                }
+              </h3>
+              {hasScore && (
+                <span class:list={[
+                  "font-mono font-bold text-sm px-2 py-0.5 rounded",
+                  won ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                ]}>
+                  {won ? "W" : "L"} {bcScore}-{oppScore}
+                </span>
+              )}
+            </div>
+
+            <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-sm text-muted truncate hover:text-foreground hover:underline">{game.field}</a>
+          </div>
+        </article>
+      );
+    } else {
+      const event = item.data;
+      return (
+        <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
+          <div class="flex-shrink-0 text-center w-12">
+            <div class="text-xl font-semibold text-foreground font-mono">
+              {new Date(event.date).getDate().toString().padStart(2, '0')}
+            </div>
+            <div class="label text-muted">
+              {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
+            </div>
+          </div>
+
+          <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class:list={["label", categoryColors[event.type]]}>
+                [{event.type}]
+              </span>
+              <span class="text-muted text-sm font-mono">{event.time}</span>
+            </div>
+
+            {event.name ? (
+              <h3 class="font-medium text-foreground truncate">{event.name}</h3>
+            ) : event.opponent ? (
+              <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
+            ) : (
+              <h3 class="font-medium text-foreground">Team Practice</h3>
+            )}
+
+            <a href={event.locationUrl ?? getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted truncate hover:text-foreground hover:underline">{event.location}</a>
+          </div>
+        </article>
+      );
+    }
+  })}
 </div>

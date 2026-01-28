@@ -1,120 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ScheduleList from "../components/Schedule.astro";
+import Standings from "../components/Standings.astro";
+import ulaxData from "../data/ulax.json";
+import { manualEvents } from "../data/events";
+import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
 
-const events = [
-  {
-    date: "2025-02-15",
-    time: "10:00 AM",
-    type: "game" as const,
-    opponent: "Peninsula Lacrosse",
-    location: "Crocker Amazon Playground",
-  },
-  {
-    date: "2025-02-18",
-    time: "7:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2025-02-22",
-    time: "2:00 PM",
-    type: "game" as const,
-    opponent: "East Bay Riptide",
-    location: "Kezar Stadium",
-  },
-  {
-    date: "2025-02-25",
-    time: "7:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2025-03-01",
-    time: "11:00 AM",
-    type: "game" as const,
-    opponent: "Marin Lacrosse Club",
-    location: "Boxer Stadium",
-  },
-  {
-    date: "2025-03-04",
-    time: "7:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2025-03-08",
-    time: "1:00 PM",
-    type: "scrimmage" as const,
-    opponent: "Stanford MCLA",
-    location: "Maloney Field, Stanford",
-  },
-  {
-    date: "2025-03-08",
-    time: "1:00 PM",
-    type: "game" as const,
-    opponent: "South Bay Storm",
-    location: "Crocker Amazon Playground",
-  },
-  {
-    date: "2025-03-11",
-    time: "7:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2025-03-15",
-    time: "3:00 PM",
-    type: "game" as const,
-    opponent: "Sacramento Capitals",
-    location: "Kezar Stadium",
-  },
-  {
-    date: "2025-03-22",
-    time: "12:00 PM",
-    type: "scrimmage" as const,
-    opponent: "Cal MCLA",
-    location: "Witter Rugby Field, Berkeley",
-  },
-  {
-    date: "2025-10-31",
-    time: "TBD",
-    type: "tournament" as const,
-    name: "Hawaii Halloween Tournament",
-    location: "Honolulu, HI",
-  },
-];
+const data = ulaxData as UlaxAllDataSerialized;
+const season = data.currentSeason;
+const seasonData = data.seasons[season];
+
+// ULAX games from synced data (cast to restore union literal types lost in JSON)
+const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
+const standings = (seasonData?.standings ?? []) as UlaxStanding[];
+const fetchedAt = new Date(data.fetchedAt);
 ---
 
-<Layout title="Schedule" description="View upcoming games and practices for Barbary Coast Lacrosse.">
+<Layout title="Schedule" description="View upcoming games, standings, and results for Barbary Coast Lacrosse.">
   <!-- Page Header -->
   <section class="pt-12 pb-8">
-    <div class="max-w-5xl mx-auto px-4">
-      <span class="label text-muted">2025 Season</span>
-      <h1 class="text-3xl sm:text-4xl text-foreground mt-2">Schedule</h1>
+    <div class="max-w-4xl mx-auto px-4">
+      <span class="label text-muted">2026 Season</span>
+      <h1 class="text-3xl sm:text-4xl text-foreground mt-2">Schedule & Results</h1>
+      <p class="text-muted text-sm mt-2">
+        Data synced from <a href="https://ulax.org/sanfrancisco/men/winter/" class="underline hover:text-foreground">ulax.org</a>
+      </p>
     </div>
   </section>
 
   <!-- Legend -->
-  <section class="pb-6">
+  <section class="pb-4">
     <div class="max-w-4xl mx-auto px-4">
       <div class="flex flex-wrap gap-4 text-sm">
-        <span class="label text-gold">[game]</span>
+        <span class="label text-gold">[league]</span>
+        <span class="label text-gold">[tournament]</span>
         <span class="label text-powder-dark">[practice]</span>
         <span class="label text-subtle">[scrimmage]</span>
-        <span class="label text-gold">[tournament]</span>
       </div>
     </div>
   </section>
 
   <!-- Schedule List -->
-  <section class="pb-12 border-t border-border pt-6">
+  <section class="pb-12">
     <div class="max-w-4xl mx-auto px-4">
-      <ScheduleList events={events} />
+      <ScheduleList ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} />
 
       <p class="text-subtle text-sm text-center mt-6 font-mono">
-        // schedule subject to change
+        // last updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
       </p>
+    </div>
+  </section>
+
+  <!-- Standings -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="mb-4">
+        <h2 class="text-xl sm:text-2xl text-foreground">Standings</h2>
+        <p class="text-muted text-sm mt-1">ULAX SF Men's {season.charAt(0).toUpperCase() + season.slice(1)} League</p>
+      </div>
+      <div class="bg-white border border-border p-4 sm:p-6">
+        <Standings standings={standings} />
+      </div>
     </div>
   </section>
 
@@ -126,10 +72,7 @@ const events = [
       <div class="grid sm:grid-cols-2 gap-4">
         <div class="bg-white border border-border p-5">
           <span class="label text-muted">When</span>
-          <ul class="mt-2 space-y-1 text-text text-sm">
-            <li>Tuesdays, 7:00 PM – 9:00 PM</li>
-            <li>Thursdays, 7:00 PM – 9:00 PM</li>
-          </ul>
+          <p class="mt-2 text-text text-sm">Wednesdays, 8:00 PM – 9:00 PM</p>
         </div>
 
         <div class="bg-white border border-border p-5">

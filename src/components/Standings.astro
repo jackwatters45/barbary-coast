@@ -1,0 +1,68 @@
+---
+import type { UlaxStanding } from "../lib/ulax";
+
+interface Props {
+  standings: UlaxStanding[];
+}
+
+const { standings } = Astro.props;
+
+// Sort by points, then goal differential
+const sortedStandings = [...standings].sort((a, b) => {
+  if (b.pts !== a.pts) return b.pts - a.pts;
+  return (b.gf - b.ga) - (a.gf - a.ga);
+});
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-border text-left">
+        <th class="pb-2 pr-4 font-mono text-muted text-xs">#</th>
+        <th class="pb-2 pr-4 font-mono text-muted text-xs">Team</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center">GP</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center">W</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center">L</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center">T</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center">PTS</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center hidden sm:table-cell">GF</th>
+        <th class="pb-2 px-2 font-mono text-muted text-xs text-center hidden sm:table-cell">GA</th>
+        <th class="pb-2 pl-2 font-mono text-muted text-xs text-center hidden sm:table-cell">+/-</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sortedStandings.map((team, i) => {
+        const isBarbaryCoast = team.team.includes("Barbary Coast");
+        const diff = team.gf - team.ga;
+        return (
+          <tr class:list={[
+            "border-b border-border last:border-0",
+            isBarbaryCoast && "bg-gold/5"
+          ]}>
+            <td class="py-3 pr-4 font-mono text-muted">{i + 1}</td>
+            <td class:list={[
+              "py-3 pr-4 font-medium",
+              isBarbaryCoast ? "text-foreground" : "text-text"
+            ]}>
+              {team.team}
+              {isBarbaryCoast && <span class="ml-1 text-gold">●</span>}
+            </td>
+            <td class="py-3 px-2 text-center font-mono text-muted">{team.gp}</td>
+            <td class="py-3 px-2 text-center font-mono text-foreground">{team.w}</td>
+            <td class="py-3 px-2 text-center font-mono text-muted">{team.l}</td>
+            <td class="py-3 px-2 text-center font-mono text-muted">{team.t}</td>
+            <td class="py-3 px-2 text-center font-mono font-bold text-foreground">{team.pts}</td>
+            <td class="py-3 px-2 text-center font-mono text-muted hidden sm:table-cell">{team.gf}</td>
+            <td class="py-3 px-2 text-center font-mono text-muted hidden sm:table-cell">{team.ga}</td>
+            <td class:list={[
+              "py-3 pl-2 text-center font-mono hidden sm:table-cell",
+              diff > 0 ? "text-green-600" : diff < 0 ? "text-red-600" : "text-muted"
+            ]}>
+              {diff > 0 ? `+${diff}` : diff}
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>

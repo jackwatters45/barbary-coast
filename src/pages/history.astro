@@ -1,0 +1,162 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { UlaxAllDataSerialized } from "../lib/ulax";
+import ulaxData from "../data/ulax.json";
+
+const data = ulaxData as UlaxAllDataSerialized;
+
+// Filter Barbary Coast championships from all championships
+const bcChampionships = data.championships
+  .filter((c) => c.champion.includes("Barbary Coast"))
+  .sort((a, b) => b.year - a.year)
+  .map((c) => ({
+    season: `${c.season.charAt(0).toUpperCase() + c.season.slice(1)} ${c.year}`,
+    division: c.division,
+    result: "Champions",
+  }));
+
+// Get season history from computed Barbary Coast data
+const seasonHistory = data.barbaryCoast.seasons
+  .filter((s) => !s.isChampion)
+  .map((s) => ({
+    season: s.season.charAt(0).toUpperCase() + s.season.slice(1),
+    division: "Men's Field",
+    result: s.result,
+    record: `${s.wins}-${s.losses}${s.ties > 0 ? `-${s.ties}` : ""}`,
+  }));
+
+// All-time stats
+const allTime = data.barbaryCoast.allTime;
+---
+
+<Layout title="History" description="Championship history and records for Barbary Coast Lacrosse.">
+  <!-- Page Header -->
+  <section class="pt-12 pb-8">
+    <div class="max-w-4xl mx-auto px-4">
+      <span class="label text-muted">EST. 2024</span>
+      <h1 class="text-3xl sm:text-4xl text-foreground mt-2">Club History</h1>
+      <p class="text-muted text-sm mt-2">
+        Championship banners and historical results
+      </p>
+    </div>
+  </section>
+
+  <!-- Championship Banners -->
+  <section class="pb-12">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl sm:text-2xl text-foreground mb-6">Championships</h2>
+
+      {bcChampionships.length > 0 ? (
+        <div class="grid sm:grid-cols-3 gap-4">
+          {bcChampionships.map((champ) => (
+            <div class="bg-gold/10 border-2 border-gold p-6 text-center">
+              <div class="text-gold text-4xl mb-2">🏆</div>
+              <div class="font-mono text-xs text-muted mb-1">{champ.division}</div>
+              <div class="text-xl font-bold text-foreground">{champ.season}</div>
+              <div class="label text-gold mt-2">{champ.result}</div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted">No championships yet.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- All-Time Stats -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl sm:text-2xl text-foreground mb-6">All-Time Record</h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-white border border-border p-4 text-center">
+          <div class="text-3xl font-bold text-foreground">{allTime.wins}</div>
+          <div class="label text-muted mt-1">Wins</div>
+        </div>
+        <div class="bg-white border border-border p-4 text-center">
+          <div class="text-3xl font-bold text-foreground">{allTime.losses}</div>
+          <div class="label text-muted mt-1">Losses</div>
+        </div>
+        <div class="bg-white border border-border p-4 text-center">
+          <div class="text-3xl font-bold text-gold">{allTime.titles}</div>
+          <div class="label text-muted mt-1">Titles</div>
+        </div>
+        <div class="bg-white border border-border p-4 text-center">
+          <div class="text-3xl font-bold text-foreground">
+            {allTime.goalsFor > 0 ? `+${allTime.goalsFor - allTime.goalsAgainst}` : "0"}
+          </div>
+          <div class="label text-muted mt-1">Goal Diff</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Season History -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl sm:text-2xl text-foreground mb-6">Season History</h2>
+
+      <div class="bg-white border border-border">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border text-left">
+              <th class="p-4 font-mono text-muted text-xs">Season</th>
+              <th class="p-4 font-mono text-muted text-xs">Division</th>
+              <th class="p-4 font-mono text-muted text-xs">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...bcChampionships, ...seasonHistory].map((season) => (
+              <tr class="border-b border-border last:border-0">
+                <td class="p-4 font-medium text-foreground">{season.season}</td>
+                <td class="p-4 text-muted">{season.division}</td>
+                <td class:list={[
+                  "p-4 font-mono",
+                  season.result === "Champions" ? "text-gold font-bold" : "text-muted"
+                ]}>
+                  {season.result === "Champions" && "🏆 "}
+                  {season.result}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Club Info -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-xl sm:text-2xl text-foreground mb-6">About the Club</h2>
+
+      <div class="prose prose-sm max-w-none text-text">
+        <p>
+          Barbary Coast Lacrosse was founded in 2024 as a men's field lacrosse club
+          competing in the San Francisco ULAX league. Named after the historic
+          Barbary Coast district of San Francisco, we bring together players from
+          across the Bay Area.
+        </p>
+        <p class="mt-4">
+          {allTime.titles > 0
+            ? `In our inaugural seasons, we've established ourselves as a competitive force in the league, winning ${allTime.titles} championship${allTime.titles > 1 ? "s" : ""}.`
+            : "We're building a competitive program in the San Francisco lacrosse community."
+          }
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section class="py-12 border-t border-border">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="text-muted mb-4">Want to be part of the next chapter?</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center px-5 py-2.5 border border-border text-foreground font-mono text-xs font-medium tracking-wide transition-colors hover:bg-foreground/5"
+      >
+        Join the Club →
+      </a>
+    </div>
+  </section>
+</Layout>

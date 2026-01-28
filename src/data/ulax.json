@@ -1,0 +1,2341 @@
+{
+  "currentSeason": "winter",
+  "seasons": {
+    "winter": {
+      "schedule": [
+        {
+          "id": 132,
+          "date": "2026-01-10T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Bar Down Boys",
+          "awayScore": 4,
+          "homeTeam": "Barbary Coast",
+          "homeScore": 8,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
+        },
+        {
+          "id": 133,
+          "date": "2026-01-10T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Bar Down Boys",
+          "awayScore": 8,
+          "homeTeam": "Palo Alto Ducks",
+          "homeScore": 10,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 134,
+          "date": "2026-01-10T13:00:00.000Z",
+          "time": "7:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": 11,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": 2,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 135,
+          "date": "2026-01-17T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Bar Down Boys",
+          "awayScore": 4,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": 3,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 136,
+          "date": "2026-01-17T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": 5,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": 3,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 137,
+          "date": "2026-01-17T13:00:00.000Z",
+          "time": "7:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": 8,
+          "homeTeam": "Palo Alto Ducks",
+          "homeScore": 7,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 138,
+          "date": "2026-01-24T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": null,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 139,
+          "date": "2026-01-24T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Bar Down Boys",
+          "awayScore": null,
+          "homeTeam": "Barbary Coast",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
+        },
+        {
+          "id": 140,
+          "date": "2026-01-31T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": null,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 141,
+          "date": "2026-01-31T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": null,
+          "homeTeam": "Bar Down Boys",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 142,
+          "date": "2026-02-14T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": null,
+          "homeTeam": "Palo Alto Ducks",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 143,
+          "date": "2026-02-14T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "San Francisco Lacrosse Club",
+          "awayScore": null,
+          "homeTeam": "Bar Down Boys",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Regular Season",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 144,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "championship",
+          "typeName": "Semi-Finals",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 145,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "championship",
+          "typeName": "Semi-Finals",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 146,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "7:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "playoff",
+          "typeName": "Championship",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        }
+      ],
+      "standings": [
+        {
+          "team": "Barbary Coast",
+          "gp": 3,
+          "w": 3,
+          "l": 0,
+          "t": 0,
+          "pts": 6,
+          "gf": 21,
+          "ga": 14
+        },
+        {
+          "team": "Palo Alto Ducks",
+          "gp": 3,
+          "w": 2,
+          "l": 1,
+          "t": 0,
+          "pts": 4,
+          "gf": 28,
+          "ga": 18
+        },
+        {
+          "team": "Bar Down Boys",
+          "gp": 3,
+          "w": 1,
+          "l": 2,
+          "t": 0,
+          "pts": 2,
+          "gf": 16,
+          "ga": 21
+        },
+        {
+          "team": "San Francisco Lacrosse Club",
+          "gp": 3,
+          "w": 0,
+          "l": 3,
+          "t": 0,
+          "pts": 0,
+          "gf": 8,
+          "ga": 20
+        }
+      ],
+      "playerStats": [
+        {
+          "name": "Herron, Liam",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Julian, David",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Macri, Nick",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Makepeace, Francis",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "McIntyre, Jake",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Minnes, Theodore",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Sasaki, John",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Schnur, Owen",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Walker, Scott",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Wintner, Scott",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Withington, Marcus",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Zanon, Nathan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Baum, Gideon",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Bender, Christopher",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Bragaw, Jack",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Chilimidos, Dom",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Clark, Joshua",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Dickson, Zach",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Dobbs, Matt",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Donoso-Reddick, Nate",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Dudenas, Peter",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Dunn, Alex",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "French, Joel",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Fuegner, Chris",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Grande, Mason",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Haberlein, Paul",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Klingbeil, Malcolm",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Mandel, Alex",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "McCollum, Clay",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "McCormick, Charlie",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Murphy, Liam",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Nguyen, Billy",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Olters, Per-Anders",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Rahn, Daniel",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Schneider, Griffin",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Stebbins, Matt",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Steigerwald, Coleman",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Thorndike, Russell",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Torres, J.K.",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Yi, Andrew",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Yunker, Peter",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Arnold, James",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Bobo, Jamison",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Brown, Logan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Buenrostro, Julian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Cespedes, Jonathan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Cho, Soo-Yung",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Chop, Julian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Clifford, Brendan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "de Saint Andrieu, Nikolai",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Fagan, Matt",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Gomez, Gabriel",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Gordon, Sebastian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Higgins, Wade",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Hinton, Joe",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Kiely, Jay",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Kline, Casey",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Mar, Kent",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Nitschke, Brett",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Paterson, Logan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Roberts, Russell",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Schmoldt, Brian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Spain, Josh",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Taylor, Jon",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Yu, Jonathan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Beckman, Mitch",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Beed, Ian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Botsford, Cole",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Cathers, Brendan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Dimas, Mark",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Essabhoy, Sawyer",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Fahy, Brent",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Fahy, Anthony",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Joiner, Jared",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Jordan, Douglass",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "M. Sadiua, Bryan",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "McNiff, Owen",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Pleman, Christopher",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Spores, Brian",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Trachtenberg, Glen",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Welch, William ‘Wild Bill’",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Weldon, Jackson",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Wootton, Kaden",
+          "number": "",
+          "team": "",
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        }
+      ],
+      "goalieStats": [
+        {
+          "name": "Held, J Michael",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Jacimovic, Nicco",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Feinstein, Jackson",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Zhu, Harrison",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Gupta, Mihir",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Khan, Armand",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Antonelli, Matthew",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Kaufman, Ryan",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        },
+        {
+          "name": "Lestak, Tyler",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
+        }
+      ],
+      "roster": [
+        {
+          "name": "Held, J Michael",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'9\"",
+          "weight": "180",
+          "age": "80",
+          "homeTown": "New York",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Herron, Liam",
+          "number": "",
+          "position": "Attack",
+          "height": "6'2\"",
+          "weight": "200",
+          "age": "24",
+          "homeTown": "dc",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Jacimovic, Nicco",
+          "number": "",
+          "position": "Goaltender",
+          "height": "6'3\"",
+          "weight": "195",
+          "age": "24",
+          "homeTown": "San Francisco CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Julian, David",
+          "number": "",
+          "position": "Defense",
+          "height": "5'10\"",
+          "weight": "195",
+          "age": "54",
+          "homeTown": "Syracuse, NY",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Macri, Nick",
+          "number": "",
+          "position": "Attack",
+          "height": "5'9\"",
+          "weight": "176",
+          "age": "37",
+          "homeTown": "Rohnert park",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Makepeace, Francis",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "190",
+          "age": "26",
+          "homeTown": "Brighton, CO",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "McIntyre, Jake",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "170",
+          "age": "33",
+          "homeTown": "Rohnert Park, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Minnes, Theodore",
+          "number": "",
+          "position": "Defense",
+          "height": "5'9\"",
+          "weight": "200",
+          "age": "36",
+          "homeTown": "Kentfield, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Sasaki, John",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "190",
+          "age": "58",
+          "homeTown": "Berkeley",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Schnur, Owen",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "180",
+          "age": "27",
+          "homeTown": "Santa Monica",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Walker, Scott",
+          "number": "",
+          "position": "Attack",
+          "height": "6'2\"",
+          "weight": "195",
+          "age": "44",
+          "homeTown": "Upper Arlington Ohio",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Wintner, Scott",
+          "number": "",
+          "position": "Defense",
+          "height": "5'10\"",
+          "weight": "175",
+          "age": "42",
+          "homeTown": "Cleveland, Ohio",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Withington, Marcus",
+          "number": "",
+          "position": "Defense",
+          "height": "5'8\"",
+          "weight": "170",
+          "age": "38",
+          "homeTown": "Rohnert Park",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Zanon, Nathan",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "170",
+          "age": "48",
+          "homeTown": "SAN JOSE",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Baum, Gideon",
+          "number": "",
+          "position": "Defense",
+          "height": "6'3\"",
+          "weight": "225",
+          "age": "30",
+          "homeTown": "San Francisco",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Bender, Christopher",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "155",
+          "age": "25",
+          "homeTown": "East Quogue",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Bragaw, Jack",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "230",
+          "age": "24",
+          "homeTown": "Annapolis",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Chilimidos, Dom",
+          "number": "",
+          "position": "LSM",
+          "height": "6'0\"",
+          "weight": "185",
+          "age": "25",
+          "homeTown": "Tahoe City",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Clark, Joshua",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "160",
+          "age": "25",
+          "homeTown": "Alamo",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Dickson, Zach",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'11\"",
+          "weight": "200",
+          "age": "26",
+          "homeTown": "Walnut Creek",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Dobbs, Matt",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "180",
+          "age": "32",
+          "homeTown": "Piedmont, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Donoso-Reddick, Nate",
+          "number": "",
+          "position": "Defense",
+          "height": "5'9\"",
+          "weight": "200",
+          "age": "32",
+          "homeTown": "Berkeley",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Dudenas, Peter",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "225",
+          "age": "33",
+          "homeTown": "Pittsburgh",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Dunn, Alex",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'9\"",
+          "weight": "300",
+          "age": "28",
+          "homeTown": "Aspen",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Feinstein, Jackson",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'9\"",
+          "weight": "220",
+          "age": "26",
+          "homeTown": "Oakland",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "French, Joel",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "185",
+          "age": "31",
+          "homeTown": "Pleasanton",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Fuegner, Chris",
+          "number": "",
+          "position": "Face Offs",
+          "height": "5'9\"",
+          "weight": "160",
+          "age": "23",
+          "homeTown": "Corte madera",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Grande, Mason",
+          "number": "",
+          "position": "Defense",
+          "height": "5'1\"",
+          "weight": "300",
+          "age": "30",
+          "homeTown": "Glastonbury",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "CHaberlein, Paul",
+          "number": "",
+          "position": "Defense",
+          "height": "6'4\"",
+          "weight": "210",
+          "age": "45",
+          "homeTown": "Annapolis, MD",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Klingbeil, Malcolm",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'3\"",
+          "weight": "190",
+          "age": "25",
+          "homeTown": "Powell, Ohio",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Mandel, Alex",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "170",
+          "age": "30",
+          "homeTown": "Washington, D.C.",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "McCollum, Clay",
+          "number": "",
+          "position": "Attack",
+          "height": "6'3\"",
+          "weight": "205",
+          "age": "28",
+          "homeTown": "New jersey",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "McCormick, Charlie",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "200",
+          "age": "33",
+          "homeTown": "Bronxville, NY",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Murphy, Liam",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "190",
+          "age": "33",
+          "homeTown": "Burlington VT",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Nguyen, Billy",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'11\"",
+          "weight": "185",
+          "age": "33",
+          "homeTown": "Bronx, NY",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Olters, Per-Anders",
+          "number": "",
+          "position": "Attack",
+          "height": "5'9\"",
+          "weight": "193",
+          "age": "26",
+          "homeTown": "Frankfurt, Germany",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Rahn, Daniel",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'4\"",
+          "weight": "200",
+          "age": "27",
+          "homeTown": "Sunnyvale",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Schneider, Griffin",
+          "number": "",
+          "position": "LSM",
+          "height": "6'0\"",
+          "weight": "185",
+          "age": "29",
+          "homeTown": "Orange County, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Stebbins, Matt",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'4\"",
+          "weight": "300",
+          "age": "30",
+          "homeTown": "Detroit",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Steigerwald, Coleman",
+          "number": "",
+          "position": "Defense",
+          "height": "5'11\"",
+          "weight": "235",
+          "age": "30",
+          "homeTown": "San Francisco",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Thorndike, Russell",
+          "number": "",
+          "position": "Attack",
+          "height": "6'2\"",
+          "weight": "195",
+          "age": "23",
+          "homeTown": "Boston",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Torres, J.K.",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "185",
+          "age": "29",
+          "homeTown": "Valencia",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Yi, Andrew",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'1\"",
+          "weight": "180",
+          "age": "28",
+          "homeTown": "Boulder",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Yunker, Peter",
+          "number": "",
+          "position": "Attack",
+          "height": "5'10\"",
+          "weight": "165",
+          "age": "24",
+          "homeTown": "Wenatchee",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Zhu, Harrison",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'11\"",
+          "weight": "185",
+          "age": "32",
+          "homeTown": "Hastings on Hudson, NY",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Arnold, James",
+          "number": "",
+          "position": "LSM",
+          "height": "6'2\"",
+          "weight": "225",
+          "age": "31",
+          "homeTown": "Oceanside",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Bobo, Jamison",
+          "number": "",
+          "position": "Attack",
+          "height": "6'1\"",
+          "weight": "210",
+          "age": "33",
+          "homeTown": "Alamosa, CO",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Brown, Logan",
+          "number": "",
+          "position": "Face Offs",
+          "height": "6'1\"",
+          "weight": "200",
+          "age": "38",
+          "homeTown": "Denver",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Buenrostro, Julian",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "200",
+          "age": "31",
+          "homeTown": "Livermore",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Cespedes, Jonathan",
+          "number": "",
+          "position": "Defense",
+          "height": "5'8\"",
+          "weight": "250",
+          "age": "34",
+          "homeTown": "SM",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Cho, Soo-Yung",
+          "number": "",
+          "position": "LSM",
+          "height": "5'10\"",
+          "weight": "175",
+          "age": "43",
+          "homeTown": "San Carlos",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Chop, Julian",
+          "number": "",
+          "position": "Defense",
+          "height": "5'11\"",
+          "weight": "175",
+          "age": "22",
+          "homeTown": "San Francisco",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Clifford, Brendan",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "155",
+          "age": "38",
+          "homeTown": "Kentfield, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "de Saint Andrieu, Nikolai",
+          "number": "",
+          "position": "Defense",
+          "height": "4''20\"",
+          "weight": "69",
+          "age": "77",
+          "homeTown": "Redwood City",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "CFagan, Matt",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'9\"",
+          "weight": "42.0",
+          "age": "69",
+          "homeTown": "Planet 9",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Gomez, Gabriel",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "150",
+          "age": "27",
+          "homeTown": "San Jose",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Gordon, Sebastian",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "185",
+          "age": "24",
+          "homeTown": "Washington DC",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Gupta, Mihir",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'8\"",
+          "weight": "157",
+          "age": "21",
+          "homeTown": "Palo Alto",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "CHiggins, Wade",
+          "number": "",
+          "position": "Defense",
+          "height": "6'9\"",
+          "weight": "190",
+          "age": "69",
+          "homeTown": "Mordor",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Hinton, Joe",
+          "number": "",
+          "position": "Face Offs",
+          "height": "6'2\"",
+          "weight": "215",
+          "age": "30",
+          "homeTown": "Palo Alto",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Khan, Armand",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'9\"",
+          "weight": "160",
+          "age": "35",
+          "homeTown": "Saratoga, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Kiely, Jay",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "196",
+          "age": "46",
+          "homeTown": "Watsonville",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Kline, Casey",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "195",
+          "age": "24",
+          "homeTown": "Atherton, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Mar, Kent",
+          "number": "",
+          "position": "Attack",
+          "height": "4'11\"",
+          "weight": "95",
+          "age": "75",
+          "homeTown": "San Mateo",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Nitschke, Brett",
+          "number": "",
+          "position": "Defense",
+          "height": "4'7\"",
+          "weight": "69",
+          "age": "69",
+          "homeTown": "North Pole",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Paterson, Logan",
+          "number": "",
+          "position": "Attack",
+          "height": "5'8\"",
+          "weight": "190",
+          "age": "25",
+          "homeTown": "Silver Spring, MD",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Roberts, Russell",
+          "number": "",
+          "position": "Defense",
+          "height": "6'9\"",
+          "weight": "69",
+          "age": "69",
+          "homeTown": "Portola Valley",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Schmoldt, Brian",
+          "number": "",
+          "position": "Attack",
+          "height": "5'9\"",
+          "weight": "220",
+          "age": "43",
+          "homeTown": "Palo Alto",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Spain, Josh",
+          "number": "",
+          "position": "LSM",
+          "height": "5'9\"",
+          "weight": "170",
+          "age": "27",
+          "homeTown": "Palo Alto",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Taylor, Jon",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "225",
+          "age": "50",
+          "homeTown": "Columbia, MD",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Yu, Jonathan",
+          "number": "",
+          "position": "Attack",
+          "height": "5'11\"",
+          "weight": "180",
+          "age": "25",
+          "homeTown": "Austin",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Antonelli, Matthew",
+          "number": "",
+          "position": "Goaltender",
+          "height": "6'00\"",
+          "weight": "205",
+          "age": "39",
+          "homeTown": "Arnold, MD",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Beckman, Mitch",
+          "number": "",
+          "position": "Attack",
+          "height": "5'11\"",
+          "weight": "195",
+          "age": "31",
+          "homeTown": "Okemos, MI",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Beed, Ian",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "195",
+          "age": "41",
+          "homeTown": "West Hartford CT",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Botsford, Cole",
+          "number": "",
+          "position": "Defense",
+          "height": "5'11\"",
+          "weight": "185",
+          "age": "28",
+          "homeTown": "Los Altos",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Cathers, Brendan",
+          "number": "",
+          "position": "Attack",
+          "height": "6'4\"",
+          "weight": "260",
+          "age": "26",
+          "homeTown": "San Diego",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "CDimas, Mark",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'1\"",
+          "weight": "230",
+          "age": "32",
+          "homeTown": "Pacifica",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Essabhoy, Sawyer",
+          "number": "",
+          "position": "Attack",
+          "height": "5'5\"",
+          "weight": "160",
+          "age": "26",
+          "homeTown": "Orinda",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Fahy, Brent",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "220",
+          "age": "27",
+          "homeTown": "San Mateo",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Fahy, Anthony",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "230",
+          "age": "32",
+          "homeTown": "San Mateo",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Joiner, Jared",
+          "number": "",
+          "position": "Defense",
+          "height": "6'3\"",
+          "weight": "260",
+          "age": "43",
+          "homeTown": "Lanham, MD",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Jordan, Douglass",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "180",
+          "age": "41",
+          "homeTown": "Woodside",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Kaufman, Ryan",
+          "number": "",
+          "position": "Goaltender",
+          "height": "6'1\"",
+          "weight": "205",
+          "age": "22",
+          "homeTown": "Thousand Oaks",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Lestak, Tyler",
+          "number": "",
+          "position": "Goaltender",
+          "height": "6'2\"",
+          "weight": "180",
+          "age": "29",
+          "homeTown": "Thousand Oaks, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "M. Sadiua, Bryan",
+          "number": "",
+          "position": "Defense",
+          "height": "5'10\"",
+          "weight": "200",
+          "age": "35",
+          "homeTown": "Irvine, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "McNiff, Owen",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "195",
+          "age": "29",
+          "homeTown": "Roseville",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Pleman, Christopher",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "170",
+          "age": "26",
+          "homeTown": "San Diego",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Spores, Brian",
+          "number": "",
+          "position": "Defense",
+          "height": "5'11\"",
+          "weight": "265",
+          "age": "33",
+          "homeTown": "Petaluma",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Trachtenberg, Glen",
+          "number": "",
+          "position": "Attack",
+          "height": "5'10\"",
+          "weight": "175",
+          "age": "33",
+          "homeTown": "Syracuse, NY",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Welch, William ‘Wild Bill’",
+          "number": "",
+          "position": "Attack",
+          "height": "6'0\"",
+          "weight": "160",
+          "age": "54",
+          "homeTown": "SF",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Weldon, Jackson",
+          "number": "",
+          "position": "Defense",
+          "height": "6'3\"",
+          "weight": "220",
+          "age": "24",
+          "homeTown": "Oakland",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Wootton, Kaden",
+          "number": "",
+          "position": "LSM",
+          "height": "5'9\"",
+          "weight": "155",
+          "age": "29",
+          "homeTown": "Cumberland, Rhode Island",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        }
+      ]
+    }
+  },
+  "championships": [
+    {
+      "year": 2025,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "Barbary Coast"
+    },
+    {
+      "year": 2024,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "SFLC Black"
+    },
+    {
+      "year": 2023,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "Blue Ballers"
+    },
+    {
+      "year": 2022,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "SFLC"
+    },
+    {
+      "year": 2020,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "Palo Alto Ducks"
+    },
+    {
+      "year": 2019,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "Rad Dads"
+    },
+    {
+      "year": 2018,
+      "season": "winter",
+      "division": "Men's Field",
+      "champion": "SFLC"
+    },
+    {
+      "year": 2025,
+      "season": "spring",
+      "division": "Men's Field",
+      "champion": "Palo Alto Ducks"
+    },
+    {
+      "year": 2024,
+      "season": "spring",
+      "division": "Men's Field",
+      "champion": "Palo Alto Ducks"
+    },
+    {
+      "year": 2023,
+      "season": "spring",
+      "division": "Men's Field",
+      "champion": "PA Ducks"
+    },
+    {
+      "year": 2022,
+      "season": "spring",
+      "division": "Men's Field",
+      "champion": "Olympic Club"
+    },
+    {
+      "year": 2025,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "Barbary Coast"
+    },
+    {
+      "year": 2024,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "San Francisco Lacrosse Club"
+    },
+    {
+      "year": 2023,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "SFLC"
+    },
+    {
+      "year": 2022,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "SFLC"
+    },
+    {
+      "year": 2021,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "Palo Alto Ducks"
+    },
+    {
+      "year": 2019,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "C3"
+    },
+    {
+      "year": 2018,
+      "season": "summer",
+      "division": "Men's Field",
+      "champion": "C3"
+    }
+  ],
+  "barbaryCoast": {
+    "allTime": {
+      "wins": 3,
+      "losses": 0,
+      "ties": 0,
+      "titles": 1,
+      "goalsFor": 21,
+      "goalsAgainst": 14
+    },
+    "seasons": [
+      {
+        "season": "winter",
+        "wins": 3,
+        "losses": 0,
+        "ties": 0,
+        "goalsFor": 21,
+        "goalsAgainst": 14,
+        "result": "Champions",
+        "isChampion": true
+      }
+    ]
+  },
+  "fetchedAt": "2026-01-28T09:57:22.193Z"
+}

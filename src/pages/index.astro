@@ -2,29 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Schedule from "../components/Schedule.astro";
+import ulaxData from "../data/ulax.json";
+import { manualEvents } from "../data/events";
+import type { UlaxGameSerialized, UlaxAllDataSerialized } from "../lib/ulax";
 
-const upcomingEvents = [
-  {
-    date: "2025-02-15",
-    time: "10:00 AM",
-    type: "game" as const,
-    opponent: "Peninsula Lacrosse",
-    location: "Crocker Amazon Playground",
-  },
-  {
-    date: "2025-02-18",
-    time: "7:00 PM",
-    type: "practice" as const,
-    location: "Beach Chalet Fields",
-  },
-  {
-    date: "2025-02-22",
-    time: "2:00 PM",
-    type: "game" as const,
-    opponent: "East Bay Riptide",
-    location: "Kezar Stadium",
-  },
-];
+const data = ulaxData as UlaxAllDataSerialized;
+const season = data.currentSeason;
+const seasonData = data.seasons[season];
+const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 ---
 
 <Layout title="Home">
@@ -32,7 +17,7 @@ const upcomingEvents = [
 
   <!-- Upcoming Events Section -->
   <section class="py-12 border-t border-border">
-    <div class="max-w-5xl mx-auto px-4">
+    <div class="max-w-4xl mx-auto px-4">
       <div class="flex items-baseline justify-between mb-6">
         <h2 class="text-xl sm:text-2xl text-foreground">Upcoming</h2>
         <a href="/schedule" class="label text-muted hover:text-foreground transition-colors">
@@ -40,7 +25,7 @@ const upcomingEvents = [
         </a>
       </div>
 
-      <Schedule events={upcomingEvents} limit={3} />
+      <Schedule ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} upcomingOnly={true} limit={3} />
     </div>
   </section>
 
