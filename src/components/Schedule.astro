@@ -24,8 +24,17 @@ const filteredUlaxGames = barbaryCoastOnly
   ? ulaxGames.filter(g => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship")
   : ulaxGames;
 
-const displayEvents = limit ? events.slice(0, limit) : events;
-const displayUlaxGames = limit ? filteredUlaxGames.slice(0, limit) : filteredUlaxGames;
+// Combine and sort all items by date
+type ScheduleItem =
+  | { kind: "ulax"; data: UlaxGameSerialized }
+  | { kind: "event"; data: Event };
+
+const allItems: ScheduleItem[] = [
+  ...filteredUlaxGames.map(g => ({ kind: "ulax" as const, data: g })),
+  ...events.map(e => ({ kind: "event" as const, data: e })),
+].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const displayItems = limit ? allItems.slice(0, limit) : allItems;
 
 // Category colors (league, practice, scrimmage, tournament)
 const categoryColors: Record<Event["type"], string> = {
@@ -73,96 +82,92 @@ function isWin(game: UlaxGameSerialized): boolean | null {
 ---
 
 <div class="space-y-2">
-  {/* ULAX Games */}
-  {displayUlaxGames.map((game) => {
-    const bcScore = getBarbaryCoastScore(game);
-    const oppScore = getOpponentScore(game);
-    const hasScore = bcScore !== null && oppScore !== null;
-    const won = isWin(game);
+  {displayItems.map((item) => {
+    if (item.kind === "ulax") {
+      const game = item.data;
+      const bcScore = getBarbaryCoastScore(game);
+      const oppScore = getOpponentScore(game);
+      const hasScore = bcScore !== null && oppScore !== null;
+      const won = isWin(game);
 
-    return (
-      <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
-        {/* Date */}
-        <div class="flex-shrink-0 text-center w-12">
-          <div class="text-xl font-semibold text-foreground font-mono">
-            {new Date(game.date).getDate().toString().padStart(2, '0')}
-          </div>
-          <div class="label text-muted">
-            {new Date(game.date).toLocaleDateString("en-US", { month: "short" })}
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div class="w-px h-10 bg-border" aria-hidden="true"></div>
-
-        {/* Details */}
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="label text-gold">[league]</span>
-            {isPlayoffs(game) && (
-              <span class="label text-green-600">[playoffs]</span>
-            )}
-            <span class="text-muted text-sm font-mono">{game.time}</span>
+      return (
+        <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
+          <div class="flex-shrink-0 text-center w-12">
+            <div class="text-xl font-semibold text-foreground font-mono">
+              {new Date(game.date).getDate().toString().padStart(2, '0')}
+            </div>
+            <div class="label text-muted">
+              {new Date(game.date).toLocaleDateString("en-US", { month: "short" })}
+            </div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <h3 class="font-medium text-foreground truncate">
-              {isTBD(game)
-                ? game.typeName
-                : `vs ${getOpponent(game)}`
-              }
-            </h3>
-            {hasScore && (
-              <span class:list={[
-                "font-mono font-bold text-sm px-2 py-0.5 rounded",
-                won ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-              ]}>
-                {won ? "W" : "L"} {bcScore}-{oppScore}
+          <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="label text-gold">[league]</span>
+              {isPlayoffs(game) && (
+                <span class="label text-green-600">[playoffs]</span>
+              )}
+              <span class="text-muted text-sm font-mono">{game.time}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <h3 class="font-medium text-foreground truncate">
+                {isTBD(game)
+                  ? game.typeName
+                  : `vs ${getOpponent(game)}`
+                }
+              </h3>
+              {hasScore && (
+                <span class:list={[
+                  "font-mono font-bold text-sm px-2 py-0.5 rounded",
+                  won ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                ]}>
+                  {won ? "W" : "L"} {bcScore}-{oppScore}
+                </span>
+              )}
+            </div>
+
+            <p class="text-sm text-muted truncate">{game.field}</p>
+          </div>
+        </article>
+      );
+    } else {
+      const event = item.data;
+      return (
+        <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
+          <div class="flex-shrink-0 text-center w-12">
+            <div class="text-xl font-semibold text-foreground font-mono">
+              {new Date(event.date).getDate().toString().padStart(2, '0')}
+            </div>
+            <div class="label text-muted">
+              {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
+            </div>
+          </div>
+
+          <div class="w-px h-10 bg-border" aria-hidden="true"></div>
+
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class:list={["label", categoryColors[event.type]]}>
+                [{event.type}]
               </span>
+              <span class="text-muted text-sm font-mono">{event.time}</span>
+            </div>
+
+            {event.name ? (
+              <h3 class="font-medium text-foreground truncate">{event.name}</h3>
+            ) : event.opponent ? (
+              <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
+            ) : (
+              <h3 class="font-medium text-foreground">Team Practice</h3>
             )}
+
+            <p class="text-sm text-muted truncate">{event.location}</p>
           </div>
-
-          <p class="text-sm text-muted truncate">{game.field}</p>
-        </div>
-      </article>
-    );
+        </article>
+      );
+    }
   })}
-
-  {/* Regular Events */}
-  {displayEvents.map((event) => (
-    <article class="flex items-center gap-4 p-4 bg-white border border-border hover:border-border-strong transition-colors">
-      {/* Date */}
-      <div class="flex-shrink-0 text-center w-12">
-        <div class="text-xl font-semibold text-foreground font-mono">
-          {new Date(event.date).getDate().toString().padStart(2, '0')}
-        </div>
-        <div class="label text-muted">
-          {new Date(event.date).toLocaleDateString("en-US", { month: "short" })}
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div class="w-px h-10 bg-border" aria-hidden="true"></div>
-
-      {/* Details */}
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1">
-          <span class:list={["label", categoryColors[event.type]]}>
-            [{event.type}]
-          </span>
-          <span class="text-muted text-sm font-mono">{event.time}</span>
-        </div>
-
-        {event.name ? (
-          <h3 class="font-medium text-foreground truncate">{event.name}</h3>
-        ) : event.opponent ? (
-          <h3 class="font-medium text-foreground truncate">vs {event.opponent}</h3>
-        ) : (
-          <h3 class="font-medium text-foreground">Team Practice</h3>
-        )}
-
-        <p class="text-sm text-muted truncate">{event.location}</p>
-      </div>
-    </article>
-  ))}
 </div>
