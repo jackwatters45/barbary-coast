@@ -6,15 +6,25 @@ import { Context, Effect, Layer, Schema } from "effect";
 // Types
 // ============================================================================
 
+// Score: number, null, or empty string -> normalized to number | null
+const ScoreSchema = Schema.transform(
+	Schema.Union(Schema.Number, Schema.Null, Schema.Literal("")),
+	Schema.NullOr(Schema.Number),
+	{
+		decode: (val) => (val === "" ? null : val),
+		encode: (val) => val,
+	},
+);
+
 export const UlaxGameRaw = Schema.Struct({
 	id: Schema.Number,
 	gamedate: Schema.String,
 	gametime: Schema.String,
 	field: Schema.String,
 	awayteam: Schema.String,
-	awayscore: Schema.Union(Schema.Number, Schema.Null),
+	awayscore: ScoreSchema,
 	hometeam: Schema.String,
-	homescore: Schema.Union(Schema.Number, Schema.Null),
+	homescore: ScoreSchema,
 	gametype: Schema.Number,
 	typename: Schema.String,
 });

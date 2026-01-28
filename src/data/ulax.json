@@ -80,6 +80,123 @@
           "gameType": "regular",
           "isBarbaryCoast": true,
           "barbaryCoastIsHome": false
+        },
+        {
+          "id": 138,
+          "date": "2026-01-24T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": null,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 139,
+          "date": "2026-01-24T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Bar Down Boys",
+          "awayScore": null,
+          "homeTeam": "Barbary Coast",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
+        },
+        {
+          "id": 140,
+          "date": "2026-01-31T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": null,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 141,
+          "date": "2026-01-31T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": null,
+          "homeTeam": "Bar Down Boys",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 142,
+          "date": "2026-02-14T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "Barbary Coast",
+          "awayScore": null,
+          "homeTeam": "Palo Alto Ducks",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
+        },
+        {
+          "id": 143,
+          "date": "2026-02-14T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "San Francisco Lacrosse Club",
+          "awayScore": null,
+          "homeTeam": "Bar Down Boys",
+          "homeScore": null,
+          "gameType": "regular",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 144,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "5:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "championship",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 145,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "6:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "championship",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 146,
+          "date": "2026-02-21T13:00:00.000Z",
+          "time": "7:00 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "playoff",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
         }
       ],
       "standings": [
@@ -2205,5 +2322,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-01-28T06:57:46.867Z"
+  "fetchedAt": "2026-01-28T09:52:43.718Z"
 }
