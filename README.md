@@ -72,7 +72,7 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
 
 ### Content/Styling
 - Defer to Harrison
-- [ ] Try using AI art for the backgrounds of the index page
+- [ ] Try using ASCII art for the backgrounds of the index page
 
 ## Tech Stack
 
