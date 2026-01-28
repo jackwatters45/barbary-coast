@@ -27,18 +27,17 @@ const filteredUlaxGames = barbaryCoastOnly
 const displayEvents = limit ? events.slice(0, limit) : events;
 const displayUlaxGames = limit ? filteredUlaxGames.slice(0, limit) : filteredUlaxGames;
 
-const typeColors: Record<Event["type"], string> = {
+// Category colors (league, practice, scrimmage, tournament)
+const categoryColors: Record<Event["type"], string> = {
   game: "text-gold",
   practice: "text-powder-dark",
   scrimmage: "text-subtle",
   tournament: "text-gold",
 };
 
-const gameTypeColors: Record<UlaxGameSerialized["gameType"], string> = {
-  regular: "text-gold",
-  playoff: "text-powder-dark",
-  championship: "text-green-600",
-};
+function isPlayoffs(game: UlaxGameSerialized): boolean {
+  return game.gameType === "playoff" || game.gameType === "championship";
+}
 
 function isTBD(game: UlaxGameSerialized): boolean {
   return game.awayTeam === "TBD" || game.homeTeam === "TBD";
@@ -99,9 +98,10 @@ function isWin(game: UlaxGameSerialized): boolean | null {
         {/* Details */}
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2 mb-1">
-            <span class:list={["label", gameTypeColors[game.gameType]]}>
-              [{game.gameType === "regular" ? "league" : game.gameType}]
-            </span>
+            <span class="label text-gold">[league]</span>
+            {isPlayoffs(game) && (
+              <span class="label text-green-600">[playoffs]</span>
+            )}
             <span class="text-muted text-sm font-mono">{game.time}</span>
           </div>
 
@@ -147,7 +147,7 @@ function isWin(game: UlaxGameSerialized): boolean | null {
       {/* Details */}
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-1">
-          <span class:list={["label", typeColors[event.type]]}>
+          <span class:list={["label", categoryColors[event.type]]}>
             [{event.type}]
           </span>
           <span class="text-muted text-sm font-mono">{event.time}</span>
