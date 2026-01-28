@@ -1,0 +1,21 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "1371b210c7844e3803084702c95222d33eef0cf5",
+  "prompts": {
+    "e0c9b66db5d43a9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7f56e07b-e256-4aff-ae38-f9ff10283875",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 30,
+      "overriden_lines": 0
+    }
+  }
+}
