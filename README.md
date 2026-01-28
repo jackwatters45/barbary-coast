@@ -2,6 +2,8 @@
 
 Website for Barbary Coast Lacrosse, San Francisco's premier men's lacrosse club.
 
+- [ ] Try using ASCII art for the backgrounds of the index page
+
 ## Development
 
 ```bash
@@ -72,7 +74,6 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
 
 ### Content/Styling
 - Defer to Harrison
-- [ ] Try using ASCII art for the backgrounds of the index page
 
 ## Tech Stack
 
