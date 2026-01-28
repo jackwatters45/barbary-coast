@@ -7,6 +7,7 @@ import {
 	fetchSeason,
 	fetchArchives,
 	UlaxServiceLive,
+	BARBARY_COAST,
 	type Season,
 	type UlaxAllData,
 	type UlaxSeasonData,
@@ -16,7 +17,6 @@ import {
 } from "../lib/ulax";
 
 const SEASONS: Season[] = ["winter", "spring", "summer"];
-const BARBARY_COAST = "Barbary Coast";
 
 // Determine current season based on month
 function getCurrentSeason(): Season {

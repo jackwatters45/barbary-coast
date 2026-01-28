@@ -1,17 +1,8 @@
 ---
-interface Standing {
-  team: string;
-  gp: number;
-  w: number;
-  l: number;
-  t: number;
-  pts: number;
-  gf: number;
-  ga: number;
-}
+import type { UlaxStanding } from "../lib/ulax";
 
 interface Props {
-  standings: Standing[];
+  standings: UlaxStanding[];
 }
 
 const { standings } = Astro.props;

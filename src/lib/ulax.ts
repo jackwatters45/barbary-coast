@@ -1,5 +1,6 @@
 import { HttpClient, HttpClientRequest } from "@effect/platform";
 import * as cheerio from "cheerio";
+import type { Element } from "domhandler";
 import { Context, Effect, Layer, Schema } from "effect";
 
 // ============================================================================
@@ -176,7 +177,43 @@ export interface UlaxAllDataSerialized extends Omit<UlaxAllData, "seasons"> {
 // Helpers
 // ============================================================================
 
-const BARBARY_COAST = "Barbary Coast";
+export const BARBARY_COAST = "Barbary Coast";
+
+/**
+ * Find a table element that contains all the specified header texts.
+ * Returns null if no matching table is found.
+ */
+function findTableWithHeaders(
+	$: cheerio.CheerioAPI,
+	requiredHeaders: string[],
+): cheerio.Cheerio<Element> | null {
+	let foundTable: cheerio.Cheerio<Element> | null = null;
+	$("table").each((_, table) => {
+		const headers = $(table)
+			.find("th")
+			.map((_, th) => $(th).text().trim())
+			.get();
+		if (requiredHeaders.every((h) => headers.includes(h))) {
+			foundTable = $(table);
+			return false; // break
+		}
+	});
+	return foundTable;
+}
+
+/**
+ * Extract team name from the preceding team logo image (x50.png).
+ * Used on stats/roster pages where team logo precedes each team's table.
+ */
+function extractTeamFromImage(
+	$: cheerio.CheerioAPI,
+	table: cheerio.Cheerio<Element>,
+): string {
+	const prevImg = $(table).prevAll("img[src*='x50.png']").first();
+	const src = prevImg.attr("src") || "";
+	const match = src.match(/\/([^/]+)_x50\.png/);
+	return match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+}
 
 function parseGameDate(dateStr: string): Date {
 	// Format: "January 11, 2026"
@@ -286,36 +323,27 @@ const makeFetchStandings =
 			const standings: UlaxStanding[] = [];
 
 			// Find the standings table - look for table with GP, W, L columns
-			$("table").each((_, table) => {
-				const headers = $(table)
-					.find("th")
-					.map((_, th) => $(th).text().trim())
-					.get();
-
-				// Check if this is the standings table
-				if (headers.includes("GP") && headers.includes("W") && headers.includes("L")) {
-					$(table)
-						.find("tbody tr")
-						.each((_, row) => {
-							const cells = $(row).find("td");
-							if (cells.length >= 8) {
-								const team = $(cells[0]).text().trim();
-								if (team) {
-									standings.push({
-										team,
-										gp: Number.parseInt($(cells[1]).text().trim()) || 0,
-										w: Number.parseInt($(cells[2]).text().trim()) || 0,
-										l: Number.parseInt($(cells[3]).text().trim()) || 0,
-										t: Number.parseInt($(cells[4]).text().trim()) || 0,
-										pts: Number.parseInt($(cells[5]).text().trim()) || 0,
-										gf: Number.parseInt($(cells[6]).text().trim()) || 0,
-										ga: Number.parseInt($(cells[7]).text().trim()) || 0,
-									});
-								}
-							}
-						});
-				}
-			});
+			const table = findTableWithHeaders($, ["GP", "W", "L"]);
+			if (table) {
+				table.find("tbody tr").each((_, row) => {
+					const cells = $(row).find("td");
+					if (cells.length >= 8) {
+						const team = $(cells[0]).text().trim();
+						if (team) {
+							standings.push({
+								team,
+								gp: Number.parseInt($(cells[1]).text().trim()) || 0,
+								w: Number.parseInt($(cells[2]).text().trim()) || 0,
+								l: Number.parseInt($(cells[3]).text().trim()) || 0,
+								t: Number.parseInt($(cells[4]).text().trim()) || 0,
+								pts: Number.parseInt($(cells[5]).text().trim()) || 0,
+								gf: Number.parseInt($(cells[6]).text().trim()) || 0,
+								ga: Number.parseInt($(cells[7]).text().trim()) || 0,
+							});
+						}
+					}
+				});
+			}
 
 			return standings;
 		});
@@ -332,69 +360,59 @@ const makeFetchStats =
 			const players: UlaxPlayerStats[] = [];
 			const goalies: UlaxGoalieStats[] = [];
 
-			// Find all stats tables
-			$("table").each((_, table) => {
-				const headers = $(table)
+			// Find all stats tables - need to iterate since there are multiple tables per team
+			$("table").each((_, tableEl) => {
+				const $table = $(tableEl);
+				const headers = $table
 					.find("th")
 					.map((_, th) => $(th).text().trim())
 					.get();
 
-				// Player stats table: Name, #, GP, G, A, PTS
+				// Player stats table: Name, #, GP, G, A, PTS (but not W, which indicates goalie table)
 				if (headers.includes("GP") && headers.includes("G") && headers.includes("A") && headers.includes("PTS") && !headers.includes("W")) {
-					// Find closest preceding team logo to determine team
-					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
-					const src = prevImg.attr("src") || "";
-					const match = src.match(/\/([^/]+)_x50\.png/);
-					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+					const team = extractTeamFromImage($, $table);
 
-					$(table)
-						.find("tbody tr")
-						.each((_, row) => {
-							const cells = $(row).find("td");
-							if (cells.length >= 6) {
-								const name = $(cells[0]).text().trim();
-								if (name) {
-									players.push({
-										name,
-										number: $(cells[1]).text().trim(),
-										team,
-										gp: Number.parseInt($(cells[2]).text().trim()) || 0,
-										goals: Number.parseInt($(cells[3]).text().trim()) || 0,
-										assists: Number.parseInt($(cells[4]).text().trim()) || 0,
-										points: Number.parseInt($(cells[5]).text().trim()) || 0,
-									});
-								}
+					$table.find("tbody tr").each((_, row) => {
+						const cells = $(row).find("td");
+						if (cells.length >= 6) {
+							const name = $(cells[0]).text().trim();
+							if (name) {
+								players.push({
+									name,
+									number: $(cells[1]).text().trim(),
+									team,
+									gp: Number.parseInt($(cells[2]).text().trim()) || 0,
+									goals: Number.parseInt($(cells[3]).text().trim()) || 0,
+									assists: Number.parseInt($(cells[4]).text().trim()) || 0,
+									points: Number.parseInt($(cells[5]).text().trim()) || 0,
+								});
 							}
-						});
+						}
+					});
 				}
 
 				// Goalie stats table: Name, #, W, L, GA, SV, SV%
 				if (headers.includes("W") && headers.includes("L") && headers.includes("GA") && headers.includes("SV")) {
-					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
-					const src = prevImg.attr("src") || "";
-					const match = src.match(/\/([^/]+)_x50\.png/);
-					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+					const team = extractTeamFromImage($, $table);
 
-					$(table)
-						.find("tbody tr")
-						.each((_, row) => {
-							const cells = $(row).find("td");
-							if (cells.length >= 7) {
-								const name = $(cells[0]).text().trim();
-								if (name) {
-									goalies.push({
-										name,
-										number: $(cells[1]).text().trim(),
-										team,
-										wins: Number.parseInt($(cells[2]).text().trim()) || 0,
-										losses: Number.parseInt($(cells[3]).text().trim()) || 0,
-										goalsAgainst: Number.parseInt($(cells[4]).text().trim()) || 0,
-										saves: Number.parseInt($(cells[5]).text().trim()) || 0,
-										savePercentage: Number.parseFloat($(cells[6]).text().trim()) || 0,
-									});
-								}
+					$table.find("tbody tr").each((_, row) => {
+						const cells = $(row).find("td");
+						if (cells.length >= 7) {
+							const name = $(cells[0]).text().trim();
+							if (name) {
+								goalies.push({
+									name,
+									number: $(cells[1]).text().trim(),
+									team,
+									wins: Number.parseInt($(cells[2]).text().trim()) || 0,
+									losses: Number.parseInt($(cells[3]).text().trim()) || 0,
+									goalsAgainst: Number.parseInt($(cells[4]).text().trim()) || 0,
+									saves: Number.parseInt($(cells[5]).text().trim()) || 0,
+									savePercentage: Number.parseFloat($(cells[6]).text().trim()) || 0,
+								});
 							}
-						});
+						}
+					});
 				}
 			});
 
@@ -412,46 +430,41 @@ const makeFetchRoster =
 			const $ = cheerio.load(html);
 			const roster: UlaxRosterPlayer[] = [];
 
-			// Find roster tables - they have Name, #, Position, Height, Weight, Age, Home Town
-			$("table").each((_, table) => {
-				const headers = $(table)
+			// Find roster tables - need to iterate since there are multiple tables per team
+			$("table").each((_, tableEl) => {
+				const $table = $(tableEl);
+				const headers = $table
 					.find("th")
 					.map((_, th) => $(th).text().trim())
 					.get();
 
 				if (headers.includes("Position") && headers.includes("Height")) {
-					// Find team name from preceding elements
-					const prevImg = $(table).prevAll("img[src*='x50.png']").first();
-					const src = prevImg.attr("src") || "";
-					const match = src.match(/\/([^/]+)_x50\.png/);
-					const team = match ? match[1].replace(/_/g, " ").replace(/\s*\(.*\)/, "").trim() : "";
+					const team = extractTeamFromImage($, $table);
 
-					$(table)
-						.find("tbody tr")
-						.each((_, row) => {
-							const cells = $(row).find("td");
-							if (cells.length >= 7) {
-								const nameCell = $(cells[0]).text().trim();
-								const isCaptain = nameCell.includes("(C)") || $(cells[0]).find(".captain").length > 0;
-								const isAssistantCaptain = nameCell.includes("(A)") || $(cells[0]).find(".assistant").length > 0;
-								const name = nameCell.replace(/\s*\([CA]\)\s*/g, "").trim();
+					$table.find("tbody tr").each((_, row) => {
+						const cells = $(row).find("td");
+						if (cells.length >= 7) {
+							const nameCell = $(cells[0]).text().trim();
+							const isCaptain = nameCell.includes("(C)") || $(cells[0]).find(".captain").length > 0;
+							const isAssistantCaptain = nameCell.includes("(A)") || $(cells[0]).find(".assistant").length > 0;
+							const name = nameCell.replace(/\s*\([CA]\)\s*/g, "").trim();
 
-								if (name) {
-									roster.push({
-										name,
-										number: $(cells[1]).text().trim(),
-										position: $(cells[2]).text().trim(),
-										height: $(cells[3]).text().trim(),
-										weight: $(cells[4]).text().trim(),
-										age: $(cells[5]).text().trim(),
-										homeTown: $(cells[6]).text().trim(),
-										team,
-										isCaptain,
-										isAssistantCaptain,
-									});
-								}
+							if (name) {
+								roster.push({
+									name,
+									number: $(cells[1]).text().trim(),
+									position: $(cells[2]).text().trim(),
+									height: $(cells[3]).text().trim(),
+									weight: $(cells[4]).text().trim(),
+									age: $(cells[5]).text().trim(),
+									homeTown: $(cells[6]).text().trim(),
+									team,
+									isCaptain,
+									isAssistantCaptain,
+								});
 							}
-						});
+						}
+					});
 				}
 			});
 
