@@ -1,0 +1,25 @@
+src/components/Schedule.astro
+  61f3db961da8dbd4 27-37,85-87,92,94,97-101,104-118,121-132,134-146,148-149,151-154,156-158,167,171
+src/pages/schedule.astro
+  61f3db961da8dbd4 20-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.37",
+  "base_commit_sha": "8e14b3f5bbc5337d94e640759d4e57353d391b76",
+  "prompts": {
+    "61f3db961da8dbd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aecfa2e8-742e-447b-9c49-a31a5ffe8d87",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 115,
+      "total_deletions": 86,
+      "accepted_lines": 97,
+      "overriden_lines": 0
+    }
+  }
+}
