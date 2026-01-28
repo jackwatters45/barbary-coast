@@ -2,8 +2,8 @@ name: Sync ULAX Data
 
 on:
   schedule:
-    # Tuesday 10pm PT (Wednesday 6am UTC)
-    - cron: '0 6 * * 3'
+    # Daily at 10pm PT (6am UTC next day)
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 jobs:
