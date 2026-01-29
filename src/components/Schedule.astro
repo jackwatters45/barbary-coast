@@ -143,7 +143,7 @@ function isWin(game: UlaxGameSerialized): boolean | null {
                 <span class="text-sm text-muted font-mono">{event.time}</span>
               </div>
               <h3 class="font-medium text-foreground">
-                {event.name ?? (event.opponent ? `vs ${event.opponent}` : "Team Practice")}
+                {event.name ?? (event.opponent ? `vs ${event.opponent}` : "Practice")}
               </h3>
               <a href={event.locationUrl ?? getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
                 {event.location}
