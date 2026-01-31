@@ -24,27 +24,33 @@ interface Props {
   upcomingOnly?: boolean;
 }
 
-const { events = [], ulaxGames = [], limit, barbaryCoastOnly = false, upcomingOnly = false } = Astro.props;
+const {
+  events = [],
+  ulaxGames = [],
+  limit,
+  barbaryCoastOnly = false,
+  upcomingOnly = false,
+} = Astro.props;
 
 let filteredUlaxGames = barbaryCoastOnly
-  ? ulaxGames.filter(g => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship")
+  ? ulaxGames.filter(
+      (g) => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship",
+    )
   : ulaxGames;
 
 if (upcomingOnly) {
-  filteredUlaxGames = filteredUlaxGames.filter(g => g.homeScore === null && g.awayScore === null);
+  filteredUlaxGames = filteredUlaxGames.filter((g) => g.homeScore === null && g.awayScore === null);
 }
 
 const filteredEvents = upcomingOnly
-  ? events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
+  ? events.filter((e) => new Date(e.date) >= new Date(new Date().toDateString()))
   : events;
 
-type ScheduleItem =
-  | { kind: "ulax"; data: UlaxGameSerialized }
-  | { kind: "event"; data: Event };
+type ScheduleItem = { kind: "ulax"; data: UlaxGameSerialized } | { kind: "event"; data: Event };
 
 const allItems: ScheduleItem[] = [
-  ...filteredUlaxGames.map(g => ({ kind: "ulax" as const, data: g })),
-  ...filteredEvents.map(e => ({ kind: "event" as const, data: e })),
+  ...filteredUlaxGames.map((g) => ({ kind: "ulax" as const, data: g })),
+  ...filteredEvents.map((e) => ({ kind: "event" as const, data: e })),
 ].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
 
 const displayItems = limit ? allItems.slice(0, limit) : allItems;

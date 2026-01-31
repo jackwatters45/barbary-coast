@@ -5,7 +5,7 @@
  */
 export function parseLocalDate(dateStr: string): Date {
   // If it's a full ISO string, extract just the date part
-  const datePart = dateStr.split('T')[0];
+  const datePart = dateStr.split("T")[0];
   // Parse as local time by adding T00:00:00 (no Z suffix)
-  return new Date(datePart + 'T00:00:00');
+  return new Date(`${datePart}T00:00:00`);
 }

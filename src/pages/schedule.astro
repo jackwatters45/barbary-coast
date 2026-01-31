@@ -4,7 +4,11 @@ import ScheduleList from "../components/Schedule.astro";
 import Standings from "../components/Standings.astro";
 import ulaxData from "../data/ulax.json";
 import { manualEvents } from "../data/events";
-import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
+import type {
+  UlaxGameSerialized,
+  UlaxStanding,
+  UlaxAllDataSerialized,
+} from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
 const season = data.currentSeason;
@@ -16,24 +20,31 @@ const fetchedAt = new Date(data.fetchedAt);
 const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
 ---
 
-<Layout title="Schedule" description="Full schedule and standings for Barbary Coast Lacrosse.">
+<Layout
+  title="Schedule"
+  description="Full schedule and standings for Barbary Coast Lacrosse."
+>
   <div class="max-w-4xl mx-auto px-6 py-16">
     <!-- Back link -->
     <a href="/" class="subtle-link mb-12 inline-block">← Back</a>
 
     <!-- Header -->
-    <header class="mb-16">
+    <header class="mb-8">
       <span class="label text-powder">[{seasonLabel.toLowerCase()} 2026]</span>
-      <h1 class="text-4xl sm:text-5xl font-medium text-foreground mt-2 tracking-tight">Schedule</h1>
-      <p class="text-muted mt-4">
-        Data from <a href="https://ulax.org/sanfrancisco/men/" target="_blank" rel="noopener" class="text-powder hover:underline">ulax.org</a>
-      </p>
+      <h1
+        class="text-4xl sm:text-5xl font-medium text-foreground mt-2 tracking-tight"
+      >
+        Schedule
+      </h1>
     </header>
 
     <!-- Games -->
     <section class="mb-16">
-      <h2 class="text-xl font-medium text-foreground mb-6">Games</h2>
-      <ScheduleList ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} />
+      <ScheduleList
+        ulaxGames={ulaxGames}
+        events={manualEvents}
+        barbaryCoastOnly={true}
+      />
     </section>
 
     <!-- Standings -->
@@ -43,9 +54,25 @@ const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
     </section>
 
     <!-- Footer -->
-    <footer class="pt-8 border-t border-border">
+    <footer
+      class="flex items-center justify-between pt-8 border-t border-border"
+    >
       <p class="text-sm text-subtle">
-        Updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+        Updated {
+          fetchedAt.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+        }
+      </p>
+      <p class="text-sm text-subtle">
+        Data from <a
+          href="https://ulax.org/sanfrancisco/men/"
+          target="_blank"
+          rel="noopener"
+          class="text-powder hover:underline">ulax.org</a
+        >
       </p>
     </footer>
   </div>

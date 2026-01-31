@@ -9,13 +9,47 @@ const data = ulaxData as UlaxAllDataSerialized;
 const season = data.currentSeason;
 const seasonData = data.seasons[season];
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
+
+const schools = [
+  "Bates",
+  "Cal Poly",
+  "Colby",
+  "Colorado",
+  "Coast Guard",
+  "Dominican",
+  "Drexel",
+  "Georgia Tech",
+  "Gettysburg",
+  "Middlebury",
+  "Navy",
+  "Notre Dame",
+  "Penn State",
+  "Princeton",
+  "Trinity",
+  "Tufts",
+  "UC Berkeley",
+  "USC",
+  "Vermont",
+  "Villanova",
+  "Williams",
+];
 ---
 
 <Layout title="Home" showSectionNav={true}>
   <!-- Custom lacrosse ball cursor -->
-  <div id="ball-cursor" class="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200" aria-hidden="true">
-    <div class="cursor-inner w-5 h-5 rounded-full bg-white border border-black/30 shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all duration-200"></div>
-    <div class="cursor-ring absolute inset-0 -m-2 rounded-full border-2 border-white/50 opacity-0 scale-50 transition-all duration-200"></div>
+  <div
+    id="ball-cursor"
+    class="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200"
+    aria-hidden="true"
+  >
+    <div
+      class="cursor-inner w-5 h-5 rounded-full bg-white border border-black/30 shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all duration-200"
+    >
+    </div>
+    <div
+      class="cursor-ring absolute inset-0 -m-2 rounded-full border-2 border-white/50 opacity-0 scale-50 transition-all duration-200"
+    >
+    </div>
   </div>
   <style>
     /* Hide cursor everywhere */
@@ -37,35 +71,486 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
       opacity: 0;
       transform: scale(0.5);
     }
+    /* Radar sweep — constant RPM rotation, matching real antenna motors.
+       Real marine radar antennas rotate at 20-50 RPM (uniform speed).
+       The PPI sweep mirrors the antenna exactly. */
+    @keyframes radar-sweep {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .radar-sweep-cone {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 345deg,
+        rgba(196, 150, 46, 0) 345deg,
+        rgba(196, 150, 46, 0.03) 352deg,
+        rgba(196, 150, 46, 0.08) 356deg,
+        rgba(196, 150, 46, 0.16) 358.5deg,
+        rgba(196, 150, 46, 0.22) 359.5deg,
+        rgba(196, 150, 46, 0.06) 360deg
+      );
+      animation: radar-sweep 8s linear infinite;
+    }
+    /* Phosphor afterglow — wider, dimmer trail behind the leading edge */
+    .radar-sweep-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 310deg,
+        rgba(196, 150, 46, 0) 310deg,
+        rgba(196, 150, 46, 0.01) 330deg,
+        rgba(196, 150, 46, 0.025) 348deg,
+        rgba(196, 150, 46, 0.05) 356deg,
+        rgba(196, 150, 46, 0.02) 360deg
+      );
+      filter: blur(6px);
+      animation: radar-sweep 8s linear infinite;
+    }
+    /* Blip pulse — bloom bright when sweep passes, slow phosphor decay */
+    @keyframes blip-pulse {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      3% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      12% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+      30% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      60% {
+        opacity: 0.12;
+        transform: translate(-50%, -50%) scale(0.85);
+      }
+      100% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+    }
+    @keyframes blip-ring {
+      0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      5% {
+        opacity: 0.35;
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+      15% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1.8);
+      }
+      40% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+    }
+    .radar-blip {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: blip-pulse 8s linear infinite;
+    }
+    .radar-blip-ring {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid;
+      animation: blip-ring 8s linear infinite;
+    }
+    /* Scanline flicker — subtle horizontal noise */
+    @keyframes scanline {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 0 4px;
+      }
+    }
+    .radar-scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(90, 155, 196, 0.012) 2px,
+        rgba(90, 155, 196, 0.012) 4px
+      );
+      animation: scanline 0.3s steps(2) infinite;
+    }
+
+    /* Sonar ping — expanding ring from hydrophone source */
+    @keyframes sonar-ping {
+      0% {
+        transform: scale(0);
+        opacity: 0.6;
+        border-width: 2.5px;
+      }
+      20% {
+        opacity: 0.45;
+        border-width: 2px;
+      }
+      50% {
+        opacity: 0.25;
+        border-width: 1.5px;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+        border-width: 0.5px;
+      }
+    }
+    .sonar-ping {
+      position: absolute;
+      border-radius: 50%;
+      border-style: solid;
+      transform: scale(0);
+      animation: sonar-ping 8s cubic-bezier(0.1, 0, 0.2, 1) infinite;
+    }
+
+    /* Searchlight beam — narrow cone that tracks mouse angle.
+       Element is centered on the bottom-left origin so the conic-gradient
+       naturally radiates outward from that point. */
+    #searchlight-cone {
+      background: conic-gradient(
+        from var(--beam-angle),
+        transparent 0deg,
+        transparent 348deg,
+        rgba(196, 150, 46, 0) 348deg,
+        rgba(196, 150, 46, 0.03) 353deg,
+        rgba(196, 150, 46, 0.08) 356deg,
+        rgba(196, 150, 46, 0.18) 358.5deg,
+        rgba(196, 150, 46, 0.28) 359.5deg,
+        rgba(196, 150, 46, 0.08) 360deg
+      );
+    }
+    #searchlight-glow {
+      background: conic-gradient(
+        from var(--beam-angle),
+        transparent 0deg,
+        transparent 330deg,
+        rgba(196, 150, 46, 0) 330deg,
+        rgba(196, 150, 46, 0.015) 342deg,
+        rgba(196, 150, 46, 0.035) 352deg,
+        rgba(196, 150, 46, 0.06) 357deg,
+        rgba(196, 150, 46, 0.02) 360deg
+      );
+      filter: blur(10px);
+    }
+
+    /* Sonar blip pulse — gentle breathing for contact dots */
+    @keyframes sonar-blip-breathe {
+      0%, 100% {
+        opacity: var(--blip-base);
+        transform: scale(1);
+      }
+      50% {
+        opacity: var(--blip-peak);
+        transform: scale(1.3);
+      }
+    }
+    .sonar-blip {
+      animation: sonar-blip-breathe 4s ease-in-out infinite;
+    }
+
   </style>
 
   <!-- Hero -->
   <section id="hero" class="snap-section section-full relative overflow-hidden">
-    <!-- Blueprint grid background -->
+    <!-- Radar scope background -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <!-- Major grid lines -->
-      <div class="absolute top-0 left-1/4 w-px h-full bg-powder/10"></div>
-      <div class="absolute top-0 left-2/4 w-px h-full bg-powder/10"></div>
-      <div class="absolute top-0 left-3/4 w-px h-full bg-powder/10"></div>
-      <div class="absolute top-1/4 left-0 w-full h-px bg-powder/10"></div>
-      <div class="absolute top-2/4 left-0 w-full h-px bg-powder/10"></div>
-      <div class="absolute top-3/4 left-0 w-full h-px bg-powder/10"></div>
-      <!-- Minor grid lines for blueprint effect -->
-      <div class="absolute top-0 left-[12.5%] w-px h-full bg-powder/5"></div>
-      <div class="absolute top-0 left-[37.5%] w-px h-full bg-powder/5"></div>
-      <div class="absolute top-0 left-[62.5%] w-px h-full bg-powder/5"></div>
-      <div class="absolute top-0 left-[87.5%] w-px h-full bg-powder/5"></div>
-    </div>
+      <!-- Range rings — solid major (vmax so they reach screen edges) -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[10vmax] h-[10vmax] rounded-full border border-powder/20"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22vmax] h-[22vmax] rounded-full border border-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34vmax] h-[34vmax] rounded-full border border-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[46vmax] h-[46vmax] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[58vmax] h-[58vmax] rounded-full border border-powder/10"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vmax] h-[70vmax] rounded-full border border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[82vmax] h-[82vmax] rounded-full border border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94vmax] h-[94vmax] rounded-full border border-powder/5"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[106vmax] h-[106vmax] rounded-full border border-powder/4"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[118vmax] h-[118vmax] rounded-full border border-powder/3"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vmax] h-[130vmax] rounded-full border border-powder/2"
+      >
+      </div>
+      <!-- Range rings — dashed minor -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[16vmax] h-[16vmax] rounded-full border border-dashed border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28vmax] h-[28vmax] rounded-full border border-dashed border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vmax] h-[40vmax] rounded-full border border-dashed border-powder/5"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[52vmax] h-[52vmax] rounded-full border border-dashed border-powder/4"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[64vmax] h-[64vmax] rounded-full border border-dashed border-powder/3"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[76vmax] h-[76vmax] rounded-full border border-dashed border-powder/3"
+      >
+      </div>
+      <!-- Cardinal bearing lines -->
+      <div class="absolute top-0 left-1/2 w-px h-full bg-powder/18"></div>
+      <div class="absolute top-1/2 left-0 w-full h-px bg-powder/18"></div>
+      <!-- Intercardinal 45° -->
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center rotate-45 -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center -rotate-45 -translate-x-1/2"
+      >
+      </div>
+      <!-- 30° bearing lines -->
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[30deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[60deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[120deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[150deg] -translate-x-1/2"
+      >
+      </div>
+      <!-- Tick marks along N axis -->
+      <div
+        class="absolute top-[calc(50%-5vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-11vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-17vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-23vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-29vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-35vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-41vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-47vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/15"
+      >
+      </div>
+      <!-- Tick marks along S axis -->
+      <div
+        class="absolute top-[calc(50%+5vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+11vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+17vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+23vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+29vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+35vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/18"
+      >
+      </div>
+      <!-- Tick marks along E axis -->
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+5vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%+11vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+17vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%+23vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+29vmax)] w-px h-2.5 bg-powder/15"
+      >
+      </div>
+      <!-- Tick marks along W axis -->
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-5vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%-11vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-17vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%-23vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-29vmax)] w-px h-2.5 bg-powder/15"
+      >
+      </div>
 
-    <!-- Corner reference marks -->
-    <div class="absolute top-8 right-8 w-8 h-8 border-t border-r border-powder/30 hidden lg:block" aria-hidden="true"></div>
-    <div class="absolute bottom-8 left-8 w-8 h-8 border-b border-l border-powder/30 hidden lg:block" aria-hidden="true"></div>
+      <!-- Sweep cone — the rotating wedge of light -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[135vmax] h-[135vmax]"
+      >
+        <div class="radar-sweep-glow"></div>
+        <div class="radar-sweep-cone"></div>
+      </div>
+
+      <!-- CRT scanline overlay -->
+      <div class="radar-scanlines"></div>
+
+      <!-- Contact blips — delays from true bearing: atan2(left-50, 50-top)
+           delay = -(8 - (bearing/360)*8) -->
+      <!-- Blip 1: upper-right, bearing 23° -->
+      <div class="radar-blip top-[26%] left-[60%] w-3 h-3 bg-gold/80" style="animation-delay: -7.50s;"></div>
+      <div class="radar-blip-ring top-[26%] left-[60%] w-8 h-8 border-gold/40" style="animation-delay: -7.50s;"></div>
+      <!-- Blip 2: near "Men's Lacrosse", bearing 202° -->
+      <div class="radar-blip top-[57.5%] left-[47%] w-2.5 h-2.5 bg-powder/70" style="animation-delay: -3.52s;"></div>
+      <div class="radar-blip-ring top-[57.5%] left-[47%] w-7 h-7 border-powder/30" style="animation-delay: -3.52s;"></div>
+      <!-- Blip 3: right side, bearing 61° -->
+      <div class="radar-blip top-[38%] left-[72%] w-2 h-2 bg-gold/65" style="animation-delay: -6.64s;"></div>
+      <div class="radar-blip-ring top-[38%] left-[72%] w-6 h-6 border-gold/25" style="animation-delay: -6.64s;"></div>
+      <!-- Blip 4: lower center, bearing 174° -->
+      <div class="radar-blip top-[68%] left-[52%] w-2 h-2 bg-powder/55" style="animation-delay: -4.14s;"></div>
+      <div class="radar-blip-ring top-[68%] left-[52%] w-5 h-5 border-powder/20" style="animation-delay: -4.14s;"></div>
+      <!-- Blip 5: upper-left, bearing 337° -->
+      <div class="radar-blip top-[22%] left-[38%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -0.52s;"></div>
+      <div class="radar-blip-ring top-[22%] left-[38%] w-5 h-5 border-powder/20" style="animation-delay: -0.52s;"></div>
+      <!-- Blip 6: lower-left, bearing 214° -->
+      <div class="radar-blip top-[72%] left-[35%] w-1.5 h-1.5 bg-gold/45" style="animation-delay: -3.24s;"></div>
+      <div class="radar-blip-ring top-[72%] left-[35%] w-5 h-5 border-gold/15" style="animation-delay: -3.24s;"></div>
+      <!-- Blip 7: far right, bearing 81° -->
+      <div class="radar-blip top-[45%] left-[82%] w-1.5 h-1.5 bg-powder/45" style="animation-delay: -6.20s;"></div>
+      <!-- Blip 8: bottom-right, bearing 138° -->
+      <div class="radar-blip top-[72%] left-[70%] w-2 h-2 bg-gold/60" style="animation-delay: -4.94s;"></div>
+      <div class="radar-blip-ring top-[72%] left-[70%] w-6 h-6 border-gold/20" style="animation-delay: -4.94s;"></div>
+      <!-- Blip 9: far bottom-right, bearing 155° -->
+      <div class="radar-blip top-[82%] left-[65%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -4.56s;"></div>
+      <div class="radar-blip-ring top-[82%] left-[65%] w-5 h-5 border-powder/18" style="animation-delay: -4.56s;"></div>
+      <!-- Ghost returns — faint, no ring -->
+      <div class="radar-blip top-[15%] left-[75%] w-1 h-1 bg-powder/20" style="animation-delay: -7.21s;"></div>
+      <div class="radar-blip top-[80%] left-[28%] w-1 h-1 bg-gold/15" style="animation-delay: -3.19s;"></div>
+      <div class="radar-blip top-[35%] left-[18%] w-1 h-1 bg-powder/15" style="animation-delay: -1.44s;"></div>
+      <div class="radar-blip top-[62%] left-[78%] w-1 h-1 bg-gold/15" style="animation-delay: -5.48s;"></div>
+      <div class="radar-blip top-[48%] left-[25%] w-1 h-1 bg-powder/12" style="animation-delay: -1.90s;"></div>
+
+      <!-- Center pip — bright and steady -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-powder/60"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-gold/80"
+      >
+      </div>
+    </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
       <div>
         <span class="label text-powder block mb-6">[club]</span>
 
-        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-foreground">
+        <h1
+          class="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-foreground"
+        >
           Barbary Coast
         </h1>
 
@@ -82,158 +567,317 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
   </section>
 
   <!-- Schedule Section -->
-  <section id="schedule" class="snap-section section-full relative overflow-hidden">
-    <!-- Background pattern - TBD -->
+  <section
+    id="schedule"
+    class="snap-section section-full relative overflow-hidden"
+  >
+    <!-- Sonar ping background -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    </div>
+      <!-- Radial gradient washes — atmospheric depth from hydrophone origins -->
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[900px] h-[900px] rounded-full"
+        style="background: radial-gradient(circle, rgba(90,155,196,0.06) 0%, rgba(90,155,196,0.02) 40%, transparent 70%);"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[800px] h-[800px] rounded-full"
+        style="background: radial-gradient(circle, rgba(196,150,46,0.05) 0%, rgba(196,150,46,0.015) 40%, transparent 70%);"
+      >
+      </div>
 
-    <!-- Corner L-brackets -->
-    <div class="absolute top-8 left-8 w-8 h-8 border-t border-l border-powder/30 hidden lg:block" aria-hidden="true"></div>
-    <div class="absolute bottom-8 right-8 w-8 h-8 border-b border-r border-powder/30 hidden lg:block" aria-hidden="true"></div>
+      <!-- Primary hydrophone — top-right (boosted opacity) -->
+      <div class="absolute -top-[120px] -right-[120px] w-[200px] h-[200px] rounded-full border border-powder/40"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[320px] h-[320px] rounded-full border border-powder/30"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[440px] h-[440px] rounded-full border border-powder/22"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[560px] h-[560px] rounded-full border border-powder/16"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[680px] h-[680px] rounded-full border border-powder/12"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[800px] h-[800px] rounded-full border border-powder/8"></div>
+      <!-- Dashed intermediate rings -->
+      <div class="absolute -top-[120px] -right-[120px] w-[260px] h-[260px] rounded-full border border-dashed border-powder/15"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[500px] h-[500px] rounded-full border border-dashed border-powder/10"></div>
+
+      <!-- Animated sonar pings — top-right source -->
+      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: 0s;"></div>
+      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: -2.67s;"></div>
+      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: -5.33s;"></div>
+
+      <!-- Source pip — top-right -->
+      <div class="absolute top-[2%] right-[2%] w-2 h-2 rounded-full bg-powder/65"></div>
+      <div class="absolute top-[2%] right-[2%] w-4 h-4 rounded-full border border-powder/25"></div>
+
+      <!-- Secondary hydrophone — bottom-left (boosted opacity) -->
+      <div class="absolute -bottom-[200px] -left-[200px] w-[280px] h-[280px] rounded-full border border-gold/35"></div>
+      <div class="absolute -bottom-[200px] -left-[200px] w-[420px] h-[420px] rounded-full border border-gold/25"></div>
+      <div class="absolute -bottom-[200px] -left-[200px] w-[560px] h-[560px] rounded-full border border-gold/18"></div>
+      <div class="absolute -bottom-[200px] -left-[200px] w-[700px] h-[700px] rounded-full border border-gold/12"></div>
+      <div class="absolute -bottom-[200px] -left-[200px] w-[840px] h-[840px] rounded-full border border-gold/8"></div>
+      <!-- Dashed intermediate rings -->
+      <div class="absolute -bottom-[200px] -left-[200px] w-[350px] h-[350px] rounded-full border border-dashed border-gold/12"></div>
+      <div class="absolute -bottom-[200px] -left-[200px] w-[630px] h-[630px] rounded-full border border-dashed border-gold/8"></div>
+
+      <!-- Animated sonar pings — bottom-left source -->
+      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -1.3s;"></div>
+      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -4s;"></div>
+      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -6.67s;"></div>
+
+      <!-- Source pip — bottom-left -->
+      <div class="absolute bottom-[4%] left-[4%] w-2 h-2 rounded-full bg-gold/60"></div>
+      <div class="absolute bottom-[4%] left-[4%] w-4 h-4 rounded-full border border-gold/25"></div>
+
+      <!-- Tertiary hydrophone — mid-right edge (boosted) -->
+      <div class="absolute top-[40%] -right-[80px] w-[200px] h-[200px] rounded-full border border-powder/18"></div>
+      <div class="absolute top-[40%] -right-[80px] w-[350px] h-[350px] rounded-full border border-powder/12"></div>
+      <div class="absolute top-[40%] -right-[80px] w-[500px] h-[500px] rounded-full border border-powder/8"></div>
+
+      <!-- Bearing reference lines -->
+      <div class="absolute bottom-[4%] left-[4%] w-[140%] h-px bg-powder/10 origin-bottom-left -rotate-[35deg]"></div>
+      <div class="absolute -top-[120px] -right-[120px] w-[1px] h-[900px] bg-powder/8 origin-top rotate-[55deg]"></div>
+
+      <!-- Contact blips — animated pulse -->
+      <div class="absolute top-[28%] right-[28%] w-2.5 h-2.5 rounded-full bg-powder/70 sonar-blip" style="--blip-base: 0.55; --blip-peak: 0.8; animation-delay: 0s;"></div>
+      <div class="absolute top-[28%] right-[28%] w-7 h-7 rounded-full border border-powder/25"></div>
+
+      <div class="absolute top-[42%] left-[42%] w-2 h-2 rounded-full bg-powder/55 sonar-blip" style="--blip-base: 0.4; --blip-peak: 0.65; animation-delay: -1.2s;"></div>
+      <div class="absolute top-[42%] left-[42%] w-5 h-5 rounded-full border border-powder/18"></div>
+
+      <div class="absolute bottom-[32%] left-[25%] w-2.5 h-2.5 rounded-full bg-gold/65 sonar-blip" style="--blip-base: 0.5; --blip-peak: 0.75; animation-delay: -2.5s;"></div>
+      <div class="absolute bottom-[32%] left-[25%] w-6 h-6 rounded-full border border-gold/22"></div>
+
+      <div class="absolute bottom-[20%] left-[45%] w-1.5 h-1.5 rounded-full bg-gold/50 sonar-blip" style="--blip-base: 0.35; --blip-peak: 0.55; animation-delay: -0.8s;"></div>
+
+      <div class="absolute top-[15%] left-[50%] w-1.5 h-1.5 rounded-full bg-powder/45 sonar-blip" style="--blip-base: 0.3; --blip-peak: 0.5; animation-delay: -3.1s;"></div>
+
+      <div class="absolute top-[65%] right-[15%] w-2 h-2 rounded-full bg-powder/50 sonar-blip" style="--blip-base: 0.35; --blip-peak: 0.6; animation-delay: -1.8s;"></div>
+      <div class="absolute top-[65%] right-[15%] w-5 h-5 rounded-full border border-powder/15"></div>
+
+      <!-- Wake trails -->
+      <div class="absolute top-[29%] right-[30%] w-1 h-1 rounded-full bg-powder/30"></div>
+      <div class="absolute top-[30%] right-[32%] w-1 h-1 rounded-full bg-powder/18"></div>
+      <div class="absolute bottom-[33%] left-[23%] w-1 h-1 rounded-full bg-gold/30"></div>
+      <div class="absolute bottom-[34%] left-[21%] w-1 h-1 rounded-full bg-gold/18"></div>
+      <div class="absolute top-[43%] left-[40%] w-1 h-1 rounded-full bg-powder/22"></div>
+
+      <!-- Noise scatter (boosted) -->
+      <div class="absolute top-[62%] left-[68%] w-0.5 h-0.5 rounded-full bg-powder/22"></div>
+      <div class="absolute top-[72%] left-[78%] w-0.5 h-0.5 rounded-full bg-gold/18"></div>
+      <div class="absolute top-[18%] left-[22%] w-0.5 h-0.5 rounded-full bg-powder/16"></div>
+      <div class="absolute top-[52%] left-[85%] w-0.5 h-0.5 rounded-full bg-gold/16"></div>
+      <div class="absolute top-[82%] left-[55%] w-0.5 h-0.5 rounded-full bg-powder/18"></div>
+      <div class="absolute top-[35%] left-[12%] w-0.5 h-0.5 rounded-full bg-gold/14"></div>
+      <div class="absolute top-[78%] left-[35%] w-0.5 h-0.5 rounded-full bg-powder/14"></div>
+
+      <!-- CRT scanline overlay (shared with hero) -->
+      <div class="radar-scanlines"></div>
+    </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
       <div class="flex flex-col lg:flex-row lg:items-start gap-16">
         <!-- Left: Header -->
-        <div class="lg:w-1/3 reveal">
+        <div class="lg:w-[320px] lg:shrink-0 reveal">
           <span class="label text-powder">[upcoming]</span>
-          <h2 class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight">Games</h2>
-          <p class="text-muted mt-4 text-lg">
-            Next matches for the team.
-          </p>
-          <a href="/schedule" class="subtle-link mt-6 inline-block">Full schedule →</a>
+          <h2
+            class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight"
+          >
+            Schedule
+          </h2>
+          <p class="text-muted mt-4 text-lg">Drinking Oportunities</p>
+          <a href="/schedule" class="subtle-link mt-6 inline-block"
+            >Full schedule →</a
+          >
         </div>
 
         <!-- Right: Schedule cards -->
-        <div class="lg:w-2/3 reveal" style="--delay: 0.1s">
-          <Schedule ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} upcomingOnly={true} limit={4} />
+        <div class="lg:flex-1 reveal" style="--delay: 0.1s">
+          <Schedule
+            ulaxGames={ulaxGames}
+            events={manualEvents}
+            barbaryCoastOnly={true}
+            upcomingOnly={true}
+            limit={4}
+          />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Practice Section -->
-  <section id="practice" class="snap-section section-full relative overflow-hidden">
-    <!-- Blueprint grid background - powder theme -->
+  <!-- About Section -->
+  <section
+    id="about"
+    class="snap-section section-full relative overflow-hidden"
+  >
+    <!-- Searchlight background — origin bottom-left, beam tracks mouse -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <!-- Vertical grid lines -->
-      <div class="absolute top-0 left-[10%] w-px h-full bg-powder/12"></div>
-      <div class="absolute top-0 left-[35%] w-px h-full bg-powder/18"></div>
-      <div class="absolute top-0 left-[60%] w-px h-full bg-powder/18"></div>
-      <div class="absolute top-0 left-[85%] w-px h-full bg-powder/12"></div>
-      <!-- Horizontal grid lines -->
-      <div class="absolute top-[15%] left-0 w-full h-px bg-powder/12"></div>
-      <div class="absolute top-[45%] left-0 w-full h-px bg-powder/18"></div>
-      <div class="absolute top-[75%] left-0 w-full h-px bg-powder/12"></div>
-    </div>
+      <!-- Radial gradient wash from origin -->
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1200px] h-[1200px] rounded-full"
+        style="background: radial-gradient(circle, rgba(196,150,46,0.06) 0%, rgba(196,150,46,0.02) 35%, transparent 65%);"
+      ></div>
 
-    <!-- Corner L-brackets -->
-    <div class="absolute top-8 right-8 w-8 h-8 border-t border-r border-powder/30 hidden lg:block" aria-hidden="true"></div>
-    <div class="absolute bottom-8 left-8 w-8 h-8 border-b border-l border-powder/30 hidden lg:block" aria-hidden="true"></div>
+      <!-- Major range rings (boosted) -->
+      <div class="absolute -bottom-[300px] -left-[300px] w-[350px] h-[350px] rounded-full border border-powder/35"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[550px] h-[550px] rounded-full border border-powder/28"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[750px] h-[750px] rounded-full border border-powder/22"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[950px] h-[950px] rounded-full border border-powder/18"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[1150px] h-[1150px] rounded-full border border-powder/14"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[1350px] h-[1350px] rounded-full border border-powder/10"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[1550px] h-[1550px] rounded-full border border-powder/8"></div>
+      <!-- Minor range rings (dashed, boosted) -->
+      <div class="absolute -bottom-[300px] -left-[300px] w-[450px] h-[450px] rounded-full border border-dashed border-powder/12"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[650px] h-[650px] rounded-full border border-dashed border-powder/10"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[850px] h-[850px] rounded-full border border-dashed border-powder/8"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[1050px] h-[1050px] rounded-full border border-dashed border-powder/7"></div>
+      <div class="absolute -bottom-[300px] -left-[300px] w-[1250px] h-[1250px] rounded-full border border-dashed border-powder/6"></div>
+
+      <!-- Primary crosshair axes -->
+      <div class="absolute bottom-0 left-0 w-full h-px bg-powder/25"></div>
+      <div class="absolute bottom-0 left-0 w-px h-full bg-powder/25"></div>
+      <!-- Bearing lines every 15° (boosted) -->
+      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[15deg]"></div>
+      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/14 origin-bottom-left -rotate-[30deg]"></div>
+      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[45deg]"></div>
+      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/14 origin-bottom-left -rotate-[60deg]"></div>
+      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[75deg]"></div>
+
+      <!-- Searchlight beam — follows mouse, driven by JS.
+           Large circle centered on bottom-left. Uses translate to center
+           without pushing the element out of the overflow-hidden bounds. -->
+      <div
+        id="searchlight-cone"
+        class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-full"
+        style="--beam-angle: -45deg; width: 300vmax; height: 300vmax;"
+      ></div>
+      <div
+        id="searchlight-glow"
+        class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-full"
+        style="--beam-angle: -45deg; width: 300vmax; height: 300vmax;"
+      ></div>
+
+      <!-- Axis tick marks (boosted) -->
+      <div class="absolute bottom-0 left-[8%] w-px h-3 bg-powder/30"></div>
+      <div class="absolute bottom-0 left-[18%] w-px h-4 bg-powder/35"></div>
+      <div class="absolute bottom-0 left-[28%] w-px h-3 bg-powder/30"></div>
+      <div class="absolute bottom-0 left-[38%] w-px h-4 bg-powder/35"></div>
+      <div class="absolute bottom-0 left-[48%] w-px h-3 bg-powder/30"></div>
+      <div class="absolute bottom-0 left-[58%] w-px h-4 bg-powder/35"></div>
+      <div class="absolute bottom-0 left-[68%] w-px h-3 bg-powder/30"></div>
+      <div class="absolute bottom-0 left-[78%] w-px h-4 bg-powder/35"></div>
+      <div class="absolute bottom-0 left-[88%] w-px h-3 bg-powder/30"></div>
+
+      <!-- Contact blips — animated pulse -->
+      <div class="absolute bottom-[42%] left-[26%] w-2.5 h-2.5 rounded-full bg-gold/70 sonar-blip" style="--blip-base: 0.55; --blip-peak: 0.8; animation-delay: -0.5s;"></div>
+      <div class="absolute bottom-[42%] left-[26%] w-6 h-6 rounded-full border border-gold/25"></div>
+
+      <div class="absolute bottom-[58%] left-[38%] w-2 h-2 rounded-full bg-powder/60 sonar-blip" style="--blip-base: 0.45; --blip-peak: 0.7; animation-delay: -1.8s;"></div>
+      <div class="absolute bottom-[58%] left-[38%] w-5 h-5 rounded-full border border-powder/18"></div>
+
+      <div class="absolute bottom-[30%] left-[52%] w-2 h-2 rounded-full bg-gold/55 sonar-blip" style="--blip-base: 0.4; --blip-peak: 0.65; animation-delay: -2.7s;"></div>
+      <div class="absolute bottom-[30%] left-[52%] w-5 h-5 rounded-full border border-gold/18"></div>
+
+      <div class="absolute bottom-[65%] left-[18%] w-1.5 h-1.5 rounded-full bg-powder/45 sonar-blip" style="--blip-base: 0.3; --blip-peak: 0.5; animation-delay: -3.4s;"></div>
+
+      <div class="absolute bottom-[20%] left-[65%] w-1.5 h-1.5 rounded-full bg-gold/40 sonar-blip" style="--blip-base: 0.25; --blip-peak: 0.45; animation-delay: -0.9s;"></div>
+
+      <div class="absolute bottom-[48%] left-[72%] w-1.5 h-1.5 rounded-full bg-powder/35 sonar-blip" style="--blip-base: 0.2; --blip-peak: 0.4; animation-delay: -2.2s;"></div>
+
+      <!-- Wake trails -->
+      <div class="absolute bottom-[43%] left-[24%] w-1 h-1 rounded-full bg-gold/25"></div>
+      <div class="absolute bottom-[44%] left-[22%] w-1 h-1 rounded-full bg-gold/15"></div>
+      <div class="absolute bottom-[59%] left-[36%] w-1 h-1 rounded-full bg-powder/20"></div>
+
+      <!-- Noise scatter (boosted) -->
+      <div class="absolute bottom-[75%] left-[45%] w-0.5 h-0.5 rounded-full bg-powder/18"></div>
+      <div class="absolute bottom-[35%] left-[82%] w-0.5 h-0.5 rounded-full bg-powder/16"></div>
+      <div class="absolute bottom-[55%] left-[60%] w-0.5 h-0.5 rounded-full bg-gold/14"></div>
+      <div class="absolute bottom-[15%] left-[40%] w-0.5 h-0.5 rounded-full bg-powder/12"></div>
+      <div class="absolute bottom-[70%] left-[75%] w-0.5 h-0.5 rounded-full bg-gold/12"></div>
+
+      <!-- Origin pip — enhanced -->
+      <div class="absolute -bottom-[1px] -left-[1px] w-2.5 h-2.5 rounded-full bg-powder/65"></div>
+      <div class="absolute -bottom-[3px] -left-[3px] w-5 h-5 rounded-full border border-powder/25"></div>
+
+      <!-- CRT scanlines -->
+      <div class="radar-scanlines"></div>
+    </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
       <div class="grid lg:grid-cols-2 gap-12">
         <div class="reveal">
-          <span class="label text-gold">[weekly]</span>
-          <h2 class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight">Practice</h2>
+          <span class="label text-gold">[about]</span>
+          <h2
+            class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight"
+          >
+            The Team
+          </h2>
 
-          <div class="mt-6">
-            <p class="text-4xl sm:text-5xl font-medium text-foreground">
-              Wednesdays
+          <div class="mt-6 space-y-4">
+            <p class="text-lg text-muted">
+              Barbary Coast is a men's post-collegiate lacrosse club competing
+              in the San Francisco Bay Area.
             </p>
-            <p class="text-2xl text-muted mt-2">8–9 PM</p>
-          </div>
-
-          <div class="mt-8">
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Beach+Chalet+Fields+SF"
-              target="_blank"
-              rel="noopener"
-              class="text-lg text-muted hover:text-foreground transition-colors"
-            >
-              Beach Chalet Fields, SF →
-            </a>
+            <p class="text-lg text-muted">Good lacrosse. Great friends.</p>
           </div>
         </div>
 
         <div class="reveal flex items-center" style="--delay: 0.1s">
           <div class="card p-8 lg:p-10 w-full">
-            <span class="label text-gold block mb-4">[open]</span>
-            <h3 class="text-foreground text-xl font-medium">All levels welcome</h3>
-            <p class="text-muted mt-3">
-              New to lacrosse or played in college — just show up.
-              No commitment required.
+            <h3 class="text-foreground text-2xl font-medium tracking-tight">
+              Get in touch
+            </h3>
+            <p class="text-muted mt-2 mb-6">
+              Looking for competitive players who also like to have a good time.
+              Reach out if that's you.
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="snap-section section-full relative overflow-hidden">
-    <!-- Topographic contour lines - SF hills -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <!-- Secondary contour from bottom-left -->
-      <div class="absolute -bottom-[150px] -left-[150px] w-[400px] h-[400px] rounded-full border border-powder/15"></div>
-      <div class="absolute -bottom-[150px] -left-[150px] w-[520px] h-[520px] rounded-full border border-powder/12"></div>
-      <div class="absolute -bottom-[150px] -left-[150px] w-[640px] h-[640px] rounded-full border border-powder/10"></div>
-      <!-- Primary contour from top-right -->
-      <div class="absolute -top-[250px] -right-[250px] w-[600px] h-[600px] rounded-full border border-powder/20"></div>
-      <div class="absolute -top-[250px] -right-[250px] w-[750px] h-[750px] rounded-full border border-powder/15"></div>
-      <div class="absolute -top-[250px] -right-[250px] w-[900px] h-[900px] rounded-full border border-powder/20"></div>
-      <div class="absolute -top-[250px] -right-[250px] w-[1050px] h-[1050px] rounded-full border border-powder/10"></div>
-    </div>
-
-    <!-- Corner L-brackets -->
-    <div class="absolute top-8 left-8 w-8 h-8 border-t border-l border-powder/30 hidden lg:block" aria-hidden="true"></div>
-    <div class="absolute bottom-8 right-8 w-8 h-8 border-b border-r border-powder/30 hidden lg:block" aria-hidden="true"></div>
-
-    <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
-      <div class="max-w-2xl reveal">
-        <span class="label text-powder">[connect]</span>
-        <h2 class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight">Get in touch</h2>
-
-        <div class="mt-12 space-y-8">
-          <div>
-            <span class="label text-subtle block mb-2">[email]</span>
-            <a
-              href="mailto:info@barbarycoastlax.com"
-              class="text-2xl font-medium text-foreground hover:text-powder transition-colors"
-            >
-              info@barbarycoastlax.com
-            </a>
-          </div>
-
-          <div>
-            <span class="label text-subtle block mb-2">[instagram]</span>
-            <a
-              href="https://www.instagram.com/barbarycoastlc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-2xl font-medium text-foreground hover:text-gold transition-colors"
-            >
-              @barbarycoastlc
-            </a>
+            <div class="space-y-6">
+              <div>
+                <span class="label text-subtle block mb-2">[email]</span>
+                <a
+                  href="mailto:barbarycoastlc@gmail.com"
+                  class="text-xl font-medium text-foreground hover:text-powder transition-colors"
+                >
+                  barbarycoastlc@gmail.com
+                </a>
+              </div>
+              <div>
+                <span class="label text-subtle block mb-2">[instagram]</span>
+                <a
+                  href="https://www.instagram.com/barbarycoastlc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xl font-medium text-foreground hover:text-gold transition-colors"
+                >
+                  @barbarycoastlc
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Marquee at bottom of contact section -->
-    <div class="absolute bottom-0 left-0 right-0 marquee border-t border-border py-4 bg-surface/80 backdrop-blur-sm">
+    <!-- Marquee at bottom of about section -->
+    <div
+      class="absolute bottom-0 left-0 right-0 marquee border-t border-border py-4 bg-surface/80 backdrop-blur-sm"
+    >
       <div class="marquee-content">
-        {[...Array(3)].map(() => (
-          <div class="flex items-center gap-12 px-6">
-            <span class="label text-muted whitespace-nowrap">Barbary Coast</span>
-            <span class="w-1 h-1 bg-powder"></span>
-            <span class="label text-muted whitespace-nowrap">Beach Chalet Fields</span>
-            <span class="w-1 h-1 bg-gold"></span>
-            <span class="label text-muted whitespace-nowrap">Est. 2024</span>
-            <span class="w-1 h-1 bg-powder"></span>
-            <span class="label text-muted whitespace-nowrap">San Francisco</span>
-            <span class="w-1 h-1 bg-gold"></span>
-          </div>
-        ))}
+        {
+          [...Array(3)].map(() => (
+            <div class="marquee-set">
+              {schools.map((school, i) => (
+                <>
+                  <span class="label text-muted whitespace-nowrap">
+                    {school}
+                  </span>
+                  <span
+                    class:list={[
+                      "w-1 h-1",
+                      i % 2 === 0 ? "bg-powder" : "bg-gold",
+                    ]}
+                  />
+                </>
+              ))}
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -241,8 +885,10 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 
 <script>
   // Section Observer for timeline navigation
-  const sections = document.querySelectorAll('section[id]');
-  const timelineItems = document.querySelectorAll<HTMLAnchorElement>('.timeline-item[data-section]');
+  const sections = document.querySelectorAll("section[id]");
+  const timelineItems = document.querySelectorAll<HTMLAnchorElement>(
+    ".timeline-item[data-section]",
+  );
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
@@ -251,13 +897,13 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
           const sectionId = entry.target.id;
 
           // Update timeline items
-          timelineItems.forEach(item => {
-            item.classList.toggle('active', item.dataset.section === sectionId);
+          timelineItems.forEach((item) => {
+            item.classList.toggle("active", item.dataset.section === sectionId);
           });
         }
       });
     },
-    { threshold: 0.5 }
+    { threshold: 0.5 },
   );
 
   sections.forEach((section) => sectionObserver.observe(section));
@@ -268,21 +914,24 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const el = entry.target as HTMLElement;
-          const delay = getComputedStyle(el).getPropertyValue('--delay') || '0s';
+          const delay =
+            getComputedStyle(el).getPropertyValue("--delay") || "0s";
           el.style.animationDelay = delay;
-          el.classList.add('visible');
+          el.classList.add("visible");
           revealObserver.unobserve(el);
         }
       });
     },
-    { threshold: 0.1, rootMargin: '0px 0px -80px 0px' }
+    { threshold: 0.1, rootMargin: "0px 0px -80px 0px" },
   );
 
-  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+  document
+    .querySelectorAll(".reveal")
+    .forEach((el) => revealObserver.observe(el));
 
   // Keyboard navigation between sections
-  const snapContainer = document.getElementById('main');
-  const sectionIds = ['hero', 'schedule', 'practice', 'contact'];
+  const snapContainer = document.getElementById("main");
+  const sectionIds = ["hero", "schedule", "about"];
 
   function getCurrentSectionIndex(): number {
     if (!snapContainer) return 0;
@@ -298,34 +947,36 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
     if (section) {
       snapContainer.scrollTo({
         top: section.offsetTop,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   }
 
   // Hotkey map for section navigation
   const hotkeyMap: Record<string, string> = {
-    'h': 'hero',
-    's': 'schedule',
-    'p': 'practice',
-    'c': 'contact'
+    h: "hero",
+    s: "schedule",
+    a: "about",
   };
 
   // Hotkey map for page navigation
   const pageHotkeyMap: Record<string, string> = {
-    'f': '/schedule',
-    'y': '/history'
+    f: "/schedule",
   };
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener("keydown", (e) => {
     // Don't hijack if user is typing in an input
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+    if (
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLTextAreaElement
+    )
+      return;
 
     // Arrow key navigation
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
       e.preventDefault();
       const current = getCurrentSectionIndex();
-      scrollToSection(e.key === 'ArrowUp' ? current - 1 : current + 1);
+      scrollToSection(e.key === "ArrowUp" ? current - 1 : current + 1);
       return;
     }
 
@@ -349,48 +1000,83 @@ const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
   });
 
   // Custom lacrosse ball cursor
-  const cursor = document.getElementById('ball-cursor');
-  const isTouch = window.matchMedia('(hover: none)').matches;
+  const cursor = document.getElementById("ball-cursor");
+  const isTouch = window.matchMedia("(hover: none)").matches;
 
   if (cursor && !isTouch) {
-    document.body.classList.add('custom-cursor');
+    document.body.classList.add("custom-cursor");
 
     let cursorX = 0;
     let cursorY = 0;
     let targetX = 0;
     let targetY = 0;
 
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener("mousemove", (e) => {
       targetX = e.clientX;
       targetY = e.clientY;
-      cursor.style.opacity = '1';
+      cursor.style.opacity = "1";
 
       // Check if hovering over interactive element
       const target = e.target as HTMLElement;
-      const isInteractive = target.closest('a, button, [role="button"], input, textarea, select, .timeline-item');
-      cursor.classList.toggle('hovering', !!isInteractive);
+      const isInteractive = target.closest(
+        'a, button, [role="button"], input, textarea, select, .timeline-item',
+      );
+      cursor.classList.toggle("hovering", !!isInteractive);
     });
 
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
+    document.addEventListener("mouseleave", () => {
+      cursor.style.opacity = "0";
     });
 
-    document.addEventListener('mousedown', () => {
-      cursor.classList.add('pressing');
+    document.addEventListener("mousedown", () => {
+      cursor.classList.add("pressing");
     });
 
-    document.addEventListener('mouseup', () => {
-      cursor.classList.remove('pressing');
+    document.addEventListener("mouseup", () => {
+      cursor.classList.remove("pressing");
     });
 
     // Smooth animation loop
     function animate() {
       cursorX += (targetX - cursorX) * 0.15;
       cursorY += (targetY - cursorY) * 0.15;
-      cursor.style.left = `${cursorX}px`;
-      cursor.style.top = `${cursorY}px`;
+      cursor!.style.left = `${cursorX}px`;
+      cursor!.style.top = `${cursorY}px`;
       requestAnimationFrame(animate);
     }
     animate();
+  }
+
+  // Searchlight — beam tracks mouse from about section's bottom-left origin
+  const aboutSection = document.getElementById("about");
+  const searchlightCone = document.getElementById("searchlight-cone");
+  const searchlightGlow = document.getElementById("searchlight-glow");
+
+  if (aboutSection && searchlightCone && searchlightGlow) {
+    let currentAngle = -45;
+    let targetAngle = -45;
+
+    document.addEventListener("mousemove", (e) => {
+      const rect = aboutSection!.getBoundingClientRect();
+      // Origin is bottom-left of the section
+      const originX = rect.left;
+      const originY = rect.bottom;
+      const dx = e.clientX - originX;
+      const dy = originY - e.clientY; // flip Y: positive = up
+      // atan2(dx, dy) gives clockwise angle from north (up), which matches
+      // conic-gradient "from" convention (clockwise from 12 o'clock)
+      const rad = Math.atan2(dx, dy);
+      targetAngle = (rad * 180) / Math.PI;
+    });
+
+    function animateSearchlight() {
+      // Lerp toward target — slow, lazy tracking
+      currentAngle += (targetAngle - currentAngle) * 0.04;
+      const css = `${currentAngle}deg`;
+      searchlightCone!.style.setProperty("--beam-angle", css);
+      searchlightGlow!.style.setProperty("--beam-angle", css);
+      requestAnimationFrame(animateSearchlight);
+    }
+    animateSearchlight();
   }
 </script>

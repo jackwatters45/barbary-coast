@@ -1,12 +1,15 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.13/schema.json",
-  "organizeImports": {
+  "assist": {
     "enabled": true
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "noImportantStyles": "off"
+      }
     }
   },
   "formatter": {
@@ -21,12 +24,17 @@
       "semicolons": "always"
     }
   },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "files": {
-    "ignore": ["node_modules", "dist", ".astro", "bun.lock"]
+    "includes": ["**", "!node_modules", "!dist", "!.astro", "!bun.lock"]
   },
   "overrides": [
     {
-      "include": ["*.astro"],
+      "includes": ["**/*.astro"],
       "linter": {
         "rules": {
           "correctness": {
@@ -35,7 +43,7 @@
           }
         }
       },
-      "organizeImports": {
+      "assist": {
         "enabled": false
       }
     }
