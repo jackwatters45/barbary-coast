@@ -2,7 +2,7 @@
 
 Website for Barbary Coast Lacrosse, San Francisco's premier men's lacrosse club.
 
-- [ ] Try using ASCII art for the backgrounds of the index page
+- [ ] Blips should get slightly bigger when passed over by circles!
 
 ## Development
 
@@ -27,6 +27,7 @@ bun run fix
 You can edit this site using [Claude Code](https://claude.ai/claude-code) without needing to know how to code.
 
 **Setup:**
+
 1. Install Claude Code from the link above
 2. Open this project folder in Claude Code
 3. Ask Claude to make changes in plain English
@@ -51,6 +52,7 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
 ## TODO
 
 ### Deployment
+
 - [ ] Deploy to Netlify (config in `netlify.toml`)
 - [ ] Set up custom domain
 - [ ] Create team Netlify account
@@ -59,20 +61,24 @@ Event types: `game`, `practice`, `scrimmage`, `tournament`
   - This gives Harrison (and others) their own credentials
 
 ### ULAX Integration
+
 - [ ] Fetch current season schedule programmatically
 - [ ] Add historical season data page
 
 ### Harrison Onboarding
+
 - [ ] Give repo access
 - [ ] Give Netlify access
 - [ ] Walk through Claude Code workflow
 
 ### Future Features
+
 - [ ] Team store
 - [ ] Photo gallery
 - [ ] Player profiles
 
 ### Content/Styling
+
 - Defer to Harrison
 
 ## Tech Stack
