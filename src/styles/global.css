@@ -26,7 +26,9 @@
 }
 
 @layer base {
-  *, ::after, ::before {
+  *,
+  ::after,
+  ::before {
     border-color: var(--color-border);
   }
 
@@ -35,8 +37,12 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -110,7 +116,7 @@
   }
   .btn-primary:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
   .btn-secondary {
@@ -151,9 +157,16 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -30px) scale(1.05); }
-    66% { transform: translate(-20px, 20px) scale(0.95); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.05);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.95);
+    }
   }
 
   /* Marquee */
@@ -165,12 +178,24 @@
 
   .marquee-content {
     display: flex;
-    animation: scroll 20s linear infinite;
+    animation: scroll 50s linear infinite;
+  }
+
+  .marquee-set {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
   }
 
   @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% / 3));
+    }
   }
 
   /* Reveal animation */
@@ -191,7 +216,9 @@
   }
 }
 
-.tabular-nums { font-variant-numeric: tabular-nums; }
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
 
 /* Timeline Navigation */
 .timeline-nav {
@@ -200,7 +227,7 @@
 }
 
 .timeline-nav::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -229,7 +256,7 @@
 }
 
 .timeline-section-header::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -4px;
   width: 9px;
@@ -248,7 +275,7 @@
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -3px;
   top: 50%;
@@ -292,7 +319,9 @@
   border-radius: 3px;
   opacity: 0;
   transform: translateX(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   pointer-events: none;
 }
 

@@ -9,7 +9,7 @@ const { standings } = Astro.props;
 
 const sortedStandings = [...standings].sort((a, b) => {
   if (b.pts !== a.pts) return b.pts - a.pts;
-  return (b.gf - b.ga) - (a.gf - a.ga);
+  return b.gf - b.ga - (a.gf - a.ga);
 });
 ---
 
