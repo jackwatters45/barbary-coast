@@ -1,50 +1,42 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
 
 @theme {
-  /* Fonts */
-  --font-sans: "Geist Variable", -apple-system, "Helvetica Neue", sans-serif;
-  --font-mono: "Geist Mono Variable", "SF Mono", "Monaco", monospace;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 
-  /* Terminal-inspired palette */
   --color-background: #fafafa;
-  --color-foreground: #1a1a1a;
-  --color-muted: #666666;
-  --color-subtle: #999999;
-  --color-text: #333333;
-  --color-border: #e0e0e0;
-  --color-border-strong: #c0c0c0;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f5f5f5;
+  --color-foreground: #0a0a0a;
+  --color-muted: #737373;
+  --color-subtle: #a3a3a3;
+  --color-text: #404040;
+  --color-border: #e5e5e5;
+  --color-border-strong: #d4d4d4;
 
-  /* Team accent colors */
   --color-powder: #5a9bc4;
   --color-powder-light: #7ab8d9;
-  --color-powder-dark: #3d7a9e;
   --color-gold: #c4962e;
   --color-gold-light: #d4a84b;
+
+  --color-win: #16a34a;
+  --color-loss: #dc2626;
 }
 
 @layer base {
-  *,
-  ::after,
-  ::before {
+  *, ::after, ::before {
     border-color: var(--color-border);
   }
 
   html {
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-    scrollbar-width: thin;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -55,28 +47,32 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Headings */
-  h1,
+  h1 {
+    font-weight: 500;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
   h2 {
-    font-family: var(--font-sans);
-    font-weight: 600;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 1.125rem;
     letter-spacing: -0.02em;
   }
 
-  /* Focus styles */
-  :focus-visible {
-    outline: 2px solid var(--color-powder);
-    outline-offset: 2px;
-  }
-
-  /* Terminal-style selection */
   ::selection {
     background: var(--color-foreground);
     color: var(--color-background);
@@ -84,12 +80,282 @@
 }
 
 @layer components {
-  /* Terminal-style label */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: -0.01em;
+  }
+
   .label {
     font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
   }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .btn-secondary {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-elevated);
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    transition: all 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .stat-big {
+    font-family: var(--font-mono);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  /* Animated gradient orb */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* Marquee */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .reveal.visible {
+    animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Timeline Navigation */
+.timeline-nav {
+  position: relative;
+  padding-left: 1px;
+}
+
+.timeline-nav::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.timeline-section {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-section-header::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  width: 9px;
+  height: 1px;
+  background: var(--color-border-strong);
+}
+
+.timeline-item {
+  display: block;
+  position: relative;
+  padding: 0.35rem 0 0.35rem 1rem;
+  font-size: 0.8rem;
+  color: var(--color-subtle);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 1px;
+  background: var(--color-border-strong);
+  transition: all 0.15s ease;
+}
+
+.timeline-item:hover {
+  color: var(--color-foreground);
+}
+
+.timeline-item:hover::before {
+  width: 12px;
+  background: var(--color-muted);
+}
+
+.timeline-item.active {
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
+.timeline-item.active::before {
+  width: 14px;
+  background: var(--color-gold);
+}
+
+/* Hotkey hints */
+.hotkey-hint {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--color-subtle);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.timeline-item:hover .hotkey-hint {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.5s;
+}
+
+.timeline-item.active .hotkey-hint {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  background: transparent;
+}
+
+/* Scroll Snap Container */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snap-container {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* Big Section Titles */
+.section-title-big {
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--color-foreground);
+}
+
+/* Subtle Link */
+.subtle-link {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.subtle-link:hover {
+  color: var(--color-foreground);
+}
+
+/* Section Spacing */
+.section-full {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 0;
 }

@@ -10,88 +10,43 @@ const data = ulaxData as UlaxAllDataSerialized;
 const season = data.currentSeason;
 const seasonData = data.seasons[season];
 
-// ULAX games from synced data (cast to restore union literal types lost in JSON)
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 const standings = (seasonData?.standings ?? []) as UlaxStanding[];
 const fetchedAt = new Date(data.fetchedAt);
+const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
 ---
 
-<Layout title="Schedule" description="View upcoming games, standings, and results for Barbary Coast Lacrosse.">
-  <!-- Page Header -->
-  <section class="pt-12 pb-8">
-    <div class="max-w-4xl mx-auto px-4">
-      <span class="label text-muted">2026 Season</span>
-      <h1 class="text-3xl sm:text-4xl text-foreground mt-2">Schedule & Results</h1>
-      <p class="text-muted text-sm mt-2">
-        Data synced from <a href="https://ulax.org/sanfrancisco/men/winter/" class="underline hover:text-foreground">ulax.org</a>
+<Layout title="Schedule" description="Full schedule and standings for Barbary Coast Lacrosse.">
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Back link -->
+    <a href="/" class="subtle-link mb-12 inline-block">← Back</a>
+
+    <!-- Header -->
+    <header class="mb-16">
+      <span class="label text-powder">[{seasonLabel.toLowerCase()} 2026]</span>
+      <h1 class="text-4xl sm:text-5xl font-medium text-foreground mt-2 tracking-tight">Schedule</h1>
+      <p class="text-muted mt-4">
+        Data from <a href="https://ulax.org/sanfrancisco/men/" target="_blank" rel="noopener" class="text-powder hover:underline">ulax.org</a>
       </p>
-    </div>
-  </section>
+    </header>
 
-  <!-- Legend -->
-  <section class="pb-4">
-    <div class="max-w-4xl mx-auto px-4">
-      <div class="flex flex-wrap gap-4 text-sm">
-        <span class="label text-gold">[league]</span>
-        <span class="label text-gold">[tournament]</span>
-        <span class="label text-powder-dark">[practice]</span>
-        <span class="label text-subtle">[scrimmage]</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Schedule List -->
-  <section class="pb-12">
-    <div class="max-w-4xl mx-auto px-4">
+    <!-- Games -->
+    <section class="mb-16">
+      <h2 class="text-xl font-medium text-foreground mb-6">Games</h2>
       <ScheduleList ulaxGames={ulaxGames} events={manualEvents} barbaryCoastOnly={true} />
+    </section>
 
-      <p class="text-subtle text-sm text-center mt-6 font-mono">
-        // last updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+    <!-- Standings -->
+    <section class="mb-16">
+      <h2 class="text-xl font-medium text-foreground mb-6">Standings</h2>
+      <Standings standings={standings} />
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-8 border-t border-border">
+      <p class="text-sm text-subtle">
+        Updated {fetchedAt.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
       </p>
-    </div>
-  </section>
-
-  <!-- Standings -->
-  <section class="py-12 border-t border-border">
-    <div class="max-w-4xl mx-auto px-4">
-      <div class="mb-4">
-        <h2 class="text-xl sm:text-2xl text-foreground">Standings</h2>
-        <p class="text-muted text-sm mt-1">ULAX SF Men's {season.charAt(0).toUpperCase() + season.slice(1)} League</p>
-      </div>
-      <div class="bg-white border border-border p-4 sm:p-6">
-        <Standings standings={standings} />
-      </div>
-    </div>
-  </section>
-
-  <!-- Practice Info -->
-  <section class="py-12 border-t border-border">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-xl sm:text-2xl text-foreground mb-6">Practice Info</h2>
-
-      <div class="grid sm:grid-cols-2 gap-4">
-        <div class="bg-white border border-border p-5">
-          <span class="label text-muted">When</span>
-          <p class="mt-2 text-text text-sm">Wednesdays, 8:00 PM – 9:00 PM</p>
-        </div>
-
-        <div class="bg-white border border-border p-5">
-          <span class="label text-muted">Where</span>
-          <p class="text-text mt-2">Beach Chalet Fields</p>
-          <p class="text-muted text-sm mt-1">
-            1000 Great Highway, SF 94121
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-8 text-center">
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center px-5 py-2.5 border border-border text-foreground font-mono text-xs font-medium tracking-wide transition-colors hover:bg-foreground/5"
-        >
-          Questions? →
-        </a>
-      </div>
-    </div>
-  </section>
+    </footer>
+  </div>
 </Layout>

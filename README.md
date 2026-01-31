@@ -2,6 +2,8 @@
 
 Website for Barbary Coast Lacrosse, San Francisco's premier men's lacrosse club.
 
+- [ ] Try using ASCII art for the backgrounds of the index page
+
 ## Development
 
 ```bash
