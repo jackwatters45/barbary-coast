@@ -1,0 +1,51 @@
+src/components/Schedule.astro
+  e0c9b66db5d43a9f 146
+  4b116bc72af671ee 61,65,69,80,88,91-96,99-103,105-115,117-119,126-127,129-134,137-145,147-150
+  61f3db961da8dbd4 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.40",
+  "base_commit_sha": "d8b938f0ed44c868858d76128f230db5815e16ac",
+  "prompts": {
+    "4b116bc72af671ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8c4e8a98-13b6-41b1-a098-13f35d77c61f",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 226,
+      "total_deletions": 193,
+      "accepted_lines": 51,
+      "overriden_lines": 0
+    },
+    "61f3db961da8dbd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aecfa2e8-742e-447b-9c49-a31a5ffe8d87",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 34,
+      "total_deletions": 19,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "e0c9b66db5d43a9f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7f56e07b-e256-4aff-ae38-f9ff10283875",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 309,
+      "total_deletions": 2,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
