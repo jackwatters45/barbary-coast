@@ -1,9 +1,9 @@
 [build]
-  command = "bun run build"
-  publish = "dist"
+command = "bun run build"
+publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+NODE_VERSION = "24"
 
 # Redirects for SPA-like behavior (if needed later)
 # [[redirects]]
@@ -13,16 +13,16 @@
 
 # Headers for caching static assets
 [[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/fonts/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.png"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
