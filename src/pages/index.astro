@@ -75,18 +75,25 @@ const schools = [
        Real marine radar antennas rotate at 20-50 RPM (uniform speed).
        The PPI sweep mirrors the antenna exactly. */
     @keyframes radar-sweep {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
     .radar-sweep-cone {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
         transparent 0deg,
         transparent 345deg,
-        rgba(196, 150, 46, 0.0) 345deg,
+        rgba(196, 150, 46, 0) 345deg,
         rgba(196, 150, 46, 0.03) 352deg,
         rgba(196, 150, 46, 0.08) 356deg,
         rgba(196, 150, 46, 0.16) 358.5deg,
@@ -98,13 +105,16 @@ const schools = [
     /* Phosphor afterglow — wider, dimmer trail behind the leading edge */
     .radar-sweep-glow {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
         transparent 0deg,
         transparent 310deg,
-        rgba(196, 150, 46, 0.0) 310deg,
+        rgba(196, 150, 46, 0) 310deg,
         rgba(196, 150, 46, 0.01) 330deg,
         rgba(196, 150, 46, 0.025) 348deg,
         rgba(196, 150, 46, 0.05) 356deg,
@@ -115,19 +125,52 @@ const schools = [
     }
     /* Blip pulse — bloom bright when sweep passes, slow phosphor decay */
     @keyframes blip-pulse {
-      0% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-      3% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
-      12% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.95); }
-      30% { opacity: 0.25; transform: translate(-50%, -50%) scale(0.9); }
-      60% { opacity: 0.12; transform: translate(-50%, -50%) scale(0.85); }
-      100% { opacity: 0.08; transform: translate(-50%, -50%) scale(0.8); }
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      3% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      12% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+      30% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      60% {
+        opacity: 0.12;
+        transform: translate(-50%, -50%) scale(0.85);
+      }
+      100% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
     }
     @keyframes blip-ring {
-      0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      5% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.3); }
-      15% { opacity: 0.15; transform: translate(-50%, -50%) scale(1.8); }
-      40% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+      0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      5% {
+        opacity: 0.35;
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+      15% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1.8);
+      }
+      40% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+      }
     }
     .radar-blip {
       position: absolute;
@@ -144,8 +187,12 @@ const schools = [
     }
     /* Scanline flicker — subtle horizontal noise */
     @keyframes scanline {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 4px; }
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 0 4px;
+      }
     }
     .radar-scanlines {
       position: absolute;
@@ -165,45 +212,210 @@ const schools = [
   <section id="hero" class="snap-section section-full relative overflow-hidden">
     <!-- Radar scope background -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <!-- Range rings — solid major -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] rounded-full border border-powder/20"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-powder/18"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full border border-powder/15"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-powder/12"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[760px] rounded-full border border-powder/10"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[920px] h-[920px] rounded-full border border-powder/7"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1080px] h-[1080px] rounded-full border border-powder/5"></div>
+      <!-- Range rings — solid major (vmax so they reach screen edges) -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[10vmax] h-[10vmax] rounded-full border border-powder/20"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22vmax] h-[22vmax] rounded-full border border-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34vmax] h-[34vmax] rounded-full border border-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[46vmax] h-[46vmax] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[58vmax] h-[58vmax] rounded-full border border-powder/10"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vmax] h-[70vmax] rounded-full border border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[82vmax] h-[82vmax] rounded-full border border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[94vmax] h-[94vmax] rounded-full border border-powder/5"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[106vmax] h-[106vmax] rounded-full border border-powder/4"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[118vmax] h-[118vmax] rounded-full border border-powder/3"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vmax] h-[130vmax] rounded-full border border-powder/2"
+      >
+      </div>
       <!-- Range rings — dashed minor -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-dashed border-powder/8"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] rounded-full border border-dashed border-powder/6"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full border border-dashed border-powder/5"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[680px] rounded-full border border-dashed border-powder/4"></div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[16vmax] h-[16vmax] rounded-full border border-dashed border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28vmax] h-[28vmax] rounded-full border border-dashed border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vmax] h-[40vmax] rounded-full border border-dashed border-powder/5"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[52vmax] h-[52vmax] rounded-full border border-dashed border-powder/4"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[64vmax] h-[64vmax] rounded-full border border-dashed border-powder/3"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[76vmax] h-[76vmax] rounded-full border border-dashed border-powder/3"
+      >
+      </div>
       <!-- Cardinal bearing lines -->
       <div class="absolute top-0 left-1/2 w-px h-full bg-powder/18"></div>
       <div class="absolute top-1/2 left-0 w-full h-px bg-powder/18"></div>
       <!-- Intercardinal 45° -->
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center rotate-45 -translate-x-1/2"></div>
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center -rotate-45 -translate-x-1/2"></div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center rotate-45 -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/8 origin-center -rotate-45 -translate-x-1/2"
+      >
+      </div>
       <!-- 30° bearing lines -->
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[30deg] -translate-x-1/2"></div>
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[60deg] -translate-x-1/2"></div>
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[120deg] -translate-x-1/2"></div>
-      <div class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[150deg] -translate-x-1/2"></div>
-      <!-- Tick marks along cardinal axes -->
-      <div class="absolute top-[calc(50%-70px)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/20"></div>
-      <div class="absolute top-[calc(50%-140px)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/25"></div>
-      <div class="absolute top-[calc(50%-210px)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/20"></div>
-      <div class="absolute top-[calc(50%-280px)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/25"></div>
-      <div class="absolute top-[calc(50%+70px)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/20"></div>
-      <div class="absolute top-[calc(50%+140px)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/25"></div>
-      <div class="absolute top-[calc(50%-5px)] left-[calc(50%+70px)] w-px h-2.5 bg-powder/20"></div>
-      <div class="absolute top-[calc(50%-7px)] left-[calc(50%+140px)] w-px h-3.5 bg-powder/25"></div>
-      <div class="absolute top-[calc(50%-5px)] left-[calc(50%+210px)] w-px h-2.5 bg-powder/20"></div>
-      <div class="absolute top-[calc(50%-5px)] left-[calc(50%-70px)] w-px h-2.5 bg-powder/20"></div>
-      <div class="absolute top-[calc(50%-7px)] left-[calc(50%-140px)] w-px h-3.5 bg-powder/25"></div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[30deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[60deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[120deg] -translate-x-1/2"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 w-[160%] h-px bg-powder/5 origin-center rotate-[150deg] -translate-x-1/2"
+      >
+      </div>
+      <!-- Tick marks along N axis -->
+      <div
+        class="absolute top-[calc(50%-5vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-11vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-17vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-23vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-29vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-35vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-41vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-47vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/15"
+      >
+      </div>
+      <!-- Tick marks along S axis -->
+      <div
+        class="absolute top-[calc(50%+5vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+11vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+17vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+23vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+29vmax)] left-[calc(50%-5px)] w-2.5 h-px bg-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%+35vmax)] left-[calc(50%-7px)] w-3.5 h-px bg-powder/18"
+      >
+      </div>
+      <!-- Tick marks along E axis -->
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+5vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%+11vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+17vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%+23vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%+29vmax)] w-px h-2.5 bg-powder/15"
+      >
+      </div>
+      <!-- Tick marks along W axis -->
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-5vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%-11vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-17vmax)] w-px h-2.5 bg-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-7px)] left-[calc(50%-23vmax)] w-px h-3.5 bg-powder/22"
+      >
+      </div>
+      <div
+        class="absolute top-[calc(50%-5px)] left-[calc(50%-29vmax)] w-px h-2.5 bg-powder/15"
+      >
+      </div>
 
       <!-- Sweep cone — the rotating wedge of light -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px]">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[135vmax] h-[135vmax]"
+      >
         <div class="radar-sweep-glow"></div>
         <div class="radar-sweep-cone"></div>
       </div>
@@ -211,49 +423,50 @@ const schools = [
       <!-- CRT scanline overlay -->
       <div class="radar-scanlines"></div>
 
-      <!-- Contact blips — bloom when sweep passes, then phosphor-decay -->
-      <!-- Blip 1: upper-right, bearing ~330° → fires at (330/360)*8 = 7.33s into cycle -->
-      <div class="radar-blip top-[26%] left-[60%] w-3 h-3 bg-gold/80" style="animation-delay: -0.67s;"></div>
-      <div class="radar-blip-ring top-[26%] left-[60%] w-8 h-8 border-gold/40" style="animation-delay: -0.67s;"></div>
-      <!-- Blip 2: near "Men's Lacrosse", bearing ~195° → (195/360)*8 = 4.33s -->
-      <div class="radar-blip top-[57.5%] left-[47%] w-2.5 h-2.5 bg-powder/70" style="animation-delay: -3.67s;"></div>
-      <div class="radar-blip-ring top-[57.5%] left-[47%] w-7 h-7 border-powder/30" style="animation-delay: -3.67s;"></div>
-      <!-- Blip 3: right side, bearing ~50° → (50/360)*8 = 1.11s -->
-      <div class="radar-blip top-[38%] left-[72%] w-2 h-2 bg-gold/65" style="animation-delay: -6.89s;"></div>
-      <div class="radar-blip-ring top-[38%] left-[72%] w-6 h-6 border-gold/25" style="animation-delay: -6.89s;"></div>
-      <!-- Blip 4: lower center, bearing ~185° → (185/360)*8 = 4.11s -->
-      <div class="radar-blip top-[68%] left-[52%] w-2 h-2 bg-powder/55" style="animation-delay: -3.89s;"></div>
-      <div class="radar-blip-ring top-[68%] left-[52%] w-5 h-5 border-powder/20" style="animation-delay: -3.89s;"></div>
-      <!-- Blip 5: upper-left, bearing ~315° → (315/360)*8 = 7s -->
-      <div class="radar-blip top-[22%] left-[38%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -1s;"></div>
-      <div class="radar-blip-ring top-[22%] left-[38%] w-5 h-5 border-powder/20" style="animation-delay: -1s;"></div>
-      <!-- Blip 6: lower-left, bearing ~225° → (225/360)*8 = 5s -->
-      <div class="radar-blip top-[72%] left-[35%] w-1.5 h-1.5 bg-gold/45" style="animation-delay: -3s;"></div>
-      <div class="radar-blip-ring top-[72%] left-[35%] w-5 h-5 border-gold/15" style="animation-delay: -3s;"></div>
-      <!-- Blip 7: far right, bearing ~70° → (70/360)*8 = 1.56s -->
-      <div class="radar-blip top-[45%] left-[82%] w-1.5 h-1.5 bg-powder/45" style="animation-delay: -6.44s;"></div>
-      <!-- Ghost returns (noise) — faint, no ring, different bearings -->
-      <div class="radar-blip top-[15%] left-[75%] w-1 h-1 bg-powder/20" style="animation-delay: -7.11s;"></div>
-      <div class="radar-blip top-[80%] left-[28%] w-1 h-1 bg-gold/15" style="animation-delay: -2.78s;"></div>
-      <div class="radar-blip top-[35%] left-[18%] w-1 h-1 bg-powder/15" style="animation-delay: -1.56s;"></div>
-      <div class="radar-blip top-[62%] left-[78%] w-1 h-1 bg-gold/15" style="animation-delay: -6.22s;"></div>
-      <div class="radar-blip top-[48%] left-[25%] w-1 h-1 bg-powder/12" style="animation-delay: -2.22s;"></div>
+      <!-- Contact blips — delays from true bearing: atan2(left-50, 50-top)
+           delay = -(8 - (bearing/360)*8) -->
+      <!-- Blip 1: upper-right, bearing 23° -->
+      <div class="radar-blip top-[26%] left-[60%] w-3 h-3 bg-gold/80" style="animation-delay: -7.50s;"></div>
+      <div class="radar-blip-ring top-[26%] left-[60%] w-8 h-8 border-gold/40" style="animation-delay: -7.50s;"></div>
+      <!-- Blip 2: near "Men's Lacrosse", bearing 202° -->
+      <div class="radar-blip top-[57.5%] left-[47%] w-2.5 h-2.5 bg-powder/70" style="animation-delay: -3.52s;"></div>
+      <div class="radar-blip-ring top-[57.5%] left-[47%] w-7 h-7 border-powder/30" style="animation-delay: -3.52s;"></div>
+      <!-- Blip 3: right side, bearing 61° -->
+      <div class="radar-blip top-[38%] left-[72%] w-2 h-2 bg-gold/65" style="animation-delay: -6.64s;"></div>
+      <div class="radar-blip-ring top-[38%] left-[72%] w-6 h-6 border-gold/25" style="animation-delay: -6.64s;"></div>
+      <!-- Blip 4: lower center, bearing 174° -->
+      <div class="radar-blip top-[68%] left-[52%] w-2 h-2 bg-powder/55" style="animation-delay: -4.14s;"></div>
+      <div class="radar-blip-ring top-[68%] left-[52%] w-5 h-5 border-powder/20" style="animation-delay: -4.14s;"></div>
+      <!-- Blip 5: upper-left, bearing 337° -->
+      <div class="radar-blip top-[22%] left-[38%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -0.52s;"></div>
+      <div class="radar-blip-ring top-[22%] left-[38%] w-5 h-5 border-powder/20" style="animation-delay: -0.52s;"></div>
+      <!-- Blip 6: lower-left, bearing 214° -->
+      <div class="radar-blip top-[72%] left-[35%] w-1.5 h-1.5 bg-gold/45" style="animation-delay: -3.24s;"></div>
+      <div class="radar-blip-ring top-[72%] left-[35%] w-5 h-5 border-gold/15" style="animation-delay: -3.24s;"></div>
+      <!-- Blip 7: far right, bearing 81° -->
+      <div class="radar-blip top-[45%] left-[82%] w-1.5 h-1.5 bg-powder/45" style="animation-delay: -6.20s;"></div>
+      <!-- Blip 8: bottom-right, bearing 138° -->
+      <div class="radar-blip top-[72%] left-[70%] w-2 h-2 bg-gold/60" style="animation-delay: -4.94s;"></div>
+      <div class="radar-blip-ring top-[72%] left-[70%] w-6 h-6 border-gold/20" style="animation-delay: -4.94s;"></div>
+      <!-- Blip 9: far bottom-right, bearing 155° -->
+      <div class="radar-blip top-[82%] left-[65%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -4.56s;"></div>
+      <div class="radar-blip-ring top-[82%] left-[65%] w-5 h-5 border-powder/18" style="animation-delay: -4.56s;"></div>
+      <!-- Ghost returns — faint, no ring -->
+      <div class="radar-blip top-[15%] left-[75%] w-1 h-1 bg-powder/20" style="animation-delay: -7.21s;"></div>
+      <div class="radar-blip top-[80%] left-[28%] w-1 h-1 bg-gold/15" style="animation-delay: -3.19s;"></div>
+      <div class="radar-blip top-[35%] left-[18%] w-1 h-1 bg-powder/15" style="animation-delay: -1.44s;"></div>
+      <div class="radar-blip top-[62%] left-[78%] w-1 h-1 bg-gold/15" style="animation-delay: -5.48s;"></div>
+      <div class="radar-blip top-[48%] left-[25%] w-1 h-1 bg-powder/12" style="animation-delay: -1.90s;"></div>
 
       <!-- Center pip — bright and steady -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-powder/60"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-gold/80"></div>
-    </div>
-
-    <!-- Corner reference marks -->
-    <div
-      class="absolute top-8 right-8 w-8 h-8 border-t border-r border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
-    </div>
-    <div
-      class="absolute bottom-8 left-8 w-8 h-8 border-b border-l border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-powder/60"
+      >
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-gold/80"
+      >
+      </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
@@ -286,67 +499,172 @@ const schools = [
     <!-- Sonar ping background -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <!-- Primary hydrophone — top-right -->
-      <div class="absolute -top-[120px] -right-[120px] w-[200px] h-[200px] rounded-full border border-powder/30"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[320px] h-[320px] rounded-full border border-powder/22"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[440px] h-[440px] rounded-full border border-powder/16"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[560px] h-[560px] rounded-full border border-powder/12"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[680px] h-[680px] rounded-full border border-powder/8"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[800px] h-[800px] rounded-full border border-powder/5"></div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[200px] h-[200px] rounded-full border border-powder/30"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[320px] h-[320px] rounded-full border border-powder/22"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[440px] h-[440px] rounded-full border border-powder/16"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[560px] h-[560px] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[680px] h-[680px] rounded-full border border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[800px] h-[800px] rounded-full border border-powder/5"
+      >
+      </div>
       <!-- Dashed intermediate rings -->
-      <div class="absolute -top-[120px] -right-[120px] w-[260px] h-[260px] rounded-full border border-dashed border-powder/10"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[500px] h-[500px] rounded-full border border-dashed border-powder/7"></div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[260px] h-[260px] rounded-full border border-dashed border-powder/10"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[500px] h-[500px] rounded-full border border-dashed border-powder/7"
+      >
+      </div>
       <!-- Source pip -->
-      <div class="absolute top-[2%] right-[2%] w-1.5 h-1.5 rounded-full bg-powder/50"></div>
+      <div
+        class="absolute top-[2%] right-[2%] w-1.5 h-1.5 rounded-full bg-powder/50"
+      >
+      </div>
       <!-- Secondary hydrophone — bottom-left -->
-      <div class="absolute -bottom-[200px] -left-[200px] w-[280px] h-[280px] rounded-full border border-gold/25"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[420px] h-[420px] rounded-full border border-gold/18"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[560px] h-[560px] rounded-full border border-gold/12"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[700px] h-[700px] rounded-full border border-gold/8"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[840px] h-[840px] rounded-full border border-gold/5"></div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[280px] h-[280px] rounded-full border border-gold/25"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[420px] h-[420px] rounded-full border border-gold/18"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[560px] h-[560px] rounded-full border border-gold/12"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[700px] h-[700px] rounded-full border border-gold/8"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[840px] h-[840px] rounded-full border border-gold/5"
+      >
+      </div>
       <!-- Dashed intermediate rings -->
-      <div class="absolute -bottom-[200px] -left-[200px] w-[350px] h-[350px] rounded-full border border-dashed border-gold/8"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[630px] h-[630px] rounded-full border border-dashed border-gold/6"></div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[350px] h-[350px] rounded-full border border-dashed border-gold/8"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[630px] h-[630px] rounded-full border border-dashed border-gold/6"
+      >
+      </div>
       <!-- Source pip -->
-      <div class="absolute bottom-[4%] left-[4%] w-1.5 h-1.5 rounded-full bg-gold/45"></div>
+      <div
+        class="absolute bottom-[4%] left-[4%] w-1.5 h-1.5 rounded-full bg-gold/45"
+      >
+      </div>
       <!-- Tertiary hydrophone — mid-right edge -->
-      <div class="absolute top-[40%] -right-[80px] w-[200px] h-[200px] rounded-full border border-powder/12"></div>
-      <div class="absolute top-[40%] -right-[80px] w-[350px] h-[350px] rounded-full border border-powder/8"></div>
-      <div class="absolute top-[40%] -right-[80px] w-[500px] h-[500px] rounded-full border border-powder/5"></div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[200px] h-[200px] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[350px] h-[350px] rounded-full border border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[500px] h-[500px] rounded-full border border-powder/5"
+      >
+      </div>
       <!-- Bearing reference line -->
-      <div class="absolute bottom-[4%] left-[4%] w-[140%] h-px bg-powder/6 origin-bottom-left -rotate-[35deg]"></div>
+      <div
+        class="absolute bottom-[4%] left-[4%] w-[140%] h-px bg-powder/6 origin-bottom-left -rotate-[35deg]"
+      >
+      </div>
       <!-- Contact blips with echo halos -->
-      <div class="absolute top-[28%] right-[28%] w-2.5 h-2.5 rounded-full bg-powder/55"></div>
-      <div class="absolute top-[28%] right-[28%] w-6 h-6 rounded-full border border-powder/15"></div>
-      <div class="absolute top-[42%] left-[42%] w-2 h-2 rounded-full bg-powder/40"></div>
-      <div class="absolute top-[42%] left-[42%] w-5 h-5 rounded-full border border-powder/12"></div>
-      <div class="absolute bottom-[32%] left-[25%] w-2 h-2 rounded-full bg-gold/50"></div>
-      <div class="absolute bottom-[32%] left-[25%] w-5 h-5 rounded-full border border-gold/15"></div>
-      <div class="absolute bottom-[20%] left-[45%] w-1.5 h-1.5 rounded-full bg-gold/35"></div>
-      <div class="absolute top-[15%] left-[50%] w-1.5 h-1.5 rounded-full bg-powder/30"></div>
+      <div
+        class="absolute top-[28%] right-[28%] w-2.5 h-2.5 rounded-full bg-powder/55"
+      >
+      </div>
+      <div
+        class="absolute top-[28%] right-[28%] w-6 h-6 rounded-full border border-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[42%] left-[42%] w-2 h-2 rounded-full bg-powder/40"
+      >
+      </div>
+      <div
+        class="absolute top-[42%] left-[42%] w-5 h-5 rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute bottom-[32%] left-[25%] w-2 h-2 rounded-full bg-gold/50"
+      >
+      </div>
+      <div
+        class="absolute bottom-[32%] left-[25%] w-5 h-5 rounded-full border border-gold/15"
+      >
+      </div>
+      <div
+        class="absolute bottom-[20%] left-[45%] w-1.5 h-1.5 rounded-full bg-gold/35"
+      >
+      </div>
+      <div
+        class="absolute top-[15%] left-[50%] w-1.5 h-1.5 rounded-full bg-powder/30"
+      >
+      </div>
       <!-- Wake trails -->
-      <div class="absolute top-[29%] right-[30%] w-1 h-1 rounded-full bg-powder/20"></div>
-      <div class="absolute top-[30%] right-[32%] w-1 h-1 rounded-full bg-powder/12"></div>
-      <div class="absolute bottom-[33%] left-[23%] w-1 h-1 rounded-full bg-gold/20"></div>
-      <div class="absolute bottom-[34%] left-[21%] w-1 h-1 rounded-full bg-gold/12"></div>
-      <div class="absolute top-[43%] left-[40%] w-1 h-1 rounded-full bg-powder/15"></div>
+      <div
+        class="absolute top-[29%] right-[30%] w-1 h-1 rounded-full bg-powder/20"
+      >
+      </div>
+      <div
+        class="absolute top-[30%] right-[32%] w-1 h-1 rounded-full bg-powder/12"
+      >
+      </div>
+      <div
+        class="absolute bottom-[33%] left-[23%] w-1 h-1 rounded-full bg-gold/20"
+      >
+      </div>
+      <div
+        class="absolute bottom-[34%] left-[21%] w-1 h-1 rounded-full bg-gold/12"
+      >
+      </div>
+      <div
+        class="absolute top-[43%] left-[40%] w-1 h-1 rounded-full bg-powder/15"
+      >
+      </div>
       <!-- Noise scatter -->
-      <div class="absolute top-[62%] left-[68%] w-0.5 h-0.5 rounded-full bg-powder/15"></div>
-      <div class="absolute top-[72%] left-[78%] w-0.5 h-0.5 rounded-full bg-gold/12"></div>
-      <div class="absolute top-[18%] left-[22%] w-0.5 h-0.5 rounded-full bg-powder/10"></div>
-      <div class="absolute top-[52%] left-[85%] w-0.5 h-0.5 rounded-full bg-gold/10"></div>
-      <div class="absolute top-[82%] left-[55%] w-0.5 h-0.5 rounded-full bg-powder/12"></div>
-    </div>
-
-    <!-- Corner L-brackets -->
-    <div
-      class="absolute top-8 left-8 w-8 h-8 border-t border-l border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
-    </div>
-    <div
-      class="absolute bottom-8 right-8 w-8 h-8 border-b border-r border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
+      <div
+        class="absolute top-[62%] left-[68%] w-0.5 h-0.5 rounded-full bg-powder/15"
+      >
+      </div>
+      <div
+        class="absolute top-[72%] left-[78%] w-0.5 h-0.5 rounded-full bg-gold/12"
+      >
+      </div>
+      <div
+        class="absolute top-[18%] left-[22%] w-0.5 h-0.5 rounded-full bg-powder/10"
+      >
+      </div>
+      <div
+        class="absolute top-[52%] left-[85%] w-0.5 h-0.5 rounded-full bg-gold/10"
+      >
+      </div>
+      <div
+        class="absolute top-[82%] left-[55%] w-0.5 h-0.5 rounded-full bg-powder/12"
+      >
+      </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
@@ -387,34 +705,97 @@ const schools = [
     <!-- Radar sweep background — origin bottom-left -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <!-- Major range rings (solid) -->
-      <div class="absolute -bottom-[300px] -left-[300px] w-[350px] h-[350px] rounded-full border border-powder/25"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[550px] h-[550px] rounded-full border border-powder/20"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[750px] h-[750px] rounded-full border border-powder/18"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[950px] h-[950px] rounded-full border border-powder/15"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1150px] h-[1150px] rounded-full border border-powder/12"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1350px] h-[1350px] rounded-full border border-powder/10"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1550px] h-[1550px] rounded-full border border-powder/8"></div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[350px] h-[350px] rounded-full border border-powder/25"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[550px] h-[550px] rounded-full border border-powder/20"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[750px] h-[750px] rounded-full border border-powder/18"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[950px] h-[950px] rounded-full border border-powder/15"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1150px] h-[1150px] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1350px] h-[1350px] rounded-full border border-powder/10"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1550px] h-[1550px] rounded-full border border-powder/8"
+      >
+      </div>
       <!-- Minor range rings (dashed) -->
-      <div class="absolute -bottom-[300px] -left-[300px] w-[450px] h-[450px] rounded-full border border-dashed border-powder/8"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[650px] h-[650px] rounded-full border border-dashed border-powder/8"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[850px] h-[850px] rounded-full border border-dashed border-powder/6"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1050px] h-[1050px] rounded-full border border-dashed border-powder/6"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1250px] h-[1250px] rounded-full border border-dashed border-powder/5"></div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[450px] h-[450px] rounded-full border border-dashed border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[650px] h-[650px] rounded-full border border-dashed border-powder/8"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[850px] h-[850px] rounded-full border border-dashed border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1050px] h-[1050px] rounded-full border border-dashed border-powder/6"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[300px] -left-[300px] w-[1250px] h-[1250px] rounded-full border border-dashed border-powder/5"
+      >
+      </div>
       <!-- Primary crosshair axes -->
       <div class="absolute bottom-0 left-0 w-full h-px bg-powder/20"></div>
       <div class="absolute bottom-0 left-0 w-px h-full bg-powder/20"></div>
       <!-- Bearing lines every 15° -->
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[15deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/12 origin-bottom-left -rotate-[30deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[45deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/12 origin-bottom-left -rotate-[60deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[75deg]"></div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[15deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/12 origin-bottom-left -rotate-[30deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[45deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/12 origin-bottom-left -rotate-[60deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/8 origin-bottom-left -rotate-[75deg]"
+      >
+      </div>
       <!-- Sweep line -->
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/35 origin-bottom-left -rotate-[38deg]"></div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/35 origin-bottom-left -rotate-[38deg]"
+      >
+      </div>
       <!-- Ghost trails -->
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/18 origin-bottom-left -rotate-[34deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/10 origin-bottom-left -rotate-[30deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/5 origin-bottom-left -rotate-[26deg]"></div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/18 origin-bottom-left -rotate-[34deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/10 origin-bottom-left -rotate-[30deg]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-[160%] h-px bg-gold/5 origin-bottom-left -rotate-[26deg]"
+      >
+      </div>
       <!-- Axis tick marks -->
       <div class="absolute bottom-0 left-[8%] w-px h-3 bg-powder/25"></div>
       <div class="absolute bottom-0 left-[18%] w-px h-3 bg-powder/25"></div>
@@ -426,30 +807,48 @@ const schools = [
       <div class="absolute bottom-0 left-[78%] w-px h-3 bg-powder/25"></div>
       <div class="absolute bottom-0 left-[88%] w-px h-3 bg-powder/25"></div>
       <!-- Contact blips -->
-      <div class="absolute bottom-[42%] left-[26%] w-2.5 h-2.5 rounded-full bg-gold/60"></div>
-      <div class="absolute bottom-[42%] left-[26%] w-5 h-5 rounded-full border border-gold/20"></div>
-      <div class="absolute bottom-[58%] left-[38%] w-2 h-2 rounded-full bg-powder/50"></div>
-      <div class="absolute bottom-[30%] left-[52%] w-1.5 h-1.5 rounded-full bg-gold/40"></div>
-      <div class="absolute bottom-[65%] left-[18%] w-1.5 h-1.5 rounded-full bg-powder/30"></div>
-      <div class="absolute bottom-[20%] left-[65%] w-1 h-1 rounded-full bg-gold/25"></div>
-      <div class="absolute bottom-[48%] left-[72%] w-1 h-1 rounded-full bg-powder/20"></div>
+      <div
+        class="absolute bottom-[42%] left-[26%] w-2.5 h-2.5 rounded-full bg-gold/60"
+      >
+      </div>
+      <div
+        class="absolute bottom-[42%] left-[26%] w-5 h-5 rounded-full border border-gold/20"
+      >
+      </div>
+      <div
+        class="absolute bottom-[58%] left-[38%] w-2 h-2 rounded-full bg-powder/50"
+      >
+      </div>
+      <div
+        class="absolute bottom-[30%] left-[52%] w-1.5 h-1.5 rounded-full bg-gold/40"
+      >
+      </div>
+      <div
+        class="absolute bottom-[65%] left-[18%] w-1.5 h-1.5 rounded-full bg-powder/30"
+      >
+      </div>
+      <div
+        class="absolute bottom-[20%] left-[65%] w-1 h-1 rounded-full bg-gold/25"
+      >
+      </div>
+      <div
+        class="absolute bottom-[48%] left-[72%] w-1 h-1 rounded-full bg-powder/20"
+      >
+      </div>
       <!-- Faded old contacts -->
-      <div class="absolute bottom-[75%] left-[45%] w-1 h-1 rounded-full bg-powder/12"></div>
-      <div class="absolute bottom-[35%] left-[82%] w-1 h-1 rounded-full bg-powder/10"></div>
+      <div
+        class="absolute bottom-[75%] left-[45%] w-1 h-1 rounded-full bg-powder/12"
+      >
+      </div>
+      <div
+        class="absolute bottom-[35%] left-[82%] w-1 h-1 rounded-full bg-powder/10"
+      >
+      </div>
       <!-- Origin pip -->
-      <div class="absolute -bottom-[1px] -left-[1px] w-1.5 h-1.5 rounded-full bg-powder/50"></div>
-    </div>
-
-    <!-- Corner L-brackets -->
-    <div
-      class="absolute top-8 right-8 w-8 h-8 border-t border-r border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
-    </div>
-    <div
-      class="absolute bottom-8 left-8 w-8 h-8 border-b border-l border-powder/30 hidden lg:block"
-      aria-hidden="true"
-    >
+      <div
+        class="absolute -bottom-[1px] -left-[1px] w-1.5 h-1.5 rounded-full bg-powder/50"
+      >
+      </div>
     </div>
 
     <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
@@ -469,10 +868,6 @@ const schools = [
             </p>
             <p class="text-lg text-muted">Good lacrosse. Great friends.</p>
           </div>
-
-          <div class="mt-8">
-            <span class="label text-subtle">[est. 2024]</span>
-          </div>
         </div>
 
         <div class="reveal flex items-center" style="--delay: 0.1s">
@@ -481,7 +876,8 @@ const schools = [
               Get in touch
             </h3>
             <p class="text-muted mt-2 mb-6">
-              Looking for competitive players who also like to have a good time. Reach out if that's you.
+              Looking for competitive players who also like to have a good time.
+              Reach out if that's you.
             </p>
             <div class="space-y-6">
               <div>
