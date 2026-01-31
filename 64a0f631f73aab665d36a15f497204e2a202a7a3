@@ -1,0 +1,38 @@
+biome.json
+  2c389ae585da04e9 3,9-12,27-31,33,37,46
+src/styles/global.css
+  2c389ae585da04e9 182-189,197
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.40",
+  "base_commit_sha": "64a0f631f73aab665d36a15f497204e2a202a7a3",
+  "prompts": {
+    "2c389ae585da04e9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ff65b7d3-38b1-48b6-a0b4-28e4642e4d92",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 172,
+      "total_deletions": 208,
+      "accepted_lines": 117,
+      "overriden_lines": 2
+    },
+    "e67cbd2bbfdeb676": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c65641fe-bd28-458c-9b97-15abfaa03ecf",
+        "model": "claude-opus-4-5-20251101"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 24,
+      "total_deletions": 30,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
