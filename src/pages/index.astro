@@ -296,6 +296,10 @@ const schools = [
     .map-marker:hover text {
       fill: rgba(90, 155, 196, 0.9);
     }
+    .map-marker:hover .map-marker-area {
+      fill: rgba(90, 155, 196, 0.18);
+      stroke: rgba(90, 155, 196, 0.7);
+    }
   </style>
 
   <!-- Hero -->
@@ -1071,7 +1075,7 @@ const schools = [
           href="https://en.wikipedia.org/wiki/Barbary_Coast,_San_Francisco"
           target="_blank"
           rel="noopener noreferrer"
-          class="pointer-events-auto"
+          class="pointer-events-auto map-marker"
           style="cursor: pointer;"
         >
           <polygon
@@ -1079,14 +1083,17 @@ const schools = [
             fill="rgba(90,155,196,0.08)"
             stroke="rgba(90,155,196,0.35)"
             stroke-width="1"
-            stroke-dasharray="4 2"></polygon>
+            stroke-dasharray="4 2"
+            class="map-marker-area"
+            style="transition: fill 0.2s ease, stroke 0.2s ease;"></polygon>
           <text
             x="613"
             y="372"
             fill="rgba(90,155,196,0.5)"
             font-family="var(--font-mono)"
-            font-size="6"
-            letter-spacing="2">BARBARY COAST</text
+            font-size="7"
+            letter-spacing="2"
+            style="transition: fill 0.2s ease; text-transform: uppercase;">Barbary Coast</text
           >
         </a>
 
@@ -1131,7 +1138,7 @@ const schools = [
             fill="rgba(90,155,196,0.5)"
             font-family="var(--font-mono)"
             font-size="7"
-            style="transition: fill 0.2s ease;">Hockey Haven</text
+            style="transition: fill 0.2s ease; text-transform: uppercase;">Hockey Haven</text
           >
         </a>
 
@@ -1175,7 +1182,7 @@ const schools = [
             fill="rgba(90,155,196,0.5)"
             font-family="var(--font-mono)"
             font-size="7"
-            style="transition: fill 0.2s ease;">Beach Chalet Fields</text
+            style="transition: fill 0.2s ease; text-transform: uppercase;">Beach Chalet Fields</text
           >
         </a>
 
@@ -1296,37 +1303,39 @@ const schools = [
     </div>
 
     <!-- About section -->
-    <div class="absolute top-[42%] left-[42%] px-6">
+    <div class="absolute top-[42%] left-[38%] px-6">
       <div class="reveal max-w-md" style="--delay: 0s">
-        <span class="label text-gold">[about]</span>
-        <h2
-          class="text-foreground mt-2 text-4xl lg:text-5xl font-medium tracking-tight"
-        >
-          The Team
-        </h2>
-        <div class="mt-6 space-y-3">
-          <p class="text-muted text-lg">
-            Barbary Coast is a men's post-collegiate lacrosse club competing in
-            the San Francisco Bay Area.
-          </p>
-          <p class="text-muted text-lg">Good lacrosse. Great friends.</p>
-        </div>
-        <div class="mt-8 flex items-center gap-6 text-sm">
-          <a
-            href="mailto:barbarycoastlc@gmail.com"
-            class="text-muted hover:text-powder transition-colors"
+        <div class="card p-8 lg:p-10">
+          <span class="label text-gold">[about]</span>
+          <h2
+            class="text-foreground mt-2 text-4xl lg:text-5xl font-medium tracking-tight"
           >
-            barbarycoastlc@gmail.com
-          </a>
-          <span class="text-border">·</span>
-          <a
-            href="https://www.instagram.com/barbarycoastlc/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-muted hover:text-gold transition-colors"
-          >
-            @barbarycoastlc
-          </a>
+            The Team
+          </h2>
+          <div class="mt-6 space-y-3">
+            <p class="text-muted text-lg">
+              Barbary Coast is a men's post-collegiate lacrosse club competing in
+              the San Francisco Bay Area.
+            </p>
+            <p class="text-muted text-lg">Good lacrosse. Great friends.</p>
+          </div>
+          <div class="mt-8 flex items-center gap-6 text-sm">
+            <a
+              href="mailto:barbarycoastlc@gmail.com"
+              class="text-muted hover:text-powder transition-colors"
+            >
+              barbarycoastlc@gmail.com
+            </a>
+            <span class="text-border">·</span>
+            <a
+              href="https://www.instagram.com/barbarycoastlc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted hover:text-gold transition-colors"
+            >
+              @barbarycoastlc
+            </a>
+          </div>
         </div>
       </div>
     </div>
