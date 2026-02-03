@@ -233,54 +233,68 @@ const schools = [
       border-radius: 50%;
       border-style: solid;
       transform: scale(0);
-      animation: sonar-ping 8s cubic-bezier(0.1, 0, 0.2, 1) infinite;
-    }
-
-    /* Searchlight beam — narrow cone that tracks mouse angle.
-       Element is centered on the bottom-left origin so the conic-gradient
-       naturally radiates outward from that point. */
-    #searchlight-cone {
-      background: conic-gradient(
-        from var(--beam-angle),
-        transparent 0deg,
-        transparent 348deg,
-        rgba(196, 150, 46, 0) 348deg,
-        rgba(196, 150, 46, 0.03) 353deg,
-        rgba(196, 150, 46, 0.08) 356deg,
-        rgba(196, 150, 46, 0.18) 358.5deg,
-        rgba(196, 150, 46, 0.28) 359.5deg,
-        rgba(196, 150, 46, 0.08) 360deg
-      );
-    }
-    #searchlight-glow {
-      background: conic-gradient(
-        from var(--beam-angle),
-        transparent 0deg,
-        transparent 330deg,
-        rgba(196, 150, 46, 0) 330deg,
-        rgba(196, 150, 46, 0.015) 342deg,
-        rgba(196, 150, 46, 0.035) 352deg,
-        rgba(196, 150, 46, 0.06) 357deg,
-        rgba(196, 150, 46, 0.02) 360deg
-      );
-      filter: blur(10px);
+      animation: sonar-ping 12s cubic-bezier(0.1, 0, 0.2, 1) infinite;
     }
 
     /* Sonar blip pulse — gentle breathing for contact dots */
     @keyframes sonar-blip-breathe {
-      0%, 100% {
+      0%,
+      100% {
         opacity: var(--blip-base);
-        transform: scale(1);
+        scale: 1;
       }
       50% {
         opacity: var(--blip-peak);
-        transform: scale(1.3);
+        scale: 1.3;
       }
     }
     .sonar-blip {
       animation: sonar-blip-breathe 4s ease-in-out infinite;
     }
 
+    /* Map marker animations */
+    @keyframes marker-ping {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
+    @keyframes marker-ring {
+      0% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(3);
+      }
+    }
+    .map-marker-dot {
+      animation: marker-ping 5s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    .map-marker-ring {
+      animation: marker-ring 5s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    .map-marker:hover .map-marker-dot {
+      animation: none;
+      opacity: 1;
+      transform: scale(1.6);
+    }
+    .map-marker:hover .map-marker-outer {
+      fill: rgba(90,155,196,0.3);
+      stroke: rgba(90,155,196,0.8);
+    }
+    .map-marker:hover text {
+      fill: rgba(90,155,196,0.9);
+    }
   </style>
 
   <!-- Hero -->
@@ -501,37 +515,125 @@ const schools = [
       <!-- Contact blips — delays from true bearing: atan2(left-50, 50-top)
            delay = -(8 - (bearing/360)*8) -->
       <!-- Blip 1: upper-right, bearing 23° -->
-      <div class="radar-blip top-[26%] left-[60%] w-3 h-3 bg-gold/80" style="animation-delay: -7.50s;"></div>
-      <div class="radar-blip-ring top-[26%] left-[60%] w-8 h-8 border-gold/40" style="animation-delay: -7.50s;"></div>
+      <div
+        class="radar-blip top-[26%] left-[60%] w-3 h-3 bg-gold/80"
+        style="animation-delay: -7.50s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[26%] left-[60%] w-8 h-8 border-gold/40"
+        style="animation-delay: -7.50s;"
+      >
+      </div>
       <!-- Blip 2: near "Men's Lacrosse", bearing 202° -->
-      <div class="radar-blip top-[57.5%] left-[47%] w-2.5 h-2.5 bg-powder/70" style="animation-delay: -3.52s;"></div>
-      <div class="radar-blip-ring top-[57.5%] left-[47%] w-7 h-7 border-powder/30" style="animation-delay: -3.52s;"></div>
+      <div
+        class="radar-blip top-[57.5%] left-[47%] w-2.5 h-2.5 bg-powder/70"
+        style="animation-delay: -3.52s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[57.5%] left-[47%] w-7 h-7 border-powder/30"
+        style="animation-delay: -3.52s;"
+      >
+      </div>
       <!-- Blip 3: right side, bearing 61° -->
-      <div class="radar-blip top-[38%] left-[72%] w-2 h-2 bg-gold/65" style="animation-delay: -6.64s;"></div>
-      <div class="radar-blip-ring top-[38%] left-[72%] w-6 h-6 border-gold/25" style="animation-delay: -6.64s;"></div>
+      <div
+        class="radar-blip top-[38%] left-[72%] w-2 h-2 bg-gold/65"
+        style="animation-delay: -6.64s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[38%] left-[72%] w-6 h-6 border-gold/25"
+        style="animation-delay: -6.64s;"
+      >
+      </div>
       <!-- Blip 4: lower center, bearing 174° -->
-      <div class="radar-blip top-[68%] left-[52%] w-2 h-2 bg-powder/55" style="animation-delay: -4.14s;"></div>
-      <div class="radar-blip-ring top-[68%] left-[52%] w-5 h-5 border-powder/20" style="animation-delay: -4.14s;"></div>
+      <div
+        class="radar-blip top-[68%] left-[52%] w-2 h-2 bg-powder/55"
+        style="animation-delay: -4.14s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[68%] left-[52%] w-5 h-5 border-powder/20"
+        style="animation-delay: -4.14s;"
+      >
+      </div>
       <!-- Blip 5: upper-left, bearing 337° -->
-      <div class="radar-blip top-[22%] left-[38%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -0.52s;"></div>
-      <div class="radar-blip-ring top-[22%] left-[38%] w-5 h-5 border-powder/20" style="animation-delay: -0.52s;"></div>
+      <div
+        class="radar-blip top-[22%] left-[38%] w-1.5 h-1.5 bg-powder/50"
+        style="animation-delay: -0.52s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[22%] left-[38%] w-5 h-5 border-powder/20"
+        style="animation-delay: -0.52s;"
+      >
+      </div>
       <!-- Blip 6: lower-left, bearing 214° -->
-      <div class="radar-blip top-[72%] left-[35%] w-1.5 h-1.5 bg-gold/45" style="animation-delay: -3.24s;"></div>
-      <div class="radar-blip-ring top-[72%] left-[35%] w-5 h-5 border-gold/15" style="animation-delay: -3.24s;"></div>
+      <div
+        class="radar-blip top-[72%] left-[35%] w-1.5 h-1.5 bg-gold/45"
+        style="animation-delay: -3.24s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[72%] left-[35%] w-5 h-5 border-gold/15"
+        style="animation-delay: -3.24s;"
+      >
+      </div>
       <!-- Blip 7: far right, bearing 81° -->
-      <div class="radar-blip top-[45%] left-[82%] w-1.5 h-1.5 bg-powder/45" style="animation-delay: -6.20s;"></div>
+      <div
+        class="radar-blip top-[45%] left-[82%] w-1.5 h-1.5 bg-powder/45"
+        style="animation-delay: -6.20s;"
+      >
+      </div>
       <!-- Blip 8: bottom-right, bearing 138° -->
-      <div class="radar-blip top-[72%] left-[70%] w-2 h-2 bg-gold/60" style="animation-delay: -4.94s;"></div>
-      <div class="radar-blip-ring top-[72%] left-[70%] w-6 h-6 border-gold/20" style="animation-delay: -4.94s;"></div>
+      <div
+        class="radar-blip top-[72%] left-[70%] w-2 h-2 bg-gold/60"
+        style="animation-delay: -4.94s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[72%] left-[70%] w-6 h-6 border-gold/20"
+        style="animation-delay: -4.94s;"
+      >
+      </div>
       <!-- Blip 9: far bottom-right, bearing 155° -->
-      <div class="radar-blip top-[82%] left-[65%] w-1.5 h-1.5 bg-powder/50" style="animation-delay: -4.56s;"></div>
-      <div class="radar-blip-ring top-[82%] left-[65%] w-5 h-5 border-powder/18" style="animation-delay: -4.56s;"></div>
+      <div
+        class="radar-blip top-[82%] left-[65%] w-1.5 h-1.5 bg-powder/50"
+        style="animation-delay: -4.56s;"
+      >
+      </div>
+      <div
+        class="radar-blip-ring top-[82%] left-[65%] w-5 h-5 border-powder/18"
+        style="animation-delay: -4.56s;"
+      >
+      </div>
       <!-- Ghost returns — faint, no ring -->
-      <div class="radar-blip top-[15%] left-[75%] w-1 h-1 bg-powder/20" style="animation-delay: -7.21s;"></div>
-      <div class="radar-blip top-[80%] left-[28%] w-1 h-1 bg-gold/15" style="animation-delay: -3.19s;"></div>
-      <div class="radar-blip top-[35%] left-[18%] w-1 h-1 bg-powder/15" style="animation-delay: -1.44s;"></div>
-      <div class="radar-blip top-[62%] left-[78%] w-1 h-1 bg-gold/15" style="animation-delay: -5.48s;"></div>
-      <div class="radar-blip top-[48%] left-[25%] w-1 h-1 bg-powder/12" style="animation-delay: -1.90s;"></div>
+      <div
+        class="radar-blip top-[15%] left-[75%] w-1 h-1 bg-powder/20"
+        style="animation-delay: -7.21s;"
+      >
+      </div>
+      <div
+        class="radar-blip top-[80%] left-[28%] w-1 h-1 bg-gold/15"
+        style="animation-delay: -3.19s;"
+      >
+      </div>
+      <div
+        class="radar-blip top-[35%] left-[18%] w-1 h-1 bg-powder/15"
+        style="animation-delay: -1.44s;"
+      >
+      </div>
+      <div
+        class="radar-blip top-[62%] left-[78%] w-1 h-1 bg-gold/15"
+        style="animation-delay: -5.48s;"
+      >
+      </div>
+      <div
+        class="radar-blip top-[48%] left-[25%] w-1 h-1 bg-powder/12"
+        style="animation-delay: -1.90s;"
+      >
+      </div>
 
       <!-- Center pip — bright and steady -->
       <div
@@ -586,85 +688,128 @@ const schools = [
       </div>
 
       <!-- Primary hydrophone — top-right (boosted opacity) -->
-      <div class="absolute -top-[120px] -right-[120px] w-[200px] h-[200px] rounded-full border border-powder/40"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[320px] h-[320px] rounded-full border border-powder/30"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[440px] h-[440px] rounded-full border border-powder/22"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[560px] h-[560px] rounded-full border border-powder/16"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[680px] h-[680px] rounded-full border border-powder/12"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[800px] h-[800px] rounded-full border border-powder/8"></div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[200px] h-[200px] rounded-full border border-powder/40"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[320px] h-[320px] rounded-full border border-powder/30"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[440px] h-[440px] rounded-full border border-powder/22"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[560px] h-[560px] rounded-full border border-powder/16"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[680px] h-[680px] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[800px] h-[800px] rounded-full border border-powder/8"
+      >
+      </div>
       <!-- Dashed intermediate rings -->
-      <div class="absolute -top-[120px] -right-[120px] w-[260px] h-[260px] rounded-full border border-dashed border-powder/15"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[500px] h-[500px] rounded-full border border-dashed border-powder/10"></div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[260px] h-[260px] rounded-full border border-dashed border-powder/15"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[500px] h-[500px] rounded-full border border-dashed border-powder/10"
+      >
+      </div>
 
       <!-- Animated sonar pings — top-right source -->
-      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: 0s;"></div>
-      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: -2.67s;"></div>
-      <div class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50" style="animation-delay: -5.33s;"></div>
-
-      <!-- Source pip — top-right -->
-      <div class="absolute top-[2%] right-[2%] w-2 h-2 rounded-full bg-powder/65"></div>
-      <div class="absolute top-[2%] right-[2%] w-4 h-4 rounded-full border border-powder/25"></div>
+      <div
+        class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50"
+        style="animation-delay: 0s;"
+      >
+      </div>
+      <div
+        class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50"
+        style="animation-delay: -4s;"
+      >
+      </div>
+      <div
+        class="sonar-ping -top-[120px] -right-[120px] w-[1000px] h-[1000px] border-powder/50"
+        style="animation-delay: -8s;"
+      >
+      </div>
 
       <!-- Secondary hydrophone — bottom-left (boosted opacity) -->
-      <div class="absolute -bottom-[200px] -left-[200px] w-[280px] h-[280px] rounded-full border border-gold/35"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[420px] h-[420px] rounded-full border border-gold/25"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[560px] h-[560px] rounded-full border border-gold/18"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[700px] h-[700px] rounded-full border border-gold/12"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[840px] h-[840px] rounded-full border border-gold/8"></div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[280px] h-[280px] rounded-full border border-gold/35"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[420px] h-[420px] rounded-full border border-gold/25"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[560px] h-[560px] rounded-full border border-gold/18"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[700px] h-[700px] rounded-full border border-gold/12"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[840px] h-[840px] rounded-full border border-gold/8"
+      >
+      </div>
       <!-- Dashed intermediate rings -->
-      <div class="absolute -bottom-[200px] -left-[200px] w-[350px] h-[350px] rounded-full border border-dashed border-gold/12"></div>
-      <div class="absolute -bottom-[200px] -left-[200px] w-[630px] h-[630px] rounded-full border border-dashed border-gold/8"></div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[350px] h-[350px] rounded-full border border-dashed border-gold/12"
+      >
+      </div>
+      <div
+        class="absolute -bottom-[200px] -left-[200px] w-[630px] h-[630px] rounded-full border border-dashed border-gold/8"
+      >
+      </div>
 
       <!-- Animated sonar pings — bottom-left source -->
-      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -1.3s;"></div>
-      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -4s;"></div>
-      <div class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45" style="animation-delay: -6.67s;"></div>
-
-      <!-- Source pip — bottom-left -->
-      <div class="absolute bottom-[4%] left-[4%] w-2 h-2 rounded-full bg-gold/60"></div>
-      <div class="absolute bottom-[4%] left-[4%] w-4 h-4 rounded-full border border-gold/25"></div>
+      <div
+        class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45"
+        style="animation-delay: -2s;"
+      >
+      </div>
+      <div
+        class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45"
+        style="animation-delay: -6s;"
+      >
+      </div>
+      <div
+        class="sonar-ping -bottom-[200px] -left-[200px] w-[900px] h-[900px] border-gold/45"
+        style="animation-delay: -10s;"
+      >
+      </div>
 
       <!-- Tertiary hydrophone — mid-right edge (boosted) -->
-      <div class="absolute top-[40%] -right-[80px] w-[200px] h-[200px] rounded-full border border-powder/18"></div>
-      <div class="absolute top-[40%] -right-[80px] w-[350px] h-[350px] rounded-full border border-powder/12"></div>
-      <div class="absolute top-[40%] -right-[80px] w-[500px] h-[500px] rounded-full border border-powder/8"></div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[200px] h-[200px] rounded-full border border-powder/18"
+      >
+      </div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[350px] h-[350px] rounded-full border border-powder/12"
+      >
+      </div>
+      <div
+        class="absolute top-[40%] -right-[80px] w-[500px] h-[500px] rounded-full border border-powder/8"
+      >
+      </div>
 
       <!-- Bearing reference lines -->
-      <div class="absolute bottom-[4%] left-[4%] w-[140%] h-px bg-powder/10 origin-bottom-left -rotate-[35deg]"></div>
-      <div class="absolute -top-[120px] -right-[120px] w-[1px] h-[900px] bg-powder/8 origin-top rotate-[55deg]"></div>
-
-      <!-- Contact blips — animated pulse -->
-      <div class="absolute top-[28%] right-[28%] w-2.5 h-2.5 rounded-full bg-powder/70 sonar-blip" style="--blip-base: 0.55; --blip-peak: 0.8; animation-delay: 0s;"></div>
-      <div class="absolute top-[28%] right-[28%] w-7 h-7 rounded-full border border-powder/25"></div>
-
-      <div class="absolute top-[42%] left-[42%] w-2 h-2 rounded-full bg-powder/55 sonar-blip" style="--blip-base: 0.4; --blip-peak: 0.65; animation-delay: -1.2s;"></div>
-      <div class="absolute top-[42%] left-[42%] w-5 h-5 rounded-full border border-powder/18"></div>
-
-      <div class="absolute bottom-[32%] left-[25%] w-2.5 h-2.5 rounded-full bg-gold/65 sonar-blip" style="--blip-base: 0.5; --blip-peak: 0.75; animation-delay: -2.5s;"></div>
-      <div class="absolute bottom-[32%] left-[25%] w-6 h-6 rounded-full border border-gold/22"></div>
-
-      <div class="absolute bottom-[20%] left-[45%] w-1.5 h-1.5 rounded-full bg-gold/50 sonar-blip" style="--blip-base: 0.35; --blip-peak: 0.55; animation-delay: -0.8s;"></div>
-
-      <div class="absolute top-[15%] left-[50%] w-1.5 h-1.5 rounded-full bg-powder/45 sonar-blip" style="--blip-base: 0.3; --blip-peak: 0.5; animation-delay: -3.1s;"></div>
-
-      <div class="absolute top-[65%] right-[15%] w-2 h-2 rounded-full bg-powder/50 sonar-blip" style="--blip-base: 0.35; --blip-peak: 0.6; animation-delay: -1.8s;"></div>
-      <div class="absolute top-[65%] right-[15%] w-5 h-5 rounded-full border border-powder/15"></div>
-
-      <!-- Wake trails -->
-      <div class="absolute top-[29%] right-[30%] w-1 h-1 rounded-full bg-powder/30"></div>
-      <div class="absolute top-[30%] right-[32%] w-1 h-1 rounded-full bg-powder/18"></div>
-      <div class="absolute bottom-[33%] left-[23%] w-1 h-1 rounded-full bg-gold/30"></div>
-      <div class="absolute bottom-[34%] left-[21%] w-1 h-1 rounded-full bg-gold/18"></div>
-      <div class="absolute top-[43%] left-[40%] w-1 h-1 rounded-full bg-powder/22"></div>
-
-      <!-- Noise scatter (boosted) -->
-      <div class="absolute top-[62%] left-[68%] w-0.5 h-0.5 rounded-full bg-powder/22"></div>
-      <div class="absolute top-[72%] left-[78%] w-0.5 h-0.5 rounded-full bg-gold/18"></div>
-      <div class="absolute top-[18%] left-[22%] w-0.5 h-0.5 rounded-full bg-powder/16"></div>
-      <div class="absolute top-[52%] left-[85%] w-0.5 h-0.5 rounded-full bg-gold/16"></div>
-      <div class="absolute top-[82%] left-[55%] w-0.5 h-0.5 rounded-full bg-powder/18"></div>
-      <div class="absolute top-[35%] left-[12%] w-0.5 h-0.5 rounded-full bg-gold/14"></div>
-      <div class="absolute top-[78%] left-[35%] w-0.5 h-0.5 rounded-full bg-powder/14"></div>
+      <div
+        class="absolute bottom-[4%] left-[4%] w-[140%] h-px bg-powder/10 origin-bottom-left -rotate-[35deg]"
+      >
+      </div>
+      <div
+        class="absolute -top-[120px] -right-[120px] w-[1px] h-[900px] bg-powder/8 origin-top rotate-[55deg]"
+      >
+      </div>
 
       <!-- CRT scanline overlay (shared with hero) -->
       <div class="radar-scanlines"></div>
@@ -705,149 +850,492 @@ const schools = [
     id="about"
     class="snap-section section-full relative overflow-hidden"
   >
-    <!-- Searchlight background — origin bottom-left, beam tracks mouse -->
+    <!-- Pirate map of San Francisco Bay — real coordinates -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <!-- Radial gradient wash from origin -->
-      <div
-        class="absolute -bottom-[300px] -left-[300px] w-[1200px] h-[1200px] rounded-full"
-        style="background: radial-gradient(circle, rgba(196,150,46,0.06) 0%, rgba(196,150,46,0.02) 35%, transparent 65%);"
-      ></div>
+      <svg
+        class="absolute inset-0 w-full h-full"
+        viewBox="120 150 850 650"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <style>
+            .land {
+              fill: rgba(196, 150, 46, 0.04);
+              stroke: rgba(196, 150, 46, 0.2);
+              stroke-width: 1.5;
+              stroke-linejoin: round;
+            }
+            .island {
+              fill: rgba(196, 150, 46, 0.035);
+              stroke: rgba(196, 150, 46, 0.18);
+              stroke-width: 1.2;
+            }
+            .water-label {
+              fill: rgba(90, 155, 196, 0.4);
+              font-family: var(--font-mono);
+            }
+            .land-label {
+              fill: rgba(196, 150, 46, 0.35);
+              font-family: var(--font-mono);
+              letter-spacing: 3px;
+            }
+            .place-label {
+              fill: rgba(196, 150, 46, 0.35);
+              font-family: var(--font-mono);
+              font-size: 7px;
+            }
+            .sounding {
+              fill: rgba(90, 155, 196, 0.16);
+              font-family: var(--font-mono);
+              font-size: 7px;
+            }
+            .bridge {
+              stroke: rgba(196, 150, 46, 0.18);
+              stroke-width: 1.5;
+              stroke-dasharray: 5 3;
+              fill: none;
+            }
+            .depth {
+              fill: none;
+              stroke: rgba(90, 155, 196, 0.09);
+              stroke-width: 0.6;
+            }
+            .wave {
+              fill: none;
+              stroke: rgba(90, 155, 196, 0.06);
+              stroke-width: 0.5;
+            }
+            .hatch {
+              stroke: rgba(196, 150, 46, 0.04);
+              stroke-width: 0.5;
+            }
+          </style>
+        </defs>
 
-      <!-- Major range rings (boosted) -->
-      <div class="absolute -bottom-[300px] -left-[300px] w-[350px] h-[350px] rounded-full border border-powder/35"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[550px] h-[550px] rounded-full border border-powder/28"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[750px] h-[750px] rounded-full border border-powder/22"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[950px] h-[950px] rounded-full border border-powder/18"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1150px] h-[1150px] rounded-full border border-powder/14"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1350px] h-[1350px] rounded-full border border-powder/10"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1550px] h-[1550px] rounded-full border border-powder/8"></div>
-      <!-- Minor range rings (dashed, boosted) -->
-      <div class="absolute -bottom-[300px] -left-[300px] w-[450px] h-[450px] rounded-full border border-dashed border-powder/12"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[650px] h-[650px] rounded-full border border-dashed border-powder/10"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[850px] h-[850px] rounded-full border border-dashed border-powder/8"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1050px] h-[1050px] rounded-full border border-dashed border-powder/7"></div>
-      <div class="absolute -bottom-[300px] -left-[300px] w-[1250px] h-[1250px] rounded-full border border-dashed border-powder/6"></div>
+        <!-- === MARIN / PACIFIC COAST (real OSM coastline data) === -->
+        <path
+          class="land"
+          d="M-19.9,166.9 L-8.7,167.2 L4.3,173.8 L10.3,182.3 L30.6,191.7 L36.0,199.2 L48.5,201.6 L58.7,209.4 L62.5,203.9 L72.1,203.3 L95.0,217.0 L107.1,215.9 L121.5,220.3 L125.8,229.2 L131.6,229.8 L129.4,235.3 L140.6,237.3 L140.3,241.9 L152.0,244.2 L160.1,250.9 L163.8,256.5 L162.2,260.9 L173.1,260.7 L207.0,271.7 L210.6,280.6 L204.5,283.7 L218.5,290.2 L227.0,300.7 L224.1,302.8 L230.7,302.5 L225.2,295.3 L227.1,291.8 L238.6,289.5 L246.4,280.9 L288.1,282.3 L302.8,286.1 L305.5,290.5 L314.4,289.0 L321.3,292.7 L320.9,288.3 L332.6,288.0 L349.5,277.4 L389.5,280.3 L386.9,269.8 L393.9,264.3 L389.7,262.8 L400.9,261.2 L404.9,265.2 L398.6,266.2 L407.2,265.3 L410.6,255.0 L394.2,242.0 L392.3,233.3 L384.2,229.6 L389.5,204.2 L383.2,208.1 L351.1,197.9 L356.7,194.3 L341.4,194.8 L326.4,185.2 L332.1,177.7 L325.0,180.0 L327.6,175.9 L320.0,178.7 L305.5,174.7 L304.0,167.8 L300.2,167.2 L304.9,170.8 L301.4,172.1 L290.8,168.2 L271.4,153.0 L260.3,151.1 L244.7,158.7 L259.6,150.4 L249.2,148.3 L253.4,148.1 L249.7,144.7 L254.7,143.0 L246.8,137.9 L246.4,132.1 L237.0,130.4 L229.1,123.8 L210.1,121.3 L229.7,123.6 L243.8,130.6 L236.0,118.4 L238.8,118.4 L236.1,111.9 L254.0,134.7 L262.4,129.0 L261.0,136.5 L256.7,136.8 L265.4,143.5 L271.8,144.0 L277.5,136.6 L286.3,139.1 L291.0,142.9 L283.0,148.6 L304.3,150.1 L308.6,152.6 L306.6,155.6 L329.0,163.5 L332.7,161.3 L323.6,143.8 L320.3,144.1 L322.6,151.8 L315.3,146.7 L316.9,141.4 L308.8,135.5 L309.4,128.5 L305.9,125.3 L312.7,123.2 L314.3,117.3 L321.1,118.8 L322.3,123.2 L316.8,119.6 L324.7,126.8 L356.3,123.0 L373.5,134.2 L404.5,146.0 L412.0,155.3 L402.3,162.8 L403.7,168.6 L418.2,182.2 L453.6,197.8 L453.6,190.8 L440.5,183.3 L437.4,174.4 L447.1,170.6 L456.7,177.0 L462.2,172.5 L480.1,174.6 L484.1,169.3 L501.9,166.3 L497.8,160.7 L501.7,157.2 L514.8,157.4 L518.5,152.5 L497.6,142.7 L483.6,126.1 L455.5,125.8 L395.6,101.8 L394.8,93.8 L407.6,93.9 L398.0,92.5 L393.0,84.4 L399.1,91.1 L402.0,90.4 L399.9,85.3 L407.0,91.7 L401.3,77.4 L398.3,78.5 L400.3,81.9 L390.9,80.0 L392.6,83.9 L387.9,77.8 L401.3,76.4 L399.3,73.9 L387.0,76.4 L365.0,65.9 L330.6,64.6 L323.5,55.5 L314.5,55.4 L310.8,62.2 L310.5,58.4 L303.2,56.9 L299.9,59.6 L303.3,63.2 L294.9,62.9 L296.7,68.2 L294.7,62.9 L303.6,62.6 L300.9,56.6 L318.9,54.7 L309.9,50.7 L311.9,49.0 L304.4,43.8 L310.1,42.6 L305.3,40.5 L302.7,30.5 L297.2,29.6 L302.3,28.8 L303.4,18.7 L274.0,15.3 L250.8,27.9 L259.5,20.9 L234.3,15.4 L236.0,26.4 L223.3,26.5 L231.7,24.9 L232.1,14.6 L219.9,18.2 L225.0,14.5 L213.4,20.0 L214.3,25.5 L211.8,22.6 L214.6,18.5 L199.4,15.8 L193.7,7.0 L167.1,2.2 L175.8,3.0 L174.2,-3.5 L179.7,4.1 L194.5,5.8 L199.3,13.0 L213.2,16.3 L228.6,12.0 L258.5,18.3 L272.8,13.6 L296.7,15.6 L290.8,13.6 L290.0,8.4 L353.9,29.3 L370.5,20.3 L391.4,17.3 L361.9,6.2 L348.3,-23.4 L351.8,-24.9 L351.5,-32.8 L333.3,-39.1 L334.4,-45.6 L-60,-60 L-60,166.9 Z"
+        ></path>
 
-      <!-- Primary crosshair axes -->
-      <div class="absolute bottom-0 left-0 w-full h-px bg-powder/25"></div>
-      <div class="absolute bottom-0 left-0 w-px h-full bg-powder/25"></div>
-      <!-- Bearing lines every 15° (boosted) -->
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[15deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/14 origin-bottom-left -rotate-[30deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[45deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/14 origin-bottom-left -rotate-[60deg]"></div>
-      <div class="absolute bottom-0 left-0 w-[160%] h-px bg-powder/10 origin-bottom-left -rotate-[75deg]"></div>
+        <!-- Marin hatching -->
+        <g opacity="0.6">
+          <line class="hatch" x1="-60" y1="0" x2="359" y2="0"></line>
+          <line class="hatch" x1="-60" y1="20" x2="372" y2="20"></line>
+          <line class="hatch" x1="-60" y1="40" x2="305" y2="40"></line>
+          <line class="hatch" x1="-60" y1="60" x2="327" y2="60"></line>
+          <line class="hatch" x1="-60" y1="80" x2="402" y2="80"></line>
+          <line class="hatch" x1="-60" y1="100" x2="395" y2="100"></line>
+          <line class="hatch" x1="-60" y1="120" x2="441" y2="120"></line>
+          <line class="hatch" x1="-60" y1="140" x2="495" y2="140"></line>
+          <line class="hatch" x1="-60" y1="160" x2="499" y2="160"></line>
+          <line class="hatch" x1="-60" y1="180" x2="439" y2="180"></line>
+          <line class="hatch" x1="-60" y1="200" x2="358" y2="200"></line>
+          <line class="hatch" x1="-60" y1="220" x2="386" y2="220"></line>
+          <line class="hatch" x1="-60" y1="240" x2="394" y2="240"></line>
+          <line class="hatch" x1="-60" y1="260" x2="409" y2="260"></line>
+          <line class="hatch" x1="-60" y1="280" x2="389" y2="280"></line>
+        </g>
 
-      <!-- Searchlight beam — follows mouse, driven by JS.
-           Large circle centered on bottom-left. Uses translate to center
-           without pushing the element out of the overflow-hidden bounds. -->
-      <div
-        id="searchlight-cone"
-        class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-full"
-        style="--beam-angle: -45deg; width: 300vmax; height: 300vmax;"
-      ></div>
-      <div
-        id="searchlight-glow"
-        class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 rounded-full"
-        style="--beam-angle: -45deg; width: 300vmax; height: 300vmax;"
-      ></div>
+        <!-- === SF PENINSULA (real OSM coastline data) === -->
+        <path
+          class="land"
+          d="M1088.1,938.3 L1082.9,937.1 L1086.8,922.6 L1096.8,919.0 L1116.2,921.6 L1112.5,908.5 L1135.7,886.9 L1123.5,868.1 L1113.7,860.3 L1079.6,846.2 L1045.0,854.6 L1026.5,851.2 L1026.3,846.9 L1009.5,842.1 L987.0,845.2 L985.3,850.5 L979.4,852.3 L987.6,856.7 L981.1,857.0 L970.0,851.4 L969.9,842.6 L942.6,843.9 L908.6,823.5 L915.2,819.0 L915.5,809.9 L910.8,808.7 L910.9,816.7 L907.0,817.3 L904.6,809.2 L903.3,817.3 L901.5,807.3 L913.4,804.8 L892.6,805.4 L855.9,815.0 L850.0,814.5 L849.7,805.3 L838.3,805.4 L836.9,816.5 L774.6,812.7 L837.1,814.0 L837.1,805.6 L821.9,805.4 L825.0,807.3 L813.1,810.2 L810.7,806.9 L819.6,805.5 L768.0,805.5 L755.0,791.0 L749.6,793.6 L748.8,789.3 L735.7,781.5 L709.9,775.5 L731.6,754.4 L773.3,767.4 L784.5,754.1 L741.8,740.2 L752.5,727.0 L750.7,724.0 L724.9,724.8 L707.4,716.6 L687.3,722.8 L679.1,720.9 L675.4,717.2 L678.8,709.8 L703.7,707.9 L696.1,706.2 L690.6,697.5 L668.1,699.5 L672.4,696.5 L668.9,687.5 L661.3,693.1 L666.5,699.7 L651.0,700.2 L656.5,698.8 L651.5,699.0 L656.2,697.8 L650.8,696.2 L655.6,695.6 L650.2,693.9 L660.9,688.9 L630.9,691.6 L639.0,689.5 L635.8,683.8 L641.7,690.4 L649.7,691.3 L659.9,687.6 L666.4,680.0 L702.9,679.2 L705.5,672.6 L711.6,670.0 L710.7,664.4 L718.3,663.8 L704.1,650.8 L719.8,650.1 L721.7,647.0 L694.7,645.5 L693.2,642.5 L700.7,641.9 L700.3,634.2 L684.9,635.4 L687.6,637.1 L681.7,642.3 L671.5,638.9 L655.1,641.1 L663.2,638.0 L663.8,633.5 L678.6,632.7 L680.2,626.2 L700.6,625.8 L700.4,613.5 L679.0,611.1 L662.5,559.6 L664.7,551.4 L658.8,545.9 L667.5,540.8 L721.9,543.0 L710.6,543.2 L703.7,538.6 L716.8,526.4 L693.8,517.3 L695.5,513.6 L681.7,507.9 L698.9,512.5 L713.5,508.2 L722.7,519.8 L750.6,526.2 L759.8,521.6 L756.1,519.6 L759.2,517.3 L770.4,519.4 L755.6,512.8 L768.0,513.9 L751.0,504.7 L763.2,509.0 L774.9,507.1 L762.6,505.8 L774.5,503.8 L777.6,498.0 L760.8,498.4 L771.6,495.5 L738.0,490.5 L729.1,485.7 L717.7,488.7 L720.2,478.8 L715.0,476.3 L743.9,476.5 L724.6,475.5 L723.3,473.3 L743.5,472.2 L719.3,457.1 L662.7,455.8 L662.9,453.3 L717.6,452.9 L716.5,444.9 L704.0,445.4 L690.9,439.6 L701.4,438.3 L699.9,428.2 L691.7,422.8 L700.7,421.7 L689.0,422.8 L681.5,419.0 L687.9,407.8 L686.0,404.5 L693.8,405.6 L685.1,403.4 L682.3,397.6 L699.2,400.6 L698.1,394.6 L681.7,395.2 L688.0,390.7 L672.2,390.0 L644.3,403.9 L680.1,386.3 L679.2,379.2 L686.3,378.5 L679.1,377.3 L688.9,376.7 L678.8,376.0 L679.6,370.2 L689.9,369.7 L689.5,365.9 L680.2,366.2 L687.5,364.2 L680.9,362.7 L687.0,360.5 L677.4,360.6 L656.9,345.2 L662.7,342.0 L655.5,343.9 L660.5,340.5 L653.4,342.3 L647.5,337.8 L653.7,334.2 L646.4,337.0 L640.8,332.6 L647.9,329.7 L640.0,330.2 L644.7,327.2 L636.8,329.5 L638.6,321.1 L631.0,323.9 L632.4,319.9 L625.8,322.2 L626.0,317.5 L622.9,322.0 L620.3,314.9 L616.1,319.7 L606.7,311.7 L603.6,312.8 L605.5,317.7 L599.3,313.6 L601.9,316.4 L594.9,317.2 L574.7,311.6 L588.0,318.4 L574.5,319.0 L566.9,314.4 L572.5,318.2 L561.0,322.5 L544.5,319.9 L543.4,316.7 L542.8,320.9 L539.6,317.1 L539.3,321.2 L535.6,318.4 L534.9,324.7 L525.2,320.5 L488.0,323.6 L511.9,317.6 L437.8,326.1 L391.0,312.8 L382.0,336.5 L361.8,360.2 L330.8,366.2 L300.8,364.1 L272.9,380.0 L280.8,405.5 L296.8,506.6 L329.4,593.2 L334.7,623.1 L331.9,637.6 L338.2,646.3 L340.7,664.9 L334.8,727.5 L330.4,739.1 L323.1,742.1 L328.5,745.2 L325.6,755.8 L329.7,760.5 L324.2,769.3 L314.2,770.7 L313.7,774.6 L320.4,779.0 L318.1,784.5 L299.4,795.9 L272.2,790.4 L271.5,796.9 L253.1,800.1 L263.9,807.2 L264.8,811.6 L262.2,839.5 L254.2,846.0 L264.0,848.1 L261.2,852.3 L267.9,856.6 L261.8,860.2 L271.9,861.7 L274.7,867.6 L270.7,871.9 L274.2,877.6 L269.1,880.8 L276.5,889.1 L272.1,906.5 L266.6,911.7 L-60,911.7 L-60,960 L1088.1,960 Z"
+        ></path>
 
-      <!-- Axis tick marks (boosted) -->
-      <div class="absolute bottom-0 left-[8%] w-px h-3 bg-powder/30"></div>
-      <div class="absolute bottom-0 left-[18%] w-px h-4 bg-powder/35"></div>
-      <div class="absolute bottom-0 left-[28%] w-px h-3 bg-powder/30"></div>
-      <div class="absolute bottom-0 left-[38%] w-px h-4 bg-powder/35"></div>
-      <div class="absolute bottom-0 left-[48%] w-px h-3 bg-powder/30"></div>
-      <div class="absolute bottom-0 left-[58%] w-px h-4 bg-powder/35"></div>
-      <div class="absolute bottom-0 left-[68%] w-px h-3 bg-powder/30"></div>
-      <div class="absolute bottom-0 left-[78%] w-px h-4 bg-powder/35"></div>
-      <div class="absolute bottom-0 left-[88%] w-px h-3 bg-powder/30"></div>
+        <!-- SF hatching -->
+        <g opacity="0.6">
+          <line class="hatch" x1="379" y1="340" x2="650" y2="340"></line>
+          <line class="hatch" x1="362" y1="360" x2="677" y2="360"></line>
+          <line class="hatch" x1="273" y1="380" x2="679" y2="380"></line>
+          <line class="hatch" x1="279" y1="400" x2="699" y2="400"></line>
+          <line class="hatch" x1="283" y1="420" x2="684" y2="420"></line>
+          <line class="hatch" x1="286" y1="440" x2="692" y2="440"></line>
+          <line class="hatch" x1="289" y1="460" x2="724" y2="460"></line>
+          <line class="hatch" x1="293" y1="480" x2="720" y2="480"></line>
+          <line class="hatch" x1="296" y1="500" x2="777" y2="500"></line>
+          <line class="hatch" x1="302" y1="520" x2="757" y2="520"></line>
+          <line class="hatch" x1="309" y1="540" x2="706" y2="540"></line>
+          <line class="hatch" x1="317" y1="560" x2="663" y2="560"></line>
+          <line class="hatch" x1="324" y1="580" x2="669" y2="580"></line>
+          <line class="hatch" x1="331" y1="600" x2="675" y2="600"></line>
+          <line class="hatch" x1="334" y1="620" x2="700" y2="620"></line>
+          <line class="hatch" x1="334" y1="640" x2="701" y2="640"></line>
+          <line class="hatch" x1="340" y1="660" x2="714" y2="660"></line>
+          <line class="hatch" x1="339" y1="680" x2="666" y2="680"></line>
+          <line class="hatch" x1="337" y1="700" x2="692" y2="700"></line>
+          <line class="hatch" x1="336" y1="720" x2="715" y2="720"></line>
+          <line class="hatch" x1="328" y1="740" x2="742" y2="740"></line>
+          <line class="hatch" x1="329" y1="760" x2="779" y2="760"></line>
+          <line class="hatch" x1="320" y1="780" x2="729" y2="780"></line>
+          <line class="hatch" x1="254" y1="800" x2="763" y2="800"></line>
+          <line class="hatch" x1="264" y1="820" x2="914" y2="820"></line>
+          <line class="hatch" x1="262" y1="840" x2="936" y2="840"></line>
+          <line class="hatch" x1="262" y1="860" x2="1113" y2="860"></line>
+          <line class="hatch" x1="270" y1="880" x2="1131" y2="880"></line>
+        </g>
 
-      <!-- Contact blips — animated pulse -->
-      <div class="absolute bottom-[42%] left-[26%] w-2.5 h-2.5 rounded-full bg-gold/70 sonar-blip" style="--blip-base: 0.55; --blip-peak: 0.8; animation-delay: -0.5s;"></div>
-      <div class="absolute bottom-[42%] left-[26%] w-6 h-6 rounded-full border border-gold/25"></div>
+        <!-- === EAST BAY (real OSM coastline data) === -->
+        <path
+          class="land"
+          d="M561.0,-16.4 L581.3,-3.8 L569.4,7.8 L592.6,9.7 L604.1,16.7 L606.2,23.6 L597.3,26.4 L596.9,30.7 L609.8,40.5 L636.0,41.7 L639.9,43.9 L637.7,49.9 L640.5,46.4 L651.2,46.5 L669.3,56.1 L668.8,61.7 L682.3,65.9 L676.7,85.9 L669.9,91.3 L690.3,93.2 L698.6,86.5 L697.8,94.0 L704.3,91.7 L702.7,87.0 L714.2,92.3 L698.3,95.1 L711.2,96.0 L715.8,91.4 L729.9,96.7 L725.8,97.1 L731.4,98.6 L727.0,100.7 L744.0,102.3 L744.9,97.7 L756.1,101.1 L749.8,73.6 L713.9,59.5 L726.7,56.9 L742.0,66.1 L747.2,57.2 L745.8,68.5 L757.9,71.0 L759.7,65.6 L765.9,91.1 L785.3,91.4 L785.7,80.8 L797.8,78.8 L813.3,84.2 L813.1,91.0 L794.0,91.8 L793.5,95.3 L813.6,96.2 L832.0,92.3 L848.6,95.3 L847.0,91.6 L835.7,92.3 L841.1,88.6 L839.9,84.0 L826.2,81.2 L834.2,82.4 L840.2,83.8 L842.2,91.0 L873.2,92.5 L856.0,95.2 L873.9,97.2 L875.2,94.0 L889.5,100.6 L879.3,105.6 L879.3,109.0 L897.4,102.9 L892.0,98.0 L897.4,102.0 L899.0,99.2 L900.0,105.4 L906.7,107.3 L896.8,103.5 L879.2,109.9 L879.0,117.1 L887.4,123.0 L910.0,115.1 L926.8,124.7 L929.5,139.0 L915.5,131.2 L886.7,135.0 L882.6,129.8 L876.8,129.4 L877.6,133.3 L871.0,131.8 L871.0,138.3 L904.3,136.6 L909.9,148.3 L928.6,162.5 L937.3,178.7 L917.7,181.2 L900.4,166.8 L880.6,170.1 L900.9,186.7 L911.7,182.2 L922.8,190.5 L907.5,193.2 L902.2,188.7 L907.8,204.9 L911.7,196.7 L938.6,189.2 L936.4,192.0 L940.8,203.2 L943.3,201.9 L940.4,196.2 L948.4,196.6 L958.7,218.4 L957.5,233.3 L952.3,234.8 L963.7,235.1 L964.9,247.1 L937.4,248.2 L933.5,253.3 L919.5,253.5 L913.6,250.0 L917.5,242.9 L913.9,241.8 L911.1,253.8 L963.2,254.0 L975.1,261.5 L970.6,263.6 L976.0,271.7 L966.0,270.2 L961.5,275.7 L942.3,279.0 L923.7,276.4 L912.4,279.5 L921.6,276.3 L908.8,274.9 L902.8,281.8 L891.2,285.5 L863.9,288.8 L862.4,291.8 L891.9,290.4 L899.7,295.3 L911.5,288.3 L933.4,290.1 L932.3,295.2 L917.4,294.2 L886.7,314.7 L854.2,312.7 L823.6,324.6 L827.8,329.3 L864.2,321.5 L880.2,322.4 L875.2,325.4 L881.7,331.8 L879.2,337.5 L863.3,337.1 L942.2,351.6 L972.6,352.4 L995.8,346.1 L998.6,348.8 L1022.2,347.1 L1061.7,361.1 L1073.6,357.7 L1078.5,365.2 L1091.4,361.3 L1085.8,366.7 L1091.7,369.1 L1111.2,364.9 L1127.2,367.2 L1141.1,374.2 L1140.2,384.0 L1151.9,395.3 L1199.0,413.2 L1209.0,430.7 L1224.0,426.7 L1228.5,434.0 L1226.3,436.2 L1242.8,444.3 L1245.8,447.3 L1240.5,451.6 L1256.3,465.0 L1245.1,466.4 L1223.9,454.3 L1233.1,466.0 L1245.6,472.4 L1243.7,477.3 L1255.1,491.7 L1252.9,493.7 L1246.4,491.5 L1232.5,470.9 L1205.0,457.6 L1195.3,460.1 L1193.8,454.5 L1113.8,454.3 L1084.8,465.0 L1084.3,471.7 L1127.9,499.6 L1115.9,505.6 L1116.9,508.4 L1226.5,563.1 L1235.5,564.1 L1244.1,558.4 L1241.6,542.1 L1248.5,537.3 L1291.3,529.8 L1269.2,535.7 L1274.7,538.2 L1273.1,547.4 L1289.4,555.4 L1309.3,552.0 L1312.4,560.7 L1298.3,565.9 L1298.3,572.6 L1302.4,574.1 L1302.3,566.8 L1313.6,566.2 L1314.8,570.0 L1304.6,572.7 L1321.6,572.0 L1319.0,575.6 L1326.0,581.6 L1318.7,582.3 L1311.8,574.0 L1306.2,575.9 L1312.0,578.3 L1300.0,579.4 L1312.4,579.0 L1320.9,584.7 L1331.7,582.1 L1350.1,602.6 L1380.7,612.8 L1390.5,630.8 L1402.2,635.4 L1400.2,638.6 L1405.4,639.4 L1409.2,651.1 L1415.2,654.4 L1423.8,676.7 L1424.7,682.4 L1420.4,685.2 L1429.3,691.8 L1429.3,700.9 L1439.6,704.3 L1430.5,706.3 L1432.1,714.9 L1435.4,715.9 L1430.4,721.5 L1426.1,720.4 L1439.4,723.7 L1435.2,729.2 L1437.6,745.3 L1421.0,749.2 L1440.3,750.6 L1455.9,778.6 L1452.0,790.8 L1454.4,799.6 L1448.4,801.4 L1452.7,822.7 L1464.3,828.8 L1479.8,849.6 L1491.7,858.8 L1495.8,870.3 L1505.8,868.1 L1502.9,870.8 L1505.3,876.7 L1512.2,879.4 L1526.8,900.1 L1500,960 L1500,-60 L561.0,-60 Z"
+        ></path>
 
-      <div class="absolute bottom-[58%] left-[38%] w-2 h-2 rounded-full bg-powder/60 sonar-blip" style="--blip-base: 0.45; --blip-peak: 0.7; animation-delay: -1.8s;"></div>
-      <div class="absolute bottom-[58%] left-[38%] w-5 h-5 rounded-full border border-powder/18"></div>
+        <!-- East Bay hatching -->
+        <g opacity="0.6">
+          <line class="hatch" x1="669" y1="60" x2="1500" y2="60"></line>
+          <line class="hatch" x1="728" y1="100" x2="1500" y2="100"></line>
+          <line class="hatch" x1="906" y1="140" x2="1500" y2="140"></line>
+          <line class="hatch" x1="893" y1="180" x2="1500" y2="180"></line>
+          <line class="hatch" x1="959" y1="220" x2="1500" y2="220"></line>
+          <line class="hatch" x1="973" y1="260" x2="1500" y2="260"></line>
+          <line class="hatch" x1="909" y1="300" x2="1500" y2="300"></line>
+          <line class="hatch" x1="879" y1="340" x2="1500" y2="340"></line>
+          <line class="hatch" x1="1141" y1="380" x2="1500" y2="380"></line>
+          <line class="hatch" x1="1203" y1="420" x2="1500" y2="420"></line>
+          <line class="hatch" x1="1098" y1="460" x2="1500" y2="460"></line>
+          <line class="hatch" x1="1127" y1="500" x2="1500" y2="500"></line>
+          <line class="hatch" x1="1180" y1="540" x2="1500" y2="540"></line>
+          <line class="hatch" x1="1314" y1="580" x2="1500" y2="580"></line>
+          <line class="hatch" x1="1385" y1="620" x2="1500" y2="620"></line>
+          <line class="hatch" x1="1417" y1="660" x2="1500" y2="660"></line>
+          <line class="hatch" x1="1429" y1="700" x2="1500" y2="700"></line>
+          <line class="hatch" x1="1437" y1="740" x2="1500" y2="740"></line>
+        </g>
 
-      <div class="absolute bottom-[30%] left-[52%] w-2 h-2 rounded-full bg-gold/55 sonar-blip" style="--blip-base: 0.4; --blip-peak: 0.65; animation-delay: -2.7s;"></div>
-      <div class="absolute bottom-[30%] left-[52%] w-5 h-5 rounded-full border border-gold/18"></div>
+        <!-- === ISLANDS (real OSM coastline data) === -->
+        <path
+          class="island"
+          d="M574.8,279.6 L572.9,277.3 L565.6,274.5 L558.0,274.2 L567.4,280.1 L572.2,281.1 L574.8,279.6 Z"
+        ></path>
 
-      <div class="absolute bottom-[65%] left-[18%] w-1.5 h-1.5 rounded-full bg-powder/45 sonar-blip" style="--blip-base: 0.3; --blip-peak: 0.5; animation-delay: -3.4s;"></div>
+        <path
+          class="island"
+          d="M576.5,212.0 L572.5,205.7 L579.9,198.8 L579.3,196.7 L570.6,194.3 L564.9,180.9 L543.1,175.1 L529.1,180.9 L529.6,186.6 L520.5,187.6 L515.9,183.5 L507.8,196.3 L491.7,199.8 L504.3,205.8 L503.1,211.1 L528.7,216.9 L546.9,212.5 L567.4,215.0 L580.1,219.2 L581.2,217.5 L576.9,215.1 L576.5,212.0 Z"
+        ></path>
+        <text x="502" y="230" class="place-label">Angel I.</text>
 
-      <div class="absolute bottom-[20%] left-[65%] w-1.5 h-1.5 rounded-full bg-gold/40 sonar-blip" style="--blip-base: 0.25; --blip-peak: 0.45; animation-delay: -0.9s;"></div>
+        <path
+          class="island"
+          d="M734.6,305.3 L732.4,301.6 L754.1,295.1 L758.7,286.6 L740.4,267.5 L725.3,264.8 L711.5,269.1 L707.0,277.4 L731.6,303.3 L729.9,310.7 L726.8,312.3 L731.0,316.3 L745.1,320.8 L761.6,321.6 L764.7,319.3 L764.4,309.7 L771.6,304.6 L754.7,306.0 L744.8,309.9 L734.6,305.3 Z"
+        ></path>
 
-      <div class="absolute bottom-[48%] left-[72%] w-1.5 h-1.5 rounded-full bg-powder/35 sonar-blip" style="--blip-base: 0.2; --blip-peak: 0.4; animation-delay: -2.2s;"></div>
+        <path
+          class="island"
+          d="M956.4,395.4 L959.1,400.3 L986.5,405.5 L987.4,409.2 L993.6,405.2 L996.0,408.7 L1001.2,405.1 L1010.8,406.6 L1019.0,402.5 L1018.9,408.9 L1024.0,409.2 L1021.8,413.3 L1035.1,408.9 L1042.2,417.4 L1055.1,425.0 L1113.4,441.4 L1162.2,450.3 L1167.9,448.0 L1173.4,450.1 L1198.5,437.2 L1200.3,433.6 L1198.9,418.5 L1189.2,410.8 L1136.9,392.7 L1133.0,395.6 L1135.0,392.7 L1125.8,393.2 L1115.8,386.4 L1094.3,386.9 L1100.3,380.2 L1096.6,379.1 L1091.4,378.3 L1089.5,387.3 L1084.8,386.8 L1084.8,376.9 L1070.5,373.5 L1062.6,375.4 L1059.1,370.3 L1050.3,367.6 L1052.1,365.4 L1045.2,363.6 L1043.5,365.7 L1037.8,358.6 L1029.2,355.9 L958.2,359.3 L861.4,343.7 L857.9,346.0 L860.8,354.3 L856.4,377.4 L858.8,379.3 L902.2,383.5 L910.2,390.4 L931.5,391.2 L932.8,381.3 L965.5,382.5 L964.7,390.3 L956.4,395.4 Z"
+        ></path>
+        <text x="1010" y="370" class="place-label">Alameda</text>
 
-      <!-- Wake trails -->
-      <div class="absolute bottom-[43%] left-[24%] w-1 h-1 rounded-full bg-gold/25"></div>
-      <div class="absolute bottom-[44%] left-[22%] w-1 h-1 rounded-full bg-gold/15"></div>
-      <div class="absolute bottom-[59%] left-[36%] w-1 h-1 rounded-full bg-powder/20"></div>
+        <!-- === BRIDGES === -->
+        <line
+          x1="392"
+          y1="313"
+          x2="375"
+          y2="277"
+          class="bridge"
+          stroke="rgba(196,150,46,0.24)"></line>
+        <rect
+          x="382"
+          y="288"
+          width="3"
+          height="18"
+          fill="rgba(196,150,46,0.15)"
+          transform="rotate(-68, 384, 296)"></rect>
+        <rect
+          x="386"
+          y="280"
+          width="3"
+          height="18"
+          fill="rgba(196,150,46,0.15)"
+          transform="rotate(-68, 388, 289)"></rect>
 
-      <!-- Noise scatter (boosted) -->
-      <div class="absolute bottom-[75%] left-[45%] w-0.5 h-0.5 rounded-full bg-powder/18"></div>
-      <div class="absolute bottom-[35%] left-[82%] w-0.5 h-0.5 rounded-full bg-powder/16"></div>
-      <div class="absolute bottom-[55%] left-[60%] w-0.5 h-0.5 rounded-full bg-gold/14"></div>
-      <div class="absolute bottom-[15%] left-[40%] w-0.5 h-0.5 rounded-full bg-powder/12"></div>
-      <div class="absolute bottom-[70%] left-[75%] w-0.5 h-0.5 rounded-full bg-gold/12"></div>
+        <path d="M678 364 C750 350, 850 330, 966 312" class="bridge"></path>
 
-      <!-- Origin pip — enhanced -->
-      <div class="absolute -bottom-[1px] -left-[1px] w-2.5 h-2.5 rounded-full bg-powder/65"></div>
-      <div class="absolute -bottom-[3px] -left-[3px] w-5 h-5 rounded-full border border-powder/25"></div>
+        <!-- === LABELS === -->
+        <text x="1080" y="400" class="land-label" font-size="8">OAKLAND</text>
+        <text x="870" y="130" class="land-label" font-size="8">BERKELEY</text>
+        <text x="368" y="215" class="place-label">Sausalito</text>
+        <text
+          x="620"
+          y="810"
+          class="water-label"
+          font-size="9"
+          letter-spacing="3"
+          opacity="0.4">SOUTH BAY</text
+        >
+
+        <!-- BARBARY COAST HISTORICAL DISTRICT -->
+        <a
+          href="https://en.wikipedia.org/wiki/Barbary_Coast,_San_Francisco"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pointer-events-auto"
+          style="cursor: pointer;"
+        >
+          <polygon
+            points="610,360 650,353 655,375 615,382"
+            fill="rgba(90,155,196,0.08)"
+            stroke="rgba(90,155,196,0.35)"
+            stroke-width="1"
+            stroke-dasharray="4 2"></polygon>
+          <text
+            x="613"
+            y="372"
+            fill="rgba(90,155,196,0.5)"
+            font-family="var(--font-mono)"
+            font-size="6"
+            letter-spacing="2">BARBARY COAST</text
+          >
+        </a>
+
+        <!-- BARBARY COAST LOCATIONS -->
+        <a
+          href="https://maps.app.goo.gl/BDvn3qVD8gFnZncc7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pointer-events-auto map-marker"
+          style="cursor: pointer;"
+        >
+          <!-- Larger hit area -->
+          <circle cx="330" cy="415" r="20" fill="transparent"></circle>
+          <!-- Ping ring -->
+          <circle
+            cx="330"
+            cy="415"
+            r="4"
+            fill="none"
+            stroke="rgba(90,155,196,0.4)"
+            stroke-width="1"
+            class="map-marker-ring"></circle>
+          <!-- Outer glow -->
+          <circle
+            cx="330"
+            cy="415"
+            r="5"
+            fill="rgba(90,155,196,0.15)"
+            stroke="rgba(90,155,196,0.5)"
+            stroke-width="1"
+            class="map-marker-outer"></circle>
+          <!-- Inner dot -->
+          <circle cx="330" cy="415" r="2.5" fill="rgba(90,155,196,0.7)" class="map-marker-dot"></circle>
+          <text
+            x="345"
+            y="419"
+            fill="rgba(90,155,196,0.5)"
+            font-family="var(--font-mono)"
+            font-size="7"
+            style="transition: fill 0.2s ease;">Hockey Haven</text
+          >
+        </a>
+
+        <a
+          href="https://maps.app.goo.gl/Vp8VJwLYKm8wTxSK9"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pointer-events-auto map-marker"
+          style="cursor: pointer;"
+        >
+          <!-- Larger hit area -->
+          <circle cx="295" cy="445" r="20" fill="transparent"></circle>
+          <!-- Ping ring -->
+          <circle
+            cx="295"
+            cy="445"
+            r="4"
+            fill="none"
+            stroke="rgba(90,155,196,0.4)"
+            stroke-width="1"
+            class="map-marker-ring"></circle>
+          <!-- Outer glow -->
+          <circle
+            cx="295"
+            cy="445"
+            r="5"
+            fill="rgba(90,155,196,0.15)"
+            stroke="rgba(90,155,196,0.5)"
+            stroke-width="1"
+            class="map-marker-outer"></circle>
+          <!-- Inner dot -->
+          <circle cx="295" cy="445" r="2.5" fill="rgba(90,155,196,0.7)" class="map-marker-dot"></circle>
+          <text
+            x="310"
+            y="449"
+            fill="rgba(90,155,196,0.5)"
+            font-family="var(--font-mono)"
+            font-size="7"
+            style="transition: fill 0.2s ease;">Beach Chalet Fields</text
+          >
+        </a>
+
+        <!-- Compass rose — ornate -->
+        <g transform="translate(910, 620) scale(0.7)" opacity="0.35">
+          <circle
+            cx="0"
+            cy="0"
+            r="44"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.6"
+            fill="none"></circle>
+          <circle
+            cx="0"
+            cy="0"
+            r="36"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.4"
+            fill="none"></circle>
+          <circle
+            cx="0"
+            cy="0"
+            r="6"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.5"
+            fill="rgba(196,150,46,0.3)"></circle>
+          <!-- Cardinal points — diamond shapes -->
+          <polygon
+            points="0,-50 -5,-36 0,-20 5,-36"
+            fill="rgba(196,150,46,0.6)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.5"></polygon>
+          <polygon
+            points="50,0 36,-5 20,0 36,5"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.5"></polygon>
+          <polygon
+            points="0,50 -5,36 0,20 5,36"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.5"></polygon>
+          <polygon
+            points="-50,0 -36,-5 -20,0 -36,5"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.5"></polygon>
+          <!-- Intercardinal points -->
+          <polygon
+            points="34,-34 20,-26 26,-20"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.3"></polygon>
+          <polygon
+            points="34,34 20,26 26,20"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.3"></polygon>
+          <polygon
+            points="-34,34 -20,26 -26,20"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.3"></polygon>
+          <polygon
+            points="-34,-34 -20,-26 -26,-20"
+            fill="rgba(196,150,46,0.3)"
+            stroke="rgba(196,150,46,1)"
+            stroke-width="0.3"></polygon>
+          <!-- Labels -->
+          <text
+            x="0"
+            y="-56"
+            text-anchor="middle"
+            fill="rgba(196,150,46,1)"
+            font-family="var(--font-mono)"
+            font-size="10"
+            font-weight="bold">N</text
+          >
+          <text
+            x="58"
+            y="4"
+            text-anchor="middle"
+            fill="rgba(196,150,46,1)"
+            font-family="var(--font-mono)"
+            font-size="8">E</text
+          >
+          <text
+            x="0"
+            y="64"
+            text-anchor="middle"
+            fill="rgba(196,150,46,1)"
+            font-family="var(--font-mono)"
+            font-size="8">S</text
+          >
+          <text
+            x="-58"
+            y="4"
+            text-anchor="middle"
+            fill="rgba(196,150,46,1)"
+            font-family="var(--font-mono)"
+            font-size="8">W</text
+          >
+        </g>
+
+        <!-- Chart notation -->
+        <text
+          x="250"
+          y="770"
+          fill="rgba(196,150,46,0.12)"
+          font-family="var(--font-mono)"
+          font-size="9"
+          >37°47'N 122°25'W · BARBARY COAST · Anno Domini MMXXVI</text
+        >
+      </svg>
 
       <!-- CRT scanlines -->
       <div class="radar-scanlines"></div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-6 lg:px-16 relative">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div class="reveal">
-          <span class="label text-gold">[about]</span>
-          <h2
-            class="text-foreground mt-2 text-4xl sm:text-5xl font-medium tracking-tight"
-          >
-            The Team
-          </h2>
-
-          <div class="mt-6 space-y-4">
-            <p class="text-lg text-muted">
-              Barbary Coast is a men's post-collegiate lacrosse club competing
-              in the San Francisco Bay Area.
-            </p>
-            <p class="text-lg text-muted">Good lacrosse. Great friends.</p>
-          </div>
+    <!-- About section (bottom left) -->
+    <div class="absolute top-[52%] left-[20%] px-6">
+      <div class="reveal max-w-sm" style="--delay: 0s">
+        <span class="label text-gold">[about]</span>
+        <h2
+          class="text-foreground mt-2 text-4xl lg:text-5xl font-medium tracking-tight"
+        >
+          The Team
+        </h2>
+        <div class="mt-6 space-y-3">
+          <p class="text-muted text-lg">
+            Barbary Coast is a men's post-collegiate lacrosse club competing in
+            the San Francisco Bay Area.
+          </p>
+          <p class="text-muted text-lg">Good lacrosse. Great friends.</p>
         </div>
+      </div>
+    </div>
 
-        <div class="reveal flex items-center" style="--delay: 0.1s">
-          <div class="card p-8 lg:p-10 w-full">
-            <h3 class="text-foreground text-2xl font-medium tracking-tight">
-              Get in touch
-            </h3>
-            <p class="text-muted mt-2 mb-6">
-              Looking for competitive players who also like to have a good time.
-              Reach out if that's you.
-            </p>
-            <div class="space-y-6">
-              <div>
-                <span class="label text-subtle block mb-2">[email]</span>
-                <a
-                  href="mailto:barbarycoastlc@gmail.com"
-                  class="text-xl font-medium text-foreground hover:text-powder transition-colors"
-                >
-                  barbarycoastlc@gmail.com
-                </a>
-              </div>
-              <div>
-                <span class="label text-subtle block mb-2">[instagram]</span>
-                <a
-                  href="https://www.instagram.com/barbarycoastlc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xl font-medium text-foreground hover:text-gold transition-colors"
-                >
-                  @barbarycoastlc
-                </a>
-              </div>
+    <!-- Contact section (right, below Barbary Coast label) -->
+    <div class="absolute top-[35%] right-[25%] px-6">
+      <div class="reveal" style="--delay: 0.15s">
+        <div class="card p-6 lg:p-8 max-w-sm">
+          <h3
+            class="text-foreground text-2xl lg:text-3xl font-medium tracking-tight"
+          >
+            Get in touch
+          </h3>
+          <p class="text-muted mt-3">
+            Looking for competitive players who also like to have a good time.
+            Reach out if that's you.
+          </p>
+          <div class="mt-6 space-y-4">
+            <div>
+              <span class="label text-subtle block mb-2">[email]</span>
+              <a
+                href="mailto:barbarycoastlc@gmail.com"
+                class="text-xl font-medium text-foreground hover:text-powder transition-colors"
+              >
+                barbarycoastlc@gmail.com
+              </a>
+            </div>
+            <div>
+              <span class="label text-subtle block mb-2">[instagram]</span>
+              <a
+                href="https://www.instagram.com/barbarycoastlc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xl font-medium text-foreground hover:text-gold transition-colors"
+              >
+                @barbarycoastlc
+              </a>
             </div>
           </div>
         </div>
@@ -1045,38 +1533,5 @@ const schools = [
       requestAnimationFrame(animate);
     }
     animate();
-  }
-
-  // Searchlight — beam tracks mouse from about section's bottom-left origin
-  const aboutSection = document.getElementById("about");
-  const searchlightCone = document.getElementById("searchlight-cone");
-  const searchlightGlow = document.getElementById("searchlight-glow");
-
-  if (aboutSection && searchlightCone && searchlightGlow) {
-    let currentAngle = -45;
-    let targetAngle = -45;
-
-    document.addEventListener("mousemove", (e) => {
-      const rect = aboutSection!.getBoundingClientRect();
-      // Origin is bottom-left of the section
-      const originX = rect.left;
-      const originY = rect.bottom;
-      const dx = e.clientX - originX;
-      const dy = originY - e.clientY; // flip Y: positive = up
-      // atan2(dx, dy) gives clockwise angle from north (up), which matches
-      // conic-gradient "from" convention (clockwise from 12 o'clock)
-      const rad = Math.atan2(dx, dy);
-      targetAngle = (rad * 180) / Math.PI;
-    });
-
-    function animateSearchlight() {
-      // Lerp toward target — slow, lazy tracking
-      currentAngle += (targetAngle - currentAngle) * 0.04;
-      const css = `${currentAngle}deg`;
-      searchlightCone!.style.setProperty("--beam-angle", css);
-      searchlightGlow!.style.setProperty("--beam-angle", css);
-      requestAnimationFrame(animateSearchlight);
-    }
-    animateSearchlight();
   }
 </script>
