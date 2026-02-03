@@ -254,7 +254,8 @@ const schools = [
 
     /* Map marker animations */
     @keyframes marker-ping {
-      0%, 100% {
+      0%,
+      100% {
         opacity: 0.6;
         transform: scale(1);
       }
@@ -289,11 +290,11 @@ const schools = [
       transform: scale(1.6);
     }
     .map-marker:hover .map-marker-outer {
-      fill: rgba(90,155,196,0.3);
-      stroke: rgba(90,155,196,0.8);
+      fill: rgba(90, 155, 196, 0.3);
+      stroke: rgba(90, 155, 196, 0.8);
     }
     .map-marker:hover text {
-      fill: rgba(90,155,196,0.9);
+      fill: rgba(90, 155, 196, 0.9);
     }
   </style>
 
@@ -854,7 +855,7 @@ const schools = [
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <svg
         class="absolute inset-0 w-full h-full"
-        viewBox="120 150 850 650"
+        viewBox="140 180 700 520"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
       >
@@ -1118,7 +1119,12 @@ const schools = [
             stroke-width="1"
             class="map-marker-outer"></circle>
           <!-- Inner dot -->
-          <circle cx="330" cy="415" r="2.5" fill="rgba(90,155,196,0.7)" class="map-marker-dot"></circle>
+          <circle
+            cx="330"
+            cy="415"
+            r="2.5"
+            fill="rgba(90,155,196,0.7)"
+            class="map-marker-dot"></circle>
           <text
             x="345"
             y="419"
@@ -1157,7 +1163,12 @@ const schools = [
             stroke-width="1"
             class="map-marker-outer"></circle>
           <!-- Inner dot -->
-          <circle cx="295" cy="445" r="2.5" fill="rgba(90,155,196,0.7)" class="map-marker-dot"></circle>
+          <circle
+            cx="295"
+            cy="445"
+            r="2.5"
+            fill="rgba(90,155,196,0.7)"
+            class="map-marker-dot"></circle>
           <text
             x="310"
             y="449"
@@ -1284,9 +1295,9 @@ const schools = [
       <div class="radar-scanlines"></div>
     </div>
 
-    <!-- About section (bottom left) -->
-    <div class="absolute top-[52%] left-[20%] px-6">
-      <div class="reveal max-w-sm" style="--delay: 0s">
+    <!-- About section -->
+    <div class="absolute top-[42%] left-[42%] px-6">
+      <div class="reveal max-w-md" style="--delay: 0s">
         <span class="label text-gold">[about]</span>
         <h2
           class="text-foreground mt-2 text-4xl lg:text-5xl font-medium tracking-tight"
@@ -1300,44 +1311,22 @@ const schools = [
           </p>
           <p class="text-muted text-lg">Good lacrosse. Great friends.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Contact section (right, below Barbary Coast label) -->
-    <div class="absolute top-[35%] right-[25%] px-6">
-      <div class="reveal" style="--delay: 0.15s">
-        <div class="card p-6 lg:p-8 max-w-sm">
-          <h3
-            class="text-foreground text-2xl lg:text-3xl font-medium tracking-tight"
+        <div class="mt-8 flex items-center gap-6 text-sm">
+          <a
+            href="mailto:barbarycoastlc@gmail.com"
+            class="text-muted hover:text-powder transition-colors"
           >
-            Get in touch
-          </h3>
-          <p class="text-muted mt-3">
-            Looking for competitive players who also like to have a good time.
-            Reach out if that's you.
-          </p>
-          <div class="mt-6 space-y-4">
-            <div>
-              <span class="label text-subtle block mb-2">[email]</span>
-              <a
-                href="mailto:barbarycoastlc@gmail.com"
-                class="text-xl font-medium text-foreground hover:text-powder transition-colors"
-              >
-                barbarycoastlc@gmail.com
-              </a>
-            </div>
-            <div>
-              <span class="label text-subtle block mb-2">[instagram]</span>
-              <a
-                href="https://www.instagram.com/barbarycoastlc/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xl font-medium text-foreground hover:text-gold transition-colors"
-              >
-                @barbarycoastlc
-              </a>
-            </div>
-          </div>
+            barbarycoastlc@gmail.com
+          </a>
+          <span class="text-border">·</span>
+          <a
+            href="https://www.instagram.com/barbarycoastlc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted hover:text-gold transition-colors"
+          >
+            @barbarycoastlc
+          </a>
         </div>
       </div>
     </div>
