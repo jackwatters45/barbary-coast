@@ -10,6 +10,8 @@ const season = data.currentSeason;
 const seasonData = data.seasons[season];
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 
+const ESTABLISHED_YEAR = 2024;
+
 const schools = [
   "Bates",
   "Cal Poly",
@@ -667,7 +669,7 @@ const schools = [
         </div>
 
         <div class="mt-16">
-          <span class="label text-gold">[est. 2024]</span>
+          <span class="label text-gold">[est. {ESTABLISHED_YEAR}]</span>
         </div>
       </div>
     </div>
