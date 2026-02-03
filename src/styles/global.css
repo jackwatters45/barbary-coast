@@ -178,7 +178,7 @@
 
   .marquee-content {
     display: flex;
-    animation: scroll 50s linear infinite;
+    animation: scroll 80s linear infinite;
   }
 
   .marquee-set {
