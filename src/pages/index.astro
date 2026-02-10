@@ -11,30 +11,6 @@ const seasonData = data.seasons[season];
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 
 const ESTABLISHED_YEAR = 1849;
-
-const schools = [
-  "Bates",
-  "Cal Poly",
-  "Colby",
-  "Colorado",
-  "Coast Guard",
-  "Dominican",
-  "Drexel",
-  "Georgia Tech",
-  "Gettysburg",
-  "Middlebury",
-  "Navy",
-  "Notre Dame",
-  "Penn State",
-  "Princeton",
-  "Trinity",
-  "Tufts",
-  "UC Berkeley",
-  "USC",
-  "Vermont",
-  "Villanova",
-  "Williams",
-];
 ---
 
 <Layout title="Home" showSectionNav={true}>
@@ -1342,33 +1318,6 @@ const schools = [
             </a>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Marquee at bottom of about section -->
-    <div
-      class="absolute bottom-0 left-0 right-0 marquee border-t border-border py-4 bg-surface/80 backdrop-blur-sm"
-    >
-      <div class="marquee-content">
-        {
-          [...Array(3)].map(() => (
-            <div class="marquee-set">
-              {schools.map((school, i) => (
-                <>
-                  <span class="label text-muted whitespace-nowrap">
-                    {school}
-                  </span>
-                  <span
-                    class:list={[
-                      "w-1 h-1",
-                      i % 2 === 0 ? "bg-powder" : "bg-gold",
-                    ]}
-                  />
-                </>
-              ))}
-            </div>
-          ))
-        }
       </div>
     </div>
   </section>
