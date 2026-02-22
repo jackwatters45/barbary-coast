@@ -4,20 +4,43 @@ import ScheduleList from "../components/Schedule.astro";
 import Standings from "../components/Standings.astro";
 import ulaxData from "../data/ulax.json";
 import { manualEvents } from "../data/events";
-import type {
-  UlaxGameSerialized,
-  UlaxStanding,
-  UlaxAllDataSerialized,
-} from "../lib/ulax";
+import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
-const season = data.currentSeason;
-const seasonData = data.seasons[season];
+const currentSeasonKey = `${data.currentSeason}-${data.currentYear}`;
 
-const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
-const standings = (seasonData?.standings ?? []) as UlaxStanding[];
+// All available seasons, sorted newest first
+const seasonKeys = Object.keys(data.seasons).sort((a, b) => {
+  const [, yearA] = a.split("-");
+  const [, yearB] = b.split("-");
+  if (yearA !== yearB) return Number(yearB) - Number(yearA);
+  // Within same year: summer > spring > winter
+  const order = { summer: 2, spring: 1, winter: 0 };
+  const seasonA = a.split("-")[0] as keyof typeof order;
+  const seasonB = b.split("-")[0] as keyof typeof order;
+  return (order[seasonB] ?? 0) - (order[seasonA] ?? 0);
+});
+
+// Prepare data for each season (used by client JS to swap)
+const seasonsData = Object.fromEntries(
+  seasonKeys.map((key) => {
+    const sd = data.seasons[key];
+    return [
+      key,
+      {
+        schedule: (sd?.schedule ?? []) as UlaxGameSerialized[],
+        standings: (sd?.standings ?? []) as UlaxStanding[],
+      },
+    ];
+  }),
+);
+
 const fetchedAt = new Date(data.fetchedAt);
-const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
+
+function formatSeasonLabel(key: string): string {
+  const [season, year] = key.split("-");
+  return `${season.charAt(0).toUpperCase() + season.slice(1)} ${year}`;
+}
 ---
 
 <Layout
@@ -30,28 +53,64 @@ const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
 
     <!-- Header -->
     <header class="mb-8">
-      <span class="label text-powder">[{seasonLabel.toLowerCase()} 2026]</span>
-      <h1
-        class="text-4xl sm:text-5xl font-medium text-foreground mt-2 tracking-tight"
-      >
-        Schedule
-      </h1>
+      <div class="flex items-center gap-3 flex-wrap">
+        <h1
+          class="text-4xl sm:text-5xl font-medium text-foreground tracking-tight"
+        >
+          Schedule
+        </h1>
+      </div>
+
+      <!-- Season selector -->
+      {seasonKeys.length > 1 && (
+        <div class="mt-4 flex gap-2 flex-wrap">
+          {seasonKeys.map((key) => (
+            <button
+              data-season={key}
+              class:list={[
+                "season-btn px-3 py-1.5 text-sm font-mono transition-colors border",
+                key === currentSeasonKey
+                  ? "border-powder text-powder bg-powder/10"
+                  : "border-border text-muted hover:text-foreground hover:border-foreground/30",
+              ]}
+            >
+              {formatSeasonLabel(key)}
+              {key === currentSeasonKey && (
+                <span class="ml-1 text-xs opacity-60">current</span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
     </header>
 
     <!-- Games -->
-    <section class="mb-16">
-      <ScheduleList
-        ulaxGames={ulaxGames}
-        events={manualEvents}
-        barbaryCoastOnly={true}
-      />
-    </section>
+    {seasonKeys.map((key) => (
+      <section
+        data-season-content={key}
+        class:list={["mb-16", key !== currentSeasonKey && "hidden"]}
+      >
+        <ScheduleList
+          ulaxGames={seasonsData[key]?.schedule ?? []}
+          events={key === currentSeasonKey ? manualEvents : []}
+          barbaryCoastOnly={true}
+        />
+      </section>
+    ))}
 
     <!-- Standings -->
-    <section class="mb-16">
-      <h2 class="text-xl font-medium text-foreground mb-6">Standings</h2>
-      <Standings standings={standings} />
-    </section>
+    {seasonKeys.map((key) => {
+      const standings = seasonsData[key]?.standings ?? [];
+      return (
+        <section
+          data-season-standings={key}
+          class:list={["mb-16", key !== currentSeasonKey && "hidden"]}
+        >
+          <h2 class="text-xl font-medium text-foreground mb-6">Standings</h2>
+          <Standings standings={standings} />
+        </section>
+      );
+    })}
 
     <!-- Footer -->
     <footer
@@ -77,3 +136,34 @@ const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
     </footer>
   </div>
 </Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".season-btn");
+  const contents = document.querySelectorAll<HTMLElement>("[data-season-content]");
+  const standings = document.querySelectorAll<HTMLElement>("[data-season-standings]");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const season = btn.dataset.season;
+      if (!season) return;
+
+      // Update buttons
+      buttons.forEach((b) => {
+        const isActive = b.dataset.season === season;
+        b.classList.toggle("border-powder", isActive);
+        b.classList.toggle("text-powder", isActive);
+        b.classList.toggle("bg-powder/10", isActive);
+        b.classList.toggle("border-border", !isActive);
+        b.classList.toggle("text-muted", !isActive);
+      });
+
+      // Show/hide content
+      contents.forEach((el) => {
+        el.classList.toggle("hidden", el.dataset.seasonContent !== season);
+      });
+      standings.forEach((el) => {
+        el.classList.toggle("hidden", el.dataset.seasonStandings !== season);
+      });
+    });
+  });
+</script>

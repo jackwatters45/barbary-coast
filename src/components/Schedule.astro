@@ -32,11 +32,7 @@ const {
   upcomingOnly = false,
 } = Astro.props;
 
-let filteredUlaxGames = barbaryCoastOnly
-  ? ulaxGames.filter(
-      (g) => g.isBarbaryCoast || g.gameType === "playoff" || g.gameType === "championship",
-    )
-  : ulaxGames;
+let filteredUlaxGames = barbaryCoastOnly ? ulaxGames.filter((g) => g.isBarbaryCoast) : ulaxGames;
 
 if (upcomingOnly) {
   filteredUlaxGames = filteredUlaxGames.filter((g) => g.homeScore === null && g.awayScore === null);
@@ -105,8 +101,8 @@ function isWin(game: UlaxGameSerialized): boolean | null {
             <!-- Details -->
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 mb-1">
-                <span class:list={["label", isPlayoffs(game) ? "text-powder" : "text-gold"]}>
-                  [{isPlayoffs(game) ? "league" : "league"}]
+                <span class:list={["label", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
+                  [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
                 </span>
                 <span class="text-sm text-muted font-mono">{game.time}</span>
               </div>

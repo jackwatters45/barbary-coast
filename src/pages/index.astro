@@ -7,7 +7,9 @@ import type { UlaxGameSerialized, UlaxAllDataSerialized } from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
 const season = data.currentSeason;
-const seasonData = data.seasons[season];
+const year = data.currentYear;
+const seasonKey = `${season}-${year}`;
+const seasonData = data.seasons[seasonKey];
 const ulaxGames = (seasonData?.schedule ?? []) as UlaxGameSerialized[];
 
 const ESTABLISHED_YEAR = 1849;
