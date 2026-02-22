@@ -1,0 +1,23 @@
+src/pages/index.astro
+  cd2a64cc6dd662d9 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "5df5c3ee31df5a793e930a1cd8d29ed1515df119",
+  "prompts": {
+    "cd2a64cc6dd662d9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2d4e5cb4-dae6-4355-803f-20be2f5aa127",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 5,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
