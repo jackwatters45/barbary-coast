@@ -71,6 +71,9 @@ export interface UlaxData {
 export const SeasonSchema = Schema.Literal("winter", "spring", "summer");
 export type Season = typeof SeasonSchema.Type;
 
+// Season key format: "winter-2026", "summer-2025", etc.
+export type UlaxSeasonKey = `${Season}-${number}`;
+
 // Player stats from stats page
 export const UlaxPlayerStats = Schema.Struct({
   name: Schema.String,
@@ -158,6 +161,7 @@ export interface UlaxSeasonDataSerialized extends Omit<UlaxSeasonData, "schedule
 
 export interface UlaxAllData {
   currentSeason: string;
+  currentYear: number;
   seasons: Record<string, UlaxSeasonData>;
   championships: UlaxChampionship[];
   barbaryCoast: {
@@ -263,7 +267,12 @@ function transformGame(raw: UlaxGameRaw): UlaxGame {
 
 const SCHEDULE_API =
   "https://ulax.org/assets/getData/getDataSeasons.php?type=schedule&league=sanfran&season=";
+const ARCHIVE_API = "https://ulax.org/assets/getData/getDataSeasons.php";
 const BASE_URL = "https://ulax.org/sanfrancisco/men/";
+
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 export class UlaxService extends Context.Tag("UlaxService")<
   UlaxService,
@@ -276,6 +285,14 @@ export class UlaxService extends Context.Tag("UlaxService")<
     readonly fetchRoster: (season: Season) => Effect.Effect<UlaxRosterPlayer[], Error>;
     readonly fetchArchives: () => Effect.Effect<UlaxChampionship[], Error>;
     readonly fetchSeason: (season: Season) => Effect.Effect<UlaxSeasonData, Error>;
+    readonly fetchArchiveSchedule: (
+      season: Season,
+      year: number,
+    ) => Effect.Effect<UlaxGame[], Error>;
+    readonly fetchArchiveStandings: (
+      season: Season,
+      year: number,
+    ) => Effect.Effect<UlaxStanding[], Error>;
     readonly fetchAll: (season: Season) => Effect.Effect<UlaxData, Error>;
   }
 >() {}
@@ -548,6 +565,61 @@ const makeFetchArchives = (client: HttpClient.HttpClient) => () =>
     return championships;
   });
 
+const makeFetchArchiveSchedule =
+  (client: HttpClient.HttpClient) => (season: Season, year: number) =>
+    Effect.gen(function* () {
+      const url = `${ARCHIVE_API}?type=archive_schedule&league=sanfran&season=${capitalize(season)}&year=${year}`;
+
+      const response = yield* client.execute(HttpClientRequest.get(url));
+      const json = yield* response.json;
+
+      if (!Array.isArray(json)) {
+        return yield* Effect.fail(new Error("Expected array response from archive schedule"));
+      }
+
+      const games: UlaxGame[] = [];
+      for (const item of json) {
+        const parsed = Schema.decodeUnknownEither(UlaxGameRaw)(item);
+        if (parsed._tag === "Right") {
+          games.push(transformGame(parsed.right));
+        }
+      }
+
+      return games;
+    });
+
+const makeFetchArchiveStandings =
+  (client: HttpClient.HttpClient) => (season: Season, year: number) =>
+    Effect.gen(function* () {
+      const url = `${ARCHIVE_API}?type=archive_standings&league=sanfran&season=${capitalize(season)}&year=${year}`;
+
+      const response = yield* client.execute(HttpClientRequest.get(url));
+      const json = yield* response.json;
+
+      if (!Array.isArray(json)) {
+        return yield* Effect.fail(new Error("Expected array response from archive standings"));
+      }
+
+      const standings: UlaxStanding[] = [];
+      for (const item of json as Array<Record<string, unknown>>) {
+        const name = String(item.name ?? "").trim();
+        if (name) {
+          standings.push({
+            team: name,
+            gp: Number(item.gp) || 0,
+            w: Number(item.w) || 0,
+            l: Number(item.l) || 0,
+            t: Number(item.t) || 0,
+            pts: Number(item.pts) || 0,
+            gf: Number(item.gf) || 0,
+            ga: Number(item.ga) || 0,
+          });
+        }
+      }
+
+      return standings;
+    });
+
 const makeFetchSeason =
   (
     fetchSchedule: (s: Season) => Effect.Effect<UlaxGame[], Error>,
@@ -584,6 +656,8 @@ export const UlaxServiceLive = Layer.effect(
     const fetchStats = makeFetchStats(client);
     const fetchRoster = makeFetchRoster(client);
     const fetchArchives = makeFetchArchives(client);
+    const fetchArchiveSchedule = makeFetchArchiveSchedule(client);
+    const fetchArchiveStandings = makeFetchArchiveStandings(client);
     const fetchSeason = makeFetchSeason(fetchSchedule, fetchStandings, fetchStats, fetchRoster);
 
     const fetchAll = (season: Season) =>
@@ -607,6 +681,8 @@ export const UlaxServiceLive = Layer.effect(
       fetchStats,
       fetchRoster,
       fetchArchives,
+      fetchArchiveSchedule,
+      fetchArchiveStandings,
       fetchSeason,
       fetchAll,
     };
@@ -651,6 +727,18 @@ export const fetchArchives = () =>
   Effect.gen(function* () {
     const service = yield* UlaxService;
     return yield* service.fetchArchives();
+  });
+
+export const fetchArchiveSchedule = (season: Season, year: number) =>
+  Effect.gen(function* () {
+    const service = yield* UlaxService;
+    return yield* service.fetchArchiveSchedule(season, year);
+  });
+
+export const fetchArchiveStandings = (season: Season, year: number) =>
+  Effect.gen(function* () {
+    const service = yield* UlaxService;
+    return yield* service.fetchArchiveStandings(season, year);
   });
 
 export const fetchSeason = (season: Season) =>
