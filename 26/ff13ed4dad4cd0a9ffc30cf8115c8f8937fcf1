@@ -1,0 +1,37 @@
+.github/workflows/sync-calendar.yml
+  1b16b9c71e571aae 1-46
+package.json
+  1b16b9c71e571aae 14-15
+src/lib/calendar.ts
+  1b16b9c71e571aae 1-125
+src/pages/schedule.astro
+  1b16b9c71e571aae 6-7,11,13,15-25,27-29,32-72,88,91,97-102,104-105,108-129,133-146,148-174
+src/pages/index.astro
+  1b16b9c71e571aae 5-6,12,822
+src/components/Schedule.astro
+  1b16b9c71e571aae 2,10-42,46,54,67,69-70,74,79-83,161-162,176-177,179,182,184,188
+src/scripts/sync-calendar.ts
+  1b16b9c71e571aae 1-4,6-51
+src/data/calendar.json
+  1b16b9c71e571aae 1,1247
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "26ff13ed4dad4cd0a9ffc30cf8115c8f8937fcf1",
+  "prompts": {
+    "1b16b9c71e571aae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7b1516a3-7456-4a87-affc-41cf231cf7f5",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 445,
+      "total_deletions": 150,
+      "accepted_lines": 417,
+      "overriden_lines": 1
+    }
+  }
+}
