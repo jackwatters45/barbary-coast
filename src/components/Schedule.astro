@@ -158,7 +158,7 @@ for (const item of displayItems) {
 }
 ---
 
-<div class="space-y-4">
+<div class="space-y-3">
   {dateGroups.map((group, gi) => {
     const prevMonthKey = gi > 0 ? dateGroups[gi - 1].monthKey : null;
     const newMonth = group.monthKey !== prevMonthKey;
@@ -166,19 +166,18 @@ for (const item of displayItems) {
     return (
       <div>
         {newMonth && (
-          <div class:list={["label text-muted tracking-widest mb-3", gi > 0 && "pt-4"]}>
+          <div class:list={["label text-muted tracking-widest mb-2", gi > 0 && "pt-3"]}>
             {group.monthLong}
           </div>
         )}
         <div class="flex gap-4">
-          <!-- Date column -->
-          <div class="flex-shrink-0 text-center w-12 border-r border-border pr-4">
-            <span class="block text-2xl font-semibold font-mono text-foreground tabular-nums leading-tight">{group.day}</span>
-            <span class="block text-xs text-muted uppercase tracking-wide">{group.monthShort}</span>
+          <!-- Date column (day number only — month dividers handle context) -->
+          <div class="flex-shrink-0 w-8 pt-0.5">
+            <span class="block text-lg font-semibold font-mono text-foreground tabular-nums leading-tight">{group.day}</span>
           </div>
 
           <!-- Events column -->
-          <div class="flex-1 min-w-0 space-y-2">
+          <div class="flex-1 min-w-0 space-y-1">
             {group.items.map((item) => {
               if (item.kind === "ulax") {
                 const game = item.data;
@@ -188,72 +187,53 @@ for (const item of displayItems) {
                 const won = isWin(game);
 
                 return (
-                  <article class="card p-4 sm:p-5">
-                    <div class="flex items-center gap-2 mb-1">
-                      <span class:list={["label", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
+                  <div class="py-1">
+                    <div class="flex items-center gap-2">
+                      <span class:list={["label shrink-0", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
                         [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
                       </span>
-                      <span class="text-sm text-muted font-mono">{game.time}</span>
-                    </div>
-                    <div class="flex items-center gap-3 flex-wrap">
-                      <h3 class="font-medium text-foreground">
+                      <span class="text-sm text-muted font-mono shrink-0">{game.time}</span>
+                      <span class="text-muted shrink-0">&middot;</span>
+                      <span class="font-medium text-foreground">
                         {isTBD(game) ? game.typeName : `vs ${getOpponent(game)}`}
-                      </h3>
+                      </span>
                       {hasScore && (
-                        <span class:list={["px-2 py-0.5 text-xs font-mono font-medium", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
+                        <span class:list={["px-1.5 py-0.5 text-xs font-mono font-medium shrink-0", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
                           {won ? "W" : "L"} {bcScore}-{oppScore}
                         </span>
                       )}
                     </div>
-                    <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
-                      {truncateLocation(game.field)}
-                    </a>
-                  </article>
-                );
-              }
-
-              const event = item.data;
-              const label = getEventLabel(event);
-              const compact = isCompactItem(item);
-
-              if (compact) {
-                return (
-                  <div class="flex items-center gap-2 text-sm py-0.5">
-                    <span class:list={["label shrink-0", getEventLabelColor(label)]}>
-                      [{label}]
-                    </span>
-                    <span class="text-muted font-mono text-xs shrink-0">{getEventTime(event)}</span>
-                    <span class="text-muted shrink-0">&middot;</span>
-                    <span class="text-foreground truncate">{event.summary}</span>
-                    {event.location && (
-                      <span class="text-muted shrink-0 hidden sm:inline">&middot;</span>
-                    )}
-                    {event.location && (
-                      <a href={getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-muted hover:text-foreground transition-colors hidden sm:inline truncate">
-                        {truncateLocation(event.location)}
+                    {!hasScore && (
+                      <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors">
+                        {truncateLocation(game.field)}
                       </a>
                     )}
                   </div>
                 );
               }
 
+              const event = item.data;
+              const label = getEventLabel(event);
+
               return (
-                <article class="card p-4 sm:p-5">
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class:list={["label", getEventLabelColor(label)]}>
-                      [{label}]
-                    </span>
-                    <span class="text-sm text-muted font-mono">{getEventTime(event)}</span>
-                  </div>
-                  <h3 class="font-medium text-foreground">
+                <div class="flex items-center gap-2 text-sm py-0.5">
+                  <span class:list={["label shrink-0", getEventLabelColor(label)]}>
+                    [{label}]
+                  </span>
+                  <span class="text-muted font-mono text-xs shrink-0">{getEventTime(event)}</span>
+                  <span class="text-muted shrink-0">&middot;</span>
+                  <span class:list={["truncate", isCompactItem(item) ? "text-foreground" : "font-medium text-foreground"]}>
                     {event.summary}
-                  </h3>
+                  </span>
                   {event.location && (
-                    <a href={getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
+                    <span class="text-muted shrink-0 hidden sm:inline">&middot;</span>
+                  )}
+                  {event.location && (
+                    <a href={getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors hidden sm:inline truncate">
                       {truncateLocation(event.location)}
                     </a>
                   )}
-                </article>
+                </div>
               );
             })}
           </div>
