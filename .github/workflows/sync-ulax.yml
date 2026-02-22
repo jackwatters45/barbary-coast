@@ -27,6 +27,7 @@ jobs:
         run: bun run sync
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "chore: sync ULAX data"
@@ -34,3 +35,9 @@ jobs:
           body: "Automated sync from ulax.org"
           branch: chore/sync-ulax-data
           delete-branch: true
+
+      - name: Auto-merge Pull Request
+        if: steps.cpr.outputs.pull-request-number
+        run: gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --squash --auto
+        env:
+          GH_TOKEN: ${{ github.token }}
