@@ -1,0 +1,23 @@
+.github/workflows/sync-ulax.yml
+  25ac0682871d6144 14,29-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "19dc749a5b2c3c0635f9c1ef916fc385cd3f0d75",
+  "prompts": {
+    "25ac0682871d6144": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9957f2bb-fc78-4d06-9dfe-c00128799ab1",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 0,
+      "accepted_lines": 16,
+      "overriden_lines": 0
+    }
+  }
+}
