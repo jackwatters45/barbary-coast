@@ -22,7 +22,15 @@ const today = new Date(new Date().toDateString());
 const upcomingUlaxGames = currentSchedule.filter(
   (g) => g.isBarbaryCoast && g.homeScore === null && g.awayScore === null,
 );
-const upcomingCalEvents = calEvents.filter((e) => new Date(e.start.slice(0, 10)) >= today);
+const oneMonthOut = new Date(today);
+oneMonthOut.setDate(oneMonthOut.getDate() + 30);
+const allFutureCalEvents = calEvents.filter((e) => new Date(e.start.slice(0, 10)) >= today);
+const upcomingCalEvents = allFutureCalEvents.filter(
+  (e) => new Date(e.start.slice(0, 10)) <= oneMonthOut,
+);
+const laterCalEvents = allFutureCalEvents.filter(
+  (e) => new Date(e.start.slice(0, 10)) > oneMonthOut,
+);
 
 // Current season results: BC games with scores
 const currentResults = currentSchedule.filter(
@@ -83,22 +91,8 @@ function formatSeasonLabel(key: string): string {
   title="Schedule"
   description="Full schedule and standings for Barbary Coast Lacrosse."
 >
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <!-- Back link -->
-    <a href="/" class="subtle-link mb-12 inline-block">&larr; Back</a>
-
-    <!-- Header -->
-    <header class="mb-12">
-      <h1 class="text-4xl sm:text-5xl font-medium text-foreground tracking-tight">
-        Schedule
-      </h1>
-    </header>
-
-    <!-- A. Upcoming -->
-    <section class="mb-16">
-      <h2 class="text-xl font-medium text-foreground mb-6">
-        <span class="label text-powder mr-2">[upcoming]</span>
-      </h2>
+  <div class="max-w-4xl mx-auto px-6 py-10">
+    <section class="mb-12">
       {(upcomingUlaxGames.length > 0 || upcomingCalEvents.length > 0) ? (
         <ScheduleList
           ulaxGames={upcomingUlaxGames}
@@ -108,14 +102,22 @@ function formatSeasonLabel(key: string): string {
       ) : (
         <p class="text-muted text-sm">No upcoming events.</p>
       )}
+      {laterCalEvents.length > 0 && (
+        <details class="mt-6">
+          <summary class="label text-subtle cursor-pointer hover:text-muted transition-colors">
+            Later
+          </summary>
+          <div class="mt-4">
+            <ScheduleList calendarEvents={laterCalEvents} />
+          </div>
+        </details>
+      )}
     </section>
 
     <!-- B. Current Season Results -->
     {(currentResults.length > 0 || currentStandings.length > 0) && (
-      <section class="mb-16">
-        <h2 class="text-xl font-medium text-foreground mb-6">
-          {formatSeasonLabel(currentSeasonKey)}
-        </h2>
+      <section class="mb-12">
+        <h2 class="label text-muted mb-4">[{formatSeasonLabel(currentSeasonKey).toLowerCase()}]</h2>
         {currentResults.length > 0 && (
           <div class="mb-8">
             <ScheduleList ulaxGames={currentResults} barbaryCoastOnly={true} />
@@ -123,7 +125,7 @@ function formatSeasonLabel(key: string): string {
         )}
         {currentStandings.length > 0 && (
           <div>
-            <h3 class="text-lg font-medium text-foreground mb-4">Standings</h3>
+            <h3 class="label text-muted mb-3">Standings</h3>
             <Standings standings={currentStandings} />
           </div>
         )}
@@ -132,10 +134,8 @@ function formatSeasonLabel(key: string): string {
 
     <!-- C. Archive -->
     {sortedArchiveYears.length > 0 && (
-      <section class="mb-16">
-        <h2 class="text-xl font-medium text-foreground mb-6">
-          <span class="label text-muted mr-2">[archive]</span>
-        </h2>
+      <section class="mb-12">
+        <h2 class="label text-muted mb-4">[archive]</h2>
         {sortedArchiveYears.map(({ year, seasons }) => (
           <details class="mb-4 border border-border">
             <summary class="px-4 py-3 cursor-pointer text-foreground font-medium hover:bg-surface/50 transition-colors">
@@ -174,9 +174,9 @@ function formatSeasonLabel(key: string): string {
       </section>
     )}
 
-    <!-- Footer -->
-    <footer class="pt-8 border-t border-border">
-      <p class="text-sm text-subtle">
+    <div class="flex items-center justify-between mt-12 text-xs text-subtle">
+      <a href="/" class="subtle-link">&larr; home</a>
+      <span>
         Updated {
           fetchedAt.toLocaleDateString("en-US", {
             month: "short",
@@ -184,7 +184,7 @@ function formatSeasonLabel(key: string): string {
             year: "numeric",
           })
         }
-      </p>
-    </footer>
+      </span>
+    </div>
   </div>
 </Layout>
