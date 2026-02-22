@@ -3,37 +3,81 @@ import Layout from "../layouts/Layout.astro";
 import ScheduleList from "../components/Schedule.astro";
 import Standings from "../components/Standings.astro";
 import ulaxData from "../data/ulax.json";
-import { manualEvents } from "../data/events";
+import calendarData from "../data/calendar.json";
+import type { CalendarEvent } from "../lib/calendar";
 import type { UlaxGameSerialized, UlaxStanding, UlaxAllDataSerialized } from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
+const calEvents = calendarData.events as CalendarEvent[];
 const currentSeasonKey = `${data.currentSeason}-${data.currentYear}`;
+const currentYear = data.currentYear;
 
-// All available seasons, sorted newest first
-const seasonKeys = Object.keys(data.seasons).sort((a, b) => {
-  const [, yearA] = a.split("-");
-  const [, yearB] = b.split("-");
-  if (yearA !== yearB) return Number(yearB) - Number(yearA);
-  // Within same year: summer > spring > winter
-  const order = { summer: 2, spring: 1, winter: 0 };
-  const seasonA = a.split("-")[0] as keyof typeof order;
-  const seasonB = b.split("-")[0] as keyof typeof order;
-  return (order[seasonB] ?? 0) - (order[seasonA] ?? 0);
-});
+// Current season data
+const currentSeason = data.seasons[currentSeasonKey];
+const currentSchedule = (currentSeason?.schedule ?? []) as UlaxGameSerialized[];
+const currentStandings = (currentSeason?.standings ?? []) as UlaxStanding[];
 
-// Prepare data for each season (used by client JS to swap)
-const seasonsData = Object.fromEntries(
-  seasonKeys.map((key) => {
-    const sd = data.seasons[key];
-    return [
-      key,
-      {
-        schedule: (sd?.schedule ?? []) as UlaxGameSerialized[],
-        standings: (sd?.standings ?? []) as UlaxStanding[],
-      },
-    ];
-  }),
+// Upcoming: unscored ULAX games + future calendar events
+const today = new Date(new Date().toDateString());
+const upcomingUlaxGames = currentSchedule.filter(
+  (g) => g.isBarbaryCoast && g.homeScore === null && g.awayScore === null,
 );
+const oneMonthOut = new Date(today);
+oneMonthOut.setDate(oneMonthOut.getDate() + 30);
+const allFutureCalEvents = calEvents.filter((e) => new Date(e.start.slice(0, 10)) >= today);
+const upcomingCalEvents = allFutureCalEvents.filter(
+  (e) => new Date(e.start.slice(0, 10)) <= oneMonthOut,
+);
+const laterCalEvents = allFutureCalEvents.filter(
+  (e) => new Date(e.start.slice(0, 10)) > oneMonthOut,
+);
+
+// Current season results: BC games with scores
+const currentResults = currentSchedule.filter(
+  (g) => g.isBarbaryCoast && g.homeScore !== null && g.awayScore !== null,
+);
+
+// Archive: group past seasons by year (exclude current year)
+const seasonOrder = { summer: 2, spring: 1, winter: 0 } as const;
+
+const archiveYears = new Map<
+  number,
+  { seasonKey: string; schedule: UlaxGameSerialized[]; standings: UlaxStanding[] }[]
+>();
+
+for (const [key, sd] of Object.entries(data.seasons)) {
+  const [, yearStr] = key.split("-");
+  const year = Number(yearStr);
+  if (year >= currentYear) continue; // Skip current year
+
+  if (!archiveYears.has(year)) archiveYears.set(year, []);
+  archiveYears.get(year)?.push({
+    seasonKey: key,
+    schedule: (sd?.schedule ?? []) as UlaxGameSerialized[],
+    standings: (sd?.standings ?? []) as UlaxStanding[],
+  });
+}
+
+// Sort years descending, seasons within each year by order
+const sortedArchiveYears = [...archiveYears.entries()]
+  .sort(([a], [b]) => b - a)
+  .map(([year, seasons]) => ({
+    year,
+    seasons: seasons.sort((a, b) => {
+      const sa = a.seasonKey.split("-")[0] as keyof typeof seasonOrder;
+      const sb = b.seasonKey.split("-")[0] as keyof typeof seasonOrder;
+      return (seasonOrder[sb] ?? 0) - (seasonOrder[sa] ?? 0);
+    }),
+  }));
+
+// Archive calendar events grouped by year (exclude current year)
+const archiveCalByYear = new Map<number, CalendarEvent[]>();
+for (const event of calEvents) {
+  const eventYear = Number(event.start.slice(0, 4));
+  if (eventYear >= currentYear) continue;
+  if (!archiveCalByYear.has(eventYear)) archiveCalByYear.set(eventYear, []);
+  archiveCalByYear.get(eventYear)?.push(event);
+}
 
 const fetchedAt = new Date(data.fetchedAt);
 
@@ -47,76 +91,92 @@ function formatSeasonLabel(key: string): string {
   title="Schedule"
   description="Full schedule and standings for Barbary Coast Lacrosse."
 >
-  <div class="max-w-4xl mx-auto px-6 py-16">
-    <!-- Back link -->
-    <a href="/" class="subtle-link mb-12 inline-block">← Back</a>
-
-    <!-- Header -->
-    <header class="mb-8">
-      <div class="flex items-center gap-3 flex-wrap">
-        <h1
-          class="text-4xl sm:text-5xl font-medium text-foreground tracking-tight"
-        >
-          Schedule
-        </h1>
-      </div>
-
-      <!-- Season selector -->
-      {seasonKeys.length > 1 && (
-        <div class="mt-4 flex gap-2 flex-wrap">
-          {seasonKeys.map((key) => (
-            <button
-              data-season={key}
-              class:list={[
-                "season-btn px-3 py-1.5 text-sm font-mono transition-colors border",
-                key === currentSeasonKey
-                  ? "border-powder text-powder bg-powder/10"
-                  : "border-border text-muted hover:text-foreground hover:border-foreground/30",
-              ]}
-            >
-              {formatSeasonLabel(key)}
-              {key === currentSeasonKey && (
-                <span class="ml-1 text-xs opacity-60">current</span>
-              )}
-            </button>
-          ))}
-        </div>
-      )}
-    </header>
-
-    <!-- Games -->
-    {seasonKeys.map((key) => (
-      <section
-        data-season-content={key}
-        class:list={["mb-16", key !== currentSeasonKey && "hidden"]}
-      >
+  <div class="max-w-4xl mx-auto px-6 py-10">
+    <section class="mb-12">
+      {(upcomingUlaxGames.length > 0 || upcomingCalEvents.length > 0) ? (
         <ScheduleList
-          ulaxGames={seasonsData[key]?.schedule ?? []}
-          events={key === currentSeasonKey ? manualEvents : []}
+          ulaxGames={upcomingUlaxGames}
+          calendarEvents={upcomingCalEvents}
           barbaryCoastOnly={true}
         />
+      ) : (
+        <p class="text-muted text-sm">No upcoming events.</p>
+      )}
+      {laterCalEvents.length > 0 && (
+        <details class="mt-6">
+          <summary class="label text-subtle cursor-pointer hover:text-muted transition-colors">
+            Later
+          </summary>
+          <div class="mt-4">
+            <ScheduleList calendarEvents={laterCalEvents} />
+          </div>
+        </details>
+      )}
+    </section>
+
+    <!-- B. Current Season Results -->
+    {(currentResults.length > 0 || currentStandings.length > 0) && (
+      <section class="mb-12">
+        <h2 class="label text-muted mb-4">[{formatSeasonLabel(currentSeasonKey).toLowerCase()}]</h2>
+        {currentResults.length > 0 && (
+          <div class="mb-8">
+            <ScheduleList ulaxGames={currentResults} barbaryCoastOnly={true} />
+          </div>
+        )}
+        {currentStandings.length > 0 && (
+          <div>
+            <h3 class="label text-muted mb-3">Standings</h3>
+            <Standings standings={currentStandings} />
+          </div>
+        )}
       </section>
-    ))}
+    )}
 
-    <!-- Standings -->
-    {seasonKeys.map((key) => {
-      const standings = seasonsData[key]?.standings ?? [];
-      return (
-        <section
-          data-season-standings={key}
-          class:list={["mb-16", key !== currentSeasonKey && "hidden"]}
-        >
-          <h2 class="text-xl font-medium text-foreground mb-6">Standings</h2>
-          <Standings standings={standings} />
-        </section>
-      );
-    })}
+    <!-- C. Archive -->
+    {sortedArchiveYears.length > 0 && (
+      <section class="mb-12">
+        <h2 class="label text-muted mb-4">[archive]</h2>
+        {sortedArchiveYears.map(({ year, seasons }) => (
+          <details class="mb-4 border border-border">
+            <summary class="px-4 py-3 cursor-pointer text-foreground font-medium hover:bg-surface/50 transition-colors">
+              {year}
+            </summary>
+            <div class="px-4 pb-4 pt-2 space-y-6">
+              {seasons.map(({ seasonKey, schedule, standings }) => {
+                const bcGames = schedule.filter((g: UlaxGameSerialized) => g.isBarbaryCoast);
+                return (
+                  <div>
+                    <h4 class="text-sm font-medium text-muted mb-3 uppercase tracking-wide">
+                      {formatSeasonLabel(seasonKey)}
+                    </h4>
+                    {bcGames.length > 0 && (
+                      <div class="mb-4">
+                        <ScheduleList ulaxGames={bcGames} barbaryCoastOnly={true} />
+                      </div>
+                    )}
+                    {standings.length > 0 && (
+                      <Standings standings={standings} />
+                    )}
+                  </div>
+                );
+              })}
+              {archiveCalByYear.has(year) && (
+                <div>
+                  <h4 class="text-sm font-medium text-muted mb-3 uppercase tracking-wide">
+                    Events
+                  </h4>
+                  <ScheduleList calendarEvents={archiveCalByYear.get(year)} />
+                </div>
+              )}
+            </div>
+          </details>
+        ))}
+      </section>
+    )}
 
-    <!-- Footer -->
-    <footer
-      class="flex items-center justify-between pt-8 border-t border-border"
-    >
-      <p class="text-sm text-subtle">
+    <div class="flex items-center justify-between mt-12 text-xs text-subtle">
+      <a href="/" class="subtle-link">&larr; home</a>
+      <span>
         Updated {
           fetchedAt.toLocaleDateString("en-US", {
             month: "short",
@@ -124,46 +184,7 @@ function formatSeasonLabel(key: string): string {
             year: "numeric",
           })
         }
-      </p>
-      <p class="text-sm text-subtle">
-        Data from <a
-          href="https://ulax.org/sanfrancisco/men/"
-          target="_blank"
-          rel="noopener"
-          class="text-powder hover:underline">ulax.org</a
-        >
-      </p>
-    </footer>
+      </span>
+    </div>
   </div>
 </Layout>
-
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>(".season-btn");
-  const contents = document.querySelectorAll<HTMLElement>("[data-season-content]");
-  const standings = document.querySelectorAll<HTMLElement>("[data-season-standings]");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const season = btn.dataset.season;
-      if (!season) return;
-
-      // Update buttons
-      buttons.forEach((b) => {
-        const isActive = b.dataset.season === season;
-        b.classList.toggle("border-powder", isActive);
-        b.classList.toggle("text-powder", isActive);
-        b.classList.toggle("bg-powder/10", isActive);
-        b.classList.toggle("border-border", !isActive);
-        b.classList.toggle("text-muted", !isActive);
-      });
-
-      // Show/hide content
-      contents.forEach((el) => {
-        el.classList.toggle("hidden", el.dataset.seasonContent !== season);
-      });
-      standings.forEach((el) => {
-        el.classList.toggle("hidden", el.dataset.seasonStandings !== season);
-      });
-    });
-  });
-</script>

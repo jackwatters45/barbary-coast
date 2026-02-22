@@ -1,23 +1,54 @@
 ---
+import type { CalendarEvent } from "../lib/calendar";
 import type { UlaxGameSerialized } from "../lib/ulax";
 import { parseLocalDate } from "../lib/date";
-
-interface Event {
-  date: string;
-  time: string;
-  type: "game" | "practice" | "scrimmage" | "tournament";
-  opponent?: string;
-  name?: string;
-  location: string;
-  locationUrl?: string;
-}
 
 function getMapsUrl(location: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
 }
 
+function truncateLocation(location: string): string {
+  const commaIndex = location.indexOf(",");
+  return commaIndex > 0 ? location.slice(0, commaIndex) : location;
+}
+
+function getEventDate(event: CalendarEvent): string {
+  if (event.allDay) return event.start.slice(0, 10);
+  // For timed events, extract the date in Pacific time
+  const d = new Date(event.start);
+  const parts = d.toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" }); // YYYY-MM-DD
+  return parts;
+}
+
+function getEventTime(event: CalendarEvent): string {
+  if (event.allDay) return "All day";
+  const d = new Date(event.start);
+  return d.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "America/Los_Angeles",
+  });
+}
+
+function isUlaxEvent(event: CalendarEvent): boolean {
+  return /u\s?lax/i.test(event.summary);
+}
+
+function getEventLabel(event: CalendarEvent): string {
+  const s = event.summary.toLowerCase();
+  if (s.includes("practice")) return "practice";
+  if (s.includes("beers")) return "beers";
+  return "event";
+}
+
+function getEventLabelColor(label: string): string {
+  if (label === "practice") return "text-powder";
+  if (label === "beers") return "text-gold";
+  return "text-muted";
+}
+
 interface Props {
-  events?: Event[];
+  calendarEvents?: CalendarEvent[];
   ulaxGames?: UlaxGameSerialized[];
   limit?: number;
   barbaryCoastOnly?: boolean;
@@ -25,29 +56,38 @@ interface Props {
 }
 
 const {
-  events = [],
+  calendarEvents = [],
   ulaxGames = [],
   limit,
   barbaryCoastOnly = false,
   upcomingOnly = false,
 } = Astro.props;
 
-let filteredUlaxGames = barbaryCoastOnly ? ulaxGames.filter((g) => g.isBarbaryCoast) : ulaxGames;
+let filteredUlaxGames: UlaxGameSerialized[] = barbaryCoastOnly
+  ? ulaxGames.filter((g: UlaxGameSerialized) => g.isBarbaryCoast)
+  : ulaxGames;
 
 if (upcomingOnly) {
   filteredUlaxGames = filteredUlaxGames.filter((g) => g.homeScore === null && g.awayScore === null);
 }
 
-const filteredEvents = upcomingOnly
-  ? events.filter((e) => new Date(e.date) >= new Date(new Date().toDateString()))
-  : events;
+const nonUlaxEvents: CalendarEvent[] = calendarEvents.filter((e: CalendarEvent) => !isUlaxEvent(e));
+const filteredEvents: CalendarEvent[] = upcomingOnly
+  ? nonUlaxEvents.filter((e) => new Date(getEventDate(e)) >= new Date(new Date().toDateString()))
+  : nonUlaxEvents;
 
-type ScheduleItem = { kind: "ulax"; data: UlaxGameSerialized } | { kind: "event"; data: Event };
+type ScheduleItem =
+  | { kind: "ulax"; data: UlaxGameSerialized }
+  | { kind: "event"; data: CalendarEvent };
 
 const allItems: ScheduleItem[] = [
   ...filteredUlaxGames.map((g) => ({ kind: "ulax" as const, data: g })),
   ...filteredEvents.map((e) => ({ kind: "event" as const, data: e })),
-].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+].sort((a, b) => {
+  const dateA = a.kind === "ulax" ? a.data.date : getEventDate(a.data);
+  const dateB = b.kind === "ulax" ? b.data.date : getEventDate(b.data);
+  return new Date(dateA).getTime() - new Date(dateB).getTime();
+});
 
 const displayItems = limit ? allItems.slice(0, limit) : allItems;
 
@@ -77,83 +117,128 @@ function isWin(game: UlaxGameSerialized): boolean | null {
   if (bcScore === null || oppScore === null) return null;
   return bcScore > oppScore;
 }
+
+function isCompactItem(item: ScheduleItem): boolean {
+  if (item.kind === "ulax") return false;
+  const label = getEventLabel(item.data);
+  return label === "practice" || label === "beers";
+}
+
+function getItemDateStr(item: ScheduleItem): string {
+  return item.kind === "ulax" ? item.data.date : getEventDate(item.data);
+}
+
+// Group items by date
+interface DateGroup {
+  dateStr: string;
+  day: string;
+  monthShort: string;
+  monthLong: string;
+  monthKey: string;
+  items: ScheduleItem[];
+}
+
+const dateGroups: DateGroup[] = [];
+for (const item of displayItems) {
+  const dateStr = getItemDateStr(item);
+  const last = dateGroups[dateGroups.length - 1];
+  if (last && last.dateStr === dateStr) {
+    last.items.push(item);
+  } else {
+    const date = parseLocalDate(dateStr);
+    dateGroups.push({
+      dateStr,
+      day: String(date.getDate()).padStart(2, "0"),
+      monthShort: date.toLocaleDateString("en-US", { month: "short" }),
+      monthLong: date.toLocaleDateString("en-US", { month: "long" }).toUpperCase(),
+      monthKey: `${date.getFullYear()}-${date.getMonth()}`,
+      items: [item],
+    });
+  }
+}
 ---
 
 <div class="space-y-3">
-  {displayItems.map((item) => {
-    if (item.kind === "ulax") {
-      const game = item.data;
-      const bcScore = getBarbaryCoastScore(game);
-      const oppScore = getOpponentScore(game);
-      const hasScore = bcScore !== null && oppScore !== null;
-      const won = isWin(game);
-      const date = parseLocalDate(game.date);
+  {dateGroups.map((group, gi) => {
+    const prevMonthKey = gi > 0 ? dateGroups[gi - 1].monthKey : null;
+    const newMonth = group.monthKey !== prevMonthKey;
 
-      return (
-        <article class="card p-4 sm:p-5">
-          <div class="flex items-start gap-4">
-            <!-- Date -->
-            <div class="flex-shrink-0 text-center w-12 border-r border-border pr-4">
-              <span class="block text-2xl font-semibold font-mono text-foreground tabular-nums leading-tight">{String(date.getDate()).padStart(2, "0")}</span>
-              <span class="block text-xs text-muted uppercase tracking-wide">{date.toLocaleDateString("en-US", { month: "short" })}</span>
-            </div>
+    return (
+      <div>
+        {newMonth && (
+          <div class:list={["label text-muted tracking-widest mb-2", gi > 0 && "pt-3"]}>
+            {group.monthLong}
+          </div>
+        )}
+        <div class="flex gap-4">
+          <!-- Date column (day number only — month dividers handle context) -->
+          <div class="flex-shrink-0 w-8 pt-0.5">
+            <span class="block text-lg font-semibold font-mono text-foreground tabular-nums leading-tight">{group.day}</span>
+          </div>
 
-            <!-- Details -->
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1">
-                <span class:list={["label", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
-                  [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
-                </span>
-                <span class="text-sm text-muted font-mono">{game.time}</span>
-              </div>
-              <div class="flex items-center gap-3 flex-wrap">
-                <h3 class="font-medium text-foreground">
-                  {isTBD(game) ? game.typeName : `vs ${getOpponent(game)}`}
-                </h3>
-                {hasScore && (
-                  <span class:list={["px-2 py-0.5 text-xs font-mono font-medium", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
-                    {won ? "W" : "L"} {bcScore}-{oppScore}
+          <!-- Events column -->
+          <div class="flex-1 min-w-0 space-y-1">
+            {group.items.map((item) => {
+              if (item.kind === "ulax") {
+                const game = item.data;
+                const bcScore = getBarbaryCoastScore(game);
+                const oppScore = getOpponentScore(game);
+                const hasScore = bcScore !== null && oppScore !== null;
+                const won = isWin(game);
+
+                return (
+                  <div class="py-1">
+                    <div class="flex items-center gap-2">
+                      <span class:list={["label shrink-0", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
+                        [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
+                      </span>
+                      <span class="text-sm text-muted font-mono shrink-0">{game.time}</span>
+                      <span class="text-muted shrink-0">&middot;</span>
+                      <span class="font-medium text-foreground">
+                        {isTBD(game) ? game.typeName : `vs ${getOpponent(game)}`}
+                      </span>
+                      {hasScore && (
+                        <span class:list={["px-1.5 py-0.5 text-xs font-mono font-medium shrink-0", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
+                          {won ? "W" : "L"} {bcScore}-{oppScore}
+                        </span>
+                      )}
+                    </div>
+                    {!hasScore && (
+                      <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors">
+                        {truncateLocation(game.field)}
+                      </a>
+                    )}
+                  </div>
+                );
+              }
+
+              const event = item.data;
+              const label = getEventLabel(event);
+
+              return (
+                <div class="flex items-center gap-2 text-sm py-0.5">
+                  <span class:list={["label shrink-0", getEventLabelColor(label)]}>
+                    [{label}]
                   </span>
-                )}
-              </div>
-              <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
-                {game.field}
-              </a>
-            </div>
+                  <span class="text-muted font-mono text-xs shrink-0">{getEventTime(event)}</span>
+                  <span class="text-muted shrink-0">&middot;</span>
+                  <span class:list={["truncate", isCompactItem(item) ? "text-foreground" : "font-medium text-foreground"]}>
+                    {event.summary}
+                  </span>
+                  {event.location && (
+                    <span class="text-muted shrink-0 hidden sm:inline">&middot;</span>
+                  )}
+                  {event.location && (
+                    <a href={getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors hidden sm:inline truncate">
+                      {truncateLocation(event.location)}
+                    </a>
+                  )}
+                </div>
+              );
+            })}
           </div>
-        </article>
-      );
-    } else {
-      const event = item.data;
-      const date = parseLocalDate(event.date);
-
-      return (
-        <article class="card p-4 sm:p-5">
-          <div class="flex items-start gap-4">
-            <!-- Date -->
-            <div class="flex-shrink-0 text-center w-12 border-r border-border pr-4">
-              <span class="block text-2xl font-semibold font-mono text-foreground tabular-nums leading-tight">{String(date.getDate()).padStart(2, "0")}</span>
-              <span class="block text-xs text-muted uppercase tracking-wide">{date.toLocaleDateString("en-US", { month: "short" })}</span>
-            </div>
-
-            <!-- Details -->
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1">
-                <span class:list={["label", event.type === "practice" ? "text-powder" : "text-gold"]}>
-                  [{event.type}]
-                </span>
-                <span class="text-sm text-muted font-mono">{event.time}</span>
-              </div>
-              <h3 class="font-medium text-foreground">
-                {event.name ?? (event.opponent ? `vs ${event.opponent}` : "Practice")}
-              </h3>
-              <a href={event.locationUrl ?? getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
-                {event.location}
-              </a>
-            </div>
-          </div>
-        </article>
-      );
-    }
+        </div>
+      </div>
+    );
   })}
 </div>
