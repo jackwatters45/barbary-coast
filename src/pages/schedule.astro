@@ -175,9 +175,7 @@ function formatSeasonLabel(key: string): string {
     )}
 
     <!-- Footer -->
-    <footer
-      class="flex items-center justify-between pt-8 border-t border-border"
-    >
+    <footer class="pt-8 border-t border-border">
       <p class="text-sm text-subtle">
         Updated {
           fetchedAt.toLocaleDateString("en-US", {
@@ -186,14 +184,6 @@ function formatSeasonLabel(key: string): string {
             year: "numeric",
           })
         }
-      </p>
-      <p class="text-sm text-subtle">
-        Data from <a
-          href="https://ulax.org/sanfrancisco/men/"
-          target="_blank"
-          rel="noopener"
-          class="text-powder hover:underline">ulax.org</a
-        >
       </p>
     </footer>
   </div>
