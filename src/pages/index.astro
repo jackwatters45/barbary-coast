@@ -2,12 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Schedule from "../components/Schedule.astro";
 import ulaxData from "../data/ulax.json";
-import { manualEvents } from "../data/events";
+import calendarData from "../data/calendar.json";
+import type { CalendarEvent } from "../lib/calendar";
 import type { UlaxGameSerialized, UlaxAllDataSerialized } from "../lib/ulax";
 
 const data = ulaxData as UlaxAllDataSerialized;
 const currentSeasonKey = `${data.currentSeason}-${data.currentYear}`;
 const ulaxGames = (data.seasons[currentSeasonKey]?.schedule ?? []) as UlaxGameSerialized[];
+const calEvents = calendarData.events as CalendarEvent[];
 
 const ESTABLISHED_YEAR = 1849;
 ---
@@ -817,7 +819,7 @@ const ESTABLISHED_YEAR = 1849;
         <div class="lg:flex-1 reveal" style="--delay: 0.1s">
           <Schedule
             ulaxGames={ulaxGames}
-            events={manualEvents}
+            calendarEvents={calEvents}
             barbaryCoastOnly={true}
             upcomingOnly={true}
             limit={4}

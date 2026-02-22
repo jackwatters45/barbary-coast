@@ -1,0 +1,1247 @@
+{
+  "events": [
+    {
+      "id": "4kubcspg1lno9ec3ff7bl1d8vi",
+      "summary": "BC vs. Cal",
+      "description": "",
+      "location": "Laney College Football Field, 900 Fallon St, Oakland, CA 94607, USA",
+      "start": "2024-01-20T11:00:00-08:00",
+      "end": "2024-01-20T12:30:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "1dt70pdiaes6f0ri3l9022em54",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Kingfish Pub & Cafe, 5227 Telegraph Ave, Oakland, CA 94609, USA",
+      "start": "2024-01-20T12:30:00-08:00",
+      "end": "2024-01-20T14:30:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "67uee7tojojaa2ih4s8q2f29e4",
+      "summary": "BC vs. Stanford",
+      "description": "",
+      "location": "Johnson Field, Stanford, CA 94305, USA",
+      "start": "2024-01-27T12:00:00-08:00",
+      "end": "2024-01-27T14:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "51f7qs0d4l73brn7coa1m8j6gr",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Dutch Goose, 3567 Alameda de las Pulgas, Menlo Park, CA 94025, USA",
+      "start": "2024-01-27T14:00:00-08:00",
+      "end": "2024-01-27T16:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "084vju7qv8uvu4tb5ubp0dva86",
+      "summary": "Mini Tournament at Palo Alto",
+      "description": "",
+      "location": "El Camino Field, Palo Alto, CA 94306, USA",
+      "start": "2024-03-03T13:00:00-08:00",
+      "end": "2024-03-03T17:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "k4ausjdhv53o05q4a5v92cmt9k",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-03-06T20:00:00-08:00",
+      "end": "2024-03-06T21:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "75sktbskqsuruo5khda6difs4s",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Friends Bar, 558 Monterey Blvd, San Francisco, CA 94127, USA",
+      "start": "2024-03-06T21:00:00-08:00",
+      "end": "2024-03-06T22:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "anvdb7eboqca6ip6d06uha0bo0",
+      "summary": "BC vs SFLC",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2024-03-10T17:00:00-07:00",
+      "end": "2024-03-10T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "crd4tc09o4jbf9k2smdg7re6so",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2024-03-10T18:00:00-07:00",
+      "end": "2024-03-10T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "mooi3fg28t48ukq7mbg330or1s",
+      "summary": "BC Practice",
+      "description": "Field 1A/B",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-03-13T20:00:00-07:00",
+      "end": "2024-03-13T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "mni1hjjcr6ugr8oq53gqj4aoeg",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Friends Bar, 558 Monterey Blvd, San Francisco, CA 94127, USA",
+      "start": "2024-03-13T21:00:00-07:00",
+      "end": "2024-03-13T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "6n9q5bsvo70s05b71bnn4a6bv2",
+      "summary": "BC vs Palo Alto",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2024-03-17T17:00:00-07:00",
+      "end": "2024-03-17T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "6r2h7ide05o1qknoh774418eog",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-03-17T18:00:00-07:00",
+      "end": "2024-03-17T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "58574cl3021dk33ncohk2efep4",
+      "summary": "BC Practice",
+      "description": "Field 1 C/D",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-03-20T20:00:00-07:00",
+      "end": "2024-03-20T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "vihuigt3nu6dcnpcn872ti2i2s",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Friends Bar, 558 Monterey Blvd, San Francisco, CA 94127, USA",
+      "start": "2024-03-20T21:00:00-07:00",
+      "end": "2024-03-20T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0acsh6upssnrc3902ndt2ik3h0",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-04-03T20:00:00-07:00",
+      "end": "2024-04-03T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "7nv1jjasks4bhclp47s36apsu5",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Friends Bar, 558 Monterey Blvd, San Francisco, CA 94127, USA",
+      "start": "2024-04-03T21:00:00-07:00",
+      "end": "2024-04-03T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3fae2srpcn66rhlo424r1e2dtu",
+      "summary": "BC vs. O Club",
+      "description": "",
+      "location": "",
+      "start": "2024-04-07T17:00:00-07:00",
+      "end": "2024-04-07T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3djlmh101eh8fgrhav7ie5pnmv",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-04-07T18:00:00-07:00",
+      "end": "2024-04-07T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "o2mtkifb0vtqvm2oa0gav8tf08",
+      "summary": "BC Practice",
+      "description": "1A/B",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-04-10T20:00:00-07:00",
+      "end": "2024-04-10T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3n6nn59v43edh3tnd6ecll9to1",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Friends Bar, 558 Monterey Blvd, San Francisco, CA 94127, USA",
+      "start": "2024-04-10T21:00:00-07:00",
+      "end": "2024-04-10T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1uo5pm7q760bc8dop2s70q3etj",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "",
+      "start": "2024-04-17T20:00:00-07:00",
+      "end": "2024-04-17T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2tcn9tnec502me0ksr81jss4na",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-04-17T21:00:00-07:00",
+      "end": "2024-04-17T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3igcal9dl77g9uf3hkeafnplop",
+      "summary": "BC vs Marin",
+      "description": "",
+      "location": "",
+      "start": "2024-04-21T17:00:00-07:00",
+      "end": "2024-04-21T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "6ruch4rfb3trp9sni8t04uik5f",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-04-21T18:00:00-07:00",
+      "end": "2024-04-21T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1i1eg6d5aer5fa7m8tqi1sr0in",
+      "summary": "BC vs. O Club",
+      "description": "",
+      "location": "",
+      "start": "2024-04-28T17:00:00-07:00",
+      "end": "2024-04-28T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1dd8e2b6mgdlsje2ver9mmpee5",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-04-28T18:00:00-07:00",
+      "end": "2024-04-28T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "jqbrkc4103p38dh07rl6khhin8",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Minnie & Lovie Ward Recreational Center, 650 Capitol Ave, San Francisco, CA 94112, USA",
+      "start": "2024-05-01T20:00:00-07:00",
+      "end": "2024-05-01T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "f1r97sdua55feb07elb1rm89k4",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-05-01T21:00:00-07:00",
+      "end": "2024-05-01T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "34eoc8b343659lu3t6an38818p",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "",
+      "start": "2024-05-08T19:00:00-07:00",
+      "end": "2024-05-08T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0id1e3jr7eo5m9srhq3splc0kv",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-05-08T20:00:00-07:00",
+      "end": "2024-05-08T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3f34vb420jspjvduhekhp2f9s5",
+      "summary": "BC Social",
+      "description": "Some good old fashioned off-field bonding. Klontz is leading the charge here.",
+      "location": "",
+      "start": "2024-05-10T18:00:00-07:00",
+      "end": "2024-05-10T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0mqvcmrurqa0te4p27rr4267nc",
+      "summary": "BC vs. Marin",
+      "description": "",
+      "location": "",
+      "start": "2024-05-12T17:00:00-07:00",
+      "end": "2024-05-12T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0rqj7maqemmjto4dtea5b5v4h9",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2024-05-12T18:00:00-07:00",
+      "end": "2024-05-12T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2ffg2k1c4grm50ht4al2t4tol0",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "",
+      "start": "2024-05-15T19:00:00-07:00",
+      "end": "2024-05-15T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "002rqlodai06teff9m4t3r0rr8",
+      "summary": "BC Playoffs vs Marin",
+      "description": "",
+      "location": "Raymond Kimball Playground",
+      "start": "2024-05-19T16:00:00-07:00",
+      "end": "2024-05-19T17:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "23b20071s88994ekaoojdife62_20240719T150000Z",
+      "summary": "Hold for Tahoe Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-07-19T08:00:00-07:00",
+      "end": "2024-07-19T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "23b20071s88994ekaoojdife62_20240720T150000Z",
+      "summary": "Hold for Tahoe Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-07-20T08:00:00-07:00",
+      "end": "2024-07-20T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "23b20071s88994ekaoojdife62_20240721T150000Z",
+      "summary": "Hold for Tahoe Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-07-21T08:00:00-07:00",
+      "end": "2024-07-21T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "488107i2q45sca9g4c33cqflc8",
+      "summary": "BC vs Sonoma",
+      "description": "Game starts at 11AM. Get there at 10AM to warm up.\n\nPark in Parking Lot E and walk to the SOCCER field.",
+      "location": "Seawolf Soccer Field, S Redwood Dr, Rohnert Park, CA 94928, USA",
+      "start": "2024-09-21T11:00:00-07:00",
+      "end": "2024-09-21T13:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0hmlku7n4bl6inng4ncnad2q3v",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Flagship Taproom, 8099 La Plaza B, Cotati, CA 94931, USA",
+      "start": "2024-09-21T13:00:00-07:00",
+      "end": "2024-09-21T14:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2vijdl7lmuenia4i0t8eof4h7o",
+      "summary": "BC vs. Dominican",
+      "description": "",
+      "location": "John F. Allen Athletics Complex and Kennelly Field, 890 Belle Ave, San Rafael, CA 94901, USA",
+      "start": "2024-10-13T13:00:00-07:00",
+      "end": "2024-10-13T15:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1bski5s9coceddlch3og5342o5",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Pond Farm Brewing Company, 1848 4th St, San Rafael, CA 94901, USA",
+      "start": "2024-10-13T15:30:00-07:00",
+      "end": "2024-10-13T16:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0q8n2od9b8t559h7p5sf8u2673_20241025T150000Z",
+      "summary": "Hold for Hawaii Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-10-25T08:00:00-07:00",
+      "end": "2024-10-25T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0q8n2od9b8t559h7p5sf8u2673_20241026T150000Z",
+      "summary": "Hold for Hawaii Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-10-26T08:00:00-07:00",
+      "end": "2024-10-26T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0q8n2od9b8t559h7p5sf8u2673_20241027T150000Z",
+      "summary": "Hold for Hawaii Tournament",
+      "description": "",
+      "location": "",
+      "start": "2024-10-27T08:00:00-07:00",
+      "end": "2024-10-27T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "jtljtekv68r3abo0ui36t2dni8",
+      "summary": "BC vs Cal (Faceoff at 12PM)",
+      "description": "FACEOFF AT 12PM",
+      "location": "Maxwell Family Field, 2205 Piedmont Ave, Berkeley, CA 94704, USA",
+      "start": "2024-11-09T11:00:00-08:00",
+      "end": "2024-11-09T13:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "6dcniks8cq6m25qbgc4k6qho4c",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Kingfish Pub & Cafe, 5227 Telegraph Ave, Oakland, CA 94609, USA",
+      "start": "2024-11-09T13:00:00-08:00",
+      "end": "2024-11-09T14:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "5ubcpniu3j86e90t8h93rgq3hl",
+      "summary": "BC vs Bar Down",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-01-05T17:00:00-08:00",
+      "end": "2025-01-05T18:30:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "4jntlldh68d8l86i54e3f8f35a",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-01-05T18:30:00-08:00",
+      "end": "2025-01-05T20:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "5vsqhnrqjugm4evkniuq1hak35",
+      "summary": "BC vs. SFLC",
+      "description": "",
+      "location": "",
+      "start": "2025-01-12T17:00:00-08:00",
+      "end": "2025-01-12T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "0bke32m3b2j8qie4rdppbpga9m",
+      "summary": "BC vs Palo Alto",
+      "description": "",
+      "location": "",
+      "start": "2025-01-12T18:00:00-08:00",
+      "end": "2025-01-12T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "562m7g1q03bpi5ah5f25cst8ah",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2025-01-12T19:00:00-08:00",
+      "end": "2025-01-12T20:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "197vt1n0c4ek5dob1lqfrthnds",
+      "summary": "BC vs. Bar Down",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-02-02T17:00:00-08:00",
+      "end": "2025-02-02T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "7489klndv6ev535prt5sll9c2q",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-02-02T18:00:00-08:00",
+      "end": "2025-02-02T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "0frdv6o3lo5sq0j6lgebdp2uap",
+      "summary": "BC vs. Palo Alto",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-02-16T17:00:00-08:00",
+      "end": "2025-02-16T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "5ovot70r94tdk8n7lcbmdoh4r6",
+      "summary": "BC vs. SFLC",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-02-16T18:00:00-08:00",
+      "end": "2025-02-16T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "6cer04opi8u07s3mlg5qn7t809",
+      "summary": "ULax Semis. Starts 5PM!",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-02-23T17:00:00-08:00",
+      "end": "2025-02-23T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "41fke8o5qe2mcubqlvi66p0d0t",
+      "summary": "ULax Championship",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-02-23T18:00:00-08:00",
+      "end": "2025-02-23T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "0lsl75vapr3g7ug4kd5547u6ps",
+      "summary": "BC vs O Club",
+      "description": "",
+      "location": "Palo Alto High School, 50 Embarcadero Rd, Palo Alto, CA 94301, USA",
+      "start": "2025-03-09T14:30:00-07:00",
+      "end": "2025-03-09T15:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "7glqu14uvn049l9fk4746gla1u",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "",
+      "start": "2025-03-09T15:30:00-07:00",
+      "end": "2025-03-09T17:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "68ooogrr3mf58cstk2m5ao4u9e",
+      "summary": "BC vs SFLC",
+      "description": "",
+      "location": "Beach Chalet",
+      "start": "2025-03-16T18:30:00-07:00",
+      "end": "2025-03-16T19:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2p93v7afulsei4rbkjg1gi2hdt",
+      "summary": "BC vs Palo Alto Ducks",
+      "description": "",
+      "location": "Palo Alto High School",
+      "start": "2025-03-23T17:30:00-07:00",
+      "end": "2025-03-23T18:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3ne1f99r5ap4b6gcu2mo7n2h4v",
+      "summary": "BC vs Sacramento",
+      "description": "",
+      "location": "Cayetano Park, Livermore",
+      "start": "2025-03-30T13:30:00-07:00",
+      "end": "2025-03-30T14:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0v53jdticjhlqtb45trd879fuo",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Dust Bowl Brewing Co. Livermore Taproom, 3034 W Jack London Blvd, Livermore, CA 94551, USA",
+      "start": "2025-03-30T15:00:00-07:00",
+      "end": "2025-03-30T16:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0m935qgbfcb20t0h1v0sok3r28",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "",
+      "start": "2025-04-02T19:00:00-07:00",
+      "end": "2025-04-02T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "56fk3k2fkkhchqbbhbjcnm3rr2",
+      "summary": "BC vs Marin",
+      "description": "",
+      "location": "Beach Chalet",
+      "start": "2025-04-06T18:30:00-07:00",
+      "end": "2025-04-06T19:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "ceuqji05a7qeicdnpvgvt3epbo",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-04-09T19:00:00-07:00",
+      "end": "2025-04-09T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0mpdks92r3v8c4a426oume8ca0",
+      "summary": "BC Lax Practice Field 1A/B",
+      "description": "[FIELDS - SF GLENS ACADEMY]",
+      "location": "Beach Chalet Soccer Fields (1500 John F Kennedy Dr, San Francisco, CA  94121)",
+      "start": "2025-04-16T19:00:00-07:00",
+      "end": "2025-04-16T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1ar988m8igh2cvar9ie7rv7tep",
+      "summary": "BC vs O Club",
+      "description": "",
+      "location": "Beach Chalet",
+      "start": "2025-04-18T19:00:00-07:00",
+      "end": "2025-04-18T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "39egsrlgvlc22inekl506cf1mq",
+      "summary": "BC vs Marin",
+      "description": "",
+      "location": "Beach Chalet",
+      "start": "2025-05-04T17:00:00-07:00",
+      "end": "2025-05-04T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "21shma8h80ec2l8p8h8rge6b0j",
+      "summary": "BC Lacrosse Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-05-28T18:45:00-07:00",
+      "end": "2025-05-28T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2n10qmp4te5328a5rub7088t1b",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-05-28T20:00:00-07:00",
+      "end": "2025-05-28T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "5tna0ea1m6u8n4eqf29bmf1urc",
+      "summary": "BC Lax Final Game vs O Club",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-06-01T16:30:00-07:00",
+      "end": "2025-06-01T18:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4l90ofva3mpecfuqlelk88pagn",
+      "summary": "BC Lax Post Final Beers",
+      "description": "",
+      "location": "",
+      "start": "2025-06-01T18:30:00-07:00",
+      "end": "2025-06-01T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "i431ueaus1dnuqfg9hau30r4jo",
+      "summary": "BC vs Diablo",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-06-15T17:00:00-07:00",
+      "end": "2025-06-15T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "2ols3opq1rmbu5parg61dvmv80",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-06-15T18:00:00-07:00",
+      "end": "2025-06-15T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "d22i7v10f38o3uuobm5ejaatks",
+      "summary": "BC vs Palo Alto",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-06-22T19:00:00-07:00",
+      "end": "2025-06-22T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "pqarqflfd8ok5tqnrf8f6boe4o",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-06-22T20:00:00-07:00",
+      "end": "2025-06-22T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "6fiuatrj9pogenk9vp8i8le4gc",
+      "summary": "BC vs. Golden State",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-06-29T18:00:00-07:00",
+      "end": "2025-06-29T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "u36ffr77ms8llqgqpoodaagjdo",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-06-29T19:00:00-07:00",
+      "end": "2025-06-29T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "mtbqf771skthap155l2jb115u0",
+      "summary": "BC vs SFLC",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-07-06T18:00:00-07:00",
+      "end": "2025-07-06T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3k2puogddjbmv36rvs8ohd2ujk",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-07-06T19:00:00-07:00",
+      "end": "2025-07-06T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "o94slbn44ah7mnmvg57i6q4sb8",
+      "summary": "BC vs, Bay Dawgs",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-07-13T18:00:00-07:00",
+      "end": "2025-07-13T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4r0488v834rf276v87f27pv414",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-07-13T19:00:00-07:00",
+      "end": "2025-07-13T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "ov1pni3jqpo89nssp3nhu6hd6s",
+      "summary": "Bay Area Lacrosse League",
+      "description": "",
+      "location": "Sequoia High School, 1201 Brewster Ave, Redwood City, CA 94062, USA",
+      "start": "2025-07-17T19:00:00-07:00",
+      "end": "2025-07-17T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0qd12dur1gnfrviu0v53gf8snd",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2025-07-20T19:00:00-07:00",
+      "end": "2025-07-20T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "kjklfb59pkrc8okr52is82m6uc",
+      "summary": "Bay Area Lacrosse League",
+      "description": "",
+      "location": "Sequoia High School, 1201 Brewster Ave, Redwood City, CA 94062, USA",
+      "start": "2025-07-24T19:00:00-07:00",
+      "end": "2025-07-24T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "1leq2g77h5h2t8sc6k9vauo21c",
+      "summary": "BC vs Diablo",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-07-27T18:00:00-07:00",
+      "end": "2025-07-27T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "adsg9bps1a75mboj73vphu82h4",
+      "summary": "Bay Area Lacrosse League",
+      "description": "",
+      "location": "Sequoia High School, 1201 Brewster Ave, Redwood City, CA 94062, USA",
+      "start": "2025-07-31T19:00:00-07:00",
+      "end": "2025-07-31T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "pevldo0j1naopv6mge55v3m9jc",
+      "summary": "Summer U Lax Playoffs",
+      "description": "",
+      "location": "Wilder Fields, 101 Wilder Rd, Orinda, CA 94563, USA",
+      "start": "2025-08-03T13:00:00-07:00",
+      "end": "2025-08-03T16:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ain0d74c650nb8i992bvn41vt",
+      "summary": "BC Practice",
+      "description": "We're creeping up on some important BC events (Sonoma State, Hawaii, CA State Championships).\n\nLet's get sticks in hands for a bit and then go drink some beer.",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-10-15T20:00:00-07:00",
+      "end": "2025-10-15T21:30:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "3g1luh8j6evhd2qtuq8jbtiev9",
+      "summary": "BC vs. Sonoma State",
+      "description": "",
+      "location": "Seawolf Soccer Field, S Redwood Dr, Rohnert Park, CA 94928, USA",
+      "start": "2025-10-18T12:00:00-07:00",
+      "end": "2025-10-18T14:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "6sgg73fe3h2srhruvs25pf8sk7",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2025-10-22T21:00:00-07:00",
+      "end": "2025-10-22T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0am0okfrb4kg5rfedd3aig7077_20251024T130000Z",
+      "summary": "Hold for Hawaii (Day 1)",
+      "description": "",
+      "location": "",
+      "start": "2025-10-24T06:00:00-07:00",
+      "end": "2025-10-24T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0am0okfrb4kg5rfedd3aig7077_20251025T130000Z",
+      "summary": "Hold for Hawaii (Day 2)",
+      "description": "",
+      "location": "",
+      "start": "2025-10-25T06:00:00-07:00",
+      "end": "2025-10-25T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0am0okfrb4kg5rfedd3aig7077_20251026T130000Z",
+      "summary": "Hold for Hawaii (Day 3)",
+      "description": "",
+      "location": "",
+      "start": "2025-10-26T06:00:00-07:00",
+      "end": "2025-10-26T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "mos4bumcbluobr5j1cm9gb9ans",
+      "summary": "Sell Monitors",
+      "description": "",
+      "location": "",
+      "start": "2025-11-08T11:00:00-08:00",
+      "end": "2025-11-08T12:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "3ia1g0tvshf7aic54gavp9vetp",
+      "summary": "BC vs SDLC California State Championship (Faceoff at 1PM)",
+      "description": "Barbary Plays SDLC down in San Diego! You can fly down just for the day, or stay and send it in SD with both teams. Flights are as low as $60 if you get em early. Let's show up with the SQUAD and give em a run. No telling when we're going to get this chance again.",
+      "location": "Torrey Pines High School, 3710 Del Mar Heights Rd, San Diego, CA 92130, USA",
+      "start": "2025-11-15T08:00:00-08:00",
+      "end": "2025-11-15T22:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "6478vsre34548iog8e463463pe",
+      "summary": "BC vs Free Agents",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-01-11T17:00:00-08:00",
+      "end": "2026-01-11T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "41s2murrvv71pqloi6aauu8mq6",
+      "summary": "Free Agents vs. Palo Alto",
+      "description": "They'll probably need some help.",
+      "location": "",
+      "start": "2026-01-11T18:00:00-08:00",
+      "end": "2026-01-11T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "5m45fdglsg5hordus0h2qcft4g",
+      "summary": "BC BEERs",
+      "description": "",
+      "location": "",
+      "start": "2026-01-11T18:00:00-08:00",
+      "end": "2026-01-11T20:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "3ofhnllc3u0gphp8rrof3836iv",
+      "summary": "Free Agents vs SFLC (Optional)",
+      "description": "",
+      "location": "",
+      "start": "2026-01-18T17:00:00-08:00",
+      "end": "2026-01-18T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "66oe2k0pc5nk2bs09r2aqrleu8",
+      "summary": "BC vs SFLC",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-01-18T18:00:00-08:00",
+      "end": "2026-01-18T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "2bl8ej8if5aioht3tagi354kn2",
+      "summary": "BC vs. Palo Alto",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-01-18T19:00:00-08:00",
+      "end": "2026-01-18T20:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "2mrbb5s9dlomsaj0k5k2kghj2q",
+      "summary": "BC vs. Free Agents",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-01-25T18:00:00-08:00",
+      "end": "2026-01-25T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "70g70g8n4jr21qrba7mm8mvl0o",
+      "summary": "BC vs. SFLC",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-02-01T17:00:00-08:00",
+      "end": "2026-02-01T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "0liunjbio6uk2mf93sl0hn4pbi",
+      "summary": "Palo Alto vs. Free Agents (Optional)",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-02-01T18:00:00-08:00",
+      "end": "2026-02-01T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "137g4jpdc3bh3i7jukgi4brfii",
+      "summary": "BC vs. Palo Alto",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-02-15T17:00:00-08:00",
+      "end": "2026-02-15T18:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "41mc18qo9su5u22oh0mrijk2i3",
+      "summary": "Free Agents vs. SFLC (Optional)",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-02-15T18:00:00-08:00",
+      "end": "2026-02-15T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "33f1116pah0vtjth5gj0vbjguh",
+      "summary": "U Lax Winter Semis",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-02-22T17:00:00-08:00",
+      "end": "2026-02-22T19:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "10v2kih095iaale6rbd8ln8idh",
+      "summary": "ULax Winter Final",
+      "description": "",
+      "location": "",
+      "start": "2026-02-22T19:00:00-08:00",
+      "end": "2026-02-22T20:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260305T040000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-03-04T20:00:00-08:00",
+      "end": "2026-03-04T21:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260305T050000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-03-04T21:00:00-08:00",
+      "end": "2026-03-04T22:00:00-08:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260312T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-03-11T20:00:00-07:00",
+      "end": "2026-03-11T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260312T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-03-11T21:00:00-07:00",
+      "end": "2026-03-11T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260319T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-03-18T20:00:00-07:00",
+      "end": "2026-03-18T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260319T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-03-18T21:00:00-07:00",
+      "end": "2026-03-18T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260326T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-03-25T20:00:00-07:00",
+      "end": "2026-03-25T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260326T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-03-25T21:00:00-07:00",
+      "end": "2026-03-25T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260402T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-01T20:00:00-07:00",
+      "end": "2026-04-01T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260402T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-04-01T21:00:00-07:00",
+      "end": "2026-04-01T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260409T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-08T20:00:00-07:00",
+      "end": "2026-04-08T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260409T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-04-08T21:00:00-07:00",
+      "end": "2026-04-08T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260416T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-15T20:00:00-07:00",
+      "end": "2026-04-15T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260416T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-04-15T21:00:00-07:00",
+      "end": "2026-04-15T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260423T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-22T20:00:00-07:00",
+      "end": "2026-04-22T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260423T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-04-22T21:00:00-07:00",
+      "end": "2026-04-22T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260430T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-29T20:00:00-07:00",
+      "end": "2026-04-29T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260430T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-04-29T21:00:00-07:00",
+      "end": "2026-04-29T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260507T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-05-06T20:00:00-07:00",
+      "end": "2026-05-06T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260507T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-05-06T21:00:00-07:00",
+      "end": "2026-05-06T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260514T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-05-13T20:00:00-07:00",
+      "end": "2026-05-13T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260514T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-05-13T21:00:00-07:00",
+      "end": "2026-05-13T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260521T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-05-20T20:00:00-07:00",
+      "end": "2026-05-20T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260521T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-05-20T21:00:00-07:00",
+      "end": "2026-05-20T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4ka6h24v8jmjnoo947cu1gir2q_20260528T030000Z",
+      "summary": "BC Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-05-27T20:00:00-07:00",
+      "end": "2026-05-27T21:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "0dokk9ulki80spp5v3k1fcg1fg_20260528T040000Z",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
+      "start": "2026-05-27T21:00:00-07:00",
+      "end": "2026-05-27T22:00:00-07:00",
+      "allDay": false
+    }
+  ],
+  "fetchedAt": "2026-02-22T09:27:58.559Z"
+}

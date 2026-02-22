@@ -1,23 +1,49 @@
 ---
+import type { CalendarEvent } from "../lib/calendar";
 import type { UlaxGameSerialized } from "../lib/ulax";
 import { parseLocalDate } from "../lib/date";
-
-interface Event {
-  date: string;
-  time: string;
-  type: "game" | "practice" | "scrimmage" | "tournament";
-  opponent?: string;
-  name?: string;
-  location: string;
-  locationUrl?: string;
-}
 
 function getMapsUrl(location: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
 }
 
+function getEventDate(event: CalendarEvent): string {
+  if (event.allDay) return event.start.slice(0, 10);
+  // For timed events, extract the date in Pacific time
+  const d = new Date(event.start);
+  const parts = d.toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" }); // YYYY-MM-DD
+  return parts;
+}
+
+function getEventTime(event: CalendarEvent): string {
+  if (event.allDay) return "All day";
+  const d = new Date(event.start);
+  return d.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "America/Los_Angeles",
+  });
+}
+
+function isUlaxEvent(event: CalendarEvent): boolean {
+  return /u\s?lax/i.test(event.summary);
+}
+
+function getEventLabel(event: CalendarEvent): string {
+  const s = event.summary.toLowerCase();
+  if (s.includes("practice")) return "practice";
+  if (s.includes("beers")) return "beers";
+  return "event";
+}
+
+function getEventLabelColor(label: string): string {
+  if (label === "practice") return "text-powder";
+  if (label === "beers") return "text-gold";
+  return "text-muted";
+}
+
 interface Props {
-  events?: Event[];
+  calendarEvents?: CalendarEvent[];
   ulaxGames?: UlaxGameSerialized[];
   limit?: number;
   barbaryCoastOnly?: boolean;
@@ -25,7 +51,7 @@ interface Props {
 }
 
 const {
-  events = [],
+  calendarEvents = [],
   ulaxGames = [],
   limit,
   barbaryCoastOnly = false,
@@ -38,16 +64,23 @@ if (upcomingOnly) {
   filteredUlaxGames = filteredUlaxGames.filter((g) => g.homeScore === null && g.awayScore === null);
 }
 
+const nonUlaxEvents = calendarEvents.filter((e) => !isUlaxEvent(e));
 const filteredEvents = upcomingOnly
-  ? events.filter((e) => new Date(e.date) >= new Date(new Date().toDateString()))
-  : events;
+  ? nonUlaxEvents.filter((e) => new Date(getEventDate(e)) >= new Date(new Date().toDateString()))
+  : nonUlaxEvents;
 
-type ScheduleItem = { kind: "ulax"; data: UlaxGameSerialized } | { kind: "event"; data: Event };
+type ScheduleItem =
+  | { kind: "ulax"; data: UlaxGameSerialized }
+  | { kind: "event"; data: CalendarEvent };
 
 const allItems: ScheduleItem[] = [
   ...filteredUlaxGames.map((g) => ({ kind: "ulax" as const, data: g })),
   ...filteredEvents.map((e) => ({ kind: "event" as const, data: e })),
-].sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+].sort((a, b) => {
+  const dateA = a.kind === "ulax" ? a.data.date : getEventDate(a.data);
+  const dateB = b.kind === "ulax" ? b.data.date : getEventDate(b.data);
+  return new Date(dateA).getTime() - new Date(dateB).getTime();
+});
 
 const displayItems = limit ? allItems.slice(0, limit) : allItems;
 
@@ -125,7 +158,8 @@ function isWin(game: UlaxGameSerialized): boolean | null {
       );
     } else {
       const event = item.data;
-      const date = parseLocalDate(event.date);
+      const date = parseLocalDate(getEventDate(event));
+      const label = getEventLabel(event);
 
       return (
         <article class="card p-4 sm:p-5">
@@ -139,17 +173,19 @@ function isWin(game: UlaxGameSerialized): boolean | null {
             <!-- Details -->
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 mb-1">
-                <span class:list={["label", event.type === "practice" ? "text-powder" : "text-gold"]}>
-                  [{event.type}]
+                <span class:list={["label", getEventLabelColor(label)]}>
+                  [{label}]
                 </span>
-                <span class="text-sm text-muted font-mono">{event.time}</span>
+                <span class="text-sm text-muted font-mono">{getEventTime(event)}</span>
               </div>
               <h3 class="font-medium text-foreground">
-                {event.name ?? (event.opponent ? `vs ${event.opponent}` : "Practice")}
+                {event.summary}
               </h3>
-              <a href={event.locationUrl ?? getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
-                {event.location}
-              </a>
+              {event.location && (
+                <a href={getMapsUrl(event.location)} target="_blank" rel="noopener" class="text-sm text-muted hover:text-foreground transition-colors">
+                  {event.location}
+                </a>
+              )}
             </div>
           </div>
         </article>

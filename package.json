@@ -11,7 +11,8 @@
     "lint": "biome check .",
     "fmt": "biome format --write .",
     "fix": "biome check --write .",
-    "sync": "bun run src/scripts/sync-ulax.ts"
+    "sync": "bun run src/scripts/sync-ulax.ts",
+    "sync:calendar": "bun run src/scripts/sync-calendar.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.6.1-beta.2",
