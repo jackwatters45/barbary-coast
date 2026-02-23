@@ -63,8 +63,11 @@ const {
   upcomingOnly = false,
 } = Astro.props;
 
+const isTBDPlayoff = (g: UlaxGameSerialized) =>
+  (g.gameType === "playoff" || g.gameType === "championship") &&
+  (g.awayTeam === "TBD" || g.homeTeam === "TBD");
 let filteredUlaxGames: UlaxGameSerialized[] = barbaryCoastOnly
-  ? ulaxGames.filter((g: UlaxGameSerialized) => g.isBarbaryCoast)
+  ? ulaxGames.filter((g: UlaxGameSerialized) => g.isBarbaryCoast || isTBDPlayoff(g))
   : ulaxGames;
 
 if (upcomingOnly) {
