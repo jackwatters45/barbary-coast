@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://barbary-coast.netlify.app", // Update when domain is set
+  site: "https://barbarycoastlacrosse.com",
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
