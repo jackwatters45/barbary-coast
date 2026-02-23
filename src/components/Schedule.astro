@@ -197,7 +197,7 @@ for (const item of displayItems) {
                     <span class="text-sm text-muted font-mono shrink-0">{game.time}</span>
                     <span class="text-muted shrink-0">&middot;</span>
                     <span class="font-medium text-foreground">
-                      {isTBD(game) ? game.typeName : `vs ${getOpponent(game)}`}
+                      {isTBD(game) ? game.typeName : <><span class="text-muted font-normal">vs</span> {getOpponent(game)}</>}
                     </span>
                     {hasScore && (
                       <span class:list={["px-1.5 py-0.5 text-xs font-mono font-medium shrink-0", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
