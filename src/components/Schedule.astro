@@ -63,8 +63,11 @@ const {
   upcomingOnly = false,
 } = Astro.props;
 
+const isTBDPlayoff = (g: UlaxGameSerialized) =>
+  (g.gameType === "playoff" || g.gameType === "championship") &&
+  (g.awayTeam === "TBD" || g.homeTeam === "TBD");
 let filteredUlaxGames: UlaxGameSerialized[] = barbaryCoastOnly
-  ? ulaxGames.filter((g: UlaxGameSerialized) => g.isBarbaryCoast)
+  ? ulaxGames.filter((g: UlaxGameSerialized) => g.isBarbaryCoast || isTBDPlayoff(g))
   : ulaxGames;
 
 if (upcomingOnly) {
@@ -187,26 +190,27 @@ for (const item of displayItems) {
                 const won = isWin(game);
 
                 return (
-                  <div class="py-1">
-                    <div class="flex items-center gap-2">
-                      <span class:list={["label shrink-0", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
-                        [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
+                  <div class="flex items-center gap-2 py-1">
+                    <span class:list={["label shrink-0", isPlayoffs(game) ? "text-gold" : "text-powder"]}>
+                      [{isPlayoffs(game) ? game.typeName.toLowerCase() : "league"}]
+                    </span>
+                    <span class="text-sm text-muted font-mono shrink-0">{game.time}</span>
+                    <span class="text-muted shrink-0">&middot;</span>
+                    <span class="font-medium text-foreground">
+                      {isTBD(game) ? game.typeName : <><span class="text-muted font-normal">vs</span> {getOpponent(game)}</>}
+                    </span>
+                    {hasScore && (
+                      <span class:list={["px-1.5 py-0.5 text-xs font-mono font-medium shrink-0", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
+                        {won ? "W" : "L"} {bcScore}-{oppScore}
                       </span>
-                      <span class="text-sm text-muted font-mono shrink-0">{game.time}</span>
-                      <span class="text-muted shrink-0">&middot;</span>
-                      <span class="font-medium text-foreground">
-                        {isTBD(game) ? game.typeName : `vs ${getOpponent(game)}`}
-                      </span>
-                      {hasScore && (
-                        <span class:list={["px-1.5 py-0.5 text-xs font-mono font-medium shrink-0", won ? "bg-win/10 text-win" : "bg-loss/10 text-loss"]}>
-                          {won ? "W" : "L"} {bcScore}-{oppScore}
-                        </span>
-                      )}
-                    </div>
-                    {!hasScore && (
-                      <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors">
-                        {truncateLocation(game.field)}
-                      </a>
+                    )}
+                    {!hasScore && game.field && (
+                      <>
+                        <span class="text-muted shrink-0 hidden sm:inline">&middot;</span>
+                        <a href={getMapsUrl(game.field)} target="_blank" rel="noopener" class="text-xs text-muted hover:text-foreground transition-colors hidden sm:inline truncate">
+                          {truncateLocation(game.field)}
+                        </a>
+                      </>
                     )}
                   </div>
                 );

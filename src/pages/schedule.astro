@@ -19,8 +19,11 @@ const currentStandings = (currentSeason?.standings ?? []) as UlaxStanding[];
 
 // Upcoming: unscored ULAX games + future calendar events
 const today = new Date(new Date().toDateString());
+const isTBDPlayoff = (g: UlaxGameSerialized) =>
+  (g.gameType === "playoff" || g.gameType === "championship") &&
+  (g.awayTeam === "TBD" || g.homeTeam === "TBD");
 const upcomingUlaxGames = currentSchedule.filter(
-  (g) => g.isBarbaryCoast && g.homeScore === null && g.awayScore === null,
+  (g) => g.homeScore === null && g.awayScore === null && (g.isBarbaryCoast || isTBDPlayoff(g)),
 );
 const oneMonthOut = new Date(today);
 oneMonthOut.setDate(oneMonthOut.getDate() + 30);
@@ -175,7 +178,7 @@ function formatSeasonLabel(key: string): string {
     )}
 
     <div class="flex items-center justify-between mt-12 text-xs text-subtle">
-      <a href="/" class="subtle-link">&larr; home</a>
+      <a href="/" class="text-subtle text-xs no-underline hover:text-foreground transition-colors">&larr; Home</a>
       <span>
         Updated {
           fetchedAt.toLocaleDateString("en-US", {
@@ -188,3 +191,13 @@ function formatSeasonLabel(key: string): string {
     </div>
   </div>
 </Layout>
+
+<script>
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "h" || e.key === "H") {
+      const tag = (e.target as HTMLElement).tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      window.location.href = "/";
+    }
+  });
+</script>
