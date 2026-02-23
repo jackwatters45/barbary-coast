@@ -835,7 +835,7 @@ const ESTABLISHED_YEAR = 1849;
     class="snap-section section-full relative overflow-hidden"
   >
     <!-- Pirate map of San Francisco Bay — real coordinates -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
       <svg
         class="absolute inset-0 w-full h-full"
         viewBox="140 180 700 520"
@@ -998,7 +998,6 @@ const ESTABLISHED_YEAR = 1849;
           class="island"
           d="M576.5,212.0 L572.5,205.7 L579.9,198.8 L579.3,196.7 L570.6,194.3 L564.9,180.9 L543.1,175.1 L529.1,180.9 L529.6,186.6 L520.5,187.6 L515.9,183.5 L507.8,196.3 L491.7,199.8 L504.3,205.8 L503.1,211.1 L528.7,216.9 L546.9,212.5 L567.4,215.0 L580.1,219.2 L581.2,217.5 L576.9,215.1 L576.5,212.0 Z"
         ></path>
-        <text x="502" y="230" class="place-label">Angel I.</text>
 
         <path
           class="island"
@@ -1009,7 +1008,6 @@ const ESTABLISHED_YEAR = 1849;
           class="island"
           d="M956.4,395.4 L959.1,400.3 L986.5,405.5 L987.4,409.2 L993.6,405.2 L996.0,408.7 L1001.2,405.1 L1010.8,406.6 L1019.0,402.5 L1018.9,408.9 L1024.0,409.2 L1021.8,413.3 L1035.1,408.9 L1042.2,417.4 L1055.1,425.0 L1113.4,441.4 L1162.2,450.3 L1167.9,448.0 L1173.4,450.1 L1198.5,437.2 L1200.3,433.6 L1198.9,418.5 L1189.2,410.8 L1136.9,392.7 L1133.0,395.6 L1135.0,392.7 L1125.8,393.2 L1115.8,386.4 L1094.3,386.9 L1100.3,380.2 L1096.6,379.1 L1091.4,378.3 L1089.5,387.3 L1084.8,386.8 L1084.8,376.9 L1070.5,373.5 L1062.6,375.4 L1059.1,370.3 L1050.3,367.6 L1052.1,365.4 L1045.2,363.6 L1043.5,365.7 L1037.8,358.6 L1029.2,355.9 L958.2,359.3 L861.4,343.7 L857.9,346.0 L860.8,354.3 L856.4,377.4 L858.8,379.3 L902.2,383.5 L910.2,390.4 L931.5,391.2 L932.8,381.3 L965.5,382.5 L964.7,390.3 L956.4,395.4 Z"
         ></path>
-        <text x="1010" y="370" class="place-label">Alameda</text>
 
         <!-- === BRIDGES === -->
         <line
@@ -1035,19 +1033,6 @@ const ESTABLISHED_YEAR = 1849;
           transform="rotate(-68, 388, 289)"></rect>
 
         <path d="M678 364 C750 350, 850 330, 966 312" class="bridge"></path>
-
-        <!-- === LABELS === -->
-        <text x="1080" y="400" class="land-label" font-size="8">OAKLAND</text>
-        <text x="870" y="130" class="land-label" font-size="8">BERKELEY</text>
-        <text x="368" y="215" class="place-label">Sausalito</text>
-        <text
-          x="620"
-          y="810"
-          class="water-label"
-          font-size="9"
-          letter-spacing="3"
-          opacity="0.4">SOUTH BAY</text
-        >
 
         <!-- BARBARY COAST HISTORICAL DISTRICT -->
         <a
@@ -1285,30 +1270,30 @@ const ESTABLISHED_YEAR = 1849;
     </div>
 
     <!-- About section -->
-    <div class="absolute top-[42%] left-[38%] px-6">
-      <div class="reveal max-w-md" style="--delay: 0s">
-        <div class="card p-8 lg:p-10">
+    <div class="relative flex-1 flex items-center px-6 md:flex-none md:absolute md:top-[42%] md:left-[38%] md:px-6">
+      <div class="reveal w-full md:max-w-md" style="--delay: 0s">
+        <div class="p-0 md:bg-surface md:border md:border-border md:p-8 lg:p-10">
           <span class="label text-gold">[about]</span>
           <h2
-            class="text-foreground mt-2 text-4xl lg:text-5xl font-medium tracking-tight"
+            class="text-foreground mt-3 text-5xl md:text-4xl lg:text-5xl font-medium tracking-tight"
           >
             The Team
           </h2>
-          <div class="mt-6 space-y-3">
-            <p class="text-muted text-lg">
+          <div class="mt-8 md:mt-6 space-y-4 md:space-y-3">
+            <p class="text-muted text-lg md:text-lg">
               Barbary Coast is a men's post-collegiate lacrosse club competing
               in the San Francisco Bay Area.
             </p>
-            <p class="text-muted text-lg">Good lacrosse. Great friends.</p>
+            <p class="text-muted text-lg md:text-lg">Good lacrosse. Great friends.</p>
           </div>
-          <div class="mt-8 flex items-center gap-6 text-sm">
+          <div class="mt-10 md:mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             <a
               href="mailto:barbarycoastlc@gmail.com"
               class="text-muted hover:text-powder transition-colors"
             >
               barbarycoastlc@gmail.com
             </a>
-            <span class="text-border">·</span>
+            <span class="text-border hidden sm:inline">·</span>
             <a
               href="https://www.instagram.com/barbarycoastlc/"
               target="_blank"
