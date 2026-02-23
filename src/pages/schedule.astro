@@ -178,7 +178,10 @@ function formatSeasonLabel(key: string): string {
     )}
 
     <div class="flex items-center justify-between mt-12 text-xs text-subtle">
-      <a href="/" class="text-subtle text-xs no-underline hover:text-foreground transition-colors">&larr; Home</a>
+      <a href="/" class="home-link text-subtle text-xs no-underline hover:text-foreground transition-colors">
+        &larr; Home
+        <span class="hotkey-hint">H</span>
+      </a>
       <span>
         Updated {
           fetchedAt.toLocaleDateString("en-US", {
@@ -201,3 +204,4 @@ function formatSeasonLabel(key: string): string {
     }
   });
 </script>
+
