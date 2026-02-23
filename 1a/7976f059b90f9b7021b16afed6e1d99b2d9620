@@ -1,0 +1,23 @@
+src/components/Schedule.astro
+  e1443f49c792cb5e 200
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "1a7976f059b90f9b7021b16afed6e1d99b2d9620",
+  "prompts": {
+    "e1443f49c792cb5e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cc8554de-c863-476a-b579-cf2ba50beddc",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "jackwatters45 <jack.watters@me.com>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
