@@ -3216,6 +3216,15 @@
           "points": 0
         },
         {
+          "name": "Sheldon, Derek",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Solis, Chris",
           "number": "",
           "team": "",
@@ -3289,6 +3298,15 @@
         },
         {
           "name": "Bobo, Jamison",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Brown, Logan",
           "number": "",
           "team": "",
           "gp": 0,
@@ -4936,6 +4954,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Sheldon, Derek",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "250",
+          "age": "36",
+          "homeTown": "Martinez, CA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Solis, Chris",
           "number": "",
           "position": "Attack",
@@ -5039,6 +5069,18 @@
           "weight": "215",
           "age": "34",
           "homeTown": "Alamosa, CO",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Brown, Logan",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'6\"",
+          "weight": "269",
+          "age": "38",
+          "homeTown": "Mars",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8347,5 +8389,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-06T06:14:09.036Z"
+  "fetchedAt": "2026-03-07T06:09:04.049Z"
 }
