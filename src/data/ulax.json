@@ -3018,6 +3018,15 @@
           "points": 0
         },
         {
+          "name": "Baggott, Sage",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "BAHARY, DEVON",
           "number": "",
           "team": "",
@@ -3252,6 +3261,15 @@
           "points": 0
         },
         {
+          "name": "Welch, Andrew",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "whitehouse, patrick",
           "number": "",
           "team": "",
@@ -3360,6 +3378,15 @@
           "points": 0
         },
         {
+          "name": "Ewing, Ethan",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Fagan, Matt",
           "number": "",
           "team": "",
@@ -3370,6 +3397,15 @@
         },
         {
           "name": "Falgares, Joseph",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Gomez, Gabriel",
           "number": "",
           "team": "",
           "gp": 0,
@@ -3712,6 +3748,15 @@
         },
         {
           "name": "Hoffer, Maxwell",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "holton, sam",
           "number": "",
           "team": "",
           "gp": 0,
@@ -4654,6 +4699,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Baggott, Sage",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'2\"",
+          "weight": "185",
+          "age": "56",
+          "homeTown": "Oakland",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "BAHARY, DEVON",
           "number": "",
           "position": "Midfield",
@@ -5002,6 +5059,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Welch, Andrew",
+          "number": "",
+          "position": "Attack",
+          "height": "6'1\"",
+          "weight": "260",
+          "age": "46",
+          "homeTown": "Lafayette",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "whitehouse, patrick",
           "number": "",
           "position": "Midfield",
@@ -5146,6 +5215,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Ewing, Ethan",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'10\"",
+          "weight": "175",
+          "age": "53",
+          "homeTown": "San Carlos",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Fagan, Matt",
           "number": "",
           "position": "Midfield",
@@ -5165,6 +5246,18 @@
           "weight": "1",
           "age": "36",
           "homeTown": "Watchung, NJ",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Gomez, Gabriel",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'8\"",
+          "weight": "150",
+          "age": "27",
+          "homeTown": "San Jose",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -5645,6 +5738,18 @@
           "weight": "399",
           "age": "69",
           "homeTown": "Jake Dormans SS# is 123-90-1678",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "holton, sam",
+          "number": "",
+          "position": "Defense",
+          "height": "6'6\"",
+          "weight": "230",
+          "age": "32",
+          "homeTown": "Los Gatos",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8389,5 +8494,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-07T06:09:04.049Z"
+  "fetchedAt": "2026-03-08T06:12:26.613Z"
 }
