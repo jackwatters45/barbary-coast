@@ -2721,6 +2721,15 @@
           "points": 0
         },
         {
+          "name": "Pierce, Maxwell",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Romrell, Zachary",
           "number": "",
           "team": "",
@@ -2866,6 +2875,15 @@
         },
         {
           "name": "Grill, BJ",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Jacimovic, Nicco",
           "number": "",
           "team": "",
           "gp": 0,
@@ -3424,6 +3442,15 @@
         },
         {
           "name": "Henry, Chuck",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Herr, Gavin",
           "number": "",
           "team": "",
           "gp": 0,
@@ -4255,6 +4282,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Pierce, Maxwell",
+          "number": "",
+          "position": "Attack",
+          "height": "5'10\"",
+          "weight": "200",
+          "age": "27",
+          "homeTown": "Oakland",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Romrell, Zachary",
           "number": "",
           "position": "Attack",
@@ -4490,6 +4529,18 @@
           "weight": "155",
           "age": "32",
           "homeTown": "Bridgewater",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Jacimovic, Nicco",
+          "number": "",
+          "position": "LSM",
+          "height": "6'3\"",
+          "weight": "190",
+          "age": "24",
+          "homeTown": "San Francisco",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -5294,6 +5345,18 @@
           "weight": "220",
           "age": "40",
           "homeTown": "marin county",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "CHerr, Gavin",
+          "number": "",
+          "position": "Attack",
+          "height": "5'11\"",
+          "weight": "215",
+          "age": "33",
+          "homeTown": "Livermore",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8494,5 +8557,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-08T06:12:26.613Z"
+  "fetchedAt": "2026-03-09T06:21:10.849Z"
 }
