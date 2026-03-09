@@ -1063,6 +1063,15 @@
       "allDay": false
     },
     {
+      "id": "3a6bl6s6qea6hqmj23cmer9fu5",
+      "summary": "BC vs. O Club (Field #4)",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-03-22T17:00:00-07:00",
+      "end": "2026-03-22T18:00:00-07:00",
+      "allDay": false
+    },
+    {
       "id": "4ka6h24v8jmjnoo947cu1gir2q_20260326T030000Z",
       "summary": "BC Practice",
       "description": "",
@@ -1126,6 +1135,15 @@
       "allDay": false
     },
     {
+      "id": "3olq1vaibg834jac7pr8h8kccd",
+      "summary": "BC vs. ???",
+      "description": "This was Marin. We'll see how things shake out.",
+      "location": "",
+      "start": "2026-04-12T17:00:00-07:00",
+      "end": "2026-04-12T18:00:00-07:00",
+      "allDay": false
+    },
+    {
       "id": "4ka6h24v8jmjnoo947cu1gir2q_20260416T030000Z",
       "summary": "BC Practice",
       "description": "",
@@ -1159,6 +1177,15 @@
       "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
       "start": "2026-04-22T21:00:00-07:00",
       "end": "2026-04-22T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "69rc1rl4khk8of7a54n2g5k4nc",
+      "summary": "BC vs O Club (Field 1)",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-04-26T17:00:00-07:00",
+      "end": "2026-04-26T18:00:00-07:00",
       "allDay": false
     },
     {
@@ -1198,6 +1225,15 @@
       "allDay": false
     },
     {
+      "id": "1jtrbtgfmfee4f8np4av334c79",
+      "summary": "BC vs. Diablo",
+      "description": "",
+      "location": "",
+      "start": "2026-05-10T17:00:00-07:00",
+      "end": "2026-05-10T18:00:00-07:00",
+      "allDay": false
+    },
+    {
       "id": "4ka6h24v8jmjnoo947cu1gir2q_20260514T030000Z",
       "summary": "BC Practice",
       "description": "",
@@ -1213,6 +1249,15 @@
       "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
       "start": "2026-05-13T21:00:00-07:00",
       "end": "2026-05-13T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "5m2dtka6ddaddea0s2k9vb65gg",
+      "summary": "BC vs. Palo Alto",
+      "description": "",
+      "location": "",
+      "start": "2026-05-17T17:00:00-07:00",
+      "end": "2026-05-17T18:00:00-07:00",
       "allDay": false
     },
     {
@@ -1250,7 +1295,16 @@
       "start": "2026-05-27T21:00:00-07:00",
       "end": "2026-05-27T22:00:00-07:00",
       "allDay": false
+    },
+    {
+      "id": "5vqhk3m8m6l0bjf49rmum9b6vg",
+      "summary": "Hold for Spring Semis",
+      "description": "",
+      "location": "",
+      "start": "2026-05-31T17:00:00-07:00",
+      "end": "2026-05-31T20:00:00-07:00",
+      "allDay": false
     }
   ],
-  "fetchedAt": "2026-03-08T06:20:09.093Z"
+  "fetchedAt": "2026-03-09T06:30:37.370Z"
 }
