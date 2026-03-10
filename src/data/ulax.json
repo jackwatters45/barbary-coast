@@ -2213,9 +2213,9 @@
           "time": "5:00 pm",
           "field": "Beach Chalet Fields Pitch #4",
           "awayTeam": "Olympic Club",
-          "awayScore": null,
+          "awayScore": 24,
           "homeTeam": "San Francisco Lacrosse Club",
-          "homeScore": null,
+          "homeScore": 1,
           "gameType": "regular",
           "typeName": "Regular Season",
           "isBarbaryCoast": false,
@@ -2243,20 +2243,6 @@
           "awayTeam": "San Francisco Lacrosse Club",
           "awayScore": null,
           "homeTeam": "Palo Alto Ducks",
-          "homeScore": null,
-          "gameType": "regular",
-          "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
-        },
-        {
-          "id": 107,
-          "date": "2026-03-22",
-          "time": "5:00 pm",
-          "field": "Beach Chalet Fields Pitch #3",
-          "awayTeam": "Marin",
-          "awayScore": null,
-          "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": null,
           "gameType": "regular",
           "typeName": "Regular Season",
@@ -2320,20 +2306,6 @@
           "barbaryCoastIsHome": null
         },
         {
-          "id": 112,
-          "date": "2026-04-12",
-          "time": "5:00 pm",
-          "field": "Beach Chalet Fields Pitch #3",
-          "awayTeam": "Barbary Coast",
-          "awayScore": null,
-          "homeTeam": "Marin",
-          "homeScore": null,
-          "gameType": "regular",
-          "typeName": "Regular Season",
-          "isBarbaryCoast": true,
-          "barbaryCoastIsHome": false
-        },
-        {
           "id": 113,
           "date": "2026-04-12",
           "time": "5:00 pm",
@@ -2368,12 +2340,12 @@
           "field": "Beach Chalet Fields Pitch #3",
           "awayTeam": "Olympic Club",
           "awayScore": null,
-          "homeTeam": "Marin",
+          "homeTeam": "Barbary Coast",
           "homeScore": null,
           "gameType": "regular",
           "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
         },
         {
           "id": 116,
@@ -2404,20 +2376,6 @@
           "barbaryCoastIsHome": false
         },
         {
-          "id": 118,
-          "date": "2026-04-26",
-          "time": "5:00 pm",
-          "field": "Cayetano Park ",
-          "awayTeam": "Marin",
-          "awayScore": null,
-          "homeTeam": "Diablo Lacrosse Club",
-          "homeScore": null,
-          "gameType": "regular",
-          "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
-        },
-        {
           "id": 119,
           "date": "2026-04-26",
           "time": "6:30 pm",
@@ -2425,20 +2383,6 @@
           "awayTeam": "San Francisco Lacrosse Club",
           "awayScore": null,
           "homeTeam": "Diablo Lacrosse Club",
-          "homeScore": null,
-          "gameType": "regular",
-          "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
-        },
-        {
-          "id": 120,
-          "date": "2026-05-10",
-          "time": "5:00 pm",
-          "field": "Beach Chalet Fields Pitch #3",
-          "awayTeam": "Olympic Club",
-          "awayScore": null,
-          "homeTeam": "Marin",
           "homeScore": null,
           "gameType": "regular",
           "typeName": "Regular Season",
@@ -2474,20 +2418,6 @@
           "barbaryCoastIsHome": false
         },
         {
-          "id": 123,
-          "date": "2026-05-17",
-          "time": "6:45 pm",
-          "field": "Palo Alto High School",
-          "awayTeam": "Marin",
-          "awayScore": null,
-          "homeTeam": "Palo Alto Ducks",
-          "homeScore": null,
-          "gameType": "regular",
-          "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
-        },
-        {
           "id": 124,
           "date": "2026-05-31",
           "time": "5:00 pm",
@@ -2514,9 +2444,61 @@
           "typeName": "Semi-Finals",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
+        },
+        {
+          "id": 126,
+          "date": "2026-06-07",
+          "time": "11:00 am",
+          "field": "Beach Chalet Fields Pitch #3",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "playoff",
+          "typeName": "Championship",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 127,
+          "date": "2026-06-07",
+          "time": "11:00 am",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Consolation",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
+        },
+        {
+          "id": 128,
+          "date": "2026-06-07",
+          "time": "12:30 pm",
+          "field": "Beach Chalet Fields Pitch #4",
+          "awayTeam": "TBD",
+          "awayScore": null,
+          "homeTeam": "TBD",
+          "homeScore": null,
+          "gameType": "regular",
+          "typeName": "Consolation",
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
         }
       ],
       "standings": [
+        {
+          "team": "Olympic Club",
+          "gp": 1,
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "pts": 2,
+          "gf": 24,
+          "ga": 1
+        },
         {
           "team": "Barbary Coast",
           "gp": 0,
@@ -2529,16 +2511,6 @@
         },
         {
           "team": "Marin",
-          "gp": 0,
-          "w": 0,
-          "l": 0,
-          "t": 0,
-          "pts": 0,
-          "gf": 0,
-          "ga": 0
-        },
-        {
-          "team": "Olympic Club",
           "gp": 0,
           "w": 0,
           "l": 0,
@@ -8557,5 +8529,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-09T06:21:10.849Z"
+  "fetchedAt": "2026-03-10T06:14:05.129Z"
 }
