@@ -2531,6 +2531,15 @@
           "points": 0
         },
         {
+          "name": "Bragaw, Jack",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Braun, Walter",
           "number": "",
           "team": "",
@@ -3575,6 +3584,15 @@
           "points": 0
         },
         {
+          "name": "Sainz, Alex",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Schmoldt, Brian",
           "number": "",
           "team": "",
@@ -4021,6 +4039,18 @@
           "weight": "155",
           "age": "25",
           "homeTown": "East Quogue",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Bragaw, Jack",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "230",
+          "age": "25",
+          "homeTown": "Annapolis, MD",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -5533,6 +5563,18 @@
           "weight": "69",
           "age": "69",
           "homeTown": "Balls Deep",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Sainz, Alex",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "210",
+          "age": "36",
+          "homeTown": "San Diego",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8529,5 +8571,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-10T06:14:05.129Z"
+  "fetchedAt": "2026-03-11T06:15:37.699Z"
 }
