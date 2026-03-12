@@ -2365,7 +2365,7 @@
           "id": 117,
           "date": "2026-04-26",
           "time": "5:00 pm",
-          "field": "Beach Chalet Fields Pitch #1",
+          "field": "Beach Chalet Fields Pitch #3",
           "awayTeam": "Barbary Coast",
           "awayScore": null,
           "homeTeam": "Olympic Club",
@@ -8571,5 +8571,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-11T06:15:37.699Z"
+  "fetchedAt": "2026-03-12T06:17:07.840Z"
 }
