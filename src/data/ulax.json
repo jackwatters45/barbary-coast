@@ -3377,6 +3377,15 @@
           "points": 0
         },
         {
+          "name": "Delapp, Cameron",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Ewing, Ethan",
           "number": "",
           "team": "",
@@ -3567,6 +3576,15 @@
         },
         {
           "name": "Paterson, Logan",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Price, Jayden",
           "number": "",
           "team": "",
           "gp": 0,
@@ -5268,6 +5286,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Delapp, Cameron",
+          "number": "",
+          "position": "Attack",
+          "height": "5'0\"",
+          "weight": "69",
+          "age": "69",
+          "homeTown": "Oakland",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Ewing, Ethan",
           "number": "",
           "position": "Midfield",
@@ -5551,6 +5581,18 @@
           "weight": "195",
           "age": "25",
           "homeTown": "Silver spring",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Price, Jayden",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'9\"",
+          "weight": "170",
+          "age": "24",
+          "homeTown": "Houston",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8571,5 +8613,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-12T06:17:07.840Z"
+  "fetchedAt": "2026-03-13T06:16:14.463Z"
 }
