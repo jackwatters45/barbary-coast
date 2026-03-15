@@ -3620,6 +3620,15 @@
           "points": 0
         },
         {
+          "name": "Shvodian, Kevin",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Spain, Josh",
           "number": "",
           "team": "",
@@ -5629,6 +5638,18 @@
           "weight": "222",
           "age": "43",
           "homeTown": "Palo Alto",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Shvodian, Kevin",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "190",
+          "age": "23",
+          "homeTown": "Menlo Park",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8613,5 +8634,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-14T06:14:49.838Z"
+  "fetchedAt": "2026-03-15T06:20:02.029Z"
 }
