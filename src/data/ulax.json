@@ -3692,6 +3692,15 @@
           "points": 0
         },
         {
+          "name": "Babcock, Matt",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Beckman, Mitchell",
           "number": "",
           "team": "",
@@ -5734,6 +5743,18 @@
           "weight": "184",
           "age": "25",
           "homeTown": "Austin",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Babcock, Matt",
+          "number": "",
+          "position": "Midfield",
+          "height": "6'0\"",
+          "weight": "195",
+          "age": "39",
+          "homeTown": "Elmhurst",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8634,5 +8655,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-15T06:20:02.029Z"
+  "fetchedAt": "2026-03-16T06:31:13.301Z"
 }
