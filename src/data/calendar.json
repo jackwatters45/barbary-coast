@@ -1171,6 +1171,15 @@
       "allDay": false
     },
     {
+      "id": "betbut88754fm5ck8agnfn65ug",
+      "summary": "Speak at Haas DDU",
+      "description": "",
+      "location": "",
+      "start": "2026-04-22T20:00:00-07:00",
+      "end": "2026-04-23T00:00:00-07:00",
+      "allDay": false
+    },
+    {
       "id": "0dokk9ulki80spp5v3k1fcg1fg_20260423T040000Z",
       "summary": "BC Beers",
       "description": "",
@@ -1306,5 +1315,5 @@
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-03-15T06:28:53.879Z"
+  "fetchedAt": "2026-03-16T06:41:39.311Z"
 }
