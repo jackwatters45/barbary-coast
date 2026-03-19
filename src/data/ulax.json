@@ -2508,16 +2508,6 @@
           "pts": 0,
           "gf": 0,
           "ga": 0
-        },
-        {
-          "team": "Marin",
-          "gp": 0,
-          "w": 0,
-          "l": 0,
-          "t": 0,
-          "pts": 0,
-          "gf": 0,
-          "ga": 0
         }
       ],
       "playerStats": [
@@ -2784,15 +2774,6 @@
         },
         {
           "name": "Yi, Andrew",
-          "number": "",
-          "team": "",
-          "gp": 0,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
-        },
-        {
-          "name": "Becker, Jake",
           "number": "",
           "team": "",
           "gp": 0,
@@ -3976,16 +3957,6 @@
           "savePercentage": 0
         },
         {
-          "name": "Blaisdell, Tyler",
-          "number": "",
-          "team": "",
-          "wins": 0,
-          "losses": 0,
-          "goalsAgainst": 0,
-          "saves": 0,
-          "savePercentage": 0
-        },
-        {
           "name": "Uppgren, Turner",
           "number": "",
           "team": "",
@@ -4459,30 +4430,6 @@
           "weight": "190",
           "age": "32",
           "homeTown": "Hastings on Hudson, NY",
-          "team": "",
-          "isCaptain": false,
-          "isAssistantCaptain": false
-        },
-        {
-          "name": "Becker, Jake",
-          "number": "",
-          "position": "Midfield",
-          "height": "5'9\"",
-          "weight": "160",
-          "age": "33",
-          "homeTown": "San Francisco",
-          "team": "",
-          "isCaptain": false,
-          "isAssistantCaptain": false
-        },
-        {
-          "name": "Blaisdell, Tyler",
-          "number": "",
-          "position": "Goaltender",
-          "height": "5'9\"",
-          "weight": "175",
-          "age": "30",
-          "homeTown": "Hanover, MA",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -8655,5 +8602,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-18T06:22:56.066Z"
+  "fetchedAt": "2026-03-19T06:20:38.904Z"
 }
