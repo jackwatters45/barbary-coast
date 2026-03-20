@@ -1135,15 +1135,6 @@
       "allDay": false
     },
     {
-      "id": "3olq1vaibg834jac7pr8h8kccd",
-      "summary": "BC vs. ???",
-      "description": "This was Marin. We'll see how things shake out.",
-      "location": "",
-      "start": "2026-04-12T17:00:00-07:00",
-      "end": "2026-04-12T18:00:00-07:00",
-      "allDay": false
-    },
-    {
       "id": "4ka6h24v8jmjnoo947cu1gir2q_20260416T030000Z",
       "summary": "BC Practice",
       "description": "",
@@ -1159,6 +1150,15 @@
       "location": "Hockey Haven, 3625 Balboa St #2603, San Francisco, CA 94121, USA",
       "start": "2026-04-15T21:00:00-07:00",
       "end": "2026-04-15T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "7oaof5elbls8qi01l15l6a31ig",
+      "summary": "BC vs. O Club",
+      "description": "",
+      "location": "",
+      "start": "2026-04-19T17:00:00-07:00",
+      "end": "2026-04-19T18:00:00-07:00",
       "allDay": false
     },
     {
@@ -1313,7 +1313,16 @@
       "start": "2026-05-31T17:00:00-07:00",
       "end": "2026-05-31T20:00:00-07:00",
       "allDay": false
+    },
+    {
+      "id": "5mivgm3ffns2oiq2grkot050lp",
+      "summary": "Hold for Spring Championship and Consolation",
+      "description": "",
+      "location": "",
+      "start": "2026-06-07T11:00:00-07:00",
+      "end": "2026-06-07T14:00:00-07:00",
+      "allDay": false
     }
   ],
-  "fetchedAt": "2026-03-19T06:28:53.429Z"
+  "fetchedAt": "2026-03-20T06:26:32.546Z"
 }
