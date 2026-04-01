@@ -1,5 +1,5 @@
 {
-  "currentSeason": "winter",
+  "currentSeason": "spring",
   "currentYear": 2026,
   "seasons": {
     "winter-2026": {
@@ -8602,5 +8602,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-03-31T06:28:23.043Z"
+  "fetchedAt": "2026-04-01T06:34:11.121Z"
 }
