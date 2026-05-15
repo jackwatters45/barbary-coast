@@ -1264,7 +1264,7 @@
       "id": "5m2dtka6ddaddea0s2k9vb65gg",
       "summary": "BC vs. Palo Alto",
       "description": "",
-      "location": "",
+      "location": "Palo Alto High School, 50 Embarcadero Rd, Palo Alto, CA 94301, USA",
       "start": "2026-05-17T17:00:00-07:00",
       "end": "2026-05-17T18:00:00-07:00",
       "allDay": false
@@ -1324,5 +1324,5 @@
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-05-12T07:10:08.031Z"
+  "fetchedAt": "2026-05-15T07:18:42.104Z"
 }
