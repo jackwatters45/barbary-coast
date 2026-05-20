@@ -206,9 +206,9 @@
           "time": "5:15 pm",
           "field": "Palo Alto High School",
           "awayTeam": "Barbary Coast",
-          "awayScore": null,
+          "awayScore": 9,
           "homeTeam": "Palo Alto Ducks",
-          "homeScore": null,
+          "homeScore": 10,
           "gameType": "regular",
           "typeName": "Regular Season",
           "isBarbaryCoast": true,
@@ -298,13 +298,13 @@
         },
         {
           "team": "Barbary Coast",
-          "gp": 5,
+          "gp": 6,
           "w": 3,
-          "l": 2,
+          "l": 3,
           "t": 0,
           "pts": 6,
-          "gf": 30,
-          "ga": 31
+          "gf": 39,
+          "ga": 41
         }
       ],
       "playerStats": [
@@ -1176,7 +1176,7 @@
           "name": "Ewing, Ethan",
           "number": "",
           "team": "",
-          "gp": 0,
+          "gp": 4,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -8530,21 +8530,21 @@
   "barbaryCoast": {
     "allTime": {
       "wins": 45,
-      "losses": 20,
+      "losses": 21,
       "ties": 0,
       "titles": 4,
-      "goalsFor": 527,
-      "goalsAgainst": 359
+      "goalsFor": 536,
+      "goalsAgainst": 369
     },
     "seasons": [
       {
         "season": "spring-2026",
         "wins": 3,
-        "losses": 2,
+        "losses": 3,
         "ties": 0,
-        "goalsFor": 30,
-        "goalsAgainst": 31,
-        "result": "Playoffs",
+        "goalsFor": 39,
+        "goalsAgainst": 41,
+        "result": "Regular Season",
         "isChampion": false
       },
       {
@@ -8629,5 +8629,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-05-16T06:46:05.265Z"
+  "fetchedAt": "2026-05-20T07:11:46.198Z"
 }
