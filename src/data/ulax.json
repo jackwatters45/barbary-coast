@@ -219,7 +219,7 @@
           "date": "2026-05-31",
           "time": "5:00 pm",
           "field": "Beach Chalet - Pitch #4",
-          "awayTeam": "TBD",
+          "awayTeam": "San Francisco Lacrosse Club",
           "awayScore": null,
           "homeTeam": "Olympic Club",
           "homeScore": null,
@@ -233,14 +233,14 @@
           "date": "2026-05-31",
           "time": "6:30 pm",
           "field": "Beach Chalet - Pitch #4",
-          "awayTeam": "TBD",
+          "awayTeam": "Palo Alto Ducks",
           "awayScore": null,
-          "homeTeam": "TBD",
+          "homeTeam": "Barbary Coast",
           "homeScore": null,
           "gameType": "championship",
           "typeName": "Semi-Finals",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
         },
         {
           "id": 126,
@@ -8629,5 +8629,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-05-26T07:10:39.846Z"
+  "fetchedAt": "2026-05-27T07:24:52.719Z"
 }
