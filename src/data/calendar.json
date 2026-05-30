@@ -1307,11 +1307,11 @@
     },
     {
       "id": "5vqhk3m8m6l0bjf49rmum9b6vg",
-      "summary": "Hold for Spring Semis",
+      "summary": "Semi Finals vs Ducks",
       "description": "",
       "location": "",
-      "start": "2026-05-31T17:00:00-07:00",
-      "end": "2026-05-31T20:00:00-07:00",
+      "start": "2026-05-31T18:30:00-07:00",
+      "end": "2026-05-31T19:30:00-07:00",
       "allDay": false
     },
     {
@@ -1324,5 +1324,5 @@
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-05-17T07:07:07.465Z"
+  "fetchedAt": "2026-05-30T07:10:55.099Z"
 }
