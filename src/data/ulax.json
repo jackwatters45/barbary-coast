@@ -220,9 +220,9 @@
           "time": "5:00 pm",
           "field": "Beach Chalet - Pitch #4",
           "awayTeam": "San Francisco Lacrosse Club",
-          "awayScore": null,
+          "awayScore": 3,
           "homeTeam": "Olympic Club",
-          "homeScore": null,
+          "homeScore": 16,
           "gameType": "championship",
           "typeName": "Semi-Finals",
           "isBarbaryCoast": false,
@@ -234,9 +234,9 @@
           "time": "6:30 pm",
           "field": "Beach Chalet - Pitch #4",
           "awayTeam": "Palo Alto Ducks",
-          "awayScore": null,
+          "awayScore": 5,
           "homeTeam": "Barbary Coast",
-          "homeScore": null,
+          "homeScore": 11,
           "gameType": "championship",
           "typeName": "Semi-Finals",
           "isBarbaryCoast": true,
@@ -247,14 +247,14 @@
           "date": "2026-06-07",
           "time": "5:00 pm",
           "field": "Beach Chalet - Pitch #1",
-          "awayTeam": "TBD",
+          "awayTeam": "Barbary Coast",
           "awayScore": null,
-          "homeTeam": "TBD",
+          "homeTeam": "Olympic Club",
           "homeScore": null,
           "gameType": "playoff",
           "typeName": "Championship",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": false
         },
         {
           "id": 127,
@@ -263,7 +263,7 @@
           "field": "Beach Chalet - Pitch #2\t",
           "awayTeam": "Diablo Lacrosse Club",
           "awayScore": null,
-          "homeTeam": "TBD",
+          "homeTeam": "Palo Alto Ducks",
           "homeScore": null,
           "gameType": "regular",
           "typeName": "Consolation",
@@ -277,7 +277,7 @@
           "field": "Beach Chalet - Pitch #2\t",
           "awayTeam": "Diablo Lacrosse Club",
           "awayScore": null,
-          "homeTeam": "TBD",
+          "homeTeam": "San Francisco Lacrosse Club",
           "homeScore": null,
           "gameType": "regular",
           "typeName": "Consolation",
@@ -8629,5 +8629,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-05-31T07:17:31.300Z"
+  "fetchedAt": "2026-06-02T07:36:51.034Z"
 }
