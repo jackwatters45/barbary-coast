@@ -1316,13 +1316,22 @@
     },
     {
       "id": "5mivgm3ffns2oiq2grkot050lp",
-      "summary": "Hold for Spring Championship and Consolation",
+      "summary": "Spring Championship vs. O Club",
       "description": "",
       "location": "",
-      "start": "2026-06-07T11:00:00-07:00",
-      "end": "2026-06-07T14:00:00-07:00",
+      "start": "2026-06-07T17:00:00-07:00",
+      "end": "2026-06-07T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "56r111qtci1qd3i8k7a60qsue8",
+      "summary": "BC Social",
+      "description": "Start out at Final Final and see where it goes from there! Let's celebrate another rad season with the guys and roll into some summer ball. Haven't done one of these in a little while! Show up and let's rip.",
+      "location": "Final Final, 2990 Baker St, San Francisco, CA 94123, USA",
+      "start": "2026-06-12T18:30:00-07:00",
+      "end": "2026-06-12T21:00:00-07:00",
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-05-31T07:28:36.888Z"
+  "fetchedAt": "2026-06-08T07:57:45.230Z"
 }
