@@ -1326,12 +1326,84 @@
     {
       "id": "56r111qtci1qd3i8k7a60qsue8",
       "summary": "BC Social",
-      "description": "Start out at Final Final and see where it goes from there! Let's celebrate another rad season with the guys and roll into some summer ball. Haven't done one of these in a little while! Show up and let's rip.",
-      "location": "Final Final, 2990 Baker St, San Francisco, CA 94123, USA",
-      "start": "2026-06-12T18:30:00-07:00",
-      "end": "2026-06-12T21:00:00-07:00",
+      "description": "Location TBD. Somewhere in the city near Marina/North Beach area.\n\nGetting old and new BCers together for some drinks to celebrate another fun Spring season with the best off-field mens lax team in the Bay.",
+      "location": "Jaxson, 3231 Fillmore St, San Francisco, CA 94123, USA",
+      "start": "2026-06-12T19:30:00-07:00",
+      "end": "2026-06-12T22:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "7ulpr032atockgjpf7li8bgbiv",
+      "summary": "BC vs. Golden State",
+      "description": "",
+      "location": "Cayetano Park 698 Portola Ave, Livermore, CA 94551",
+      "start": "2026-06-14T17:00:00-07:00",
+      "end": "2026-06-14T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "7uvs3tgbfs4lqkgs2cqbdc708d",
+      "summary": "BC vs. SFLC",
+      "description": "",
+      "location": "Cayetano Park 698 Portola Ave, Livermore, CA 94551",
+      "start": "2026-06-14T18:00:00-07:00",
+      "end": "2026-06-14T19:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "34413p7sg3o73ould9oidja788",
+      "summary": "Ballet?",
+      "description": "",
+      "location": "",
+      "start": "2026-06-21T14:00:00-07:00",
+      "end": "2026-06-21T16:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "17pgdt2tnbcqh1vjdlia6ak32v",
+      "summary": "BC vs. Palo Alto",
+      "description": "",
+      "location": "Terremere Field, Redwood City, CA 94062",
+      "start": "2026-06-28T11:00:00-07:00",
+      "end": "2026-06-28T12:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "792t3skdsgudq8npo0auii5rov",
+      "summary": "BC vs. Diablo",
+      "description": "",
+      "location": "Beach Chalet Soccer Fields 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
+      "start": "2026-07-12T17:00:00-07:00",
+      "end": "2026-07-12T18:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "4nppdet6s48hfnmae3mtv3aj0h",
+      "summary": "BC vs. Sonoma",
+      "description": "",
+      "location": "Beach Chalet 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
+      "start": "2026-07-12T19:00:00-07:00",
+      "end": "2026-07-12T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "16hajj47iqmfh0gq8alf3rpep6",
+      "summary": "BC vs. SFLC",
+      "description": "",
+      "location": "Beach Chalet 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
+      "start": "2026-07-26T13:00:00-07:00",
+      "end": "2026-07-26T14:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "069chaons6eoo7buq8glsh5plh",
+      "summary": "Hold for Summer Semis and Finals",
+      "description": "",
+      "location": "Beach Chalet 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
+      "start": "2026-08-09T14:00:00-07:00",
+      "end": "2026-08-09T17:00:00-07:00",
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-06-09T07:26:23.077Z"
+  "fetchedAt": "2026-06-13T07:28:56.688Z"
 }
