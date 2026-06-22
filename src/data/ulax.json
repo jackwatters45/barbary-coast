@@ -4820,6 +4820,15 @@
           "points": 0
         },
         {
+          "name": "Bourdon, Liam",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Brown, Logan",
           "number": "66",
           "team": "",
@@ -5058,6 +5067,15 @@
           "number": "",
           "team": "",
           "gp": 1,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Oleinik, Anthony",
+          "number": "",
+          "team": "",
+          "gp": 0,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5324,6 +5342,15 @@
           "points": 0
         },
         {
+          "name": "Salonga, Jacob",
+          "number": "",
+          "team": "",
+          "gp": 0,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
           "name": "Scofield, Thomas",
           "number": "45",
           "team": "",
@@ -5419,6 +5446,16 @@
           "goalsAgainst": 3,
           "saves": 9,
           "savePercentage": 0.75
+        },
+        {
+          "name": "Ambrocente, Cole",
+          "number": "",
+          "team": "",
+          "wins": 0,
+          "losses": 0,
+          "goalsAgainst": 0,
+          "saves": 0,
+          "savePercentage": 0
         },
         {
           "name": "Khan, Armand",
@@ -6323,6 +6360,30 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Ambrocente, Cole",
+          "number": "",
+          "position": "Goaltender",
+          "height": "5'10\"",
+          "weight": "215",
+          "age": "18",
+          "homeTown": "Richmond",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Bourdon, Liam",
+          "number": "",
+          "position": "Defense",
+          "height": "6'2\"",
+          "weight": "210",
+          "age": "19",
+          "homeTown": "San Francisco",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Brown, Logan",
           "number": "66",
           "position": "Face Offs",
@@ -6654,6 +6715,18 @@
           "weight": "190",
           "age": "20",
           "homeTown": "Danville",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Oleinik, Anthony",
+          "number": "",
+          "position": "Defense",
+          "height": "6'4\"",
+          "weight": "225",
+          "age": "24",
+          "homeTown": "Wakanda",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -7050,6 +7123,18 @@
           "weight": "220",
           "age": "32",
           "homeTown": "Los Altos",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Salonga, Jacob",
+          "number": "",
+          "position": "Face Offs",
+          "height": "6'2\"",
+          "weight": "175",
+          "age": "18",
+          "homeTown": "Santa Rosa",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -11893,5 +11978,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-06-17T07:48:26.315Z"
+  "fetchedAt": "2026-06-22T07:58:13.636Z"
 }
