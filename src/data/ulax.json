@@ -4937,15 +4937,6 @@
           "points": 0
         },
         {
-          "name": "Shvodian, Kevin",
-          "number": "",
-          "team": "",
-          "gp": 1,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
-        },
-        {
           "name": "Spain, Joshua",
           "number": "",
           "team": "",
@@ -5355,6 +5346,15 @@
           "number": "45",
           "team": "",
           "gp": 2,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Spaletta, Ben",
+          "number": "",
+          "team": "",
+          "gp": 0,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -6540,18 +6540,6 @@
           "isAssistantCaptain": false
         },
         {
-          "name": "Shvodian, Kevin",
-          "number": "",
-          "position": "Midfield",
-          "height": "6'1\"",
-          "weight": "195",
-          "age": "23",
-          "homeTown": "Menlo Park",
-          "team": "",
-          "isCaptain": false,
-          "isAssistantCaptain": false
-        },
-        {
           "name": "Spain, Joshua",
           "number": "",
           "position": "Defense",
@@ -7147,6 +7135,18 @@
           "weight": "215",
           "age": "27",
           "homeTown": "Maple Valley, WA",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Spaletta, Ben",
+          "number": "",
+          "position": "Midfield",
+          "height": "5'11\"",
+          "weight": "190",
+          "age": "27",
+          "homeTown": "Petaluma",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -11978,5 +11978,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-06-23T07:13:02.825Z"
+  "fetchedAt": "2026-06-24T07:10:04.899Z"
 }
