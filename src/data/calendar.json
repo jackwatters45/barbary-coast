@@ -1364,8 +1364,17 @@
       "summary": "BC vs. Palo Alto",
       "description": "",
       "location": "Terremere Field, Redwood City, CA 94062",
-      "start": "2026-06-28T11:00:00-07:00",
-      "end": "2026-06-28T12:00:00-07:00",
+      "start": "2026-06-28T14:00:00-07:00",
+      "end": "2026-06-28T15:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "ngrncosdn54r1k28n9nf72l5s8",
+      "summary": "BC Beers",
+      "description": "",
+      "location": "Gourmet Haus Staudt, 2615 Broadway, Redwood City, CA 94063, USA",
+      "start": "2026-06-28T15:00:00-07:00",
+      "end": "2026-06-28T17:00:00-07:00",
       "allDay": false
     },
     {
@@ -1405,5 +1414,5 @@
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-06-19T08:05:02.407Z"
+  "fetchedAt": "2026-06-30T07:29:44.305Z"
 }
