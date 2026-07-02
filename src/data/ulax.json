@@ -1,5 +1,5 @@
 {
-  "currentSeason": "spring",
+  "currentSeason": "summer",
   "currentYear": 2026,
   "seasons": {
     "spring-2026": {
@@ -3947,28 +3947,28 @@
           "barbaryCoastIsHome": false
         },
         {
-          "id": 62,
+          "id": 63,
           "date": "2026-06-28",
           "time": "11:00 am",
           "field": "Terremere Field",
           "awayTeam": "Palo Alto Ducks",
-          "awayScore": null,
-          "homeTeam": "Barbary Coast",
-          "homeScore": null,
+          "awayScore": 10,
+          "homeTeam": "San Francisco Lacrosse Club",
+          "homeScore": 6,
           "gameType": "regular",
           "typeName": "Regular Season",
-          "isBarbaryCoast": true,
-          "barbaryCoastIsHome": true
+          "isBarbaryCoast": false,
+          "barbaryCoastIsHome": null
         },
         {
-          "id": 63,
+          "id": 65,
           "date": "2026-06-28",
           "time": "12:00 pm",
           "field": "Terremere Field",
-          "awayTeam": "Palo Alto Ducks",
-          "awayScore": null,
-          "homeTeam": "San Francisco Lacrosse Club",
-          "homeScore": null,
+          "awayTeam": "Diablo Lacrosse Club",
+          "awayScore": 10,
+          "homeTeam": "Golden State Stars Lacrosse Club",
+          "homeScore": 2,
           "gameType": "regular",
           "typeName": "Regular Season",
           "isBarbaryCoast": false,
@@ -3980,27 +3980,27 @@
           "time": "1:00 pm",
           "field": "Terremere Field",
           "awayTeam": "San Francisco Lacrosse Club",
-          "awayScore": null,
+          "awayScore": 5,
           "homeTeam": "Sonoma County Lacrosse Club",
-          "homeScore": null,
+          "homeScore": 10,
           "gameType": "regular",
           "typeName": "Regular Season",
           "isBarbaryCoast": false,
           "barbaryCoastIsHome": null
         },
         {
-          "id": 65,
+          "id": 62,
           "date": "2026-06-28",
           "time": "2:00 pm",
           "field": "Terremere Field",
-          "awayTeam": "Diablo Lacrosse Club",
-          "awayScore": null,
-          "homeTeam": "Golden State Stars Lacrosse Club",
-          "homeScore": null,
+          "awayTeam": "Palo Alto Ducks",
+          "awayScore": 8,
+          "homeTeam": "Barbary Coast",
+          "homeScore": 7,
           "gameType": "regular",
           "typeName": "Regular Season",
-          "isBarbaryCoast": false,
-          "barbaryCoastIsHome": null
+          "isBarbaryCoast": true,
+          "barbaryCoastIsHome": true
         },
         {
           "id": 70,
@@ -4173,64 +4173,64 @@
       ],
       "standings": [
         {
-          "team": "Barbary Coast",
-          "gp": 2,
-          "w": 2,
-          "l": 0,
-          "t": 0,
-          "pts": 4,
-          "gf": 15,
-          "ga": 10
-        },
-        {
-          "team": "Sonoma County Lacrosse Club",
-          "gp": 2,
-          "w": 2,
-          "l": 0,
-          "t": 0,
-          "pts": 4,
-          "gf": 13,
-          "ga": 9
-        },
-        {
           "team": "Palo Alto Ducks",
-          "gp": 1,
-          "w": 1,
+          "gp": 3,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "pts": 2,
-          "gf": 10,
-          "ga": 1
-        },
-        {
-          "team": "San Francisco Lacrosse Club",
-          "gp": 1,
-          "w": 0,
-          "l": 1,
-          "t": 0,
-          "pts": 0,
-          "gf": 5,
-          "ga": 8
-        },
-        {
-          "team": "Golden State Stars Lacrosse Club",
-          "gp": 2,
-          "w": 0,
-          "l": 2,
-          "t": 0,
-          "pts": 0,
-          "gf": 10,
+          "pts": 6,
+          "gf": 28,
           "ga": 14
         },
         {
+          "team": "Sonoma County Lacrosse Club",
+          "gp": 3,
+          "w": 3,
+          "l": 0,
+          "t": 0,
+          "pts": 6,
+          "gf": 23,
+          "ga": 14
+        },
+        {
+          "team": "Barbary Coast",
+          "gp": 3,
+          "w": 2,
+          "l": 1,
+          "t": 0,
+          "pts": 4,
+          "gf": 22,
+          "ga": 18
+        },
+        {
           "team": "Diablo Lacrosse Club",
-          "gp": 2,
-          "w": 0,
+          "gp": 3,
+          "w": 1,
           "l": 2,
           "t": 0,
+          "pts": 2,
+          "gf": 15,
+          "ga": 18
+        },
+        {
+          "team": "Golden State Stars Lacrosse Club",
+          "gp": 3,
+          "w": 0,
+          "l": 3,
+          "t": 0,
           "pts": 0,
-          "gf": 5,
-          "ga": 16
+          "gf": 12,
+          "ga": 24
+        },
+        {
+          "team": "San Francisco Lacrosse Club",
+          "gp": 3,
+          "w": 0,
+          "l": 3,
+          "t": 0,
+          "pts": 0,
+          "gf": 16,
+          "ga": 28
         }
       ],
       "playerStats": [
@@ -4238,7 +4238,7 @@
           "name": "Baum, Gideon",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4247,7 +4247,7 @@
           "name": "Burke, Fischer",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4256,7 +4256,7 @@
           "name": "Chapman, Logan",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4265,7 +4265,7 @@
           "name": "Chilimidos, Dominic",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4274,7 +4274,7 @@
           "name": "Dobbs, Matt",
           "number": "44",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 0,
           "points": 1
@@ -4283,7 +4283,7 @@
           "name": "Donoso-Reddick, Nathan",
           "number": "18",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4292,16 +4292,16 @@
           "name": "Dudenas, Peter",
           "number": "",
           "team": "",
-          "gp": 2,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
+          "gp": 3,
+          "goals": 1,
+          "assists": 1,
+          "points": 2
         },
         {
           "name": "Embury, Taylor",
           "number": "58",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 6,
           "assists": 1,
           "points": 7
@@ -4310,7 +4310,7 @@
           "name": "Felsenthal, Nate",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4319,16 +4319,16 @@
           "name": "Gunter, Cale",
           "number": "6",
           "team": "",
-          "gp": 2,
-          "goals": 3,
+          "gp": 3,
+          "goals": 4,
           "assists": 0,
-          "points": 3
+          "points": 4
         },
         {
           "name": "Haberlein, Paul",
           "number": "4",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 1,
           "points": 2
@@ -4337,7 +4337,7 @@
           "name": "Hawkins, Charlie",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4346,7 +4346,7 @@
           "name": "Lehman, Davis",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4355,7 +4355,7 @@
           "name": "Murphy, Liam",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4364,7 +4364,7 @@
           "name": "Nahidi, Bijan",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4373,7 +4373,7 @@
           "name": "Richardson, Will",
           "number": "47",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4382,7 +4382,7 @@
           "name": "Schneider, Griffin",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4391,7 +4391,7 @@
           "name": "Stebbins, Matt",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4400,7 +4400,7 @@
           "name": "Watson, Reed",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4409,7 +4409,7 @@
           "name": "Weaver, Blake",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4418,7 +4418,7 @@
           "name": "Wilen, Ben",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4427,16 +4427,16 @@
           "name": "Zhu, Harrison",
           "number": "14",
           "team": "",
-          "gp": 2,
-          "goals": 0,
+          "gp": 3,
+          "goals": 4,
           "assists": 0,
-          "points": 0
+          "points": 4
         },
         {
           "name": "Ambrosio, Jon Luc",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4445,7 +4445,7 @@
           "name": "Bahary, Devon",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4454,7 +4454,7 @@
           "name": "Buonserio, Patrick",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4463,7 +4463,7 @@
           "name": "Bustin, Devin",
           "number": "45",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4472,7 +4472,7 @@
           "name": "Castano, Andres",
           "number": "1",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 1,
           "points": 2
@@ -4481,7 +4481,7 @@
           "name": "Demopoulos, Nick",
           "number": "32",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 2,
           "assists": 0,
           "points": 2
@@ -4490,7 +4490,7 @@
           "name": "Dilk, Ethan",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4499,7 +4499,7 @@
           "name": "Dowd, Andrew",
           "number": "65",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4508,7 +4508,7 @@
           "name": "elliman, tristan",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4517,7 +4517,7 @@
           "name": "Harding, Tyler",
           "number": "25",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4526,7 +4526,7 @@
           "name": "Jennings, Seamus",
           "number": "33",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4535,7 +4535,7 @@
           "name": "Jordan, Christian",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4544,7 +4544,7 @@
           "name": "Lihani, Andy",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4553,7 +4553,7 @@
           "name": "Lothner, Judson",
           "number": "41",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4562,7 +4562,7 @@
           "name": "Oppido, Patrick",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4571,7 +4571,7 @@
           "name": "Parker, TJ",
           "number": "10",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4580,7 +4580,7 @@
           "name": "Rhoads, Brian",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4589,7 +4589,7 @@
           "name": "Selvin, Adam",
           "number": "24",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4598,7 +4598,7 @@
           "name": "Sharp, Josh",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4607,7 +4607,7 @@
           "name": "Solis, Chris",
           "number": "18",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4616,7 +4616,7 @@
           "name": "Ward, Aaron",
           "number": "29",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4625,7 +4625,7 @@
           "name": "Ward, Stone",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4634,7 +4634,7 @@
           "name": "Whitehouse, Patrick",
           "number": "27",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4643,7 +4643,7 @@
           "name": "Wroblewski , Robert",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4652,7 +4652,7 @@
           "name": "Becker, AJ",
           "number": "24",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 1,
           "points": 2
@@ -4661,7 +4661,7 @@
           "name": "Burling, Conor",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4670,7 +4670,7 @@
           "name": "Carpenter, Wais",
           "number": "5",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4679,7 +4679,7 @@
           "name": "Casentini, Juliano",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4688,7 +4688,7 @@
           "name": "Cheung, Brandon",
           "number": "12",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4697,7 +4697,7 @@
           "name": "Gonsalves, Jacob",
           "number": "88",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4706,7 +4706,7 @@
           "name": "Gonzalez, Alex",
           "number": "18",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 5,
           "assists": 3,
           "points": 8
@@ -4715,7 +4715,7 @@
           "name": "Gonzalez, Maximiano",
           "number": "6",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4724,7 +4724,7 @@
           "name": "Graifman, Matthew",
           "number": "33",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4733,7 +4733,7 @@
           "name": "Holeman , Connor",
           "number": "29",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4742,7 +4742,7 @@
           "name": "Honda, Alex",
           "number": "67",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4751,7 +4751,7 @@
           "name": "Lompa, Dustin",
           "number": "14",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4760,7 +4760,7 @@
           "name": "Ortega , Gustavo",
           "number": "10",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 0,
           "points": 1
@@ -4769,7 +4769,7 @@
           "name": "Schreiner, Parker",
           "number": "3",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 1,
           "points": 1
@@ -4778,7 +4778,7 @@
           "name": "Scruggs, Hunter",
           "number": "15",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 0,
           "points": 1
@@ -4787,7 +4787,7 @@
           "name": "Tezen Marroquin, Yurem",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4796,7 +4796,7 @@
           "name": "Thornton, Cole",
           "number": "46",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4805,7 +4805,7 @@
           "name": "Vergara, Landon",
           "number": "1",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 1,
           "points": 1
@@ -4814,7 +4814,7 @@
           "name": "Weaver, Grady",
           "number": "2",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4823,16 +4823,16 @@
           "name": "Bourdon, Liam",
           "number": "",
           "team": "",
-          "gp": 0,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
+          "gp": 3,
+          "goals": 1,
+          "assists": 1,
+          "points": 2
         },
         {
           "name": "Brown, Logan",
           "number": "66",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4841,7 +4841,7 @@
           "name": "Buenrostro, Julian",
           "number": "31",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 1,
           "assists": 0,
           "points": 1
@@ -4850,25 +4850,34 @@
           "name": "Catron, Jake",
           "number": "",
           "team": "",
-          "gp": 1,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
+          "gp": 3,
+          "goals": 3,
+          "assists": 1,
+          "points": 4
         },
         {
           "name": "Cespedes, Jonathan",
           "number": "",
           "team": "",
-          "gp": 1,
-          "goals": 0,
+          "gp": 3,
+          "goals": 2,
           "assists": 0,
-          "points": 0
+          "points": 2
         },
         {
           "name": "Fagan, Matt",
           "number": "8",
           "team": "",
-          "gp": 1,
+          "gp": 3,
+          "goals": 5,
+          "assists": 0,
+          "points": 5
+        },
+        {
+          "name": "Fogarty, Jameson",
+          "number": "",
+          "team": "",
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4877,7 +4886,7 @@
           "name": "Gomez, Gabriel",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4886,7 +4895,7 @@
           "name": "Higgins, Wade",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4895,34 +4904,34 @@
           "name": "Hinton, Joe",
           "number": "10",
           "team": "",
-          "gp": 1,
-          "goals": 1,
+          "gp": 3,
+          "goals": 2,
           "assists": 0,
-          "points": 1
+          "points": 2
         },
         {
           "name": "Kiely, John",
           "number": "",
           "team": "",
-          "gp": 1,
-          "goals": 0,
+          "gp": 3,
+          "goals": 1,
           "assists": 0,
-          "points": 0
+          "points": 1
         },
         {
           "name": "Mar, Kent",
           "number": "3",
           "team": "",
-          "gp": 1,
-          "goals": 0,
+          "gp": 3,
+          "goals": 1,
           "assists": 0,
-          "points": 0
+          "points": 1
         },
         {
           "name": "Morgan, Bro",
           "number": "925",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 1,
           "points": 1
@@ -4931,7 +4940,7 @@
           "name": "Roberts, Russell",
           "number": "10",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4940,16 +4949,16 @@
           "name": "Spain, Joshua",
           "number": "",
           "team": "",
-          "gp": 1,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
+          "gp": 3,
+          "goals": 3,
+          "assists": 1,
+          "points": 4
         },
         {
           "name": "Titterton, PJ",
           "number": "77",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4958,7 +4967,7 @@
           "name": "Valadez, Eduardo",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4967,16 +4976,16 @@
           "name": "Walker, Scott",
           "number": "",
           "team": "",
-          "gp": 1,
-          "goals": 0,
+          "gp": 3,
+          "goals": 1,
           "assists": 0,
-          "points": 0
+          "points": 1
         },
         {
           "name": "Arrison , Seth",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4985,7 +4994,7 @@
           "name": "Beckman, Mitch",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -4994,7 +5003,7 @@
           "name": "Botsford, Cole",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5003,7 +5012,7 @@
           "name": "Castro, Max",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5012,7 +5021,7 @@
           "name": "Dimas, Mark",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5021,7 +5030,7 @@
           "name": "Essabhoy, Sawyer",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5030,7 +5039,7 @@
           "name": "Francis, John",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5039,7 +5048,7 @@
           "name": "Herron, Liam",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5048,7 +5057,7 @@
           "name": "Krane, Ari",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5057,7 +5066,7 @@
           "name": "Losi, Lukas",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5066,7 +5075,7 @@
           "name": "Oleinik, Anthony",
           "number": "",
           "team": "",
-          "gp": 0,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5075,7 +5084,7 @@
           "name": "Pleman, Christopher",
           "number": "17",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5084,7 +5093,7 @@
           "name": "Reid, Finn",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5093,7 +5102,7 @@
           "name": "Riley, Graham",
           "number": "84",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 1,
           "assists": 0,
           "points": 1
@@ -5102,7 +5111,7 @@
           "name": "Sasaki, John",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5111,7 +5120,7 @@
           "name": "SavillWelch, Will",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5120,7 +5129,7 @@
           "name": "Taylor, Jake",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5129,7 +5138,7 @@
           "name": "Welch, William “Wild Bill”",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5138,7 +5147,7 @@
           "name": "Weldon, Jackson",
           "number": "19",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5147,7 +5156,7 @@
           "name": "Yun, Phoenix",
           "number": "",
           "team": "",
-          "gp": 1,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5156,7 +5165,7 @@
           "name": "Blomgren , Isaiah",
           "number": "34",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5165,7 +5174,7 @@
           "name": "Bolz, Alejandro",
           "number": "37",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5174,7 +5183,7 @@
           "name": "bolz, martin",
           "number": "39",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5183,7 +5192,7 @@
           "name": "Caliguire , Joseph",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5192,7 +5201,7 @@
           "name": "D'Amico, Giovanni",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5201,7 +5210,7 @@
           "name": "Dubyak, Jacob",
           "number": "29",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5210,7 +5219,7 @@
           "name": "Hart, Larry",
           "number": "40",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 3,
           "assists": 1,
           "points": 4
@@ -5219,7 +5228,7 @@
           "name": "Hennis, Matt",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5228,7 +5237,7 @@
           "name": "Jorgensen, Bendt",
           "number": "50",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 2,
           "assists": 1,
           "points": 3
@@ -5237,7 +5246,7 @@
           "name": "Lopata, Dalan",
           "number": "26",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 2,
           "points": 2
@@ -5246,7 +5255,7 @@
           "name": "Macri, Nick",
           "number": "30",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 5,
           "assists": 1,
           "points": 6
@@ -5255,7 +5264,7 @@
           "name": "McIntyre, Jake",
           "number": "36",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 3,
           "assists": 3,
           "points": 6
@@ -5264,7 +5273,7 @@
           "name": "Muckenfuss, Roger",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5273,7 +5282,7 @@
           "name": "Nohl, Max",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5282,7 +5291,7 @@
           "name": "Olson, Carter",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5291,7 +5300,7 @@
           "name": "Olson, Grant",
           "number": "49",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5300,7 +5309,7 @@
           "name": "Oneil, Juan",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5309,7 +5318,7 @@
           "name": "Orduna, Sergio",
           "number": "47",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5318,7 +5327,7 @@
           "name": "Perry, Kenneth",
           "number": "33",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5327,7 +5336,16 @@
           "name": "Philp, Pierce",
           "number": "44",
           "team": "",
-          "gp": 2,
+          "gp": 3,
+          "goals": 0,
+          "assists": 0,
+          "points": 0
+        },
+        {
+          "name": "Rigley, Daniel",
+          "number": "",
+          "team": "",
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5336,7 +5354,7 @@
           "name": "Salonga, Jacob",
           "number": "",
           "team": "",
-          "gp": 0,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5345,7 +5363,7 @@
           "name": "Scofield, Thomas",
           "number": "45",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5354,7 +5372,7 @@
           "name": "Spaletta, Ben",
           "number": "",
           "team": "",
-          "gp": 0,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5363,7 +5381,7 @@
           "name": "Stanley, Caden",
           "number": "28",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 1,
           "assists": 1,
           "points": 2
@@ -5372,7 +5390,7 @@
           "name": "Wilbur, Chris",
           "number": "46",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5381,7 +5399,7 @@
           "name": "Withington, Marcus",
           "number": "32",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5390,7 +5408,7 @@
           "name": "witt, jack",
           "number": "",
           "team": "",
-          "gp": 2,
+          "gp": 3,
           "goals": 0,
           "assists": 0,
           "points": 0
@@ -5403,9 +5421,9 @@
           "team": "",
           "wins": 0,
           "losses": 0,
-          "goalsAgainst": 0,
-          "saves": 0,
-          "savePercentage": 0
+          "goalsAgainst": 8,
+          "saves": 6,
+          "savePercentage": 0.429
         },
         {
           "name": "Jacimovic, Nicco",
@@ -5451,21 +5469,21 @@
           "name": "Ambrocente, Cole",
           "number": "",
           "team": "",
-          "wins": 0,
+          "wins": 3,
           "losses": 0,
-          "goalsAgainst": 0,
-          "saves": 0,
-          "savePercentage": 0
+          "goalsAgainst": 2,
+          "saves": 6,
+          "savePercentage": 0.75
         },
         {
           "name": "Khan, Armand",
           "number": "34",
           "team": "",
-          "wins": 1,
+          "wins": 3,
           "losses": 0,
-          "goalsAgainst": 1,
-          "saves": 10,
-          "savePercentage": 0.909
+          "goalsAgainst": 12,
+          "saves": 19,
+          "savePercentage": 0.613
         },
         {
           "name": "Stanwick, John",
@@ -6444,6 +6462,18 @@
           "isAssistantCaptain": false
         },
         {
+          "name": "Fogarty, Jameson",
+          "number": "",
+          "position": "LSM",
+          "height": "6'00\"",
+          "weight": "165",
+          "age": "26",
+          "homeTown": "Philadelphia",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
           "name": "Gomez, Gabriel",
           "number": "",
           "position": "Midfield",
@@ -7111,6 +7141,18 @@
           "weight": "220",
           "age": "32",
           "homeTown": "Los Altos",
+          "team": "",
+          "isCaptain": false,
+          "isAssistantCaptain": false
+        },
+        {
+          "name": "Rigley, Daniel",
+          "number": "",
+          "position": "Defense",
+          "height": "6'0\"",
+          "weight": "190",
+          "age": "30",
+          "homeTown": "Pleasant Hill",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -11869,11 +11911,11 @@
   "barbaryCoast": {
     "allTime": {
       "wins": 47,
-      "losses": 21,
+      "losses": 22,
       "ties": 0,
       "titles": 5,
-      "goalsFor": 551,
-      "goalsAgainst": 379
+      "goalsFor": 558,
+      "goalsAgainst": 387
     },
     "seasons": [
       {
@@ -11889,10 +11931,10 @@
       {
         "season": "summer-2026",
         "wins": 2,
-        "losses": 0,
+        "losses": 1,
         "ties": 0,
-        "goalsFor": 15,
-        "goalsAgainst": 10,
+        "goalsFor": 22,
+        "goalsAgainst": 18,
         "result": "Champions",
         "isChampion": true
       },
@@ -11978,5 +12020,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-06-24T07:10:04.899Z"
+  "fetchedAt": "2026-07-02T07:06:38.608Z"
 }
