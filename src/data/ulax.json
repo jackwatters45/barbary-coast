@@ -4415,15 +4415,6 @@
           "points": 0
         },
         {
-          "name": "Wilen, Ben",
-          "number": "",
-          "team": "",
-          "gp": 3,
-          "goals": 0,
-          "assists": 0,
-          "points": 0
-        },
-        {
           "name": "Zhu, Harrison",
           "number": "14",
           "team": "",
@@ -5797,18 +5788,6 @@
           "weight": "185",
           "age": "20",
           "homeTown": "Corte Madera CA",
-          "team": "",
-          "isCaptain": false,
-          "isAssistantCaptain": false
-        },
-        {
-          "name": "Wilen, Ben",
-          "number": "",
-          "position": "Midfield",
-          "height": "5'7\"",
-          "weight": "160",
-          "age": "24",
-          "homeTown": "Chicago",
           "team": "",
           "isCaptain": false,
           "isAssistantCaptain": false
@@ -12020,5 +11999,5 @@
       }
     ]
   },
-  "fetchedAt": "2026-07-05T07:05:09.880Z"
+  "fetchedAt": "2026-07-08T06:49:22.534Z"
 }
