@@ -1379,7 +1379,7 @@
     },
     {
       "id": "792t3skdsgudq8npo0auii5rov",
-      "summary": "BC vs. Diablo",
+      "summary": "BC vs. Sonoma",
       "description": "",
       "location": "Beach Chalet Soccer Fields 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
       "start": "2026-07-12T17:00:00-07:00",
@@ -1388,7 +1388,7 @@
     },
     {
       "id": "4nppdet6s48hfnmae3mtv3aj0h",
-      "summary": "BC vs. Sonoma",
+      "summary": "BC vs. Diablo",
       "description": "",
       "location": "Beach Chalet 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
       "start": "2026-07-12T19:00:00-07:00",
@@ -1414,5 +1414,5 @@
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-07-11T06:52:50.626Z"
+  "fetchedAt": "2026-07-17T06:54:53.587Z"
 }
