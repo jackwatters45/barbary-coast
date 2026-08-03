@@ -1406,13 +1406,13 @@
     },
     {
       "id": "069chaons6eoo7buq8glsh5plh",
-      "summary": "Hold for Summer Semis and Finals",
+      "summary": "Summer Playoffs: 3PM Semis, 4PM Finals",
       "description": "",
-      "location": "Beach Chalet 1400-1598 John F Kennedy Dr, San Francisco, CA 94121",
-      "start": "2026-08-09T14:00:00-07:00",
+      "location": "Wilder Field 1, 101 Wilder Rd, Orinda, CA 94563, USA",
+      "start": "2026-08-09T15:00:00-07:00",
       "end": "2026-08-09T17:00:00-07:00",
       "allDay": false
     }
   ],
-  "fetchedAt": "2026-07-30T07:00:59.145Z"
+  "fetchedAt": "2026-08-03T07:18:12.347Z"
 }
