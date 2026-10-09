@@ -1412,7 +1412,25 @@
       "start": "2026-08-09T15:00:00-07:00",
       "end": "2026-08-09T17:00:00-07:00",
       "allDay": false
+    },
+    {
+      "id": "2c4d3pvj2g9v9tikr092j9psh0",
+      "summary": "BC Pre-Hawaii Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-10-14T19:00:00-07:00",
+      "end": "2026-10-14T20:00:00-07:00",
+      "allDay": false
+    },
+    {
+      "id": "n7evrsc675puet1k59dbq73mns",
+      "summary": "BC Pre-Hawaii Practice",
+      "description": "",
+      "location": "Beach Chalet Athletic Fields, 1400-1598 John F Kennedy Dr, San Francisco, CA 94121, USA",
+      "start": "2026-10-21T19:00:00-07:00",
+      "end": "2026-10-21T20:00:00-07:00",
+      "allDay": false
     }
   ],
-  "fetchedAt": "2026-10-08T13:07:21.532Z"
+  "fetchedAt": "2026-10-09T12:53:55.848Z"
 }
